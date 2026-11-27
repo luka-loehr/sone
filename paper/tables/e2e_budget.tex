@@ -1,21 +1,21 @@
 \begin{table*}[t]
 \centering
-\caption{Single-threaded CPU latency budget per DJ transition on our $2$-vCPU Intel Xeon cloud VM across all three \sone{} tiers ($2 \times 24$\,s boundary separation window + bit-exact master stereo splicing outside $[u_0, u_1]$).}
+\caption{Single-threaded CPU latency budget per DJ transition on our Intel Xeon cloud VM across all four \sone{} tiers ($2 \times 24$\,s boundary separation window + bit-exact master stereo splicing outside $[u_0, u_1]$).}
 \label{tab:e2e_budget}
 \footnotesize
-\setlength{\tabcolsep}{4.5pt}
-\resizebox{\linewidth}{!}{\begin{tabular}{@{}llrrr@{}}
+\setlength{\tabcolsep}{4.0pt}
+\resizebox{\linewidth}{!}{\begin{tabular}{@{}llrrrr@{}}
 \toprule
-Pipeline stage & Boundary scope per transition & \textbf{Sone-6.5M} & \textbf{Sone-v2-Base} & \textbf{Sone-Pro} \\
+Pipeline stage & Boundary scope per transition & \textbf{Sone-6.5M} & \textbf{Sone-v2-Base} & \textbf{Sone-Pro} & \textbf{Sone-Ultra} \\
 \midrule
-\textbf{Tympanum} + Comb-Grid & $2 \times$ track structure ($50$\,Hz) & $0.35$\,s & $0.35$\,s & $1.18$\,s \\
-\textbf{Cochlea} (boundary stems only) & $2 \times 24$\,s stereo transition zone & $6.24$\,s ($0.13\times$ RT) & $19.10$\,s ($0.40\times$ RT) & $45.56$\,s ($0.95\times$ RT) \\
-\textbf{Cortex} (\op{cortex.*}) & $209$ beat tokens & $16.7$\,ms & $17.3$\,ms & $38.0$\,ms \\
-\textbf{Cingulate} (Best-of-$6$ rerank) & $6 \times 209$ candidate tokens & $53.0$\,ms & $52.3$\,ms & $100.0$\,ms \\
-\textbf{DSP Render + Master Splice} & Stretch + pocket + echo + cosine seam & $1.95$\,s & $1.95$\,s & $1.95$\,s \\
+\textbf{Tympanum} + Comb-Grid & $2 \times$ track structure ($50$\,Hz) & $0.35$\,s & $0.35$\,s & $1.18$\,s & $1.18$\,s \\
+\textbf{Cochlea} (boundary stems) & $2 \times 24$\,s stereo transition zone & $6.24$\,s ($0.13\times$) & $19.10$\,s ($0.40\times$) & $45.56$\,s ($0.95\times$) & $82.56$\,s ($1.72\times$) \\
+\textbf{Cortex} (\op{cortex.*}) & $209$ beat tokens & $16.7$\,ms & $17.3$\,ms & $38.0$\,ms & $38.0$\,ms \\
+\textbf{Cingulate} (Best-of-$6$) & $6 \times 209$ candidate tokens & $53.0$\,ms & $52.3$\,ms & $100.0$\,ms & $100.0$\,ms \\
+\textbf{DSP + Newton Lock + Splice} & Stretch + slope lock + cosine seam & $1.95$\,s & $1.95$\,s & $1.95$\,s & $1.95$\,s \\
 \midrule
-\textbf{Total 1-core CPU time} & Full raw-stereo-to-master mix & $\mathbf{8.6\,\text{s}}$ & $\mathbf{21.5\,\text{s}}$ & $\mathbf{48.8\,\text{s}}$ \\
-\textbf{Avg.\ load over 180\,s song} & Fraction of 1 cloud vCPU core & $\mathbf{4.8\%}$ & $\mathbf{11.9\%}$ & $\mathbf{27.1\%}$ \\
+\textbf{Total 1-core CPU time} & Full raw-stereo-to-master mix & $\mathbf{8.6\,\text{s}}$ & $\mathbf{21.5\,\text{s}}$ & $\mathbf{48.8\,\text{s}}$ & $\mathbf{85.8\,\text{s}}$ \\
+\textbf{Avg.\ load over 180\,s song} & Fraction of 1 cloud vCPU core & $\mathbf{4.8\%}$ & $\mathbf{11.9\%}$ & $\mathbf{27.1\%}$ & $\mathbf{47.7\%}$ \\
 \bottomrule
 \end{tabular}}
 \end{table*}

@@ -30,7 +30,7 @@
 | **Sone-6.5M** | `sone-6.5M-f16.safetensors` | `6.52M` | `13.1 MB` | `4.52M` (`2048`-FFT, 42b, `0.13×` RT) | `305K` | `1.22M` / `475K` | `4.8%` (`8.6 s`) |
 | **Sone-v2-Base** | `sone-v2-base-f16.safetensors` | `13.61M` | `27.4 MB` | `11.61M` (`4096`-FFT, 64b, `0.40×` RT) | `305K` | `1.22M` / `475K` | `11.9%` (`21.5 s`) |
 | **Sone-Pro** | `sone-pro-f16.safetensors` | `26.37M` | `52.9 MB` | `20.07M` (`4096`-FFT, 64b, `0.95×` RT) | `1.47M` | `3.60M` / `1.23M` | `27.1%` (`48.8 s`) |
-| **Sone-Ultra** | `sone-ultra-f16.safetensors` | `42.2M` | `84.6 MB` | `35.9M` (`4096`-FFT, 83b, `10B/160D`) | `1.47M` | `3.60M` / `1.23M` | Studio offline / multi-core |
+| **Sone-Ultra** | `sone-ultra-f16.safetensors` | `39.40M` | `79.0 MB` | `33.10M` (`4096`-FFT, 83b, `10B/160D`) | `1.47M` | `3.60M` / `1.23M` | `47.7%` (`85.8 s`) |
 
 ---
 

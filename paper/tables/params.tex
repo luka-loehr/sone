@@ -1,9 +1,9 @@
 \begin{table*}[t]
 \centering
-\caption{Exact parameter counts, tensor counts, architectural configurations, and serialized IEEE-754 FP16 \op{.safetensors} footprints across the three-tier \sone{} model family. All three tiers share the identical zero-copy \op{sone-infer/1} wire schema (\op{Sone::load}).}
+\caption{Exact parameter counts, tensor counts, architectural configurations, and serialized IEEE-754 FP16 \op{.safetensors} footprints across the four-tier \sone{} model family. All four tiers share the identical zero-copy \op{sone-infer/1} wire schema (\op{Sone::load}).}
 \label{tab:params}
 \footnotesize
-\setlength{\tabcolsep}{4.0pt}
+\setlength{\tabcolsep}{3.8pt}
 \resizebox{\linewidth}{!}{\begin{tabular}{@{}lllrrr@{}}
 \toprule
 Tier / Organ & Namespace & Architecture summary & Tensors & Parameters & FP16 size \\
@@ -16,15 +16,19 @@ Tier / Organ & Namespace & Architecture summary & Tensors & Parameters & FP16 si
 \midrule
 \textbf{Sone-v2-Base} & \op{cochlea.*} & 64-band STFT ($4096/1024$), $6\times$ Dual-Axis TF ($d=80, H=4$), 4-stem Wiener & 1{,}338 & 11{,}605{,}860 & 23.33\,MB \\
  & \op{tympanum.*} & 50\,Hz log-mel ($M=128$), $4\times$ DWConv ($C=96$) + $2\times$ BiGRU ($h=64$), equiv. & 54 & 304{,}510 & 0.61\,MB \\
- & \op{cortex.*} & Beat Transformer ($209$ tok), $L=6, d=128, H=4, d_{\text{ff}}=512$ (\op{v3}) & 75 & 1{,}221{,}494 & 2.45\,MB \\
+ & \op{cortex.*} & Beat Transformer ($209$ tok), $L=6, d=128, H=4, d_{\text{ff}}=512$ (\op{v4-Base}) & 75 & 1{,}221{,}494 & 2.45\,MB \\
  & \op{cingulate.*} & Conflict Transformer ($209$ tok), $L=4, d=96, H=4$, 30 DJ defect heads & 53 & 475{,}071 & 0.95\,MB \\
  & \textbf{Unified \op{v2-Base}} & Single-file \op{sone-v2-base-f16.safetensors} ($0.40\times$ 1-vCPU Cochlea RT) & \textbf{1{,}520} & \textbf{13{,}606{,}935} & \textbf{27.36\,MB} \\
 \midrule
-\textbf{Sone-Pro} & \op{cochlea.*} & 64-band STFT ($4096/1024$), $8\times$ Dual-Axis TF ($d=128, H=8$), 4-stem Wiener & 1{,}378 & 20{,}069{,}012 & 40.26\,MB \\
+\textbf{Sone-Pro} & \op{cochlea.*} & 64-band STFT ($4096/1024$), $8\times$ Dual-Axis TF ($d=128, H=8$), RoFormer-1297 \op{v2} & 1{,}378 & 20{,}069{,}012 & 40.26\,MB \\
  & \op{tympanum.*} & 50\,Hz log-mel ($M=160$), $6\times$ DWConv ($C=160$) + $3\times$ BiGRU ($h=128$), equiv. & 76 & 1{,}473{,}406 & 2.95\,MB \\
- & \op{cortex.*} & Beat Transformer ($209$ tok), $L=8, d=192, H=6, d_{\text{ff}}=768$ (\op{v3-Pro}) & 93 & 3{,}604{,}726 & 7.22\,MB \\
- & \op{cingulate.*} & Conflict Transformer ($209$ tok), $L=6, d=128, H=4$, 30 DJ defect heads & 71 & 1{,}225{,}247 & 2.46\,MB \\
+ & \op{cortex.*} & Beat Transformer ($209$ tok), $L=8, d=192, H=6, d_{\text{ff}}=768$ (\op{v4-Pro}) & 93 & 3{,}604{,}726 & 7.22\,MB \\
+ & \op{cingulate.*} & Conflict Transformer ($209$ tok), $L=6, d=128, H=4$, 30 heads (12-mode CF) & 71 & 1{,}225{,}247 & 2.46\,MB \\
  & \textbf{Unified \op{Pro}} & Single-file \op{sone-pro-f16.safetensors} ($0.95\times$ 1-vCPU Cochlea RT) & \textbf{1{,}618} & \textbf{26{,}372{,}391} & \textbf{52.90\,MB} \\
+\midrule
+\textbf{Sone-Ultra} & \op{cochlea.*} & 83-band STFT ($4096/1024$), $10\times$ Dual-Axis TF ($d=160, H=8$), RoFormer-1297 & 1{,}779 & 33{,}099{,}380 & 66.35\,MB \\
+ & \op{tympanum/cortex/cing.} & Shared \op{Pro} perception + \op{v4-Pro} planner \& 30-defect critic & 240 & 6{,}303{,}379 & 12.63\,MB \\
+ & \textbf{Unified \op{Ultra}} & Single-file \op{sone-ultra-f16.safetensors} ($1.72\times$ 1-vCPU / $<0.5\times$ 4-core) & \textbf{2{,}019} & \textbf{39{,}402{,}759} & \textbf{78.98\,MB} \\
 \bottomrule
 \end{tabular}}
 \end{table*}

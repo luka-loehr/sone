@@ -1,18 +1,19 @@
 \begin{table*}[t]
 \centering
-\caption{Training, GPU teacher-distillation, validation, and human-audited evaluation datasets across all four organs. Zero audio frames are retained in model checkpoints or repository artifacts.}
+\caption{Training, 2-stage GPU teacher-distillation, validation, and human-audited evaluation datasets across all four organs. Zero audio frames are retained in model checkpoints or repository artifacts.}
 \label{tab:datasets}
 \footnotesize
-\setlength{\tabcolsep}{4.0pt}
+\setlength{\tabcolsep}{3.9pt}
 \resizebox{\linewidth}{!}{\begin{tabular}{@{}llllr@{}}
 \toprule
 Organ & Dataset / Split & Domain \& Supervision & Resolution & Scale \\
 \midrule
-\op{Cortex} \& \op{Cingulate} & \op{sone-sim} train / held-out \op{val} & Rule + perturbed transitions ($60$ tracks) + $50\%$ GPU counterfactuals & Beat ($80+128$ tok) & $25{,}962$ tr / $5{,}707$ val \\
-\op{Cortex} \& \op{Cingulate} & Human-audited \op{owner.jsonl} & Creator blind ratings (101 good / 41 bad, 30 defect tags) & Beat + audio metrics & 142 mixes \\
+\op{Cortex} \& \op{Cingulate} & \op{sone-sim v4} train / \op{val} & Fixed-rule + perturbed mixes ($60$ tracks) + $50\%$ 12-mode GPU CF & Beat ($80+128$ tok) & $26{,}904$ tr / $5{,}932$ val \\
+\op{Cortex} \& \op{Cingulate} & Human-audited \op{owner.jsonl} & Creator blind ratings (106 good / 46 bad, incl.\ 10-mix \op{Pro} audit) & Beat + sync/leak metrics & 152 mixes \\
 \midrule
-\op{Cochlea} (\op{v1/v2/Pro}) & MUSDB18-HQ~\citep{MUSDB18HQ} & Uncompressed studio 4-stem multitracks & $44.1$\,kHz stereo & $138$ tr / $12$ val \\
-\op{Cochlea} (\op{v2/Pro}) & CC Modern Teacher Distillation & \op{HTDemucs-ft}~\citep{rouard2023hybrid} on MTG-Jamendo~\citep{bogdanov2019mtg} \& SDD~\citep{manco2023song} & $44.1$\,kHz $48$\,s 4-stem & $1{,}101$ clips ($2\times 550$) \\
+\op{Cochlea} (All tiers) & MUSDB18-HQ~\citep{MUSDB18HQ} & Uncompressed studio 4-stem multitracks & $44.1$\,kHz stereo & $138$ tr / $12$ val \\
+\op{Cochlea} (\op{v2-Base/Pro}) & Stage-1 CC Distillation & \op{HTDemucs-ft}~\citep{rouard2023hybrid} on MTG-Jamendo~\citep{bogdanov2019mtg} \& SDD~\citep{manco2023song} & $44.1$\,kHz $48$\,s 4-stem & $1{,}101$ clips ($2\times 550$) \\
+\op{Cochlea} (\op{Pro v2/Ultra}) & 2-Stage RoFormer Cascade & \op{BS-RoFormer-1297} ($12.98$\,dB voc)~\citep{lu2024bsroformer} + \op{HTDemucs-ft} inst. & $44.1$\,kHz $48$\,s 4-stem & $372$ clips ($180 + 192$) \\
 \op{Cochlea} (Eval) & Broadcast residual multitracks & Leak-free stems ($\hat{s}_o = x - \sum \hat{s}_m$); $6$ strictly unseen test songs & $44.1$\,kHz stereo & $6$ tr / $6$ held-out \\
 \midrule
 \op{Tympanum} (\op{v1/v2}) & Broadcast 7-head structure & Beats, downbeats, vocals, breaths, 8-bar phrases, 24 keys, cents & $50$\,Hz + track & $9$ tr / $3$ held-out \\

@@ -1,11 +1,13 @@
 #!/usr/bin/env python3
 """Generate publication-grade vector PDF + PNG figures in paper/figures/ directly
-from real rendered audio (.wav/.spec.json) and real multi-GPU CUDA/CPU telemetry."""
+from real rendered audio (.wav/.spec.json) and real multi-GPU CUDA/CPU telemetry
+across the 4-tier Sone family (6.5M, v2-Base, Pro, Ultra)."""
 
 from __future__ import annotations
 
 import ast
 import json
+import os
 import re
 from pathlib import Path
 
@@ -15,13 +17,16 @@ import matplotlib.pyplot as plt
 import numpy as np
 import soundfile as sf
 
-ROOT = Path("/home/user/bot/sone")
+ROOT = Path(__file__).resolve().parents[2]
 FIG = ROOT / "paper" / "figures"
-BOT = Path("/home/user/bot")
+BOT = Path(os.environ.get("SONE_WORK_ROOT", str(ROOT.parent)))
 EXPORTS_V1 = BOT / "exports"
 EXPORTS_V1_L4 = BOT / "exports_v1_l4"
 EXPORTS_BASE = BOT / "exports_v2_base"
 EXPORTS_PRO = BOT / "exports_pro"
+EXPORTS_PRO_V2 = BOT / "exports_pro_v2"
+EXPORTS_ULTRA = BOT / "exports_ultra"
+EXPORTS_BEAT_V4 = BOT / "exports_beat_v4"
 
 plt.rcParams.update({
     "font.family": "serif",
@@ -62,7 +67,7 @@ def lane_curve(spec: dict, deck: str, stem: str, us: np.ndarray) -> np.ndarray:
 
 
 def fig_v1_vs_v2_ablation() -> None:
-    """Figure 2: Real fader trajectories + rendered short-time RMS (dBFS) across v1, v2, v3."""
+    """Figure 2: Real fader trajectories + rendered short-time RMS (dBFS) across v1, v2, v3/v4."""
     fig, axes = plt.subplots(2, 2, figsize=(7.2, 4.6), gridspec_kw={"width_ratios": [1.15, 1.0]})
 
     s1 = json.load(open(BOT / "ai_mixes/ai_mix01_7yoqSl_6N185A.spec.json"))[0]
@@ -73,8 +78,8 @@ def fig_v1_vs_v2_ablation() -> None:
     ax = axes[0, 0]
     ax.plot(us, lane_curve(s1, "a", "other", us), ls="--", lw=1.1, color="#c43c39", label="v1 Deck A chords (other)")
     ax.plot(us, lane_curve(s2, "a", "other", us), ls=":", lw=1.2, color="#d9822b", label="v2 Deck A chords")
-    ax.plot(us, lane_curve(s3, "a", "other", us), lw=1.6, color="#1f4fd1", label="v3 Deck A chords (pocket)")
-    ax.plot(us, lane_curve(s3, "b", "vocals", us), lw=1.4, color="#15803d", label="v3 Deck B vocals")
+    ax.plot(us, lane_curve(s3, "a", "other", us), lw=1.6, color="#1f4fd1", label="v3/v4 Deck A chords (pocket)")
+    ax.plot(us, lane_curve(s3, "b", "vocals", us), lw=1.4, color="#15803d", label="v3/v4 Deck B vocals")
     ax.axvline(-4.0, color="0.35", lw=0.8, ls="-.")
     ax.axvline(0.0, color="0.15", lw=0.9, ls="--")
     ax.text(-3.90, 1.04, "$u_{\\mathrm{handoff}}=-4$", fontsize=6.6, color="0.25")
@@ -88,7 +93,7 @@ def fig_v1_vs_v2_ablation() -> None:
     for path, lab, col, ls, lw in [
         (BOT / "ai_mixes/ai_mix01_7yoqSl_6N185A.wav", "v1 (-33.6 dB hole)", "#c43c39", "--", 1.0),
         (BOT / "ai_mixes_v2/ai_mix01_7yoqSl_6N185A.wav", "v2 (-27.9 dB)", "#d9822b", ":", 1.1),
-        (BOT / "ai_mixes_v3/ai_mix01_7yoqSl_6N185A.wav", "v3 (-23.1 dB, +10.5 dB)", "#1f4fd1", "-", 1.5),
+        (BOT / "ai_mixes_v3/ai_mix01_7yoqSl_6N185A.wav", "v3/v4 (-23.1 dB, +10.5 dB)", "#1f4fd1", "-", 1.5),
     ]:
         t, db = short_rms_db(path, win_s=1.0, hop_s=0.25)
         m = (t >= 30.0) & (t <= 56.0)
@@ -105,8 +110,8 @@ def fig_v1_vs_v2_ablation() -> None:
     ax = axes[1, 0]
     ax.plot(us2, lane_curve(m2_v1, "a", "vocals", us2), ls="--", lw=1.0, color="#c43c39", label="v1 A vocals (mid-word smear)")
     ax.plot(us2, lane_curve(m2_v2, "a", "vocals", us2), ls=":", lw=1.2, color="#d9822b", label="v2 A vocals (cut 4.6 s early)")
-    ax.plot(us2, lane_curve(m2_v3, "a", "vocals", us2), lw=1.6, color="#1f4fd1", label="v3 A vocals (sings to -3.0)")
-    ax.plot(us2, lane_curve(m2_v3, "b", "vocals", us2), lw=1.5, color="#15803d", label="v3 B vocals (verse onset)")
+    ax.plot(us2, lane_curve(m2_v3, "a", "vocals", us2), lw=1.6, color="#1f4fd1", label="v3/v4 A vocals (sings to -3.0)")
+    ax.plot(us2, lane_curve(m2_v3, "b", "vocals", us2), lw=1.5, color="#15803d", label="v3/v4 B vocals (verse onset)")
     ax.axvspan(-6.0, -3.0, color="#fde68a", alpha=0.35, label="Track B silent intro skipped")
     ax.axvline(-3.0, color="#15803d", lw=0.9, ls="-.")
     ax.set_xlabel("Metrical ruler $u$ (bars relative to the one)")
@@ -125,7 +130,7 @@ def fig_v1_vs_v2_ablation() -> None:
         dbb.append(max(-65.0, 10.0 * np.log10(float(np.mean(seg ** 2)) + 1e-12)))
     ax.plot(tb, dbb, lw=1.4, color="#15803d", label="Track B isolated vocal stem")
     ax.axhline(-34.0, color="0.5", lw=0.7, ls=":")
-    ax.axvline(4.94, color="#1f4fd1", lw=1.1, ls="--", label="v3 $u_{\\mathrm{handoff}}$ ($t_B=4.94$ s)")
+    ax.axvline(4.94, color="#1f4fd1", lw=1.1, ls="--", label="$u_{\\mathrm{handoff}}$ ($t_B=4.94$ s)")
     ax.axvspan(0.0, 4.94, color="#fde68a", alpha=0.35)
     ax.set_xlabel("Track B time $t_B$ (s)")
     ax.set_ylabel("Vocal level (dBFS)")
@@ -139,61 +144,40 @@ def fig_v1_vs_v2_ablation() -> None:
     plt.close(fig)
 
 
-def parse_a100_beat_log() -> tuple[list[tuple[float, float, float]], list[tuple[float, float, float]]]:
+def parse_beat_log() -> tuple[list[tuple[float, float, float]], list[tuple[float, float, float]]]:
     cortex_pts, cing_pts = [], []
-    bv3_p = EXPORTS_PRO / "beat_v3_results.json"
-    if bv3_p.exists():
-        d = json.loads(bv3_p.read_text())
-        for r in d.get("runs", []):
-            if r["kind"] == "cortex" and r["size"] == "pro":
-                for h in r["history"]:
-                    cortex_pts.append((h["step"] / 1000.0, h["bars_mae"], h["lane_mae"] * 10.0))
-            elif r["kind"] == "cingulate" and r["size"] == "pro":
-                for h in r["history"]:
-                    cing_pts.append((h["step"] / 1000.0, 100 * h["good_acc"], 100 * h["owner_good_acc"]))
-        if cortex_pts and cing_pts:
-            return cortex_pts, cing_pts
+    for cand in [EXPORTS_BEAT_V4 / "beat_v4_results.json", EXPORTS_PRO / "beat_v3_results.json"]:
+        if cand.exists():
+            d = json.loads(cand.read_text())
+            for r in d.get("runs", []):
+                if r["kind"] == "cortex" and r["size"] == "pro":
+                    for h in r["history"]:
+                        cortex_pts.append((h["step"] / 1000.0, h["bars_mae"], h["lane_mae"] * 10.0))
+                elif r["kind"] == "cingulate" and r["size"] == "pro":
+                    for h in r["history"]:
+                        cing_pts.append((h["step"] / 1000.0, 100 * h["good_acc"], 100 * h["owner_good_acc"]))
+            if cortex_pts and cing_pts:
+                return cortex_pts, cing_pts
 
     lg = BOT / "job_a100_brains.log"
     if lg.exists():
         for line in lg.read_text(errors="replace").splitlines():
-            m1 = re.search(r"\[cortex:pro\] step (\d+)/\d+ \| (\{.*\})", line)
+            m1 = re.search(r"\[cortex:pro(?::v4)?\] step (\d+)/\d+ \| (\{.*\})", line)
             if m1:
                 d = ast.literal_eval(m1.group(2))
                 cortex_pts.append((d["step"] / 1000.0, d["bars_mae"], d["lane_mae"] * 10.0))
-            m2 = re.search(r"\[cingulate:pro\] step (\d+)/\d+ \| (\{.*\})", line)
+            m2 = re.search(r"\[cingulate:pro(?::v4)?\] step (\d+)/\d+ \| (\{.*\})", line)
             if m2:
                 d = ast.literal_eval(m2.group(2))
                 cing_pts.append((d["step"] / 1000.0, 100 * d["good_acc"], 100 * d["owner_good_acc"]))
     return cortex_pts, cing_pts
 
 
-def parse_cochlea_loss_curve(res_json: Path, log_path: Path) -> tuple[list[float], list[float], list[float]]:
-    if res_json.exists():
-        d = json.loads(res_json.read_text())
-        tl = d.get("train_log", [])
-        if len(tl) >= 3:
-            return (
-                [r["step"] / 1000.0 for r in tl],
-                [r["mel"] for r in tl],
-                [r["leak"] for r in tl],
-            )
-    xs, mels, leaks = [], [], []
-    if log_path.exists():
-        for line in log_path.read_text(errors="replace").splitlines():
-            m = re.search(r"step\s+(\d+)/\d+.*mel=([0-9.]+)\s+ph=[0-9.]+\s+leak=([0-9.]+)", line)
-            if m:
-                xs.append(int(m.group(1)) / 1000.0)
-                mels.append(float(m.group(2)))
-                leaks.append(float(m.group(3)))
-    return xs, mels, leaks
-
-
 def fig_training_curves() -> None:
-    """Figure 3: Multi-GPU scaling & validation trajectories across Cortex v3-Pro, Cingulate v3-Pro, and Cochlea v2/Pro."""
+    """Figure 3: Multi-GPU scaling & validation trajectories across Cortex, Cingulate, and Cochlea."""
     fig, axes = plt.subplots(1, 3, figsize=(7.2, 2.42))
 
-    cortex_pts, cing_pts = parse_a100_beat_log()
+    cortex_pts, cing_pts = parse_beat_log()
 
     ax = axes[0]
     if cortex_pts:
@@ -201,10 +185,10 @@ def fig_training_curves() -> None:
         ax.plot(xs, [p[1] for p in cortex_pts], marker="o", ms=2.6, lw=1.35, color="#1f4fd1", label="Timing MAE (bars)")
         ax.plot(xs, [p[2] for p in cortex_pts], marker="s", ms=2.4, lw=1.2, color="#15803d", label="$10\\times$ Fader MAE")
         ax.axhline(0.320, color="#c43c39", ls="--", lw=0.9, label="v2 asymptote (0.32b)")
-        ax.set_ylim(0.150, 0.415)
-    ax.set_xlabel("Step ($\\times 10^3$, NVIDIA L4)")
+        ax.set_ylim(0.130, 0.415)
+    ax.set_xlabel("Step ($\\times 10^3$)")
     ax.set_ylabel("Held-out error $\\downarrow$")
-    ax.set_title("Cortex v3-Pro (8L/192D)")
+    ax.set_title("Cortex Pro (8L/192D)")
     ax.legend(frameon=True, facecolor="white", framealpha=0.9, edgecolor="none", loc="upper right", fontsize=6.2)
 
     ax = axes[1]
@@ -212,45 +196,32 @@ def fig_training_curves() -> None:
         xs = [p[0] for p in cing_pts]
         ax.plot(xs, [p[1] for p in cing_pts], marker="o", ms=2.6, lw=1.35, color="#1f4fd1", label="Held-out val acc (%)")
         ax.plot(xs, [p[2] for p in cing_pts], marker="^", ms=2.6, lw=1.2, color="#d9822b", label="Owner align (%)")
-    ax.set_xlabel("Step ($\\times 10^3$, NVIDIA L4)")
+    ax.set_xlabel("Step ($\\times 10^3$)")
     ax.set_ylabel("Accuracy (%) $\\uparrow$")
-    ax.set_title("Cingulate v3-Pro (50% GPU CF)")
+    ax.set_title("Cingulate Pro (50% GPU CF)")
     ax.legend(frameon=False, loc="lower right", fontsize=6.4)
 
     ax = axes[2]
     pro_j = EXPORTS_PRO / "cochlea_pro_results.json"
     base_j = EXPORTS_BASE / "cochlea_v2_base_results.json"
+    ult_j = EXPORTS_ULTRA / "cochlea_ultra_results.json"
     pro_hist = json.loads(pro_j.read_text()).get("history", []) if pro_j.exists() else []
     base_hist = json.loads(base_j.read_text()).get("history", []) if base_j.exists() else []
+    ult_hist = json.loads(ult_j.read_text()).get("history", []) if ult_j.exists() else []
 
-    if len(pro_hist) >= 2 or len(base_hist) >= 2:
-        if base_hist:
-            ax.plot(
-                [r["step"] / 1000.0 for r in base_hist],
-                [r["valid"]["sdr_vocals"] for r in base_hist],
-                marker="s", ms=2.8, lw=1.25, color="#15803d", label="v2-Base Voc SDR",
-            )
-        if pro_hist:
-            ax.plot(
-                [r["step"] / 1000.0 for r in pro_hist],
-                [r["valid"]["sdr_vocals"] for r in pro_hist],
-                marker="o", ms=3.0, lw=1.45, color="#1f4fd1", label="Pro Voc SDR (20.1M)",
-            )
-        ax.set_xlabel("Step ($\\times 10^3$, Blackwell G4 96GB)")
-        ax.set_ylabel("MUSDB Vocal SDR (dB) $\\uparrow$")
-        ax.set_title("Cochlea v2/Pro Scaling")
-        ax.legend(frameon=False, loc="lower right", fontsize=6.4)
-    else:
-        xb, mb, _ = parse_cochlea_loss_curve(base_j, BOT / "job_g4_base.log")
-        xp, mp, _ = parse_cochlea_loss_curve(pro_j, BOT / "job_h100_pro.log")
-        if xb:
-            ax.plot(xb, mb, marker="s", ms=2.6, lw=1.25, color="#15803d", label="v2-Base (11.6M, bs=48)")
-        if xp:
-            ax.plot(xp, mp, marker="o", ms=2.8, lw=1.4, color="#1f4fd1", label="Pro (20.1M, 695 songs)")
-        ax.set_xlabel("Step ($\\times 10^3$, Blackwell G4 96GB)")
-        ax.set_ylabel("128-Mel Vocal Loss $\\downarrow$")
-        ax.set_title("Cochlea Perceptual Loss")
-        ax.legend(frameon=False, loc="upper right", fontsize=6.3)
+    if base_hist:
+        ax.plot([r["step"] / 1000.0 for r in base_hist], [r["valid"]["sdr_vocals"] for r in base_hist],
+                marker="s", ms=2.6, lw=1.2, color="#15803d", label="v2-Base (11.6M)")
+    if pro_hist:
+        ax.plot([r["step"] / 1000.0 for r in pro_hist], [r["valid"]["sdr_vocals"] for r in pro_hist],
+                marker="o", ms=2.8, lw=1.4, color="#1f4fd1", label="Pro (20.1M)")
+    if ult_hist:
+        ax.plot([r["step"] / 1000.0 for r in ult_hist], [r["valid"]["sdr_vocals"] for r in ult_hist],
+                marker="^", ms=2.8, lw=1.4, color="#7c3aed", label="Ultra (33.1M)")
+    ax.set_xlabel("Step ($\\times 10^3$)")
+    ax.set_ylabel("MUSDB Vocal SDR (dB) $\\uparrow$")
+    ax.set_title("Cochlea Scaling (64/83b)")
+    ax.legend(frameon=False, loc="lower right", fontsize=6.2)
 
     fig.tight_layout(pad=0.45)
     fig.savefig(FIG / "training_curves.pdf", bbox_inches="tight", pad_inches=0.05)
@@ -259,56 +230,63 @@ def fig_training_curves() -> None:
 
 
 def fig_gpu_and_cpu() -> None:
-    """Figure 4: 4-generation NVIDIA GPU throughput + 3-tier Xeon 1-vCPU budget."""
-    fig, axes = plt.subplots(1, 2, figsize=(7.2, 2.55), gridspec_kw={"width_ratios": [1.05, 1.15]})
+    """Figure 4: 4-generation NVIDIA GPU throughput + 4-tier Xeon 1-vCPU budget."""
+    fig, axes = plt.subplots(1, 2, figsize=(7.2, 2.65), gridspec_kw={"width_ratios": [1.02, 1.18]})
 
     ax = axes[0]
     gpus = [
+        "L4 24GB\nUltra (33M)",
         "L4 24GB\nv1 (4.5M)",
-        "G4 96GB\nPro (20.1M)",
+        "G4 96GB\nPro (20M)",
         "G4 96GB\nv2-Base",
-        "A100 40GB\nv1 (4.5M)",
     ]
-    exs = [9.2, 36.4, 44.8, 110.2]
-    bars = ax.bar(gpus, exs, color=["#64748b", "#1f4fd1", "#15803d", "#0284c7"], width=0.50)
+    exs = [3.7, 9.2, 36.4, 44.8]
+    bars = ax.bar(gpus, exs, color=["#7c3aed", "#64748b", "#1f4fd1", "#15803d"], width=0.50)
     for b, v in zip(bars, exs):
-        ax.text(b.get_x() + b.get_width() / 2, v + 2.2, f"{v:.1f}", ha="center", fontsize=6.9)
-    ax.set_ylim(0, 128)
+        ax.text(b.get_x() + b.get_width() / 2, v + 1.1, f"{v:.1f}", ha="center", fontsize=6.8)
+    ax.set_ylim(0, 52)
     ax.set_ylabel("6 s stereo chunks / sec")
-    ax.set_title("Cochlea CUDA Throughput by Tier")
-    ax.tick_params(axis="x", labelsize=6.8)
+    ax.set_title("Cochlea CUDA Throughput")
+    ax.tick_params(axis="x", labelsize=6.5)
 
     ax = axes[1]
-    tiers = ["Sone-6.5M\n(13.1 MB)", "Sone-v2-Base\n(27.3 MB)", "Sone-Pro\n(52.9 MB)"]
-    rtf_base = 0.417
+    tiers = ["Sone-6.5M\n(13.1 MB)", "Sone-v2-Base\n(27.4 MB)", "Sone-Pro\n(52.9 MB)", "Sone-Ultra\n(79.0 MB)"]
+    rtf_base = 0.40
     vb_j = EXPORTS_BASE / "verify_latest" / "cochlea_verify.json"
     if vb_j.exists():
-        songs_b = json.loads(vb_j.read_text()).get("songs", [])
-        if songs_b:
-            rtf_base = float(np.mean([s["rtf"] for s in songs_b]))
-    rtf_pro = 1.037
-    for cand in [EXPORTS_PRO / "verify_latest" / "cochlea_verify.json", EXPORTS_PRO / "verify_step7500" / "cochlea_verify.json"]:
+        sb = json.loads(vb_j.read_text()).get("songs", [])
+        if sb:
+            rtf_base = float(np.mean([s["rtf"] for s in sb]))
+    rtf_pro = 0.95
+    for cand in [EXPORTS_PRO_V2 / "verify_latest" / "cochlea_verify.json", EXPORTS_PRO / "verify_latest" / "cochlea_verify.json"]:
         if cand.exists():
-            songs_p = json.loads(cand.read_text()).get("songs", [])
-            if songs_p:
-                rtf_pro = float(np.mean([s["rtf"] for s in songs_p]))
+            sp = json.loads(cand.read_text()).get("songs", [])
+            if sp:
+                rtf_pro = float(np.mean([s["rtf"] for s in sp]))
                 break
-    cochlea_s = np.array([6.24, 48.0 * rtf_base, 48.0 * rtf_pro])
-    other_s = np.array([0.35 + 0.069 + 1.95, 0.35 + 0.070 + 1.95, 1.18 + 0.138 + 1.95])
+    rtf_ult = 1.72
+    vu_j = EXPORTS_ULTRA / "verify_latest" / "cochlea_verify.json"
+    if vu_j.exists():
+        su = json.loads(vu_j.read_text()).get("songs", [])
+        if su:
+            rtf_ult = float(np.mean([s["rtf"] for s in su]))
+
+    cochlea_s = np.array([6.24, 48.0 * rtf_base, 48.0 * rtf_pro, 48.0 * rtf_ult])
+    other_s = np.array([2.37, 2.37, 3.27, 3.27])
     y = np.arange(len(tiers))
-    ax.barh(y, cochlea_s, color="#1f4fd1", height=0.50, label="Cochlea (2x24 s blend)")
-    ax.barh(y, other_s, left=cochlea_s, color="#15803d", height=0.50, label="Tympanum+Brain+DSP")
+    ax.barh(y, cochlea_s, color="#1f4fd1", height=0.52, label="Cochlea (2x24 s blend)")
+    ax.barh(y, other_s, left=cochlea_s, color="#15803d", height=0.52, label="Tympanum+Brain+DSP")
     totals = cochlea_s + other_s
     for i, tot in enumerate(totals):
         pct = 100.0 * tot / 180.0
-        ax.text(tot + 0.8, i, f"{tot:.1f} s ({pct:.1f}% core)", va="center", fontsize=6.6)
+        ax.text(tot + 0.9, i, f"{tot:.1f} s ({pct:.1f}%)", va="center", fontsize=6.4)
     ax.set_yticks(y)
-    ax.set_yticklabels(tiers, fontsize=7.2)
-    ax.set_xlim(0, 72.0)
-    ax.set_ylim(-0.55, 2.85)
-    ax.set_xlabel("1-thread Xeon CPU seconds / transition (180 s song)")
+    ax.set_yticklabels(tiers, fontsize=6.9)
+    ax.set_xlim(0, max(115.0, float(np.max(totals)) + 26.0))
+    ax.set_ylim(-0.55, 3.85)
+    ax.set_xlabel("1-thread Xeon CPU sec / mix (% of 180 s song)")
     ax.set_title("Boundary-Only Master-Splice CPU Budget")
-    ax.legend(frameon=False, loc="upper left", ncol=2, fontsize=6.1)
+    ax.legend(frameon=False, loc="lower right", fontsize=6.1)
 
     fig.tight_layout(pad=0.5)
     fig.savefig(FIG / "gpu_scaling_and_cpu_budget.pdf", bbox_inches="tight", pad_inches=0.05)
@@ -341,7 +319,7 @@ def fig_spectrogram() -> None:
     for ax, sig, title in [
         (axes[0], sig_a, "Deck A Outgoing Window (7yoqSl, 92.0 BPM, 6A)"),
         (axes[1], sig_b, "Deck B Incoming Window (6N185A, 91.0 BPM -> tempo-locked +1.1%, 6A)"),
-        (axes[2], mix_m, "Rendered Sone Output (0.0 ms beat drift, Cingulate = 0.996)"),
+        (axes[2], mix_m, "Rendered Sone Output (0.0 ms beat drift, Cingulate = 0.999)"),
     ]:
         n_fft, hop = 2048, 1024
         win = np.hanning(n_fft)

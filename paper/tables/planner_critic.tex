@@ -1,24 +1,26 @@
 \begin{table*}[t]
 \centering
-\caption{Progression of \textbf{Cortex} (planner) and \textbf{Cingulate} (conflict monitor) from uniform regression (\op{v1}) to sharp-cut alignment (\op{v2}) and scaled domain-randomized transformers (\op{v3-Base} / \op{v3-Pro}). Held-out \op{val.jsonl.gz} ($n=5{,}707$) is strictly unseen across all versions; \op{owner.jsonl} ($n=142$) is zero-shot held out in \op{v1/v2} and folded into preference alignment in \op{v3}$^\S$.}
+\caption{Progression of \textbf{Cortex} (planner) and \textbf{Cingulate} (conflict monitor) from uniform regression (\op{v1}) to sharp-cut alignment (\op{v2}), scaled transformers (\op{v3}), and 12-mode ear-audited counterfactual alignment (\op{v4-Pro}). Held-out \op{val.jsonl.gz} ($n=5{,}707$ in \op{v1--v3}, $n=5{,}932$ in \op{v4}) is strictly unseen; \op{owner.jsonl} ($n=152$ in \op{v4}) is zero-shot in \op{v1/v2} and preference-aligned in \op{v3/v4}$^\S$.}
 \label{tab:planner_critic}
 \footnotesize
-\setlength{\tabcolsep}{4.0pt}
+\setlength{\tabcolsep}{3.9pt}
 \resizebox{\linewidth}{!}{\begin{tabular}{@{}llcccccr@{}}
 \toprule
 Planner (\op{cortex.*}) & Architecture \& Objective & Held-out Rec.$\uparrow$ & Held-out Bars$\downarrow$ & Lane MAE$\downarrow$ & Owner Align.$\uparrow$ & FP16 $\Delta_{\max}$ & CPU 1-thr \\
 \midrule
 \op{Cortex v1} & $6\text{L}/128\text{D}$, uniform BCE + $L_1$ & $94.29\%$ & $0.429$ & $0.0470$ & $85.15\%$ (zero-shot) & $0.0049$ & $16.16$\,ms \\
 \op{Cortex v2} & $6\text{L}/128\text{D}$, $+ 6\times \mathcal{L}_{\text{cut}} + \mathcal{L}_{\text{energy}}$ & $95.16\%$ & $0.320$ & $0.0312$ & $86.14\%$ (zero-shot) & $0.0052$ & $16.74$\,ms \\
-\op{Cortex v3-Base} & $6\text{L}/128\text{D}$, $+ \text{dB jitter}, 20\text{k}$ steps & $96.89\%$ ($96.9\%$ pk) & $0.205$ & $0.0221$ & $99.0\%$ ($0.04$ bars)$^\S$ & $0.0029$ & $17.30$\,ms \\
-\textbf{\op{Cortex v3-Pro}} & $\mathbf{8\text{L}/192\text{D}}$ ($3.60$\,M), $20\text{k}$ steps & $\mathbf{98.63\%}$ ($98.6\%$ pk) & $\mathbf{0.188}$ & $\mathbf{0.0173}$ & $\mathbf{99.0\%}$ ($\mathbf{0.05}$ \textbf{bars})$^\S$ & $\mathbf{0.0016}$ & $38.03$\,ms \\
+\op{Cortex v3-Base} & $6\text{L}/128\text{D}$, $+ \text{dB jitter}, 20\text{k}$ steps & $96.89\%$ & $0.178$ & $0.0182$ & $99.0\%$ ($0.04$ bars)$^\S$ & $0.0029$ & $17.30$\,ms \\
+\op{Cortex v3-Pro} & $8\text{L}/192\text{D}$ ($3.60$\,M), $20\text{k}$ steps & $\mathbf{98.63\%}$ & $0.165$ & $0.0170$ & $99.0\%$ ($0.05$ bars)$^\S$ & $\mathbf{0.0016}$ & $38.03$\,ms \\
+\textbf{\op{Cortex v4-Pro}} & $\mathbf{8\text{L}/192\text{D}}$, $+$ unity \& pre-vocal gates & $97.95\%$ & $\mathbf{0.149}$ & $\mathbf{0.0153}$ & $\mathbf{100.0\%}$ ($n=106$)$^\S$ & $0.0018$ & $38.03$\,ms \\
 \midrule
 Monitor (\op{cingulate.*}) & Corruption Synthesis & Held-out Acc.$\uparrow$ & Defect Taxonomy & Neg.\ Ratio & Owner Prec.$\uparrow$ & FP16 $\Delta_{\max}$ & CPU 1-thr \\
 \midrule
 \op{Cingulate v1} & $4\text{L}/96\text{D}$, offline perturbations & $96.74\%$ & $11$ heads & $0\%$ GPU & $87.9\%$ (zero-shot) & $0.0012$ & $8.33$\,ms \\
 \op{Cingulate v2} & $4\text{L}/96\text{D}$, $+ 35\%$ GPU hard negs & $97.39\%$ pk & $11$ heads & $35\%$ GPU & $89.4\%$ (zero-shot) & $0.0011$ & $8.84$\,ms \\
-\op{Cingulate v3-Base} & $4\text{L}/96\text{D}$, 7-mode counterfactuals & $\mathbf{97.35\%}$ ($97.3\%$ pk) & $30$ heads & $50\%$ GPU & $\mathbf{100.0\%}$ ($\mathrm{FP}=0$)$^\S$ & $0.0053$ & $8.71$\,ms \\
-\textbf{\op{Cingulate v3-Pro}} & $\mathbf{6\text{L}/128\text{D}}$ ($1.23$\,M), 7-mode CF & $\mathbf{96.81\%}$ & $\mathbf{30}$ \textbf{heads} & $\mathbf{50\%}$ \textbf{GPU} & $\mathbf{98.9\%}$ ($\mathrm{FP}=1$)$^\S$ & $0.0028$ & $16.66$\,ms \\
+\op{Cingulate v3-Base} & $4\text{L}/96\text{D}$, 7-mode counterfactuals & $97.28\%$ & $30$ heads & $50\%$ GPU & $\mathbf{100.0\%}$ ($\mathrm{FP}=0$)$^\S$ & $0.0053$ & $8.71$\,ms \\
+\op{Cingulate v3-Pro} & $6\text{L}/128\text{D}$ ($1.23$\,M), 7-mode CF & $97.00\%$ & $30$ heads & $50\%$ GPU & $98.9\%$ ($\mathrm{FP}=1$)$^\S$ & $0.0028$ & $16.66$\,ms \\
+\textbf{\op{Cingulate v4-Pro}} & $\mathbf{6\text{L}/128\text{D}}$, \textbf{12-mode ear-audit CF} & $\mathbf{97.40\%}$ & $\mathbf{30}$ \textbf{heads} & $\mathbf{50\%}$ \textbf{GPU} & $\mathbf{100.0\%}$ ($\mathrm{FP}=0$)$^\S$ & $0.0024$ & $16.66$\,ms \\
 \bottomrule
 \end{tabular}}
 \end{table*}
