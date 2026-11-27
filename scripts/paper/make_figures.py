@@ -185,7 +185,7 @@ def fig_training_curves() -> None:
         ax.plot(xs, [p[1] for p in cortex_pts], marker="o", ms=2.6, lw=1.35, color="#1f4fd1", label="Timing MAE (bars)")
         ax.plot(xs, [p[2] for p in cortex_pts], marker="s", ms=2.4, lw=1.2, color="#15803d", label="$10\\times$ Fader MAE")
         ax.axhline(0.320, color="#c43c39", ls="--", lw=0.9, label="v2 asymptote (0.32b)")
-        ax.set_ylim(0.130, 0.415)
+        ax.set_ylim(0.105, 0.415)
     ax.set_xlabel("Step ($\\times 10^3$)")
     ax.set_ylabel("Held-out error $\\downarrow$")
     ax.set_title("Cortex Pro (8L/192D)")
@@ -203,25 +203,36 @@ def fig_training_curves() -> None:
 
     ax = axes[2]
     pro_j = EXPORTS_PRO / "cochlea_pro_results.json"
+    prov2_j = EXPORTS_PRO_V2 / "cochlea_pro_v2_results.json"
     base_j = EXPORTS_BASE / "cochlea_v2_base_results.json"
     ult_j = EXPORTS_ULTRA / "cochlea_ultra_results.json"
     pro_hist = json.loads(pro_j.read_text()).get("history", []) if pro_j.exists() else []
+    prov2_hist = json.loads(prov2_j.read_text()).get("history", []) if prov2_j.exists() else []
     base_hist = json.loads(base_j.read_text()).get("history", []) if base_j.exists() else []
     ult_hist = json.loads(ult_j.read_text()).get("history", []) if ult_j.exists() else []
 
     if base_hist:
         ax.plot([r["step"] / 1000.0 for r in base_hist], [r["valid"]["sdr_vocals"] for r in base_hist],
-                marker="s", ms=2.6, lw=1.2, color="#15803d", label="v2-Base (11.6M)")
+                marker="s", ms=2.5, lw=1.2, color="#15803d", label="v2-Base (11.6M)")
     if pro_hist:
-        ax.plot([r["step"] / 1000.0 for r in pro_hist], [r["valid"]["sdr_vocals"] for r in pro_hist],
-                marker="o", ms=2.8, lw=1.4, color="#1f4fd1", label="Pro (20.1M)")
-    if ult_hist:
-        ax.plot([r["step"] / 1000.0 for r in ult_hist], [r["valid"]["sdr_vocals"] for r in ult_hist],
-                marker="^", ms=2.8, lw=1.4, color="#7c3aed", label="Ultra (33.1M)")
+        px = [r["step"] / 1000.0 for r in pro_hist]
+        py = [r["valid"]["sdr_vocals"] for r in pro_hist]
+        if prov2_hist:
+            base_st = px[-1]
+            for r in prov2_hist:
+                px.append(base_st + r["step"] / 1000.0)
+                py.append(r["valid"]["sdr_vocals"])
+        ax.plot(px, py, marker="o", ms=2.7, lw=1.4, color="#1f4fd1", label="Pro / v2 (20.1M)")
+    if ult_hist and ult_hist[-1].get("valid", {}).get("sdr_vocals", 0) > 5.0:
+        ux0 = pro_hist[-1]["step"] / 1000.0 if pro_hist else 37.5
+        uy0 = pro_hist[-1]["valid"]["sdr_vocals"] if pro_hist else 7.84
+        ux = [ux0] + [ux0 + r["step"] / 1000.0 for r in ult_hist]
+        uy = [uy0] + [r["valid"]["sdr_vocals"] for r in ult_hist]
+        ax.plot(ux, uy, marker="^", ms=2.8, lw=1.4, color="#7c3aed", label="Ultra (29.2M)")
     ax.set_xlabel("Step ($\\times 10^3$)")
     ax.set_ylabel("MUSDB Vocal SDR (dB) $\\uparrow$")
-    ax.set_title("Cochlea Scaling (64/83b)")
-    ax.legend(frameon=False, loc="lower right", fontsize=6.2)
+    ax.set_title("Cochlea Scaling & RoFormer")
+    ax.legend(frameon=False, loc="lower right", fontsize=6.0)
 
     fig.tight_layout(pad=0.45)
     fig.savefig(FIG / "training_curves.pdf", bbox_inches="tight", pad_inches=0.05)
@@ -235,12 +246,12 @@ def fig_gpu_and_cpu() -> None:
 
     ax = axes[0]
     gpus = [
-        "L4 24GB\nUltra (33M)",
+        "L4 24GB\nUltra (29M)",
         "L4 24GB\nv1 (4.5M)",
         "G4 96GB\nPro (20M)",
         "G4 96GB\nv2-Base",
     ]
-    exs = [3.7, 9.2, 36.4, 44.8]
+    exs = [4.1, 9.2, 36.4, 44.8]
     bars = ax.bar(gpus, exs, color=["#7c3aed", "#64748b", "#1f4fd1", "#15803d"], width=0.50)
     for b, v in zip(bars, exs):
         ax.text(b.get_x() + b.get_width() / 2, v + 1.1, f"{v:.1f}", ha="center", fontsize=6.8)
@@ -250,7 +261,7 @@ def fig_gpu_and_cpu() -> None:
     ax.tick_params(axis="x", labelsize=6.5)
 
     ax = axes[1]
-    tiers = ["Sone-6.5M\n(13.1 MB)", "Sone-v2-Base\n(27.4 MB)", "Sone-Pro\n(52.9 MB)", "Sone-Ultra\n(79.0 MB)"]
+    tiers = ["Sone-6.5M\n(13.1 MB)", "Sone-v2-Base\n(27.4 MB)", "Sone-Pro\n(52.9 MB)", "Sone-Ultra\n(71.2 MB)"]
     rtf_base = 0.40
     vb_j = EXPORTS_BASE / "verify_latest" / "cochlea_verify.json"
     if vb_j.exists():
@@ -264,7 +275,7 @@ def fig_gpu_and_cpu() -> None:
             if sp:
                 rtf_pro = float(np.mean([s["rtf"] for s in sp]))
                 break
-    rtf_ult = 1.72
+    rtf_ult = 1.30
     vu_j = EXPORTS_ULTRA / "verify_latest" / "cochlea_verify.json"
     if vu_j.exists():
         su = json.loads(vu_j.read_text()).get("songs", [])

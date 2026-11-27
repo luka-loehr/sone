@@ -10,8 +10,9 @@ Model (\op{cochlea.*}) & Vocals & Drums & Bass & Other & Mean SDR$\uparrow$ & Vo
 \midrule
 \op{Cochlea v1} ($4.52$\,M, $2048$-FFT, 42b, 5k) & 3.57 & 3.50 & 2.75 & 1.33 & 2.79 & -6.3\,dB & $0.13\times$ \\
 \op{Cochlea-v2-Base} ($11.61$\,M, $4096$-FFT, 64b, 30.0k) & 6.73 & 6.06 & 4.23 & 2.60 & 4.90 & -9.3\,dB & $0.40\times$ \\
-\op{Cochlea-Pro} ($20.07$\,M, 64b, Stage-1 37.5k) & 7.84 & 6.76 & 4.41 & 3.19 & 5.55 & -10.8\,dB & $0.95\times$ \\
-\textbf{\op{Cochlea-Ultra}} ($33.10$\,M, 83b 10B, RoFormer-1297 1.0k) & \textbf{0.12} & 1.71 & 1.26 & -0.82 & \textbf{0.57} & -0.1\,dB & $1.72\times$ \\
+\op{Cochlea-Pro} ($20.07$\,M, 64b, Stage-1 37.5k) & 7.84 & 6.76 & 4.41 & 3.19 & 5.55 & -10.8\,dB & $0.96\times$ \\
+\textbf{\op{Cochlea-Pro v2}} ($20.07$\,M, 64b, +RoFormer-1297 +2.0k) & \textbf{7.98} & \textbf{6.99} & \textbf{4.63} & \textbf{3.31} & \textbf{5.73} & \textbf{-10.9\,dB} & $0.96\times$ \\
+\textbf{\op{Cochlea-Ultra}} ($29.18$\,M, 64b 10B, Net2Net+RoFormer 2.5k) & \textbf{7.95} & 7.03 & 4.57 & 3.30 & \textbf{5.71} & -10.9\,dB & $1.30\times$ \\
 \midrule \textit{GPU Teacher: \op{BS-RoFormer-1297}~\citep{lu2024bsroformer}} & $12.98$ & -- & -- & -- & -- & $-21.4$\,dB & GPU offline \\
 \bottomrule
 \end{tabular}}

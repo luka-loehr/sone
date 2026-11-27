@@ -116,7 +116,7 @@ impl CochleaConfig {
                 let (dim, blocks, heads, mask_hidden, bands) = match name {
                     "v2-base" => (80, 6, 4, 192, studio_bands(4096)),
                     "pro" => (128, 8, 8, 256, studio_bands(4096)),
-                    "ultra" => (160, 10, 8, 320, ultra_bands(4096)),
+                    "ultra" => (160, 10, 8, 320, studio_bands(4096)),
                     _ => unreachable!(),
                 };
                 Some(Self {

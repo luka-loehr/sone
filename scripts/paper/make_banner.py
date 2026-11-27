@@ -102,7 +102,7 @@ def render_banner(out_path: Path) -> None:
                 fontsize=13.0, family="sans-serif", color="#94a3b8")
 
     pills = [
-        ("COCHLEA", "83-band stems"),
+        ("COCHLEA", "64-band Dual-Axis"),
         ("TYMPANUM", "50 Hz ear"),
         ("CORTEX", "8-lane plan"),
         ("CINGULATE", "30-defect critic"),

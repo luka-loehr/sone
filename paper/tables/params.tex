@@ -24,11 +24,11 @@ Tier / Organ & Namespace & Architecture summary & Tensors & Parameters & FP16 si
  & \op{tympanum.*} & 50\,Hz log-mel ($M=160$), $6\times$ DWConv ($C=160$) + $3\times$ BiGRU ($h=128$), equiv. & 76 & 1{,}473{,}406 & 2.95\,MB \\
  & \op{cortex.*} & Beat Transformer ($209$ tok), $L=8, d=192, H=6, d_{\text{ff}}=768$ (\op{v4-Pro}) & 93 & 3{,}604{,}726 & 7.22\,MB \\
  & \op{cingulate.*} & Conflict Transformer ($209$ tok), $L=6, d=128, H=4$, 30 heads (12-mode CF) & 71 & 1{,}225{,}247 & 2.46\,MB \\
- & \textbf{Unified \op{Pro}} & Single-file \op{sone-pro-f16.safetensors} ($0.95\times$ 1-vCPU Cochlea RT) & \textbf{1{,}618} & \textbf{26{,}372{,}391} & \textbf{52.90\,MB} \\
+ & \textbf{Unified \op{Pro}} & Single-file \op{sone-pro-f16.safetensors} ($0.96\times$ 1-vCPU Cochlea RT) & \textbf{1{,}618} & \textbf{26{,}372{,}391} & \textbf{52.90\,MB} \\
 \midrule
-\textbf{Sone-Ultra} & \op{cochlea.*} & 83-band STFT ($4096/1024$), $10\times$ Dual-Axis TF ($d=160, H=8$), RoFormer-1297 & 1{,}779 & 33{,}099{,}380 & 66.35\,MB \\
+\textbf{Sone-Ultra} & \op{cochlea.*} & 64-band STFT ($4096/1024$), $10\times$ Dual-Axis TF ($d=160, H=8$), Net2Net+RoFormer & 1{,}418 & 29{,}177{,}780 & 58.48\,MB \\
  & \op{tympanum/cortex/cing.} & Shared \op{Pro} perception + \op{v4-Pro} planner \& 30-defect critic & 240 & 6{,}303{,}379 & 12.63\,MB \\
- & \textbf{Unified \op{Ultra}} & Single-file \op{sone-ultra-f16.safetensors} ($1.72\times$ 1-vCPU / $<0.5\times$ 4-core) & \textbf{2{,}019} & \textbf{39{,}402{,}759} & \textbf{78.98\,MB} \\
+ & \textbf{Unified \op{Ultra}} & Single-file \op{sone-ultra-f16.safetensors} ($1.30\times$ 1-vCPU / $<0.5\times$ 4-core) & \textbf{1{,}658} & \textbf{35{,}481{,}159} & \textbf{71.12\,MB} \\
 \bottomrule
 \end{tabular}}
 \end{table*}

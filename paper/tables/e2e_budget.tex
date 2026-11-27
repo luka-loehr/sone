@@ -9,13 +9,13 @@
 Pipeline stage & Boundary scope per transition & \textbf{Sone-6.5M} & \textbf{Sone-v2-Base} & \textbf{Sone-Pro} & \textbf{Sone-Ultra} \\
 \midrule
 \textbf{Tympanum} + Comb-Grid & $2 \times$ track structure ($50$\,Hz) & $0.35$\,s & $0.35$\,s & $1.18$\,s & $1.18$\,s \\
-\textbf{Cochlea} (boundary stems) & $2 \times 24$\,s stereo transition zone & $6.24$\,s ($0.13\times$) & $19.10$\,s ($0.40\times$) & $45.56$\,s ($0.95\times$) & $82.56$\,s ($1.72\times$) \\
+\textbf{Cochlea} (boundary stems) & $2 \times 24$\,s stereo transition zone & $6.24$\,s ($0.13\times$) & $19.10$\,s ($0.40\times$) & $46.19$\,s ($0.96\times$) & $62.28$\,s ($1.30\times$) \\
 \textbf{Cortex} (\op{cortex.*}) & $209$ beat tokens & $16.7$\,ms & $17.3$\,ms & $38.0$\,ms & $38.0$\,ms \\
 \textbf{Cingulate} (Best-of-$6$) & $6 \times 209$ candidate tokens & $53.0$\,ms & $52.3$\,ms & $100.0$\,ms & $100.0$\,ms \\
 \textbf{DSP + Newton Lock + Splice} & Stretch + slope lock + cosine seam & $1.95$\,s & $1.95$\,s & $1.95$\,s & $1.95$\,s \\
 \midrule
-\textbf{Total 1-core CPU time} & Full raw-stereo-to-master mix & $\mathbf{8.6\,\text{s}}$ & $\mathbf{21.5\,\text{s}}$ & $\mathbf{48.8\,\text{s}}$ & $\mathbf{85.8\,\text{s}}$ \\
-\textbf{Avg.\ load over 180\,s song} & Fraction of 1 cloud vCPU core & $\mathbf{4.8\%}$ & $\mathbf{11.9\%}$ & $\mathbf{27.1\%}$ & $\mathbf{47.7\%}$ \\
+\textbf{Total 1-core CPU time} & Full raw-stereo-to-master mix & $\mathbf{8.6\,\text{s}}$ & $\mathbf{21.5\,\text{s}}$ & $\mathbf{49.5\,\text{s}}$ & $\mathbf{65.5\,\text{s}}$ \\
+\textbf{Avg.\ load over 180\,s song} & Fraction of 1 cloud vCPU core & $\mathbf{4.8\%}$ & $\mathbf{11.9\%}$ & $\mathbf{27.5\%}$ & $\mathbf{36.4\%}$ \\
 \bottomrule
 \end{tabular}}
 \end{table*}

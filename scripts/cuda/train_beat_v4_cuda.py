@@ -508,6 +508,7 @@ def main():
     ap.add_argument("--batch-size", type=int, default=256)
     ap.add_argument("--lr", type=float, default=6e-4)
     ap.add_argument("--sizes", nargs="+", default=["pro", "base"])
+    ap.add_argument("--kinds", nargs="+", default=["cortex", "cingulate"])
     args = ap.parse_args()
 
     device = torch.device("cuda")
@@ -521,7 +522,7 @@ def main():
         "runs": [],
     }
     for sz in args.sizes:
-        for kd in ("cortex", "cingulate"):
+        for kd in args.kinds:
             res = train_one(kd, sz, args.train, args.val, args.owner, args.out, args.steps, args.batch_size, args.lr, device)
             summary["runs"].append(res)
     with open(os.path.join(args.out, "beat_v4_results.json"), "w") as f:

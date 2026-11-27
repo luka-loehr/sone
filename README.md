@@ -16,9 +16,9 @@
 
 - **Untouched master splicing** — Separates and mixes stems strictly inside the ~24 s overlap `[u_0, u_1]`, splicing gain-matched studio masters via 23.2 ms raised-cosine seams (`~7.5×` less compute, zero codec coloration outside the blend).
 - **Single-file 4-organ `.safetensors` (`sone-infer/1`)** — Packages **Cochlea** (`cochlea.*`), **Tympanum** (`tympanum.*`), **Cortex** (`cortex.*`), and **Cingulate** (`cingulate.*`) into one zero-copy IEEE-754 FP16 checkpoint loaded via `Sone::load`.
-- **Phase-coherent Dual-Axis Cochlea** — `4096`-FFT (`10.77 Hz`/bin), `64`–`83` vocal-formant subbands, Dual-Axis Time+Band Transformer, bounded 4-stem complex masks, and exact Wiener mixture conservation (`< -148 dB`) distilled from `BS-RoFormer-1297` + `HTDemucs-ft`.
-- **Vinyl-equivariant Tympanum + comb-grid** — `50 Hz` dilated TCN–BiGRU trained under exact turntable speed equivariance across 7 structural heads, locked to a spectral-flux comb grid with Newton drum-slope phase alignment (`<= 2.2 ms` beat drift).
-- **Sharp-cut Cortex & 30-defect Cingulate** — Beat-synchronous Transformers with sixteenth-note vocal-onset handoff, pre-vocal bleed gating, post-drop unity stem lock, and Best-of-`6` counterfactual reranking in `< 140 ms` CPU.
+- **Phase-coherent Dual-Axis Cochlea** — `4096`-FFT (`10.77 Hz`/bin), `64` vocal-formant subbands, Dual-Axis Time+Band Transformer (`8B/128D` Pro, `10B/160D` Net2Net Ultra), bounded 4-stem complex masks, and exact Wiener mixture conservation (`< -148 dB`) distilled from `BS-RoFormer-1297` (`12.98 dB`) + `HTDemucs-ft`.
+- **Vinyl-equivariant Tympanum + comb-grid** — `50 Hz` dilated TCN–BiGRU trained under exact turntable speed equivariance across 7 structural heads, locked to a spectral-flux comb grid with Newton drum-slope phase alignment (`<= 0.7 ms` rendered beat drift across 10 studio mixes).
+- **Sharp-cut Cortex & 30-defect Cingulate** — Beat-synchronous Transformers (`0.12` bars held-out timing MAE, `100.0%` owner match across `152` rated mixes) with sixteenth-note vocal-onset handoff, pre-vocal bleed gating, post-drop unity stem lock, and Best-of-`6` counterfactual reranking in `< 140 ms` CPU.
 - **Pure Rust & WebAssembly** — Tiled FP16-to-FP32 inference, key-locked transient-preserving stretch, Linkwitz-Riley EQ, tempo-synced vocal echo, and BS.1770-4 loudness normalization with no C, Python, or ONNX dependencies.
 
 ---
@@ -29,8 +29,8 @@
 |---|---|---:|---:|---|---|---|---:|
 | **Sone-6.5M** | `sone-6.5M-f16.safetensors` | `6.52M` | `13.1 MB` | `4.52M` (`2048`-FFT, 42b, `0.13×` RT) | `305K` | `1.22M` / `475K` | `4.8%` (`8.6 s`) |
 | **Sone-v2-Base** | `sone-v2-base-f16.safetensors` | `13.61M` | `27.4 MB` | `11.61M` (`4096`-FFT, 64b, `0.40×` RT) | `305K` | `1.22M` / `475K` | `11.9%` (`21.5 s`) |
-| **Sone-Pro** | `sone-pro-f16.safetensors` | `26.37M` | `52.9 MB` | `20.07M` (`4096`-FFT, 64b, `0.95×` RT) | `1.47M` | `3.60M` / `1.23M` | `27.1%` (`48.8 s`) |
-| **Sone-Ultra** | `sone-ultra-f16.safetensors` | `39.40M` | `79.0 MB` | `33.10M` (`4096`-FFT, 83b, `10B/160D`) | `1.47M` | `3.60M` / `1.23M` | `47.7%` (`85.8 s`) |
+| **Sone-Pro** | `sone-pro-f16.safetensors` | `26.37M` | `52.9 MB` | `20.07M` (`4096`-FFT, 64b, `0.96×` RT, `7.98 dB` voc) | `1.47M` | `3.60M` / `1.23M` | `27.4%` (`49.4 s`) |
+| **Sone-Ultra** | `sone-ultra-f16.safetensors` | `35.48M` | `71.1 MB` | `29.18M` (`4096`-FFT, 64b, `10B/160D`, `1.30×` RT) | `1.47M` | `3.60M` / `1.23M` | `36.4%` (`65.6 s`) |
 
 ---
 

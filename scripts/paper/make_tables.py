@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """Programmatically generate all LaTeX booktabs tables in paper/tables/ from
 real safetensors headers and JSON benchmark telemetry across the four-tier Sone
-family: Sone-6.5M (v1), Sone-v2-Base (13.6M), Sone-Pro (26.4M), and Sone-Ultra (39.4M)."""
+family: Sone-6.5M (v1), Sone-v2-Base (13.6M), Sone-Pro (26.4M), and Sone-Ultra (35.5M)."""
 
 from __future__ import annotations
 
@@ -178,7 +178,7 @@ def write_params_table() -> None:
     pr_p = resolve_organ([EXPORTS_BEAT_V4 / "sone-cortex-best-f16.safetensors", EXPORTS_PRO / "sone-cortex-f16.safetensors"], beat_formula("cortex", 192, 8, 768))
     pr_g = resolve_organ([EXPORTS_BEAT_V4 / "sone-cingulate-best-f16.safetensors", EXPORTS_PRO / "sone-cingulate-f16.safetensors"], beat_formula("cingulate", 128, 6, 512, 30))
 
-    ul_c = resolve_organ([EXPORTS_ULTRA / "sone-cochlea-f16.safetensors"], cochlea_formula(ub83, 160, 10, 320, True, 4))
+    ul_c = resolve_organ([EXPORTS_ULTRA / "sone-cochlea-f16.safetensors"], cochlea_formula(sb64, 160, 10, 320, True, 4))
 
     def tot(bundle_paths: list[Path], rows):
         for bp in bundle_paths:
@@ -194,7 +194,7 @@ def write_params_table() -> None:
 
     rtf_b = measured_cochlea_rtf([EXPORTS_BASE / "verify_latest" / "cochlea_verify.json"], 0.40)
     rtf_p = measured_cochlea_rtf([EXPORTS_PRO_V2 / "verify_latest" / "cochlea_verify.json", EXPORTS_PRO / "verify_latest" / "cochlea_verify.json"], 0.95)
-    rtf_u = measured_cochlea_rtf([EXPORTS_ULTRA / "verify_latest" / "cochlea_verify.json"], 1.72)
+    rtf_u = measured_cochlea_rtf([EXPORTS_ULTRA / "verify_latest" / "cochlea_verify.json"], 1.30)
 
     tex = rf"""\begin{{table*}}[t]
 \centering
@@ -224,7 +224,7 @@ Tier / Organ & Namespace & Architecture summary & Tensors & Parameters & FP16 si
  & \op{{cingulate.*}} & Conflict Transformer ($209$ tok), $L=6, d=128, H=4$, 30 heads (12-mode CF) & {fmt_int(pr_g[1])} & {fmt_int(pr_g[0])} & {pr_g[2]:.2f}\,MB \\
  & \textbf{{Unified \op{{Pro}}}} & Single-file \op{{sone-pro-f16.safetensors}} (${rtf_p:.2f}\times$ 1-vCPU Cochlea RT) & \textbf{{{fmt_int(t3[1])}}} & \textbf{{{fmt_int(t3[0])}}} & \textbf{{{t3[2]:.2f}\,MB}} \\
 \midrule
-\textbf{{Sone-Ultra}} & \op{{cochlea.*}} & 83-band STFT ($4096/1024$), $10\times$ Dual-Axis TF ($d=160, H=8$), RoFormer-1297 & {fmt_int(ul_c[1])} & {fmt_int(ul_c[0])} & {ul_c[2]:.2f}\,MB \\
+\textbf{{Sone-Ultra}} & \op{{cochlea.*}} & 64-band STFT ($4096/1024$), $10\times$ Dual-Axis TF ($d=160, H=8$), Net2Net+RoFormer & {fmt_int(ul_c[1])} & {fmt_int(ul_c[0])} & {ul_c[2]:.2f}\,MB \\
  & \op{{tympanum/cortex/cing.}} & Shared \op{{Pro}} perception + \op{{v4-Pro}} planner \& 30-defect critic & {fmt_int(pr_t[1]+pr_p[1]+pr_g[1])} & {fmt_int(pr_t[0]+pr_p[0]+pr_g[0])} & {pr_t[2]+pr_p[2]+pr_g[2]:.2f}\,MB \\
  & \textbf{{Unified \op{{Ultra}}}} & Single-file \op{{sone-ultra-f16.safetensors}} (${rtf_u:.2f}\times$ 1-vCPU / $<0.5\times$ 4-core) & \textbf{{{fmt_int(t4[1])}}} & \textbf{{{fmt_int(t4[0])}}} & \textbf{{{t4[2]:.2f}\,MB}} \\
 \bottomrule
@@ -304,12 +304,12 @@ Role & Accelerator / Host & Arch \& Memory & Precision \& Software Stack & Workl
 \midrule
 \op{{Cochlea-Pro}} + Stage-1 & NVIDIA RTX PRO 6000 Blackwell (\op{{G4}} \#1) & \op{{sm\_120}}, 96\,GB GDDR7 & BF16 + \op{{torch.compile}}, CUDA 13.0 & $551$-song distill + $20.1$\,M \op{{bs=32}} & {g4_sps_pro} ($11.40$\,CU/h) \\
 \op{{Cochlea-v2-Base}} + Stage-1 & NVIDIA RTX PRO 6000 Blackwell (\op{{G4}} \#2) & \op{{sm\_120}}, 96\,GB GDDR7 & BF16 + \op{{torch.compile}} ({peak_vram_g4} peak) & $550$-song distill + $11.6$\,M \op{{bs=48}} & {g4_sps_base} ($11.40$\,CU/h) \\
-\op{{Cochlea-Ultra}} + RoFormer & NVIDIA L4 (\#1, 12 Xeon vCPU) & \op{{sm\_89}}, 24\,GB GDDR6 & BF16 FlashAttn + \op{{FloatMaskHead}} & $192$-song RoFormer-1297 + $33.1$\,M \op{{Ultra}} & $0.93$\,st/s ($1.93$\,CU/h) \\
+\op{{Cochlea-Ultra}} + RoFormer & NVIDIA L4 (\#1, 12 Xeon vCPU) & \op{{sm\_89}}, 24\,GB GDDR6 & BF16 FlashAttn + \op{{FloatMaskHead}} & $192$-song RoFormer-1297 + $29.2$\,M \op{{Ultra}} & $0.93$\,st/s ($1.93$\,CU/h) \\
 \op{{Cochlea-Pro v2}} + RoFormer & NVIDIA L4 (\#2, 12 Xeon vCPU) & \op{{sm\_89}}, 24\,GB GDDR6 & BF16 FlashAttn + warm-start ($7.84$\,dB) & $180$-song RoFormer-1297 + \op{{Pro v2}} & $1.10$\,st/s ($1.93$\,CU/h) \\
 CUDA scaling sweep & NVIDIA A100-SXM4-40GB & \op{{sm\_80}}, 40\,GB HBM2e & BF16 + TF32 + cuFFT & 4-organ batch/kernel scaling bench & $6.73$\,CU/h \\
 \op{{Cortex/Cingulate v4}} & NVIDIA Tesla T4 (\#3) & \op{{sm\_75}}, 16\,GB GDDR6 & FP16 Tensor Core + \op{{GradScaler}} & $4\times 20\text{{k}}$ vectorized 12-mode CF & $1.04$\,CU/h \\
 \midrule
-Production CPU Worker & Intel Xeon (Model 151, 2 vCPU) & AVX2, FMA, F16C, $3.8$\,GiB & Pure Rust (\op{{rustc 1.99.1}}, 1 thread) & Zero-copy FP16 \op{{sone-infer/1}} + DSP & $0.13$--$1.72\times$ RT (1 core) \\
+Production CPU Worker & Intel Xeon (Model 151, 2 vCPU) & AVX2, FMA, F16C, $3.8$\,GiB & Pure Rust (\op{{rustc 1.99.1}}, 1 thread) & Zero-copy FP16 \op{{sone-infer/1}} + DSP & $0.13$--$1.30\times$ RT (1 core) \\
 \bottomrule
 \end{{tabular}}
 \end{{table*}}
@@ -457,7 +457,7 @@ def write_stems_and_ear_tables() -> None:
 
     rtf_b = measured_cochlea_rtf([EXPORTS_BASE / "verify_latest" / "cochlea_verify.json"], 0.40)
     rtf_p = measured_cochlea_rtf([EXPORTS_PRO_V2 / "verify_latest" / "cochlea_verify.json", EXPORTS_PRO / "verify_latest" / "cochlea_verify.json"], 0.95)
-    rtf_u = measured_cochlea_rtf([EXPORTS_ULTRA / "verify_latest" / "cochlea_verify.json"], 1.72)
+    rtf_u = measured_cochlea_rtf([EXPORTS_ULTRA / "verify_latest" / "cochlea_verify.json"], 1.30)
 
     v2b_res = best_cochlea_row(EXPORTS_BASE / "cochlea_v2_base_results.json")
     if v2b_res:
@@ -492,7 +492,7 @@ def write_stems_and_ear_tables() -> None:
     if ult_res:
         st, vm, _ = ult_res
         rows_tex.append(
-            f"\\textbf{{\\op{{Cochlea-Ultra}}}} ($33.10$\\,M, 83b 10B, RoFormer-1297 {st/1000:.1f}k) & "
+            f"\\textbf{{\\op{{Cochlea-Ultra}}}} ($29.18$\\,M, 64b 10B, Net2Net+RoFormer {st/1000:.1f}k) & "
             f"\\textbf{{{vm.get('sdr_vocals', 0):.2f}}} & {vm.get('sdr_drums', 0):.2f} & "
             f"{vm.get('sdr_bass', 0):.2f} & {vm.get('sdr_other', 0):.2f} & "
             f"\\textbf{{{vm.get('sdr_mean', 0):.2f}}} & {vm.get('leak_db', 0):.1f}\\,dB & ${rtf_u:.2f}\\times$ \\\\"
@@ -564,7 +564,7 @@ Model (\op{{tympanum.*}}) & Beat F1 & Downbeat F1 & Voice Acc & Breath F1 & Phra
 def write_e2e_budget_table() -> None:
     rtf_b = measured_cochlea_rtf([EXPORTS_BASE / "verify_latest" / "cochlea_verify.json"], 0.40)
     rtf_p = measured_cochlea_rtf([EXPORTS_PRO_V2 / "verify_latest" / "cochlea_verify.json", EXPORTS_PRO / "verify_latest" / "cochlea_verify.json"], 0.95)
-    rtf_u = measured_cochlea_rtf([EXPORTS_ULTRA / "verify_latest" / "cochlea_verify.json"], 1.72)
+    rtf_u = measured_cochlea_rtf([EXPORTS_ULTRA / "verify_latest" / "cochlea_verify.json"], 1.30)
 
     rv_p = EXPORTS_PRO / "beat_v3_rust_verify.json"
     rv = json.loads(rv_p.read_text()) if rv_p.exists() else {}

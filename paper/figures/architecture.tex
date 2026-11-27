@@ -20,7 +20,7 @@
 \node[blk, fill=black!3, minimum width=25mm, below=8.5mm of rawA] (rawB) {Song B master\\[-1pt]\scriptsize 44.1\,kHz, $\sim 24$\,s intro};
 
 % Auditory organs: Cochlea & Tympanum
-\node[net, right=8.5mm of rawA, minimum width=38mm] (cochlea) {\textbf{1. Cochlea} (4.5 / 11.6 / 20.1 / 33.1M)\\[-1pt]\scriptsize 4096-FFT, 64--83 bands, Dual-Axis TF\\[-1.5pt]\scriptsize RoFormer-1297 distill + Bounded Wiener};
+\node[net, right=8.5mm of rawA, minimum width=38mm] (cochlea) {\textbf{1. Cochlea} (4.5 / 11.6 / 20.1 / 29.2M)\\[-1pt]\scriptsize 4096-FFT, 64 bands, Dual-Axis TF\\[-1.5pt]\scriptsize RoFormer-1297 distill + Bounded Wiener};
 \node[net, right=8.5mm of rawB, minimum width=38mm] (tympanum) {\textbf{2. Tympanum} (305K / 1.47M)\\[-1pt]\scriptsize 50\,Hz log-mel, TCN--BiGRU + Comb-Grid\\[-1.5pt]\scriptsize beats, 1s, voice, breath, phrase, key, cents};
 
 \draw[->] (rawA.east) -- (cochlea.west);
@@ -50,13 +50,13 @@
 \draw[->, teal!60!black, dashed] (cochlea.north) -- ++(0,5.5mm) -| node[lab, above, pos=0.25] {phase-coherent stereo stems (transition clip only; bit-exact master outside $[u_0,u_1]$)} (dspbox.north);
 
 % Output
-\node[blk, right=6.5mm of dspbox, fill=green!7, minimum width=22mm] (out) {Broadcast\\Stream\\[-1pt]\scriptsize $4.8$--$47.7\%$\\[-1.5pt]\scriptsize 1 Xeon vCPU};
+\node[blk, right=6.5mm of dspbox, fill=green!7, minimum width=22mm] (out) {Broadcast\\Stream\\[-1pt]\scriptsize $4.8$--$36.4\%$\\[-1.5pt]\scriptsize 1 Xeon vCPU};
 \draw[->, thick] (dspbox.east) -- (out.west);
 
 \begin{scope}[on background layer]
   \node[draw=blue!30!black, dashed, rounded corners=4pt, fill=blue!1.5, inner xsep=5pt, inner ysep=6pt,
         fit=(cochlea) (tympanum) (grid) (cortex) (cingulate),
-        label={[font=\sffamily\scriptsize\bfseries, text=blue!45!black, yshift=-1pt]below:Unified \texttt{Sone} Family (\texttt{model.safetensors}: 13.1\,MB \texttt{6.5M} $\cdot$ 27.4\,MB \texttt{v2-Base} $\cdot$ 52.9\,MB \texttt{Pro} $\cdot$ 79.0\,MB \texttt{Ultra}, zero-copy \texttt{sone-infer/1})}] {};
+        label={[font=\sffamily\scriptsize\bfseries, text=blue!45!black, yshift=-1pt]below:Unified \texttt{Sone} Family (\texttt{model.safetensors}: 13.1\,MB \texttt{6.5M} $\cdot$ 27.4\,MB \texttt{v2-Base} $\cdot$ 52.9\,MB \texttt{Pro} $\cdot$ 71.1\,MB \texttt{Ultra}, zero-copy \texttt{sone-infer/1})}] {};
 \end{scope}
 
 \end{tikzpicture}

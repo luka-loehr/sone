@@ -18,9 +18,9 @@ tags:
 
 | | |
 |---|---|
-| **Family** | `Sone-6.5M` (`6,520,451` params, `13.12 MB`), `Sone-v2-Base` (`13,606,935` params, `27.36 MB`), `Sone-Pro` (`26,372,391` params, `52.90 MB`), `Sone-Ultra` (`39,402,655` params, `79.0 MB`) |
+| **Family** | `Sone-6.5M` (`6,520,451` params, `13.12 MB`), `Sone-v2-Base` (`13,606,935` params, `27.36 MB`), `Sone-Pro` (`26,372,287` params, `52.90 MB`), `Sone-Ultra` (`35,481,055` params, `71.12 MB`) |
 | **Wire format** | Unified IEEE-754 FP16 `model.safetensors` (`sone-infer/1`, zero-copy loaded via `sone_infer::Sone::load`, plus optional standalone organ slices) |
-| **Task** | Raw `44.1 kHz` stereo song pair → beat-locked (`<= 2.2 ms` drift), stem-carved, vocal-onset-aligned DJ transition spliced bit-for-bit into untouched studio masters outside `[u_0, u_1]` |
+| **Task** | Raw `44.1 kHz` stereo song pair → beat-locked (`<= 0.7 ms` rendered drift, `<= 2.2 ms` sync gate), stem-carved, vocal-onset-aligned DJ transition spliced bit-for-bit into untouched studio masters outside `[u_0, u_1]` |
 | **Author** | Luka Löhr |
 | **Engine code** | Pure Rust + WebAssembly (`sone-infer`, `sone-dsp`, `sone-render`, `sone-live`, Apache-2.0, zero external ML runtime dependencies) |
 | **Weights license** | Non-commercial research use (`CC BY-NC-SA 4.0`, inherited from `MUSDB18-HQ`; zero audio retained in weights or repo) |
@@ -33,8 +33,8 @@ Named after Stevens' psychoacoustic *sone* unit of human perceived loudness, **S
 |---|---|---|---|---|---:|---:|
 | **`Sone-6.5M`** | `4,519,376` (`2048`-FFT, 42b, 6B) | `304,510` (`128`-mel, 4C+2×BiGRU-64) | `1,221,494` (`6L/128D`) | `475,071` (`4L/96D`, 11 heads) | **`6,520,451`** | `13.12 MB` |
 | **`Sone-v2-Base`** | `11,605,860` (`4096`-FFT, 64b Dual-Axis, 6B) | `304,510` (`128`-mel, vinyl-equiv.) | `1,221,494` (`6L/128D`, `v4-Base`) | `475,071` (`4L/96D`, 30 heads) | **`13,606,935`** | `27.36 MB` |
-| **`Sone-Pro`** | `20,069,012` (`4096`-FFT, 64b Dual-Axis, 8B) | `1,473,406` (`160`-mel, 6C+3×BiGRU-128) | `3,604,622` (`8L/192D`, `v4-Pro`) | `1,225,247` (`6L/128D`, 30 heads) | **`26,372,287`** | `52.90 MB` |
-| **`Sone-Ultra`** | `33,099,380` (`4096`-FFT, 83b Dual-Axis, 10B) | `1,473,406` (`160`-mel, 6C+3×BiGRU-128) | `3,604,622` (`8L/192D`, `v4-Pro`) | `1,225,247` (`6L/128D`, 30 heads) | **`39,402,655`** | `79.00 MB` |
+| **`Sone-Pro`** | `20,069,012` (`4096`-FFT, 64b Dual-Axis, 8B, `7.98 dB` voc) | `1,473,406` (`160`-mel, 6C+3×BiGRU-128) | `3,604,622` (`8L/192D`, `v4-Pro`) | `1,225,247` (`6L/128D`, 30 heads) | **`26,372,287`** | `52.90 MB` |
+| **`Sone-Ultra`** | `29,177,780` (`4096`-FFT, 64b Dual-Axis, 10B Net2Net) | `1,473,406` (`160`-mel, 6C+3×BiGRU-128) | `3,604,622` (`8L/192D`, `v4-Pro`) | `1,225,247` (`6L/128D`, 30 heads) | **`35,481,055`** | `71.12 MB` |
 
 ## Training & Hardware Inventory
 
@@ -51,7 +51,7 @@ Named after Stevens' psychoacoustic *sone* unit of human perceived loudness, **S
 ## Limitations
 
 - **Continuous-vocal outros**: When Track A sings up to its final beat with no instrumental outro or breath gap, `Cortex` selects a clean on-beat cut or short sneak rather than creating a double-vocal clash (`Cingulate` flags `cut_not_transition`).
-- **Single-pass CPU window vs. offline GPU ensembles**: Two-stage `BS-RoFormer-1297` + `HTDemucs-ft` distillation and 83-band `Cochlea-Ultra` substantially sharpen vocal isolation, yet heavily drenched stereo reverb tails remain bounded by single-pass `6 s` chunked capacity compared with `>100M` full-song GPU ensembles.
+- **Single-pass CPU window vs. offline GPU ensembles**: Two-stage `BS-RoFormer-1297` + `HTDemucs-ft` distillation and 10-block Net2Net `Cochlea-Ultra` substantially sharpen vocal isolation, yet heavily drenched stereo reverb tails remain bounded by single-pass `6 s` chunked capacity compared with `>100M` full-song GPU ensembles.
 - **Global BSSEval SDR on silent boundary stems**: Standard full-window SDR diverges toward `-inf dB` on instrumental windows with `-108 dBFS` ground-truth vocals even when residual vocal energy is `< -77 dBFS`; evaluate DJ windows with MDX23 active-chunk median SDR alongside silent-stem RMS floors.
 - **4/4 bar grammar**: `Cortex` plans within a 4-beat bar grammar (`±6.8%` key-locked stretch) and does not synthesize turntable scratch routines or `3/4` meter transitions.
 - **Single-creator preference labels**: `owner.jsonl` (`n = 152`) reflects one station creator's blind listening judgments rather than a multi-listener MUSHRA panel.
