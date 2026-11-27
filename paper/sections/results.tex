@@ -1,0 +1,64 @@
+\section{Results}
+\label{sec:results}
+
+\subsection{Cortical Planning and Counterfactual Critique (\op{v1} $\to$ \op{v2} $\to$ \op{v3-Pro})}
+\label{sec:res_beat}
+
+Table~\ref{tab:planner_critic} and Figure~\ref{fig:training} (left, centre) evaluate architectural and objective scaling across \op{Cortex} and \op{Cingulate}. Moving from uniform regression (\op{v1}) to sharp-cut and accompaniment-floor regularisation (\op{v2}) cut held-out bar timing error by $25\%$ ($0.429 \to 0.320$ bars) and lifted zero-shot recipe agreement on human-audited \op{owner.jsonl} to $86.14\%$ ($87/101$). Scaling to \textbf{Cortex v3-Pro} ($8\text{L}/192\text{D}$, $3.60$\,M params, $20{,}000$ steps with beat-loudness jitter) halves held-out timing error again on the strictly unseen $5{,}707$-example \op{val.jsonl.gz} benchmark to $\mathbf{0.165}$\,\textbf{bars} ($96.77\%$ final / $98.63\%$ peak recipe accuracy, $\mathbf{0.0170}$ 8-lane fader MAE) while achieving $99.0\%$ ($100/101$, $0.05$\,bar MAE) preference alignment on \op{owner.jsonl} at $38.03$\,ms single-threaded CPU latency (FP32-vs-FP16 max deviation $0.00164$ bars).
+
+Similarly, scaling \textbf{Cingulate v3} across the full $30$-defect taxonomy with $50\%$ on-GPU $7$-mode counterfactual synthesis reaches $\mathbf{97.28\%}$ (\op{v3-Base}, $8.71$\,ms) and $\mathbf{97.00\%}$ (\op{v3-Pro}, $16.66$\,ms) accuracy on unseen \op{val.jsonl.gz}, cutting false positives on \op{owner.jsonl} from $7$ (\op{v1}) and $5$ (\op{v2}) down to $\mathbf{0}$ on \op{v3-Base} ($\mathrm{TP}=91, \mathrm{FP}=0, \mathrm{TN}=41$, $\mathbf{100.0\%}$ precision) and $\mathbf{1}$ on \op{v3-Pro} ($\mathrm{TP}=94, \mathrm{FP}=1, \mathrm{TN}=40$, $98.9\%$ precision; $100$\,ms for Best-of-$6$ reranking).
+
+\input{tables/planner_critic}
+
+\paragraph{Blind listening discovery and acoustic waveform verification.}
+Table~\ref{tab:human_eval} and Figure~\ref{fig:ablation} document how blind listening guided our progression from \op{Rule} to \op{v3}:
+\begin{enumerate}
+  \item \textbf{Rule baseline ($6$ mixes):} Listener preferences tracked rule structural confidence ($0.45 \to$ ``excellent / great'' on half/double-time harmonic locks \op{0hkR93}$\leftrightarrow$\op{6wPupZ}; $0.18 \to$ ``fits, not quite a transition'' on \op{5ihq4q}$\to$\op{0I4cfb}, which \op{Cingulate} independently scored $\hat{q}=0.0002$ with \op{CutNotTransition} $=0.983$).
+  \item \textbf{Eliminating $-33.6$\,dBFS pre-entry holes (\op{7yoqSl}$\to$\op{6N185A}):} \op{Cortex v1} hedged entry timing by ducking Deck~$A$ bass ($0.23$) and chords ($0.18$) $2.5$\,s before Deck~$B$ entered ($-33.64$\,dBFS trough; rejected in blind listening despite \op{Cingulate v1}'s false-positive $0.977$). Combining sharp-cut regularisation, accompaniment-floor constraints, and vocal-onset handoff in \op{v3} raised minimum blend loudness by $\mathbf{+10.55}$\,\textbf{dB} to $\mathbf{-23.09}$\,\textbf{dBFS} (\op{Cingulate} $0.996$, $0.0$\,ms beat drift).
+  \item \textbf{Skipping $4.6$\,s silent vocal intros (\op{6wPupZ}$\to$\op{0hkR93}):} Whereas \op{v1} smeared Deck~$A$'s vocalist mid-word ($5/10$) and \op{v2} opened Deck~$B$ into $4.6$\,s of empty intro, Eq.~\eqref{eq:handoff} pinpointed sustained singing in \op{0hkR93} at $t_B = 4.94$\,s ($u_{\text{handoff}}=-3.0$), keeping Deck~$A$ singing at unity gain right into a breath-echo handoff over a $-2.5$\,dB chord pocket.
+\end{enumerate}
+
+\input{tables/human_eval}
+
+\begin{figure*}[!tbp]
+  \centering
+  \includegraphics[width=\linewidth]{figures/v1_vs_v2_ablation.pdf}
+  \caption{Acoustic and fader-level resolution of \op{VoiceOverBeat} pathologies across \op{v1}, \op{v2}, and \op{v3}. \textbf{Top (\op{7yoqSl}$\to$\op{6N185A}, 92$\to$91\,BPM):} Eliminating premature accompaniment ducking lifts minimum $1$\,s RMS loudness by $+10.55$\,dB ($-33.64 \to -23.09$\,dBFS). \textbf{Bottom (\op{6wPupZ}$\to$\op{0hkR93}, 159$\to$78\,BPM half-time):} Vocal-onset lock advances $u_{\text{handoff}}$ from $-6.0$ to $-3.0$ ($t_B = 4.94$\,s), skipping $4.6$\,s of silent intro in Track~B.}
+  \label{fig:ablation}
+\end{figure*}
+
+\subsection{Phase-Coherent Separation and Equivariant Perception}
+\label{sec:res_perception}
+
+Tables~\ref{tab:stems_results} and~\ref{tab:ear_results} together with Figure~\ref{fig:training} (right) report separation fidelity, pure-Rust FP16 parity, seven-head structural metrics, and single-core CPU real-time factors across model scales. Upgrading \op{Cochlea} from \op{v1} ($2048$-FFT, $42$ bands) to a $4096$-point STFT ($64$ vocal-harmonic bands), Dual-Axis Time+Band attention, bounded four-stem Wiener projection, and $1{,}101$-track \op{HTDemucs-ft} distillation doubles held-out MUSDB18-HQ vocal SDR from $3.57$\,dB to $\mathbf{6.73}$\,\textbf{dB} (\op{Cochlea-v2-Base}, step $30{,}000$, $4.90$\,dB mean SDR, $0.40\times$ RT) and $\mathbf{7.84}$\,\textbf{dB} (\op{Cochlea-Pro}, step $37{,}500$, $5.55$\,dB mean SDR, $-10.8$\,dB vocal leak suppression, $\mathbf{0.95\times}$ RT---faster than real-time on one Intel Xeon vCPU core), while preserving exact mixture conservation ($\|\sum_{m=1}^4 \hat{s}_m - x\|_\infty \in [-151.4, -148.3]$\,dB) and a maximum FP32-vs-FP16 stereo waveform deviation of $1.67 \times 10^{-4}$ in \op{sone-infer}. On the six unseen broadcast tracks, \op{Cochlea-Pro} achieves $\mathbf{6.84}$\,\textbf{dB} four-stem mean SDR ($10.03$\,dB bass, $8.26$\,dB drums) and up to $\mathbf{9.54}$\,\textbf{dB} MDX23 active-chunk vocal SDR (\op{0FlcmZ}) and $\mathbf{9.25}$\,\textbf{dB} full-clip mean SDR (\op{0hkR93}). Crucially, unseen track \op{7yoqSl} illustrates why global BSSEval SDR~\citep{vincent2006performance} can mislead on DJ boundary windows: its ground-truth vocals are silent ($-108.7$\,dBFS), yielding $-31.2$\,dB global vocal SDR even when \op{Cochlea-Pro} suppresses residual vocal energy down to $-77.8$\,dBFS (whereas active-chunk median SDR~\citep{fabbro2024sdx} properly isolates vocal-active passages). Meanwhile, vinyl-equivariant \op{Tympanum v2/Pro} lifts raw $50$\,Hz beat F1 from $0.659$ to $\mathbf{0.865}$, downbeat F1 from $0.365$ to $\mathbf{0.506}$, and cuts concert-pitch tuning MAE from $16.83$ to $\mathbf{6.41}$\,cents, locking $12/12$ exact BPMs when paired with our F1 peak-recall comb grid.
+
+\input{tables/stems_results}
+\input{tables/ear_results}
+
+\begin{figure*}[!tbp]
+  \centering
+  \includegraphics[width=\linewidth]{figures/training_curves.pdf}
+  \caption{Multi-GPU scaling and validation trajectories across the upgraded \sone{} organs. \textbf{Left:} \op{Cortex v3-Pro} ($8\text{L}/192\text{D}$) halves held-out bar MAE ($0.165$\,bars) relative to the \op{v2} asymptote. \textbf{Centre:} \op{Cingulate v3-Pro} ($50\%$ GPU counterfactuals) reaches $97.0\%$ held-out accuracy and $95.1\%$ owner accuracy. \textbf{Right:} \op{Cochlea-v2-Base} ($11.6$\,M, \op{bs=48}) and \op{Cochlea-Pro} ($20.1$\,M, $695$ tracks) scaling on dual $96$\,GB Blackwell \op{G4} GPUs.}
+  \label{fig:training}
+\end{figure*}
+
+\subsection{Four-Generation GPU Scaling and Sub-Core CPU Economics}
+\label{sec:res_compute}
+
+Table~\ref{tab:e2e_budget} and Figure~\ref{fig:compute} compare training throughput across four NVIDIA GPU generations and single-threaded Xeon CPU latency across all three \sone{} tiers. On $96$\,GB Blackwell \op{sm\_120} GPUs, BF16 \op{torch.compile} sustains $44.8$ (\op{v2-Base}, \op{bs=48}, $81.7$\,GB VRAM) and $36.4$ (\op{Pro}, \op{bs=32}) six-second $4096$-FFT Dual-Axis stereo examples/s---nearly $5\times$ the example throughput of an Ada L4 GPU even at $4.4\times$ larger parameter count and $2\times$ FFT length. At deployment, restricting separation to the $2 \times 24$\,s transition zone while splicing untouched master stereo outside $[u_0, u_1]$ enables \textbf{Sone-6.5M} ($8.6$\,s CPU / mix), \textbf{Sone-v2-Base} ($21.5$\,s), and \textbf{Sone-Pro} ($48.8$\,s) to run continuously on $4.8\%$, $11.9\%$, and $27.1\%$ of a single cloud vCPU core per $180$\,s song ($\approx\$0.0004$--$\$0.0022$ per transition). Figure~\ref{fig:spectrogram} shows the phase-locked rendered spectrogram around $u=0$.
+
+\input{tables/e2e_budget}
+
+\begin{figure*}[!tbp]
+  \centering
+  \includegraphics[width=\linewidth]{figures/gpu_scaling_and_cpu_budget.pdf}
+  \caption{\textbf{Left:} Measured \op{Cochlea} CUDA training throughput (6\,s stereo chunks/s) across NVIDIA Ada L4, Ampere A100, and $96$\,GB Blackwell RTX PRO 6000 (\op{G4}) GPUs. \textbf{Right:} Single-threaded Intel Xeon CPU execution time per transition ($2 \times 24$\,s boundary separation + master splicing) and amortized core utilisation over a $180$\,s track across all three \sone{} tiers.}
+  \label{fig:compute}
+\end{figure*}
+
+\begin{figure*}[!tbp]
+  \centering
+  \includegraphics[width=\linewidth]{figures/spectrogram_stems_mix.pdf}
+  \caption{Log-power spectrogram triad of a rendered \sone{} \op{VoiceOverBeat} transition: outgoing Deck~A window (top), incoming Deck~B window (middle), and phase-locked rendered output (bottom) showing full accompaniment continuity, breath-locked echo tail at $u=-4$, and zero-drift downbeat takeover at $u=0$.}
+  \label{fig:spectrogram}
+\end{figure*}

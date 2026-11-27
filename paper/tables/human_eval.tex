@@ -1,0 +1,31 @@
+\begin{table*}[t]
+\centering
+\caption{Iterative blind listening and acoustic waveform verification across Rule, Neural \op{v1}, Sharp-Cut \op{v2}, and Vocal-Onset-Locked \op{v3} mixes. $\min\mathrm{RMS}_{1\text{s}}$ measures the deepest 1\,s loudness trough inside the transition window.}
+\label{tab:human_eval}
+\footnotesize
+\setlength{\tabcolsep}{3.6pt}
+\resizebox{\linewidth}{!}{\begin{tabular}{@{}llllrrrl@{}}
+\toprule
+Gen.\ & Pair ($\mathrm{BPM}_A \to \mathrm{BPM}_B$, Key) & Recipe & $u_{\text{handoff}}$ & Cingulate & Drift & $\min\mathrm{RMS}_{1\text{s}}$ & Blind Human Verdict / Acoustic Outcome \\
+\midrule
+Rule & \op{0hkR93}$\to$\op{6wPupZ} ($78\!\to\!159$, 6A) & \op{VoiceOverBeat} & $-8.38$ & $0.990$ & $0.0$\,ms & $-25.8$\,dB & \textbf{``Excellent''} (highest rule confidence $0.45$) \\
+Rule & \op{6wPupZ}$\to$\op{0hkR93} ($159\!\to\!78$, 6A) & \op{VoiceOverBeat} & $-6.00$ & -- & $0.0$\,ms & $-27.9$\,dB & \textbf{``Great''} (half-time 2:1 harmonic lock) \\
+Rule & \op{5ihq4q}$\to$\op{0I4cfb} ($120\!\to\!119$, 8A/9A) & \op{Sneak} & $-8.00$ & $0.000$ & $0.0$\,ms & $-21.4$\,dB & ``Fits, not quite a transition'' (conf.\ $0.18$) \\
+\midrule
+\op{v1} & \op{7yoqSl}$\to$\op{6N185A} ($92\!\to\!91$, 6A) & \op{VoiceOverBeat} & $-16.25$ & $0.977^\dagger$ & $0.0$\,ms & $-33.64$\,dB & \textbf{Rejected:} 2.5\,s pre-entry ducking hole \\
+\op{v2} & \op{7yoqSl}$\to$\op{6N185A} ($92\!\to\!91$, 6A) & \op{VoiceOverBeat} & $-4.00$ & $0.869$ & $0.0$\,ms & $-27.86$\,dB & Improved ($+5.8$\,dB), chords still dipped early \\
+\textbf{\op{v3}} & \op{7yoqSl}$\to$\op{6N185A} ($92\!\to\!91$, 6A) & \op{VoiceOverBeat} & $\mathbf{-4.00}$ & $\mathbf{0.996}$ & $\mathbf{0.0}$\,\textbf{ms} & $\mathbf{-23.09}$\,\textbf{dB} & \textbf{``Good now'':} $+10.55$\,dB floor, zero pre-entry dim \\
+\midrule
+\op{v1} & \op{6wPupZ}$\to$\op{0hkR93} ($159\!\to\!78$, 6A) & \op{VoiceOverBeat} & $-16.25$ & $0.156$ & $-1.5$\,ms & $-31.47$\,dB & \textbf{5/10:} singer cut mid-phrase (Cingulate caught!) \\
+\op{v2} & \op{6wPupZ}$\to$\op{0hkR93} ($159\!\to\!78$, 6A) & \op{VoiceOverBeat} & $-6.00$ & $0.397$ & $-1.5$\,ms & $-29.79$\,dB & Clean breath exit, but $4.6$\,s silent intro on B \\
+\textbf{\op{v3}} & \op{6wPupZ}$\to$\op{0hkR93} ($159\!\to\!78$, 6A) & \op{VoiceOverBeat} & $\mathbf{-3.00}$ & $0.388$ & $-1.5$\,ms & $\mathbf{-27.29}$\,\textbf{dB} & \textbf{``Good''} ($-2.5$\,dB backing pocket under verse onset) \\
+\midrule
+\op{v1} & \op{5ihq4q}$\to$\op{0I4cfb} ($120\!\to\!119$, 8A/9A) & \op{Sneak} & $-8.00$ & $0.940$ & $+0.7$\,ms & $-20.9$\,dB & \textbf{``Good''} \\
+\op{v1} & \op{6N185A}$\to$\op{7yoqSl} ($91\!\to\!92$, 6A) & \op{Sneak} & $-10.00$ & $0.453$ & $+2.2$\,ms & $-21.2$\,dB & \textbf{``Nailed''} \\
+\op{v2} & \op{0hkR93}$\to$\op{6wPupZ} ($78\!\to\!159$, 6A) & \op{VoiceOverBeat} & $-8.38$ & $0.001^\ddagger$ & $-0.7$\,ms & $-26.30$\,dB & \textbf{``Absolute banger''} (continuous vocal over beat) \\
+\bottomrule
+\end{tabular}}
+
+\smallskip
+\parbox{\linewidth}{\footnotesize $^\dagger$False positive in \op{Cingulate v1} that motivated hard-negative energy-hole synthesis in \op{Cingulate v2/v3}. $^\ddagger$\op{Cingulate v2} penalised $-2.29\%$ double-time stretch (\op{PitchRiding} $=0.98$), though WSOLA/PV stretch was inaudible to the listener.}
+\end{table*}

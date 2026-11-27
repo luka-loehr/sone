@@ -1,0 +1,54 @@
+% Sone family preprint. Build with `make` (tectonic main.tex).
+\documentclass[11pt]{article}
+
+\usepackage[T1]{fontenc}
+\usepackage{lmodern}
+\usepackage[a4paper,margin=0.95in]{geometry}
+\usepackage{amsmath,amssymb}
+\usepackage{booktabs}
+\usepackage{graphicx}
+\usepackage{subcaption}
+\usepackage{placeins}
+\usepackage{xcolor}
+\usepackage{microtype}
+\usepackage{algorithm}
+\usepackage{algpseudocode}
+\usepackage{listings}
+\usepackage[numbers,sort&compress]{natbib}
+\usepackage[colorlinks=true,linkcolor=blue!50!black,citecolor=blue!50!black,urlcolor=blue!50!black]{hyperref}
+
+\newcommand{\sone}{Sone}
+\newcommand{\op}[1]{\texttt{#1}}
+\newcommand{\R}{\mathbb{R}}
+\DeclareMathOperator*{\argmin}{arg\,min}
+\lstset{basicstyle=\ttfamily\footnotesize,breaklines=true,columns=fullflexible,frame=single,framesep=4pt,xleftmargin=4pt,xrightmargin=4pt,upquote=true}
+
+\title{\textbf{Sone}: Sub-Core CPU DJ Transitions via Phase-Coherent Tonotopic Separation, Equivariant Metrical Perception, and Cortical Planning}
+\author{Luka L\"ohr\\Independent Researcher}
+\date{}
+
+\begin{document}
+\emergencystretch=1.5em
+\maketitle
+
+\begin{abstract}
+Continuous music radio and personalised playlist playback require beat-locked, harmonically clean transitions between arbitrary stereo recordings without altering studio masters outside the blend or maintaining GPU servers per stream. End-to-end generative audio codecs degrade non-transition audio, introduce phase-scrambled vocal artifacts on dense mixes, and exceed single-core CPU budgets by orders of magnitude. We present \textbf{\sone{}}, a three-tier family of unified neuro-symbolic automatic DJ models---\textbf{Sone-6.5M} ($13.12$\,MB FP16), \textbf{Sone-v2-Base} ($13.61$\,M parameters, $27.36$\,MB), and \textbf{Sone-Pro} ($26.37$\,M parameters, $52.90$\,MB)---built on a strict separation of responsibilities: four neural organs modelled after the human auditory-to-executive pathway and packaged inside a single \op{model.safetensors} file \emph{separate, perceive, plan, and monitor} transitions exclusively within a $\sim 24$\,s boundary window, while a deterministic Rust DSP engine executes phase-locked time-stretching, vocal-pocket mixing, and raised-cosine splicing into untouched master stereo outside the transition. Specifically, \sone{} integrates (i) \textbf{Cochlea} (\op{cochlea.*}), scaled in \op{v2/Pro} to a $4096$-point STFT ($10.77$\,Hz resolution), $64$ vocal-harmonic subbands, Dual-Axis Time+Band Transformers, and bounded complex masks projected onto exact mixture consistency ($\|\sum_{m=1}^4 \hat{s}_m - x\|_\infty < -148$\,dB) under active-vocal cosine phase-coherence, $128$-mel perceptual, and bidirectional anti-bleed losses distilled from \op{HTDemucs-ft} over $1{,}101$ Creative Commons tracks plus MUSDB18-HQ ($7.84$\,dB held-out vocal SDR at $0.95\times$ 1-vCPU real-time); (ii) \textbf{Tympanum} (\op{tympanum.*}), a $50$\,Hz dilated TCN--BiGRU trained with exact vinyl-speed pitch/key/tuning/tempo equivariance and paired with a neuro-symbolic multi-octave comb-grid tracker ($12/12$ exact BPM locks); (iii) \textbf{Cortex} (\op{cortex.*}), an $8$-layer beat-synchronous Transformer predicting recipes, bar offsets ($0.165$\,bar held-out MAE), and eight stem gain trajectories ($0.0170$ MAE); and (iv) \textbf{Cingulate} (\op{cingulate.*}), a $6$-layer conflict Transformer trained with $50\%$ on-GPU counterfactual DJ defect synthesis across $30$ defect classes ($97.00\%$ held-out accuracy) for Best-of-$K$ candidate reranking. Across four generations of NVIDIA Tensor Core GPUs (T4, L4, A100, and dual $96$\,GB RTX PRO 6000 Blackwell \op{sm\_120} accelerators) and a dependency-free single-threaded Rust/WebAssembly runtime (\op{sone-infer/1}), all three \sone{} tiers run faster than real-time on a single Intel Xeon vCPU ($4.8\%$--$27.1\%$ average core load per $3$\,min song) while lifting blind-tested vocal-handoff loudness floors by $+10.55$\,dB.
+\end{abstract}
+
+\input{sections/introduction}
+\input{sections/related}
+\input{sections/method}
+\input{sections/experiments}
+\input{sections/results}
+\FloatBarrier
+\input{sections/limitations}
+\input{sections/conclusion}
+
+\bibliographystyle{plainnat}
+\bibliography{refs}
+
+\clearpage
+\appendix
+\input{sections/appendix}
+
+\end{document}

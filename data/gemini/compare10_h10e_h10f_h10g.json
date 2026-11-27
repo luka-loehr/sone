@@ -1,0 +1,125 @@
+{
+ "results": {
+  "h10e": {
+   "scores": [
+    7.0,
+    6.5,
+    7.5,
+    6.75
+   ],
+   "mean_rank": 2.0,
+   "ranks": [
+    2,
+    2,
+    3,
+    1
+   ],
+   "notes": [
+    [
+     "Alicia Keys' final vocal phrase cuts into a rapid eighth-note delay flutter before the 130 BPM house track enters.",
+     "The rapid echo creates a busy, cluttered flutter that obscures the incoming tempo rather than establishing a clean rhythmic bridge."
+    ],
+    [
+     "Alicia Keys sings the hook until 0:20, where Song A's instrumental cuts out and a vocal delay tail echoes over the sudden entrance of Song B's 130 BPM house kick and bassline.",
+     "Harmonic clash between the lingering vocal echo and Song B's bassline, accompanied by an abrupt mid-phrase cut."
+    ],
+    [
+     "Song A's beat cuts to Alicia Keys' vocal acapella before Song B's 130 BPM house drop slams in underneath at 20 seconds, with the vocal echoing out by 24 seconds.",
+     "Harmonic key clash between Alicia's F# major vocal and Song B's minor synth progression during the 20-24s overlap."
+    ],
+    [
+     "The hip-hop drums cut at 17s leaving Alicia Keys' vocal floating as an acapella, which echoes out under a 130 BPM house top loop before the kick drops at 24s.",
+     "none"
+    ]
+   ]
+  },
+  "h10f": {
+   "scores": [
+    6.5,
+    6.0,
+    7.25,
+    6.25
+   ],
+   "mean_rank": 2.0,
+   "ranks": [
+    3,
+    1,
+    2,
+    2
+   ],
+   "notes": [
+    [
+     "Alicia Keys' vocal fades into an 87 BPM delay tail that is awkwardly cut off when the 130 BPM house beat suddenly drops.",
+     "The delay tail remains locked to 87 BPM, making the sudden 130 BPM drop feel rhythmically jarring and disconnected."
+    ],
+    [
+     "Alicia Keys sings the hook until 0:20, where Song A's instrumental cuts out and a vocal delay tail echoes over the sudden entrance of Song B's 130 BPM house kick and bassline.",
+     "Harmonic clash between the lingering vocal echo and Song B's bassline, accompanied by an abrupt mid-phrase cut."
+    ],
+    [
+     "Song A's beat cuts to Alicia Keys' vocal acapella before Song B's 130 BPM house drop slams in underneath at 20 seconds, with the vocal echoing out by 24 seconds.",
+     "Harmonic key clash between Alicia's F# major vocal and Song B's minor synth progression during the 20-24s overlap."
+    ],
+    [
+     "The hip-hop drums cut at 17s leaving Alicia Keys' vocal floating as an acapella, which echoes out under a 130 BPM house top loop before the kick drops at 24s.",
+     "none"
+    ]
+   ]
+  },
+  "h10g": {
+   "scores": [
+    7.5,
+    7.0,
+    8.0,
+    7.25
+   ],
+   "mean_rank": 2.0,
+   "ranks": [
+    1,
+    3,
+    1,
+    3
+   ],
+   "notes": [
+    [
+     "Alicia Keys' vocal hook cuts on 'inspire you' into a four-beat quarter-note delay synced to 130 BPM, counting down directly into the house kick drop.",
+     "none"
+    ],
+    [
+     "Alicia Keys sings the hook until 0:20, where Song A's instrumental cuts out and a vocal delay tail echoes over the sudden entrance of Song B's 130 BPM house kick and bassline.",
+     "Harmonic clash between the lingering vocal echo and Song B's bassline, accompanied by an abrupt mid-phrase cut."
+    ],
+    [
+     "Song A's beat cuts to Alicia Keys' vocal acapella before Song B's 130 BPM house drop slams in underneath at 20 seconds, with the vocal echoing out by 24 seconds.",
+     "Harmonic key clash between Alicia's F# major vocal and Song B's minor synth progression during the 20-24s overlap."
+    ],
+    [
+     "The hip-hop drums cut at 17s leaving Alicia Keys' vocal floating as an acapella, which echoes out under a 130 BPM house top loop before the kick drops at 24s.",
+     "none"
+    ]
+   ]
+  }
+ },
+ "tips": [
+  [
+   "h10g",
+   "Version P brilliantly solves the tempo and key clash by cutting the music and using a 130 BPM quarter-note vocal delay. The four distinct echo taps serve as a deliberate one-bar count-in to the new tempo, priming the listener so the house kick drops on the downbeat with maximum impact and no harmonic mud.",
+   "Add a subtle high-pass filter sweep on the vocal echo along with a light white-noise riser or reverse sweep into beat 1 to make the drop hit with even more club energy."
+  ],
+  [
+   "h10f",
+   "All three clips feature identical audio and transition execution; the DJ smartly cuts Song A's rhythm track and applies a delay freeze to the vocal to prevent a metric trainwreck between the 87 BPM and 130 BPM tempos.",
+   "Apply a steep high-pass filter or wash-out reverb to the vocal echo tail to eliminate key clash with the incoming house bassline, and add a subtle riser or sweep effect to soften the sudden jump in energy and tempo."
+  ],
+  [
+   "h10g",
+   "All three versions are identical audio takes. The acapella bridge smartly solves the 87 to 130 BPM tempo jump without trainwrecking beats, delivering strong dancefloor energy on the drop.",
+   "Either pitch-shift Song A's vocal or select a house track in a compatible key to resolve the dissonance between 20s and 24s, or apply a high-pass echo out on 'brand new' so Song B drops completely clean without vocal overlap."
+  ],
+  [
+   "h10e",
+   "All three versions are virtually identical. The transition solves the severe tempo and key mismatch intelligently by dropping out Song A's rhythm section to let the vocal phrase float solo, delaying out the vocal tail, and introducing the 130 BPM groove cleanly without beat collision or harmonic clashing.",
+   "Layer a subtle riser, filtered white noise sweep, or 130 BPM snare roll beneath the acapella line between 18s and 24s to build energy and prime the dance floor for the sudden jump to house tempo."
+  ]
+ ]
+}

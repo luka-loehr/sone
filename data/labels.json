@@ -1,0 +1,333 @@
+[
+ {
+  "id": "*",
+  "version": "production",
+  "at": "2026-09-29T12:34",
+  "source": "chat",
+  "verdict": "negative",
+  "issues": [
+   "roll_out",
+   "pitch_riding"
+  ],
+  "note": "i dont like the roll outs. and also i dont like those pitch ridings. i want real humane dj like transtions maybe even take 20 seconds in totla. with voacal and ebat seperations etc.",
+  "rule": "no roll-outs, no pitch riding; stem-based blends of up to about 20 s"
+ },
+ {
+  "id": "h01",
+  "version": "S0",
+  "at": "2026-09-29T13:24",
+  "source": "chat",
+  "verdict": "positive",
+  "issues": [
+   "b_melody_enters_at_once"
+  ],
+  "note": "like it. but make the melodie of b not enter directly make it fade in slowely. but the gesang can go in as same as bass. this is good. dude. i love the style.",
+  "rule": "B's melody does not enter at once; B's voice and bass may"
+ },
+ {
+  "id": "h05",
+  "at": "2026-09-29T13:50:58",
+  "note": "nice, aber bass und drums dürfen bei a NICHT HART ABSCHENDIEN. niemals. das hört man mache einen 2 sek fade doer so aber neimals hart auf 0 bei beats",
+  "version": "S1",
+  "verdict": "mixed",
+  "issues": [
+   "abrupt_stem_exit"
+  ],
+  "rule": "A's drums and bass must not vanish at some point inside the blend",
+  "source": "site note"
+ },
+ {
+  "id": "h06",
+  "at": "2026-09-29T13:51:35",
+  "note": "auch hier nicht so hart abscheiden, und hier ist es eher ein meldie matsch",
+  "version": "S1",
+  "verdict": "mixed",
+  "issues": [
+   "abrupt_stem_exit",
+   "two_melodies"
+  ],
+  "rule": "no two melodies at once",
+  "source": "site note"
+ },
+ {
+  "id": "h07",
+  "at": "2026-09-29T13:52:06",
+  "note": "here it matches fine",
+  "version": "S1",
+  "verdict": "positive",
+  "issues": [],
+  "rule": "A's outro beat under B's beatless synth intro works",
+  "source": "site note"
+ },
+ {
+  "id": "h08",
+  "at": "2026-09-29T13:52:33",
+  "note": "sehr sehr clean",
+  "version": "S1",
+  "verdict": "positive",
+  "issues": [],
+  "rule": "half-time against double-time match is clean",
+  "source": "site note"
+ },
+ {
+  "id": "h09",
+  "at": "2026-09-29T13:52:57",
+  "note": "nope, gefällt mir nicht, eher matsch",
+  "version": "S1",
+  "verdict": "negative",
+  "issues": [
+   "two_melodies"
+  ],
+  "rule": "A's melody under B's voice and bass in a neighbouring key is mush",
+  "source": "site note"
+ },
+ {
+  "id": "h10",
+  "at": "2026-09-29T13:53:28",
+  "note": "OK LIKE THE CONCEPT but its still a hard cut. not trantstion",
+  "version": "S1",
+  "verdict": "mixed",
+  "issues": [
+   "cut_not_transition"
+  ],
+  "rule": "for a tempo gap a plain stop-and-start is not a transition",
+  "source": "site note"
+ },
+ {
+  "id": "*",
+  "version": "S1",
+  "at": "2026-09-29T13:55",
+  "source": "chat",
+  "verdict": "rule",
+  "issues": [],
+  "note": "as you may noted its only clean if they got the same beat. but the thing is you can also amtch on the second takt. [...] wir können auch auf jeden eziwten matchen. nur sowas hier mit beiden 120bpm klignt halt shcon geil: 05 [...] versuche die betas kompeltt zu matchen aber nciht künstlich extrem schneller oder lasgamer zuw erdne bsischen sit ok",
+  "rule": "same beat: equal tempo or half/double time, only a little stretch"
+ },
+ {
+  "id": "h05",
+  "at": "2026-09-29T14:28:08",
+  "note": "make the bass and drums fade out with the meldoei not before for a",
+  "version": "S3",
+  "verdict": "mixed",
+  "issues": [
+   "stems_leave_separately"
+  ],
+  "rule": "A's drums, bass and melody leave together",
+  "source": "site note"
+ },
+ {
+  "id": "h04",
+  "at": "2026-09-29T14:28:34",
+  "note": "meldie of a can be kept longer",
+  "version": "S3",
+  "verdict": "mixed",
+  "issues": [
+   "a_melody_left_early"
+  ],
+  "rule": "A's melody may stay longer",
+  "source": "site note"
+ },
+ {
+  "id": "h03",
+  "at": "2026-09-29T14:29:12",
+  "note": "this just doesnt fit. maybe mek the other crosovver that gesang of b only starts at DIE EINS",
+  "version": "S3",
+  "verdict": "negative",
+  "issues": [
+   "wrong_recipe",
+   "downbeat_off_by_one"
+  ],
+  "rule": "when B's voice over A does not fit, let B's voice start on the one",
+  "source": "site note"
+ },
+ {
+  "id": "h02",
+  "at": "2026-09-29T14:30:10",
+  "note": "NIC EBTU AS ALWAYS DRUMS AND BASS MUST ALWAYS TO THE 1 slowly and slawy go down not some random time all down in 1 sec",
+  "version": "S3",
+  "verdict": "mixed",
+  "issues": [
+   "fade_at_random_point",
+   "fade_too_short"
+  ],
+  "rule": "A's drums and bass go down slowly and arrive at zero on the one",
+  "source": "site note"
+ },
+ {
+  "id": "h01",
+  "at": "2026-09-29T14:30:35",
+  "note": "this is nice btiu meldoei of b should only start at die 1",
+  "version": "S3",
+  "verdict": "mixed",
+  "issues": [
+   "b_melody_before_one"
+  ],
+  "rule": "B's melody starts on the one",
+  "source": "site note"
+ },
+ {
+  "id": "h10",
+  "at": "2026-09-29T14:31:48",
+  "note": "idea for this. start drums only at die 1. and only mix a b so make b onbly contain the melodie in the beginnign hile mixing so this synth noise",
+  "version": "S3",
+  "verdict": "mixed",
+  "issues": [
+   "b_drums_before_one"
+  ],
+  "rule": "owner's idea: only B's synth before the one, drums on the one (later rejected by himself)",
+  "source": "site note"
+ },
+ {
+  "id": "h01",
+  "at": "2026-09-29T14:45:14",
+  "note": "dude just do a linear fade out. of melodie bass and drums but here keep the old drums and bass till the 1",
+  "version": "S4",
+  "verdict": "mixed",
+  "issues": [
+   "fade_curve",
+   "a_beat_gone_before_one"
+  ],
+  "rule": "plain linear fades; A's drums and bass stay until the one",
+  "source": "site note"
+ },
+ {
+  "id": "h03",
+  "at": "2026-09-29T14:46:40",
+  "note": "beats aint eprfectly aligned and this isnt really smooth, remake it and i dotn like those meldie bass an drums curves luike before i told u",
+  "version": "S4",
+  "verdict": "negative",
+  "issues": [
+   "downbeat_off_by_one",
+   "fade_curve"
+  ],
+  "rule": "bar phase must be right: backbeat on 2 and 4",
+  "source": "site note"
+ },
+ {
+  "id": "h04",
+  "at": "2026-09-29T14:47:18",
+  "note": "would be way better if meldoe bass and drums would stay till the 1",
+  "version": "S4",
+  "verdict": "mixed",
+  "issues": [
+   "a_beat_gone_before_one"
+  ],
+  "rule": "A's melody, bass and drums stay until the one",
+  "source": "site note"
+ },
+ {
+  "id": "h05",
+  "at": "2026-09-29T14:48:22",
+  "note": "nice, but dude: my issue all time is: you CAN AUDIBLY HEAR (and it gives a wrong feeling in my musical ears) the abrupt sart of melode bass and ums getting leiser. it aint smooth its like an abrdurp drop",
+  "version": "S4",
+  "verdict": "mixed",
+  "issues": [
+   "audible_fade_onset"
+  ],
+  "rule": "the start of a fade must not be audible",
+  "source": "site note"
+ },
+ {
+  "id": "h06",
+  "at": "2026-09-29T14:48:58",
+  "note": "nice but sitlla bdrup also some gesang leaked",
+  "version": "S4",
+  "verdict": "mixed",
+  "issues": [
+   "audible_fade_onset",
+   "vocal_leak"
+  ],
+  "rule": "muted stems must be free of the voice",
+  "source": "site note"
+ },
+ {
+  "id": "h09",
+  "at": "2026-09-29T14:50:19",
+  "note": "ist besser aber nciht eprfekt",
+  "version": "S4",
+  "verdict": "mixed",
+  "issues": [],
+  "rule": "better, not perfect",
+  "source": "site note"
+ },
+ {
+  "id": "h12",
+  "at": "2026-09-29T14:57:59",
+  "note": "whats this shit? why beats only start at 1? this sounds ass",
+  "version": "S4",
+  "verdict": "negative",
+  "issues": [
+   "a_beat_gone_before_one",
+   "beat_hole_before_one"
+  ],
+  "rule": "the beat must never be missing before the one",
+  "source": "site note"
+ },
+ {
+  "id": "h13",
+  "at": "2026-09-29T14:58:34",
+  "note": "ultra clean now",
+  "version": "S4",
+  "verdict": "positive",
+  "issues": [],
+  "rule": "sneak recipe with equal tempo and key is ultra clean",
+  "source": "site note"
+ },
+ {
+  "id": "*",
+  "version": "S5",
+  "at": "2026-09-29T15:20",
+  "source": "chat",
+  "verdict": "rule",
+  "issues": [
+   "tail_after_one"
+  ],
+  "note": "just amke the cuts on the 1s harder. for all thanks. no smooth fade there.",
+  "rule": "where A stays until the one it ends there with a hard cut"
+ },
+ {
+  "id": "h09",
+  "at": "2026-09-29T15:23:53",
+  "note": "also here NO B PVEE THE 1 always!",
+  "version": "S5",
+  "verdict": "mixed",
+  "issues": [
+   "b_voice_before_one"
+  ],
+  "rule": "for this pair B's voice only from the one",
+  "source": "site note"
+ },
+ {
+  "id": "*",
+  "version": "S5",
+  "at": "2026-09-29T15:24",
+  "source": "chat",
+  "verdict": "positive",
+  "issues": [],
+  "note": "others are good but read my notes",
+  "rule": "all but h09 accepted"
+ },
+ {
+  "id": "h10",
+  "at": "2026-09-29T15:38:38",
+  "note": "nah reason abotu this make it good and use gemini for this",
+  "version": "S6",
+  "verdict": "negative",
+  "issues": [
+   "key_clash_layering",
+   "polyrhythm_layering"
+  ],
+  "rule": "with clashing keys and a 2:3 tempo nothing pitched or rhythmic of both may overlap",
+  "source": "site note"
+ },
+ {
+  "id": "*",
+  "version": "S6",
+  "at": "2026-09-29T15:40",
+  "source": "chat",
+  "verdict": "positive",
+  "issues": [],
+  "note": "check my note all others are just amazing and perfect. adjsut the last one now.",
+  "rule": "h01-h09, h11-h13 accepted as perfect in S6; h10 not"
+ }
+]

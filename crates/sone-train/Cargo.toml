@@ -1,0 +1,23 @@
+[package]
+name = "sone-train"
+version.workspace = true
+edition.workspace = true
+license.workspace = true
+publish.workspace = true
+description = "Training programs of the four networks (Burn, wgpu or ndarray), data loading, export to safetensors"
+
+[[bin]]
+name = "sone-train"
+path = "src/main.rs"
+
+[dependencies]
+anyhow.workspace = true
+serde.workspace = true
+serde_json.workspace = true
+sone-core = { path = "../sone-core" }
+sone-infer = { path = "../sone-infer" }
+sone-models = { path = "../sone-models" }
+burn = { version = "=0.21.0", default-features = false, features = ["std", "wgpu", "ndarray", "autodiff", "fusion", "autotune"] }
+toml = "1"
+symphonia = { version = "0.5.5", default-features = false, features = ["flac", "wav", "pcm"] }
+hound = "3.5.1"

@@ -1,0 +1,14 @@
+[package]
+name = "sone-live"
+version.workspace = true
+edition.workspace = true
+license.workspace = true
+publish.workspace = true
+description = "The running engine: audio in, audio out, transitions planned inside the look-ahead, events next to the audio"
+
+[dependencies]
+anyhow.workspace = true
+serde.workspace = true
+serde_json.workspace = true
+sone-core = { path = "../sone-core" }
+sone-plan = { path = "../sone-plan" }

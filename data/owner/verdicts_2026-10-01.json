@@ -1,0 +1,3617 @@
+[
+ {
+  "page": "auto",
+  "id": "p11",
+  "a": "5Uc37Y6FijZcM538PqqkWd",
+  "b": "3LWDPEXEaLBRGNLbdcbwBR",
+  "recipe": "voice_over_beat",
+  "note": "abosulte trash",
+  "at": "2026-10-01T18:15:09",
+  "spec": {
+   "id": "p11",
+   "clip": [
+    -22.0,
+    12.0
+   ],
+   "first_event": -8.0,
+   "last_event": 0.0,
+   "no_sync": false,
+   "align_pairs": {
+    "a": [
+     -16.0,
+     -8.0
+    ],
+    "b": [
+     0.0,
+     8.0
+    ]
+   },
+   "recipe": "voice_over_beat",
+   "a": {
+    "id": "5Uc37Y6FijZcM538PqqkWd",
+    "anchor_bar": 116,
+    "anchor_u": -6.0,
+    "beat_shift": 0,
+    "fit_bars": [
+     92,
+     115
+    ],
+    "beats_per_bar": 4,
+    "until": 0.0,
+    "segments": [
+     {
+      "u0": -22.0,
+      "u1": -6.0,
+      "src": -22.0
+     },
+     {
+      "u0": -6.0,
+      "src": -14.0
+     }
+    ],
+    "lanes": {
+     "vocals": [
+      [
+       -22.0,
+       1.0
+      ],
+      [
+       -8.12,
+       1.0
+      ],
+      [
+       -8.0,
+       0.0
+      ]
+     ],
+     "drums": [
+      [
+       -22.0,
+       1.0
+      ],
+      [
+       -0.015,
+       1.0
+      ],
+      [
+       0.0,
+       0.0
+      ]
+     ],
+     "bass": [
+      [
+       -22.0,
+       1.0
+      ],
+      [
+       -0.015,
+       1.0
+      ],
+      [
+       0.0,
+       0.0
+      ]
+     ],
+     "other": [
+      [
+       -22.0,
+       1.0
+      ],
+      [
+       -8.0,
+       1.0
+      ],
+      [
+       -4.0,
+       0.0
+      ]
+     ]
+    },
+    "shape": "lin",
+    "sends": [
+     {
+      "type": "echo",
+      "stem": "vocals",
+      "send": [
+       [
+        -8.6,
+        0.0
+       ],
+       [
+        -8.5,
+        1.0
+       ],
+       [
+        -8.05,
+        1.0
+       ],
+       [
+        -8.0,
+        0.0
+       ]
+      ],
+      "beats": 1.0,
+      "feedback": 0.45,
+      "level": 0.7,
+      "hp": 350.0,
+      "lp": 4500.0,
+      "rt60": 2.4,
+      "post": false
+     }
+    ],
+    "trim_db": 0.06677598047968303,
+    "nudge_ms": 0.0,
+    "auto_nudge": true,
+    "double": false
+   },
+   "b": {
+    "id": "3LWDPEXEaLBRGNLbdcbwBR",
+    "anchor_bar": 13,
+    "anchor_u": 0.0,
+    "beat_shift": 0,
+    "fit_bars": [
+     13,
+     36
+    ],
+    "beats_per_bar": 4,
+    "from": -8.0,
+    "lanes": {
+     "vocals": [
+      [
+       -8.0,
+       0.0
+      ],
+      [
+       -6.3425,
+       0.0
+      ],
+      [
+       -6.3125,
+       1.0
+      ]
+     ],
+     "drums": [
+      [
+       -8.0,
+       0.0
+      ],
+      [
+       -0.03,
+       0.0
+      ],
+      [
+       0.0,
+       1.0
+      ]
+     ],
+     "bass": [
+      [
+       -8.0,
+       0.0
+      ],
+      [
+       -0.03,
+       0.0
+      ],
+      [
+       0.0,
+       1.0
+      ]
+     ],
+     "other": [
+      [
+       -8.0,
+       0.0
+      ],
+      [
+       -6.0,
+       0.0
+      ],
+      [
+       -2.0,
+       1.0
+      ]
+     ]
+    },
+    "shape": "lin",
+    "trim_db": 0.0,
+    "nudge_ms": 0.0,
+    "auto_nudge": true,
+    "double": false
+   },
+   "technique": "B's Stimme über A's Beat, B übernimmt auf der Eins",
+   "why": "tempo 126.02 → 127.01 BPM, lock 1:1 (-0.78 %), keys 9A → 10A (distance 1) · song B opens VoiceFirst { beat_bar: 13 } · song A's voice leaves at 216.38 s (bar line), the one is at 231.61 s, 6 bar(s) after A's own beat is over · song A's beat is gone from -6 bars; from there its bars of 8 bars earlier are replayed",
+   "answer": "",
+   "key_txt": "Em → Bm",
+   "steps": [
+    {
+     "u": -8.0,
+     "text": "A's Gesang endet am Zeilenende (Echo). A's Drums und Bass laufen voll weiter. B's Stimme setzt direkt ein."
+    },
+    {
+     "u": -6.0,
+     "text": "B's Stimme ist fertig, B's Melodie blendet langsam ein."
+    },
+    {
+     "u": 0.0,
+     "text": "Die Eins: B's Beat, Bass und Melodie setzen ein, A endet hart."
+    }
+   ],
+   "fx": []
+  }
+ },
+ {
+  "page": "auto",
+  "id": "p12",
+  "a": "6dRVOzSxLqRdqUjc9mctGg",
+  "b": "7ks6AZmFcm3Y6PGGxGSmlB",
+  "recipe": "voice_over_beat",
+  "note": "also trash",
+  "at": "2026-10-01T18:15:18",
+  "spec": {
+   "id": "p12",
+   "clip": [
+    -22.0,
+    14.0
+   ],
+   "first_event": -8.0,
+   "last_event": 2.0,
+   "no_sync": false,
+   "align_pairs": {
+    "a": [
+     -8.0,
+     0.0
+    ],
+    "b": [
+     0.0,
+     8.0
+    ]
+   },
+   "recipe": "voice_over_beat",
+   "a": {
+    "id": "6dRVOzSxLqRdqUjc9mctGg",
+    "anchor_bar": 61,
+    "anchor_u": 0.0,
+    "beat_shift": 0,
+    "fit_bars": [
+     37,
+     60
+    ],
+    "beats_per_bar": 2,
+    "until": 0.0,
+    "lanes": {
+     "vocals": [
+      [
+       -22.0,
+       1.0
+      ],
+      [
+       -8.12,
+       1.0
+      ],
+      [
+       -8.0,
+       0.0
+      ]
+     ],
+     "drums": [
+      [
+       -22.0,
+       1.0
+      ],
+      [
+       -0.015,
+       1.0
+      ],
+      [
+       0.0,
+       0.0
+      ]
+     ],
+     "bass": [
+      [
+       -22.0,
+       1.0
+      ],
+      [
+       -0.015,
+       1.0
+      ],
+      [
+       0.0,
+       0.0
+      ]
+     ],
+     "other": [
+      [
+       -22.0,
+       1.0
+      ],
+      [
+       -8.0,
+       1.0
+      ],
+      [
+       0.0,
+       0.0
+      ]
+     ]
+    },
+    "shape": "lin",
+    "sends": [
+     {
+      "type": "echo",
+      "stem": "vocals",
+      "send": [
+       [
+        -8.6,
+        0.0
+       ],
+       [
+        -8.5,
+        1.0
+       ],
+       [
+        -8.05,
+        1.0
+       ],
+       [
+        -8.0,
+        0.0
+       ]
+      ],
+      "beats": 0.5,
+      "feedback": 0.45,
+      "level": 0.7,
+      "hp": 350.0,
+      "lp": 4500.0,
+      "rt60": 2.4,
+      "post": false
+     }
+    ],
+    "trim_db": 0.026570751975118156,
+    "nudge_ms": 0.0,
+    "auto_nudge": true,
+    "double": true
+   },
+   "b": {
+    "id": "7ks6AZmFcm3Y6PGGxGSmlB",
+    "anchor_bar": 16,
+    "anchor_u": 0.0,
+    "beat_shift": 0,
+    "fit_bars": [
+     16,
+     26
+    ],
+    "beats_per_bar": 4,
+    "from": -8.0,
+    "lanes": {
+     "vocals": [
+      [
+       -8.0,
+       0.0
+      ],
+      [
+       -6.405,
+       0.0
+      ],
+      [
+       -6.375,
+       1.0
+      ]
+     ],
+     "drums": [
+      [
+       -8.0,
+       0.0
+      ],
+      [
+       -0.03,
+       0.0
+      ],
+      [
+       0.0,
+       1.0
+      ]
+     ],
+     "bass": [
+      [
+       -8.0,
+       0.0
+      ],
+      [
+       -0.03,
+       0.0
+      ],
+      [
+       0.0,
+       1.0
+      ]
+     ],
+     "other": [
+      [
+       -8.0,
+       0.0
+      ],
+      [
+       -0.02,
+       0.0
+      ],
+      [
+       0.0,
+       0.4
+      ],
+      [
+       2.0,
+       1.0
+      ]
+     ]
+    },
+    "shape": "lin",
+    "trim_db": 0.0,
+    "nudge_ms": 0.0,
+    "auto_nudge": true,
+    "double": false
+   },
+   "technique": "B's Stimme über A's Beat, B übernimmt auf der Eins",
+   "why": "tempo 64.75 → 130.03 BPM, lock 1:2 (-0.41 %), keys 4B → 5B (distance 1) · song B opens VoiceFirst { beat_bar: 16 } · song A's voice leaves at 193.08 s (bar line), the one is at 207.91 s, 0 bar(s) after A's own beat is over",
+   "answer": "",
+   "key_txt": "G# → D#",
+   "steps": [
+    {
+     "u": -8.0,
+     "text": "A's Gesang endet am Zeilenende (Echo). A's Drums und Bass laufen voll weiter. B's Stimme setzt direkt ein."
+    },
+    {
+     "u": 0.0,
+     "text": "Die Eins: B's Beat, Bass und Melodie setzen ein, A endet hart."
+    }
+   ],
+   "fx": []
+  }
+ },
+ {
+  "page": "auto",
+  "id": "p13",
+  "a": "6N185ACZ5M6TYngUuOPpoW",
+  "b": "7yoqSltRmGVlJF34OdLyZG",
+  "recipe": "sneak",
+  "note": "good",
+  "at": "2026-10-01T18:15:45",
+  "spec": {
+   "id": "p13",
+   "clip": [
+    -22.0,
+    14.0
+   ],
+   "first_event": -8.0,
+   "last_event": 2.0,
+   "swap_u": -4.0,
+   "no_sync": false,
+   "align_pairs": {
+    "a": [
+     -24.0,
+     -16.0
+    ],
+    "b": [
+     -8.0,
+     0.0
+    ]
+   },
+   "recipe": "sneak",
+   "a": {
+    "id": "6N185ACZ5M6TYngUuOPpoW",
+    "anchor_bar": 42,
+    "anchor_u": 0.0,
+    "beat_shift": 0,
+    "fit_bars": [
+     18,
+     21
+    ],
+    "beats_per_bar": 4,
+    "until": 0.0,
+    "lanes": {
+     "vocals": [
+      [
+       -22.0,
+       1.0
+      ],
+      [
+       -0.375,
+       1.0
+      ],
+      [
+       -0.275,
+       0.0
+      ]
+     ],
+     "drums": [
+      [
+       -22.0,
+       1.0
+      ],
+      [
+       -6.0,
+       1.0
+      ],
+      [
+       0.0,
+       0.0
+      ]
+     ],
+     "bass": [
+      [
+       -22.0,
+       1.0
+      ],
+      [
+       -6.0,
+       1.0
+      ],
+      [
+       0.0,
+       0.0
+      ]
+     ],
+     "other": [
+      [
+       -22.0,
+       1.0
+      ],
+      [
+       -6.0,
+       1.0
+      ],
+      [
+       0.0,
+       0.0
+      ]
+     ]
+    },
+    "shape": "lin",
+    "sends": [
+     {
+      "type": "echo",
+      "stem": "vocals",
+      "send": [
+       [
+        -0.975,
+        0.0
+       ],
+       [
+        -0.875,
+        1.0
+       ],
+       [
+        -0.425,
+        1.0
+       ],
+       [
+        -0.375,
+        0.0
+       ]
+      ],
+      "beats": 1.0,
+      "feedback": 0.45,
+      "level": 0.7,
+      "hp": 350.0,
+      "lp": 4500.0,
+      "rt60": 2.4,
+      "post": false
+     }
+    ],
+    "trim_db": 0.015578328957950305,
+    "nudge_ms": 0.0,
+    "auto_nudge": true,
+    "double": false
+   },
+   "b": {
+    "id": "7yoqSltRmGVlJF34OdLyZG",
+    "anchor_bar": 10,
+    "anchor_u": 0.0,
+    "beat_shift": 0,
+    "fit_bars": [
+     0,
+     23
+    ],
+    "beats_per_bar": 4,
+    "from": -8.0,
+    "lanes": {
+     "vocals": [
+      [
+       -8.0,
+       0.0
+      ],
+      [
+       -0.03,
+       0.0
+      ],
+      [
+       0.0,
+       1.0
+      ]
+     ],
+     "drums": [
+      [
+       -8.0,
+       0.0
+      ],
+      [
+       -7.0,
+       0.8901128091569611
+      ],
+      [
+       -4.03,
+       0.9890142323966234
+      ],
+      [
+       -4.0,
+       1.0
+      ]
+     ],
+     "bass": [
+      [
+       -8.0,
+       0.0
+      ],
+      [
+       -4.03,
+       0.0
+      ],
+      [
+       -4.0,
+       1.0
+      ]
+     ],
+     "other": [
+      [
+       -8.0,
+       0.0
+      ],
+      [
+       -0.02,
+       0.0
+      ],
+      [
+       0.0,
+       0.4
+      ],
+      [
+       2.0,
+       1.0
+      ]
+     ]
+    },
+    "shape": "lin",
+    "hpf": {
+     "drums": [
+      [
+       -8.0,
+       500.0
+      ],
+      [
+       -4.05,
+       220.0
+      ],
+      [
+       -4.0,
+       20.0
+      ]
+     ]
+    },
+    "trim_db": 0.0,
+    "nudge_ms": 0.0,
+    "auto_nudge": true,
+    "double": false
+   },
+   "technique": "B's Beat schleicht sich unter A",
+   "why": "tempo 91.01 → 92.00 BPM, lock 1:1 (-1.07 %), keys 6A → 6A (distance 0) · song B opens Together { bar: 0 } · song B's beat runs from bar 0; its one is the phrase start at bar 10, its own bars before it sneak in · the one is at 110.76 s of song A, its voice leaves on a line end at -0.38 bars",
+   "answer": "",
+   "key_txt": "Gm → Gm",
+   "steps": [
+    {
+     "u": -8.0,
+     "text": "B's Drums kommen leise dazu – nur die Höhen, ohne Kick."
+    },
+    {
+     "u": -6.0,
+     "text": "A's Drums, Bass und Melodie beginnen linear auszublenden, bis genau zur Eins."
+    },
+    {
+     "u": -4.0,
+     "text": "B's Kick und Bass setzen ein."
+    },
+    {
+     "u": 0.0,
+     "text": "Die Eins: A ist bei null. B's Gesang und Melodie beginnen erst hier."
+    }
+   ],
+   "fx": []
+  }
+ },
+ {
+  "page": "new",
+  "id": "n01",
+  "a": "0hkR93a0LriV2CQUhSXw3h",
+  "b": "6wPupZx0WFmkj9wnCrCUJU",
+  "recipe": "voice_over_beat",
+  "note": "nice one",
+  "at": "2026-10-01T18:15:53",
+  "spec": {
+   "id": "n01",
+   "clip": [
+    -22.0,
+    14.0
+   ],
+   "first_event": -8.0,
+   "last_event": 2.0,
+   "no_sync": false,
+   "align_pairs": {
+    "a": [
+     -8.0,
+     0.0
+    ],
+    "b": [
+     0.0,
+     8.0
+    ]
+   },
+   "recipe": "voice_over_beat",
+   "a": {
+    "id": "0hkR93a0LriV2CQUhSXw3h",
+    "anchor_bar": 56,
+    "anchor_u": 0.0,
+    "beat_shift": 0,
+    "fit_bars": [
+     30,
+     53
+    ],
+    "beats_per_bar": 2,
+    "until": 0.0,
+    "lanes": {
+     "vocals": [
+      [
+       -22.0,
+       1.0
+      ],
+      [
+       -8.125,
+       1.0
+      ],
+      [
+       -8.025,
+       0.0
+      ]
+     ],
+     "drums": [
+      [
+       -22.0,
+       1.0
+      ],
+      [
+       -0.015,
+       1.0
+      ],
+      [
+       0.0,
+       0.0
+      ]
+     ],
+     "bass": [
+      [
+       -22.0,
+       1.0
+      ],
+      [
+       -0.015,
+       1.0
+      ],
+      [
+       0.0,
+       0.0
+      ]
+     ],
+     "other": [
+      [
+       -22.0,
+       1.0
+      ],
+      [
+       -0.015,
+       1.0
+      ],
+      [
+       0.0,
+       0.0
+      ]
+     ]
+    },
+    "shape": "lin",
+    "sends": [
+     {
+      "type": "echo",
+      "stem": "vocals",
+      "send": [
+       [
+        -8.725,
+        0.0
+       ],
+       [
+        -8.625,
+        1.0
+       ],
+       [
+        -8.175,
+        1.0
+       ],
+       [
+        -8.125,
+        0.0
+       ]
+      ],
+      "beats": 0.5,
+      "feedback": 0.45,
+      "level": 0.7,
+      "hp": 350.0,
+      "lp": 4500.0,
+      "rt60": 2.4,
+      "post": false
+     }
+    ],
+    "trim_db": 0.0,
+    "nudge_ms": 0.0,
+    "auto_nudge": true,
+    "double": true
+   },
+   "b": {
+    "id": "6wPupZx0WFmkj9wnCrCUJU",
+    "anchor_bar": 22,
+    "anchor_u": 0.0,
+    "beat_shift": 0,
+    "fit_bars": [
+     22,
+     39
+    ],
+    "beats_per_bar": 4,
+    "from": -8.0,
+    "lanes": {
+     "vocals": [
+      [
+       -8.0,
+       1.0
+      ]
+     ],
+     "drums": [
+      [
+       -8.0,
+       0.0
+      ],
+      [
+       -0.03,
+       0.0
+      ],
+      [
+       0.0,
+       1.0
+      ]
+     ],
+     "bass": [
+      [
+       -8.0,
+       0.0
+      ],
+      [
+       -0.03,
+       0.0
+      ],
+      [
+       0.0,
+       1.0
+      ]
+     ],
+     "other": [
+      [
+       -8.0,
+       0.0
+      ],
+      [
+       -0.02,
+       0.0
+      ],
+      [
+       0.0,
+       0.4
+      ],
+      [
+       2.0,
+       1.0
+      ]
+     ]
+    },
+    "shape": "lin",
+    "trim_db": 0.00599807309088618,
+    "nudge_ms": 0.0,
+    "auto_nudge": true,
+    "double": false
+   },
+   "technique": "B's Stimme über A's Beat, B übernimmt auf der Eins",
+   "why": "tempo 77.71 → 159.04 BPM, lock 1:2 (-2.27 %), keys 6A → 6A (distance 0) · song B opens VoiceFirst { beat_bar: 22 } · song A's voice leaves at 160.73 s (end of a line), the one is at 173.27 s, 0 bar(s) after A's own beat is over",
+   "answer": "",
+   "key_txt": "Gm → Gm",
+   "steps": [
+    {
+     "u": -8.0,
+     "text": "A's Gesang endet am Zeilenende (Echo). A's Drums und Bass laufen voll weiter. B's Stimme setzt direkt ein."
+    },
+    {
+     "u": 0.0,
+     "text": "Die Eins: B's Beat, Bass und Melodie setzen ein, A endet hart."
+    }
+   ],
+   "fx": []
+  }
+ },
+ {
+  "page": "new",
+  "id": "n02",
+  "a": "1XhItJSBxL5yKh0V0ymg6D",
+  "b": "03D2TnaZuwlddRTh7P6Mq5",
+  "recipe": "voice_over_beat",
+  "note": "doesnt fit. sounds odd. soeach is slow and old beat is to fast.",
+  "at": "2026-10-01T18:16:09",
+  "spec": {
+   "id": "n02",
+   "clip": [
+    -22.0,
+    14.0
+   ],
+   "first_event": -8.0,
+   "last_event": 2.0,
+   "no_sync": false,
+   "align_pairs": {
+    "a": [
+     -8.0,
+     0.0
+    ],
+    "b": [
+     8.0,
+     16.0
+    ]
+   },
+   "recipe": "voice_over_beat",
+   "a": {
+    "id": "1XhItJSBxL5yKh0V0ymg6D",
+    "anchor_bar": 97,
+    "anchor_u": 0.0,
+    "beat_shift": 0,
+    "fit_bars": [
+     54,
+     57
+    ],
+    "beats_per_bar": 4,
+    "until": 0.0,
+    "lanes": {
+     "vocals": [
+      [
+       -22.0,
+       1.0
+      ],
+      [
+       -8.12,
+       1.0
+      ],
+      [
+       -8.0,
+       0.0
+      ]
+     ],
+     "drums": [
+      [
+       -22.0,
+       1.0
+      ],
+      [
+       -0.015,
+       1.0
+      ],
+      [
+       0.0,
+       0.0
+      ]
+     ],
+     "bass": [
+      [
+       -22.0,
+       1.0
+      ],
+      [
+       -0.015,
+       1.0
+      ],
+      [
+       0.0,
+       0.0
+      ]
+     ],
+     "other": [
+      [
+       -22.0,
+       1.0
+      ],
+      [
+       -8.0,
+       1.0
+      ],
+      [
+       0.0,
+       0.0
+      ]
+     ]
+    },
+    "shape": "lin",
+    "sends": [
+     {
+      "type": "echo",
+      "stem": "vocals",
+      "send": [
+       [
+        -8.6,
+        0.0
+       ],
+       [
+        -8.5,
+        1.0
+       ],
+       [
+        -8.05,
+        1.0
+       ],
+       [
+        -8.0,
+        0.0
+       ]
+      ],
+      "beats": 1.0,
+      "feedback": 0.45,
+      "level": 0.7,
+      "hp": 350.0,
+      "lp": 4500.0,
+      "rt60": 2.4,
+      "post": false
+     }
+    ],
+    "trim_db": 0.0,
+    "nudge_ms": 0.0,
+    "auto_nudge": true,
+    "double": false
+   },
+   "b": {
+    "id": "03D2TnaZuwlddRTh7P6Mq5",
+    "anchor_bar": 15,
+    "anchor_u": 0.0,
+    "beat_shift": 0,
+    "fit_bars": [
+     15,
+     21
+    ],
+    "beats_per_bar": 4,
+    "from": -8.0,
+    "lanes": {
+     "vocals": [
+      [
+       -8.0,
+       0.0
+      ],
+      [
+       -7.8425,
+       0.0
+      ],
+      [
+       -7.8125,
+       1.0
+      ]
+     ],
+     "drums": [
+      [
+       -8.0,
+       0.0
+      ],
+      [
+       -0.03,
+       0.0
+      ],
+      [
+       0.0,
+       1.0
+      ]
+     ],
+     "bass": [
+      [
+       -8.0,
+       0.0
+      ],
+      [
+       -0.03,
+       0.0
+      ],
+      [
+       0.0,
+       1.0
+      ]
+     ],
+     "other": [
+      [
+       -8.0,
+       0.0
+      ],
+      [
+       -0.02,
+       0.0
+      ],
+      [
+       0.0,
+       0.4
+      ],
+      [
+       2.0,
+       1.0
+      ]
+     ]
+    },
+    "shape": "lin",
+    "gain_db": [
+     [
+      -8.0,
+      1.1148285865783691
+     ],
+     [
+      3.0,
+      1.1148285865783691
+     ],
+     [
+      13.5,
+      0.0
+     ]
+    ],
+    "trim_db": 0.00983352960165007,
+    "nudge_ms": 0.0,
+    "auto_nudge": true,
+    "double": false
+   },
+   "technique": "B's Stimme über A's Beat, B übernimmt auf der Eins",
+   "why": "tempo 123.90 → 127.01 BPM, lock 1:1 (-2.45 %), keys 4B → 4A (distance 1) · song B opens VoiceFirst { beat_bar: 15 } · song A's voice leaves at 172.02 s (bar line), the one is at 187.46 s, -1 bar(s) after A's own beat is over · song B lands 2.1 dB below A's bed, lifted by 1.1 dB",
+   "answer": "",
+   "key_txt": "G# → Fm",
+   "steps": [
+    {
+     "u": -8.0,
+     "text": "A's Gesang endet am Zeilenende (Echo). A's Drums und Bass laufen voll weiter. B's Stimme setzt direkt ein."
+    },
+    {
+     "u": 0.0,
+     "text": "Die Eins: B's Beat, Bass und Melodie setzen ein, A endet hart."
+    }
+   ],
+   "fx": []
+  }
+ },
+ {
+  "page": "new",
+  "id": "n03",
+  "a": "6WhwHYd38f4ZB2CefpDgLo",
+  "b": "5cjRF0yXxYvqzmJfUbq9AW",
+  "recipe": "outro_under_intro",
+  "note": "fits",
+  "at": "2026-10-01T18:16:25",
+  "spec": {
+   "id": "n03",
+   "clip": [
+    -22.0,
+    12.3125
+   ],
+   "first_event": -8.0,
+   "last_event": 0.3125,
+   "no_sync": false,
+   "align_pairs": {
+    "a": [
+     -16.0,
+     -8.0
+    ],
+    "b": [
+     0.0,
+     8.0
+    ]
+   },
+   "recipe": "outro_under_intro",
+   "a": {
+    "id": "6WhwHYd38f4ZB2CefpDgLo",
+    "anchor_bar": 60,
+    "anchor_u": 0.0,
+    "beat_shift": 0,
+    "fit_bars": [
+     56,
+     59
+    ],
+    "beats_per_bar": 4,
+    "until": 0.0,
+    "segments": [
+     {
+      "u0": -22.0,
+      "u1": -8.0,
+      "src": -22.0
+     },
+     {
+      "u0": -8.0,
+      "src": -16.0
+     }
+    ],
+    "lanes": {
+     "vocals": [
+      [
+       -22.0,
+       1.0
+      ],
+      [
+       -8.12,
+       1.0
+      ],
+      [
+       -8.0,
+       0.0
+      ]
+     ],
+     "drums": [
+      [
+       -22.0,
+       1.0
+      ],
+      [
+       -0.015,
+       1.0
+      ],
+      [
+       0.0,
+       0.0
+      ]
+     ],
+     "bass": [
+      [
+       -22.0,
+       1.0
+      ],
+      [
+       -0.015,
+       1.0
+      ],
+      [
+       0.0,
+       0.0
+      ]
+     ],
+     "other": [
+      [
+       -22.0,
+       1.0
+      ],
+      [
+       -8.0,
+       1.0
+      ],
+      [
+       -3.0,
+       0.3
+      ],
+      [
+       -0.015,
+       0.1
+      ],
+      [
+       0.0,
+       0.0
+      ]
+     ]
+    },
+    "shape": "lin",
+    "hpf": {
+     "drums": [
+      [
+       -2.0,
+       20.0
+      ],
+      [
+       -1.0,
+       140.0
+      ],
+      [
+       -0.05,
+       800.0
+      ]
+     ]
+    },
+    "sends": [
+     {
+      "type": "echo",
+      "stem": "vocals",
+      "send": [
+       [
+        -8.6,
+        0.0
+       ],
+       [
+        -8.5,
+        1.0
+       ],
+       [
+        -8.05,
+        1.0
+       ],
+       [
+        -8.0,
+        0.0
+       ]
+      ],
+      "beats": 1.0,
+      "feedback": 0.45,
+      "level": 0.7,
+      "hp": 350.0,
+      "lp": 4500.0,
+      "rt60": 2.4,
+      "post": false
+     }
+    ],
+    "trim_db": 0.005110348925985164,
+    "nudge_ms": 0.0,
+    "auto_nudge": true,
+    "double": false
+   },
+   "b": {
+    "id": "5cjRF0yXxYvqzmJfUbq9AW",
+    "anchor_bar": 6,
+    "anchor_u": 0.0,
+    "beat_shift": 0,
+    "fit_bars": [
+     6,
+     20
+    ],
+    "beats_per_bar": 4,
+    "from": -8.0,
+    "segments": [
+     {
+      "u0": -8.0,
+      "u1": -4.0,
+      "src": -4.0
+     },
+     {
+      "u0": -4.0,
+      "src": -4.0
+     }
+    ],
+    "lanes": {
+     "vocals": [
+      [
+       -8.0,
+       0.0
+      ],
+      [
+       0.2825,
+       0.0
+      ],
+      [
+       0.3125,
+       1.0
+      ]
+     ],
+     "drums": [
+      [
+       -8.0,
+       1.0
+      ]
+     ],
+     "bass": [
+      [
+       -8.0,
+       1.0
+      ]
+     ],
+     "other": [
+      [
+       -8.0,
+       0.0
+      ],
+      [
+       -2.0,
+       1.0
+      ]
+     ]
+    },
+    "shape": "lin",
+    "trim_db": 0.0,
+    "nudge_ms": 0.0,
+    "auto_nudge": true,
+    "double": false
+   },
+   "technique": "A's Beat unter dem Intro von B",
+   "why": "tempo 101.01 → 98.60 BPM, lock 1:1 (+2.45 %), keys 6A → 5A (distance 0) · song B opens MelodyFirst { beat_bar: 6 } · song B's intro is 7 bars long, its last 4 play 2 times · song A's voice leaves at 123.56 s (bar line), the one is at 142.57 s, 0 bar(s) after A's own beat is over · song A's beat is gone from -8 bars; from there its bars of 8 bars earlier are replayed",
+   "answer": "",
+   "key_txt": "Gm → Cm",
+   "steps": [
+    {
+     "u": -8.0,
+     "text": "A's Gesang ist vorbei, A's Beat läuft weiter. B's Melodie beginnt langsam einzublenden."
+    },
+    {
+     "u": -2.0,
+     "text": "A's Drums werden hochgefiltert."
+    },
+    {
+     "u": 0.0,
+     "text": "Die Eins: B's Beat, Bass und Stimme setzen ein, A endet hart."
+    }
+   ],
+   "fx": []
+  }
+ },
+ {
+  "page": "new",
+  "id": "n04",
+  "a": "3tyPOhuVnt5zd5kGfxbCyL",
+  "b": "1fVQmMgrOUnrh8KgndKGzP",
+  "recipe": "voice_over_beat",
+  "note": "fits",
+  "at": "2026-10-01T18:16:34",
+  "spec": {
+   "id": "n04",
+   "clip": [
+    -22.0,
+    14.0
+   ],
+   "first_event": -8.0,
+   "last_event": 2.0,
+   "no_sync": false,
+   "align_pairs": {
+    "a": [
+     -8.0,
+     0.0
+    ],
+    "b": [
+     0.0,
+     8.0
+    ]
+   },
+   "recipe": "voice_over_beat",
+   "a": {
+    "id": "3tyPOhuVnt5zd5kGfxbCyL",
+    "anchor_bar": 120,
+    "anchor_u": 0.0,
+    "beat_shift": 0,
+    "fit_bars": [
+     95,
+     118
+    ],
+    "beats_per_bar": 4,
+    "until": 0.0,
+    "lanes": {
+     "vocals": [
+      [
+       -22.0,
+       1.0
+      ],
+      [
+       -8.12,
+       1.0
+      ],
+      [
+       -8.0,
+       0.0
+      ]
+     ],
+     "drums": [
+      [
+       -22.0,
+       1.0
+      ],
+      [
+       -0.015,
+       1.0
+      ],
+      [
+       0.0,
+       0.0
+      ]
+     ],
+     "bass": [
+      [
+       -22.0,
+       1.0
+      ],
+      [
+       -0.015,
+       1.0
+      ],
+      [
+       0.0,
+       0.0
+      ]
+     ],
+     "other": [
+      [
+       -22.0,
+       1.0
+      ],
+      [
+       -0.015,
+       1.0
+      ],
+      [
+       0.0,
+       0.0
+      ]
+     ]
+    },
+    "shape": "lin",
+    "sends": [
+     {
+      "type": "echo",
+      "stem": "vocals",
+      "send": [
+       [
+        -8.6,
+        0.0
+       ],
+       [
+        -8.5,
+        1.0
+       ],
+       [
+        -8.05,
+        1.0
+       ],
+       [
+        -8.0,
+        0.0
+       ]
+      ],
+      "beats": 1.0,
+      "feedback": 0.45,
+      "level": 0.7,
+      "hp": 350.0,
+      "lp": 4500.0,
+      "rt60": 2.4,
+      "post": false
+     }
+    ],
+    "trim_db": 0.0,
+    "nudge_ms": 0.0,
+    "auto_nudge": true,
+    "double": false
+   },
+   "b": {
+    "id": "1fVQmMgrOUnrh8KgndKGzP",
+    "anchor_bar": 15,
+    "anchor_u": 0.0,
+    "beat_shift": 0,
+    "fit_bars": [
+     15,
+     30
+    ],
+    "beats_per_bar": 4,
+    "from": -8.0,
+    "lanes": {
+     "vocals": [
+      [
+       -8.0,
+       0.0
+      ],
+      [
+       -7.9675,
+       0.0
+      ],
+      [
+       -7.9375,
+       1.0
+      ]
+     ],
+     "drums": [
+      [
+       -8.0,
+       0.0
+      ],
+      [
+       -0.03,
+       0.0
+      ],
+      [
+       0.0,
+       1.0
+      ]
+     ],
+     "bass": [
+      [
+       -8.0,
+       0.0
+      ],
+      [
+       -0.03,
+       0.0
+      ],
+      [
+       0.0,
+       1.0
+      ]
+     ],
+     "other": [
+      [
+       -8.0,
+       0.0
+      ],
+      [
+       -0.02,
+       0.0
+      ],
+      [
+       0.0,
+       0.4
+      ],
+      [
+       2.0,
+       1.0
+      ]
+     ]
+    },
+    "shape": "lin",
+    "trim_db": 0.010190675811081462,
+    "nudge_ms": 0.0,
+    "auto_nudge": true,
+    "double": false
+   },
+   "technique": "B's Stimme über A's Beat, B übernimmt auf der Eins",
+   "why": "tempo 128.00 → 125.03 BPM, lock 1:1 (+2.38 %), keys 5A → 5A (distance 0) · song B opens VoiceFirst { beat_bar: 15 } · song A's voice leaves at 210.41 s (bar line), the one is at 225.42 s, 0 bar(s) after A's own beat is over",
+   "answer": "",
+   "key_txt": "Cm → Cm",
+   "steps": [
+    {
+     "u": -8.0,
+     "text": "A's Gesang endet am Zeilenende (Echo). A's Drums und Bass laufen voll weiter. B's Stimme setzt direkt ein."
+    },
+    {
+     "u": 0.0,
+     "text": "Die Eins: B's Beat, Bass und Melodie setzen ein, A endet hart."
+    }
+   ],
+   "fx": []
+  }
+ },
+ {
+  "page": "new",
+  "id": "n05",
+  "a": "3LWDPEXEaLBRGNLbdcbwBR",
+  "b": "5Uc37Y6FijZcM538PqqkWd",
+  "recipe": "voice_over_beat",
+  "note": "good one",
+  "at": "2026-10-01T18:17:02",
+  "spec": {
+   "id": "n05",
+   "clip": [
+    -22.0,
+    14.0
+   ],
+   "first_event": -8.0,
+   "last_event": 2.0,
+   "no_sync": false,
+   "align_pairs": {
+    "a": [
+     -12.0,
+     -4.0
+    ],
+    "b": [
+     0.0,
+     8.0
+    ]
+   },
+   "recipe": "voice_over_beat",
+   "a": {
+    "id": "3LWDPEXEaLBRGNLbdcbwBR",
+    "anchor_bar": 100,
+    "anchor_u": -3.0,
+    "beat_shift": 0,
+    "fit_bars": [
+     79,
+     99
+    ],
+    "beats_per_bar": 4,
+    "until": 0.0,
+    "segments": [
+     {
+      "u0": -22.0,
+      "u1": -3.0,
+      "src": -22.0
+     },
+     {
+      "u0": -3.0,
+      "src": -7.0
+     }
+    ],
+    "lanes": {
+     "vocals": [
+      [
+       -22.0,
+       1.0
+      ],
+      [
+       -8.5625,
+       1.0
+      ],
+      [
+       -8.4625,
+       0.0
+      ]
+     ],
+     "drums": [
+      [
+       -22.0,
+       1.0
+      ],
+      [
+       -0.015,
+       1.0
+      ],
+      [
+       0.0,
+       0.0
+      ]
+     ],
+     "bass": [
+      [
+       -22.0,
+       1.0
+      ],
+      [
+       -0.015,
+       1.0
+      ],
+      [
+       0.0,
+       0.0
+      ]
+     ],
+     "other": [
+      [
+       -22.0,
+       1.0
+      ],
+      [
+       -8.0,
+       1.0
+      ],
+      [
+       0.0,
+       0.0
+      ]
+     ]
+    },
+    "shape": "lin",
+    "sends": [
+     {
+      "type": "echo",
+      "stem": "vocals",
+      "send": [
+       [
+        -9.1625,
+        0.0
+       ],
+       [
+        -9.0625,
+        1.0
+       ],
+       [
+        -8.6125,
+        1.0
+       ],
+       [
+        -8.5625,
+        0.0
+       ]
+      ],
+      "beats": 1.0,
+      "feedback": 0.45,
+      "level": 0.7,
+      "hp": 350.0,
+      "lp": 4500.0,
+      "rt60": 2.4,
+      "post": false
+     }
+    ],
+    "trim_db": 0.0,
+    "nudge_ms": 0.0,
+    "auto_nudge": true,
+    "double": false
+   },
+   "b": {
+    "id": "5Uc37Y6FijZcM538PqqkWd",
+    "anchor_bar": 10,
+    "anchor_u": 0.0,
+    "beat_shift": 0,
+    "fit_bars": [
+     10,
+     33
+    ],
+    "beats_per_bar": 4,
+    "from": -8.0,
+    "lanes": {
+     "vocals": [
+      [
+       -8.0,
+       1.0
+      ]
+     ],
+     "drums": [
+      [
+       -8.0,
+       0.0
+      ],
+      [
+       -0.03,
+       0.0
+      ],
+      [
+       0.0,
+       1.0
+      ]
+     ],
+     "bass": [
+      [
+       -8.0,
+       0.0
+      ],
+      [
+       -0.03,
+       0.0
+      ],
+      [
+       0.0,
+       1.0
+      ]
+     ],
+     "other": [
+      [
+       -8.0,
+       0.0
+      ],
+      [
+       -0.02,
+       0.0
+      ],
+      [
+       0.0,
+       0.4
+      ],
+      [
+       2.0,
+       1.0
+      ]
+     ]
+    },
+    "shape": "lin",
+    "trim_db": 0.06677598047968303,
+    "nudge_ms": 0.0,
+    "auto_nudge": true,
+    "double": false
+   },
+   "technique": "B's Stimme über A's Beat, B übernimmt auf der Eins",
+   "why": "tempo 127.05 → 125.99 BPM, lock 1:1 (+0.84 %), keys 10A → 9A (distance 1) · song B opens VoiceFirst { beat_bar: 10 } · song A's voice leaves at 180.44 s (end of a line), the one is at 196.62 s, 3 bar(s) after A's own beat is over · song A's beat is gone from -3 bars; from there its bars of 4 bars earlier are replayed",
+   "answer": "",
+   "key_txt": "Bm → Em",
+   "steps": [
+    {
+     "u": -8.0,
+     "text": "A's Gesang endet am Zeilenende (Echo). A's Drums und Bass laufen voll weiter. B's Stimme setzt direkt ein."
+    },
+    {
+     "u": 0.0,
+     "text": "Die Eins: B's Beat, Bass und Melodie setzen ein, A endet hart."
+    }
+   ],
+   "fx": []
+  }
+ },
+ {
+  "page": "new",
+  "id": "n06",
+  "a": "0I4cfb7ATp8pC2w6OKk8al",
+  "b": "5vXnH99Tn0qAh84SWU5sfc",
+  "recipe": "gap",
+  "note": "BIGGEST TRASH EVER WTF. wat even is this idea? only vocals and then HARD CUT TO THE NEW SONG. completley remove even only this variant of transtitons this aint one.",
+  "at": "2026-10-01T18:17:34",
+  "spec": {
+   "id": "n06",
+   "clip": [
+    -16.0,
+    16.0
+   ],
+   "first_event": -2.0,
+   "last_event": 4.0,
+   "no_sync": true,
+   "align_pairs": {
+    "a": [
+     -8.0,
+     0.0
+    ],
+    "b": [
+     0.0,
+     8.0
+    ]
+   },
+   "recipe": "gap",
+   "a": {
+    "id": "0I4cfb7ATp8pC2w6OKk8al",
+    "anchor_bar": 72,
+    "anchor_u": 0.0,
+    "beat_shift": 0,
+    "fit_bars": [
+     68,
+     71
+    ],
+    "beats_per_bar": 4,
+    "until": 1.0,
+    "lanes": {
+     "vocals": [
+      [
+       -16.0,
+       1.0
+      ],
+      [
+       0.0,
+       1.0
+      ],
+      [
+       1.0,
+       0.0
+      ]
+     ],
+     "drums": [
+      [
+       -16.0,
+       1.0
+      ],
+      [
+       -2.0,
+       1.0
+      ],
+      [
+       -1.0,
+       0.0
+      ]
+     ],
+     "bass": [
+      [
+       -16.0,
+       1.0
+      ],
+      [
+       -2.0,
+       1.0
+      ],
+      [
+       -1.0,
+       0.0
+      ]
+     ],
+     "other": [
+      [
+       -16.0,
+       1.0
+      ],
+      [
+       -0.5,
+       1.0
+      ],
+      [
+       -0.25,
+       0.0
+      ]
+     ]
+    },
+    "shape": "lin",
+    "sends": [
+     {
+      "type": "reverb",
+      "stem": "vocals",
+      "send": [
+       [
+        -2.0,
+        0.0
+       ],
+       [
+        -1.0,
+        0.6
+       ],
+       [
+        0.0,
+        1.0
+       ],
+       [
+        0.6,
+        0.5
+       ],
+       [
+        1.0,
+        0.0
+       ]
+      ],
+      "beats": 0.75,
+      "feedback": 0.55,
+      "level": 0.6,
+      "hp": 350.0,
+      "lp": 4500.0,
+      "rt60": 2.6,
+      "post": false
+     },
+     {
+      "type": "echo",
+      "stem": "vocals",
+      "send": [
+       [
+        -0.51,
+        0.0
+       ],
+       [
+        -0.5,
+        1.0
+       ],
+       [
+        -0.02,
+        1.0
+       ],
+       [
+        0.0,
+        0.0
+       ]
+      ],
+      "beats": 1.0,
+      "feedback": 0.5,
+      "level": 0.7,
+      "hp": 500.0,
+      "lp": 5000.0,
+      "rt60": 2.4,
+      "post": false
+     }
+    ],
+    "trim_db": 0.8082275106007515,
+    "nudge_ms": 0.0,
+    "auto_nudge": true,
+    "double": false
+   },
+   "b": {
+    "id": "5vXnH99Tn0qAh84SWU5sfc",
+    "anchor_bar": 19,
+    "anchor_u": 0.0,
+    "beat_shift": 0,
+    "fit_bars": [
+     19,
+     35
+    ],
+    "beats_per_bar": 4,
+    "from": 0.0,
+    "start_u": 0.0,
+    "lanes": {
+     "vocals": [
+      [
+       0.0,
+       1.0
+      ]
+     ],
+     "drums": [
+      [
+       0.0,
+       1.0
+      ]
+     ],
+     "bass": [
+      [
+       0.0,
+       1.0
+      ]
+     ],
+     "other": [
+      [
+       0.0,
+       0.0
+      ],
+      [
+       -0.02,
+       0.0
+      ],
+      [
+       0.0,
+       0.4
+      ],
+      [
+       4.0,
+       1.0
+      ]
+     ]
+    },
+    "shape": "lin",
+    "trim_db": 0.0,
+    "nudge_ms": 0.0,
+    "auto_nudge": true,
+    "double": false
+   },
+   "technique": "Tempo-Sprung: Hook allein im Hall, B auf der Eins",
+   "why": "tempo 87.50 → 120.00 BPM, lock none (+0.00 %), keys 9A → 9A (distance 0) · song B opens VoiceFirst { beat_bar: 19 } · the one is at 154.15 s of song A, its voice leaves on a line end at -0.12 bars",
+   "answer": "",
+   "key_txt": "Em → Em",
+   "steps": [
+    {
+     "u": -2.0,
+     "text": "A's Drums und Bass blenden linear aus, A's Melodie kurz danach. Der Hall auf A's Stimme wächst."
+    },
+    {
+     "u": 0.0,
+     "text": "Die Eins: B's Drums und Bass setzen hart ein. A's Stimme klingt im Hall aus."
+    },
+    {
+     "u": 4.0,
+     "text": "B's Melodie ist voll da, ab hier nur noch B."
+    }
+   ],
+   "fx": []
+  }
+ },
+ {
+  "page": "new",
+  "id": "n07",
+  "a": "5ihq4qbjaO2r5Ga9aGlsMj",
+  "b": "3vkQ5DAB1qQMYO4Mr9zJN6",
+  "recipe": "outro_under_intro",
+  "note": "concept ok but from beat it doesnt fit so good",
+  "at": "2026-10-01T18:17:55",
+  "spec": {
+   "id": "n07",
+   "clip": [
+    -22.0,
+    12.0
+   ],
+   "first_event": -8.0,
+   "last_event": 0.0,
+   "no_sync": false,
+   "align_pairs": {
+    "a": [
+     -8.0,
+     0.0
+    ],
+    "b": [
+     0.0,
+     8.0
+    ]
+   },
+   "recipe": "outro_under_intro",
+   "a": {
+    "id": "5ihq4qbjaO2r5Ga9aGlsMj",
+    "anchor_bar": 81,
+    "anchor_u": 0.0,
+    "beat_shift": 0,
+    "fit_bars": [
+     65,
+     80
+    ],
+    "beats_per_bar": 4,
+    "until": 0.0,
+    "lanes": {
+     "vocals": [
+      [
+       -22.0,
+       1.0
+      ],
+      [
+       -8.12,
+       1.0
+      ],
+      [
+       -8.0,
+       0.0
+      ]
+     ],
+     "drums": [
+      [
+       -22.0,
+       1.0
+      ],
+      [
+       -0.015,
+       1.0
+      ],
+      [
+       0.0,
+       0.0
+      ]
+     ],
+     "bass": [
+      [
+       -22.0,
+       1.0
+      ],
+      [
+       -0.015,
+       1.0
+      ],
+      [
+       0.0,
+       0.0
+      ]
+     ],
+     "other": [
+      [
+       -22.0,
+       1.0
+      ],
+      [
+       -8.0,
+       1.0
+      ],
+      [
+       -3.0,
+       0.3
+      ],
+      [
+       -0.015,
+       0.1
+      ],
+      [
+       0.0,
+       0.0
+      ]
+     ]
+    },
+    "shape": "lin",
+    "hpf": {
+     "drums": [
+      [
+       -2.0,
+       20.0
+      ],
+      [
+       -1.0,
+       140.0
+      ],
+      [
+       -0.05,
+       800.0
+      ]
+     ]
+    },
+    "sends": [
+     {
+      "type": "echo",
+      "stem": "vocals",
+      "send": [
+       [
+        -8.6,
+        0.0
+       ],
+       [
+        -8.5,
+        1.0
+       ],
+       [
+        -8.05,
+        1.0
+       ],
+       [
+        -8.0,
+        0.0
+       ]
+      ],
+      "beats": 1.0,
+      "feedback": 0.45,
+      "level": 0.7,
+      "hp": 350.0,
+      "lp": 4500.0,
+      "rt60": 2.4,
+      "post": false
+     }
+    ],
+    "trim_db": 0.4266976239952065,
+    "nudge_ms": 0.0,
+    "auto_nudge": true,
+    "double": false
+   },
+   "b": {
+    "id": "3vkQ5DAB1qQMYO4Mr9zJN6",
+    "anchor_bar": 8,
+    "anchor_u": 0.0,
+    "beat_shift": 0,
+    "fit_bars": [
+     8,
+     16
+    ],
+    "beats_per_bar": 4,
+    "from": -8.0,
+    "lanes": {
+     "vocals": [
+      [
+       -8.0,
+       0.0
+      ],
+      [
+       -0.28,
+       0.0
+      ],
+      [
+       -0.25,
+       1.0
+      ]
+     ],
+     "drums": [
+      [
+       -8.0,
+       1.0
+      ]
+     ],
+     "bass": [
+      [
+       -8.0,
+       1.0
+      ]
+     ],
+     "other": [
+      [
+       -8.0,
+       0.0
+      ],
+      [
+       -2.0,
+       1.0
+      ]
+     ]
+    },
+    "shape": "lin",
+    "trim_db": 0.0,
+    "nudge_ms": 0.0,
+    "auto_nudge": true,
+    "double": false
+   },
+   "technique": "A's Beat unter dem Intro von B",
+   "why": "tempo 120.00 → 119.24 BPM, lock 1:1 (+0.64 %), keys 8A → 7A (distance 1) · song B opens MelodyFirst { beat_bar: 8 } · song A's voice leaves at 144.00 s (bar line), the one is at 160.00 s, 0 bar(s) after A's own beat is over",
+   "answer": "",
+   "key_txt": "Am → Dm",
+   "steps": [
+    {
+     "u": -8.0,
+     "text": "A's Gesang ist vorbei, A's Beat läuft weiter. B's Melodie beginnt langsam einzublenden."
+    },
+    {
+     "u": -2.0,
+     "text": "A's Drums werden hochgefiltert."
+    },
+    {
+     "u": 0.0,
+     "text": "Die Eins: B's Beat, Bass und Stimme setzen ein, A endet hart."
+    }
+   ],
+   "fx": []
+  }
+ },
+ {
+  "page": "new",
+  "id": "n08",
+  "a": "03D2TnaZuwlddRTh7P6Mq5",
+  "b": "6dRVOzSxLqRdqUjc9mctGg",
+  "recipe": "voice_over_beat",
+  "note": "is usable",
+  "at": "2026-10-01T18:18:09",
+  "spec": {
+   "id": "n08",
+   "clip": [
+    -22.0,
+    14.0
+   ],
+   "first_event": -8.0,
+   "last_event": 2.0,
+   "no_sync": false,
+   "align_pairs": {
+    "a": [
+     -24.0,
+     -16.0
+    ],
+    "b": [
+     0.0,
+     8.0
+    ]
+   },
+   "recipe": "voice_over_beat",
+   "a": {
+    "id": "03D2TnaZuwlddRTh7P6Mq5",
+    "anchor_bar": 99,
+    "anchor_u": -4.0,
+    "beat_shift": 0,
+    "fit_bars": [
+     94,
+     98
+    ],
+    "beats_per_bar": 4,
+    "until": 0.0,
+    "segments": [
+     {
+      "u0": -22.0,
+      "u1": -4.0,
+      "src": -22.0
+     },
+     {
+      "u0": -4.0,
+      "src": -8.0
+     }
+    ],
+    "lanes": {
+     "vocals": [
+      [
+       -22.0,
+       1.0
+      ],
+      [
+       -7.9375,
+       1.0
+      ],
+      [
+       -7.8375,
+       0.0
+      ]
+     ],
+     "drums": [
+      [
+       -22.0,
+       1.0
+      ],
+      [
+       -0.015,
+       1.0
+      ],
+      [
+       0.0,
+       0.0
+      ]
+     ],
+     "bass": [
+      [
+       -22.0,
+       1.0
+      ],
+      [
+       -0.015,
+       1.0
+      ],
+      [
+       0.0,
+       0.0
+      ]
+     ],
+     "other": [
+      [
+       -22.0,
+       1.0
+      ],
+      [
+       -8.0,
+       1.0
+      ],
+      [
+       0.0,
+       0.0
+      ]
+     ]
+    },
+    "shape": "lin",
+    "sends": [
+     {
+      "type": "echo",
+      "stem": "vocals",
+      "send": [
+       [
+        -8.5375,
+        0.0
+       ],
+       [
+        -8.4375,
+        1.0
+       ],
+       [
+        -7.9875,
+        1.0
+       ],
+       [
+        -7.9375,
+        0.0
+       ]
+      ],
+      "beats": 1.0,
+      "feedback": 0.45,
+      "level": 0.7,
+      "hp": 350.0,
+      "lp": 4500.0,
+      "rt60": 2.4,
+      "post": false
+     }
+    ],
+    "trim_db": 0.0,
+    "nudge_ms": 0.0,
+    "auto_nudge": true,
+    "double": false
+   },
+   "b": {
+    "id": "6dRVOzSxLqRdqUjc9mctGg",
+    "anchor_bar": 12,
+    "anchor_u": 0.0,
+    "beat_shift": 0,
+    "fit_bars": [
+     13,
+     19
+    ],
+    "beats_per_bar": 2,
+    "from": -8.0,
+    "lanes": {
+     "vocals": [
+      [
+       -8.0,
+       0.0
+      ],
+      [
+       -6.53,
+       0.0
+      ],
+      [
+       -6.5,
+       1.0
+      ]
+     ],
+     "drums": [
+      [
+       -8.0,
+       0.0
+      ],
+      [
+       -0.03,
+       0.0
+      ],
+      [
+       0.0,
+       1.0
+      ]
+     ],
+     "bass": [
+      [
+       -8.0,
+       0.0
+      ],
+      [
+       -0.03,
+       0.0
+      ],
+      [
+       0.0,
+       1.0
+      ]
+     ],
+     "other": [
+      [
+       -8.0,
+       0.0
+      ],
+      [
+       -0.02,
+       0.0
+      ],
+      [
+       0.0,
+       0.4
+      ],
+      [
+       2.0,
+       1.0
+      ]
+     ]
+    },
+    "shape": "lin",
+    "trim_db": 0.020170037991295686,
+    "nudge_ms": 0.0,
+    "auto_nudge": true,
+    "double": true
+   },
+   "technique": "B's Stimme über A's Beat, B übernimmt auf der Eins",
+   "why": "tempo 127.02 → 64.79 BPM, lock 2:1 (-1.97 %), keys 4A → 4B (distance 1) · song B opens VoiceFirst { beat_bar: 12 } · song A's voice leaves at 176.71 s (end of a line), the one is at 191.71 s, 3 bar(s) after A's own beat is over · song A's beat is gone from -4 bars; from there its bars of 4 bars earlier are replayed",
+   "answer": "",
+   "key_txt": "Fm → G#",
+   "steps": [
+    {
+     "u": -8.0,
+     "text": "A's Gesang endet am Zeilenende (Echo). A's Drums und Bass laufen voll weiter. B's Stimme setzt direkt ein."
+    },
+    {
+     "u": 0.0,
+     "text": "Die Eins: B's Beat, Bass und Melodie setzen ein, A endet hart."
+    }
+   ],
+   "fx": []
+  }
+ },
+ {
+  "page": "new",
+  "id": "n09",
+  "a": "3vkQ5DAB1qQMYO4Mr9zJN6",
+  "b": "5ihq4qbjaO2r5Ga9aGlsMj",
+  "recipe": "sneak",
+  "note": "soudn snot eprfect beat synced and not so good",
+  "at": "2026-10-01T18:18:26",
+  "spec": {
+   "id": "n09",
+   "clip": [
+    -22.0,
+    14.0
+   ],
+   "first_event": -8.0,
+   "last_event": 2.0,
+   "swap_u": -4.0,
+   "no_sync": false,
+   "align_pairs": {
+    "a": [
+     -8.0,
+     0.0
+    ],
+    "b": [
+     -8.0,
+     0.0
+    ]
+   },
+   "recipe": "sneak",
+   "a": {
+    "id": "3vkQ5DAB1qQMYO4Mr9zJN6",
+    "anchor_bar": 139,
+    "anchor_u": 0.0,
+    "beat_shift": 0,
+    "fit_bars": [
+     115,
+     135
+    ],
+    "beats_per_bar": 4,
+    "until": 0.1,
+    "lanes": {
+     "vocals": [
+      [
+       -22.0,
+       1.0
+      ],
+      [
+       -0.12,
+       1.0
+      ],
+      [
+       0.0,
+       0.0
+      ]
+     ],
+     "drums": [
+      [
+       -22.0,
+       1.0
+      ],
+      [
+       -6.0,
+       1.0
+      ],
+      [
+       0.0,
+       0.0
+      ]
+     ],
+     "bass": [
+      [
+       -22.0,
+       1.0
+      ],
+      [
+       -6.0,
+       1.0
+      ],
+      [
+       0.0,
+       0.0
+      ]
+     ],
+     "other": [
+      [
+       -22.0,
+       1.0
+      ],
+      [
+       -6.0,
+       1.0
+      ],
+      [
+       0.0,
+       0.0
+      ]
+     ]
+    },
+    "shape": "lin",
+    "sends": [
+     {
+      "type": "echo",
+      "stem": "vocals",
+      "send": [
+       [
+        -0.6,
+        0.0
+       ],
+       [
+        -0.5,
+        1.0
+       ],
+       [
+        -0.05,
+        1.0
+       ],
+       [
+        0.0,
+        0.0
+       ]
+      ],
+      "beats": 1.0,
+      "feedback": 0.45,
+      "level": 0.7,
+      "hp": 350.0,
+      "lp": 4500.0,
+      "rt60": 2.4,
+      "post": false
+     }
+    ],
+    "trim_db": 0.0,
+    "nudge_ms": 0.0,
+    "auto_nudge": true,
+    "double": false
+   },
+   "b": {
+    "id": "5ihq4qbjaO2r5Ga9aGlsMj",
+    "anchor_bar": 9,
+    "anchor_u": 0.0,
+    "beat_shift": 0,
+    "fit_bars": [
+     0,
+     15
+    ],
+    "beats_per_bar": 4,
+    "from": -8.0,
+    "lanes": {
+     "vocals": [
+      [
+       -8.0,
+       0.0
+      ],
+      [
+       -0.03,
+       0.0
+      ],
+      [
+       0.0,
+       1.0
+      ]
+     ],
+     "drums": [
+      [
+       -8.0,
+       0.0
+      ],
+      [
+       -7.0,
+       1.08
+      ],
+      [
+       -4.03,
+       2.4
+      ],
+      [
+       -4.0,
+       1.0
+      ]
+     ],
+     "bass": [
+      [
+       -8.0,
+       0.0
+      ],
+      [
+       -4.03,
+       0.0
+      ],
+      [
+       -4.0,
+       1.0
+      ]
+     ],
+     "other": [
+      [
+       -8.0,
+       0.0
+      ],
+      [
+       -0.02,
+       0.0
+      ],
+      [
+       0.0,
+       0.4
+      ],
+      [
+       2.0,
+       1.0
+      ]
+     ]
+    },
+    "shape": "lin",
+    "hpf": {
+     "drums": [
+      [
+       -8.0,
+       500.0
+      ],
+      [
+       -4.05,
+       220.0
+      ],
+      [
+       -4.0,
+       20.0
+      ]
+     ]
+    },
+    "trim_db": 0.4266976239952065,
+    "nudge_ms": 0.0,
+    "auto_nudge": true,
+    "double": false
+   },
+   "technique": "B's Beat schleicht sich unter A",
+   "why": "tempo 121.38 → 120.00 BPM, lock 1:1 (+1.15 %), keys 7A → 8A (distance 1) · song B opens BeatFirst { beat_bar: 0, voice_bar: 6 } · song B's beat runs from bar 0; its one is the phrase start at bar 9, its own bars before it sneak in · the one is at 280.38 s of song A",
+   "answer": "",
+   "key_txt": "Dm → Am",
+   "steps": [
+    {
+     "u": -8.0,
+     "text": "B's Drums kommen leise dazu – nur die Höhen, ohne Kick."
+    },
+    {
+     "u": -6.0,
+     "text": "A's Drums, Bass und Melodie beginnen linear auszublenden, bis genau zur Eins."
+    },
+    {
+     "u": -4.0,
+     "text": "B's Kick und Bass setzen ein."
+    },
+    {
+     "u": 0.0,
+     "text": "Die Eins: A ist bei null. B's Gesang und Melodie beginnen erst hier."
+    }
+   ],
+   "fx": []
+  }
+ },
+ {
+  "page": "new",
+  "id": "n10",
+  "a": "5cjRF0yXxYvqzmJfUbq9AW",
+  "b": "6WhwHYd38f4ZB2CefpDgLo",
+  "recipe": "voice_over_beat",
+  "note": "good",
+  "at": "2026-10-01T18:18:44",
+  "spec": {
+   "id": "n10",
+   "clip": [
+    -18.0,
+    14.0
+   ],
+   "first_event": -4.0,
+   "last_event": 2.0,
+   "no_sync": false,
+   "align_pairs": {
+    "a": [
+     -8.0,
+     0.0
+    ],
+    "b": [
+     8.0,
+     16.0
+    ]
+   },
+   "recipe": "voice_over_beat",
+   "a": {
+    "id": "5cjRF0yXxYvqzmJfUbq9AW",
+    "anchor_bar": 87,
+    "anchor_u": 0.0,
+    "beat_shift": 0,
+    "fit_bars": [
+     71,
+     84
+    ],
+    "beats_per_bar": 4,
+    "until": 0.0,
+    "lanes": {
+     "vocals": [
+      [
+       -18.0,
+       1.0
+      ],
+      [
+       -4.12,
+       1.0
+      ],
+      [
+       -4.0,
+       0.0
+      ]
+     ],
+     "drums": [
+      [
+       -18.0,
+       1.0
+      ],
+      [
+       -0.015,
+       1.0
+      ],
+      [
+       0.0,
+       0.0
+      ]
+     ],
+     "bass": [
+      [
+       -18.0,
+       1.0
+      ],
+      [
+       -0.015,
+       1.0
+      ],
+      [
+       0.0,
+       0.0
+      ]
+     ],
+     "other": [
+      [
+       -18.0,
+       1.0
+      ],
+      [
+       -0.015,
+       1.0
+      ],
+      [
+       0.0,
+       0.0
+      ]
+     ]
+    },
+    "shape": "lin",
+    "sends": [
+     {
+      "type": "echo",
+      "stem": "vocals",
+      "send": [
+       [
+        -4.6,
+        0.0
+       ],
+       [
+        -4.5,
+        1.0
+       ],
+       [
+        -4.05,
+        1.0
+       ],
+       [
+        -4.0,
+        0.0
+       ]
+      ],
+      "beats": 1.0,
+      "feedback": 0.45,
+      "level": 0.7,
+      "hp": 350.0,
+      "lp": 4500.0,
+      "rt60": 2.4,
+      "post": false
+     }
+    ],
+    "trim_db": 0.0,
+    "nudge_ms": 0.0,
+    "auto_nudge": true,
+    "double": false
+   },
+   "b": {
+    "id": "6WhwHYd38f4ZB2CefpDgLo",
+    "anchor_bar": 4,
+    "anchor_u": 0.0,
+    "beat_shift": 0,
+    "fit_bars": [
+     4,
+     9
+    ],
+    "beats_per_bar": 4,
+    "from": -4.0,
+    "lanes": {
+     "vocals": [
+      [
+       -4.0,
+       0.0
+      ],
+      [
+       -2.8425,
+       0.0
+      ],
+      [
+       -2.8125,
+       1.0
+      ]
+     ],
+     "drums": [
+      [
+       -4.0,
+       0.0
+      ],
+      [
+       -0.03,
+       0.0
+      ],
+      [
+       0.0,
+       1.0
+      ]
+     ],
+     "bass": [
+      [
+       -4.0,
+       0.0
+      ],
+      [
+       -0.03,
+       0.0
+      ],
+      [
+       0.0,
+       1.0
+      ]
+     ],
+     "other": [
+      [
+       -4.0,
+       0.0
+      ],
+      [
+       -0.02,
+       0.0
+      ],
+      [
+       0.0,
+       0.4
+      ],
+      [
+       2.0,
+       1.0
+      ]
+     ]
+    },
+    "shape": "lin",
+    "trim_db": 0.005110348925985164,
+    "nudge_ms": 0.0,
+    "auto_nudge": true,
+    "double": false
+   },
+   "technique": "B's Stimme über A's Beat, B übernimmt auf der Eins",
+   "why": "tempo 98.59 → 101.00 BPM, lock 1:1 (-2.39 %), keys 5A → 6A (distance 0) · song B opens VoiceFirst { beat_bar: 4 } · song B has only 4 bars before its one, the blend is that long · song A's voice leaves at 204.52 s (bar line), the one is at 214.26 s, 0 bar(s) after A's own beat is over",
+   "answer": "",
+   "key_txt": "Cm → Gm",
+   "steps": [
+    {
+     "u": -4.0,
+     "text": "A's Gesang endet am Zeilenende (Echo). A's Drums und Bass laufen voll weiter. B's Stimme setzt direkt ein."
+    },
+    {
+     "u": 0.0,
+     "text": "Die Eins: B's Beat, Bass und Melodie setzen ein, A endet hart."
+    }
+   ],
+   "fx": []
+  }
+ },
+ {
+  "page": "new",
+  "id": "n11",
+  "a": "78nx0HDJIFD5xDq2L5420Z",
+  "b": "2dGxjfhFXDIUX9h5ImyKkE",
+  "recipe": "sneak",
+  "note": "yes good one",
+  "at": "2026-10-01T18:18:55",
+  "spec": {
+   "id": "n11",
+   "clip": [
+    -22.0,
+    14.0
+   ],
+   "first_event": -8.0,
+   "last_event": 2.0,
+   "swap_u": -4.0,
+   "no_sync": false,
+   "align_pairs": {
+    "a": [
+     -8.0,
+     0.0
+    ],
+    "b": [
+     -8.0,
+     0.0
+    ]
+   },
+   "recipe": "sneak",
+   "a": {
+    "id": "78nx0HDJIFD5xDq2L5420Z",
+    "anchor_bar": 121,
+    "anchor_u": 0.0,
+    "beat_shift": 0,
+    "fit_bars": [
+     109,
+     120
+    ],
+    "beats_per_bar": 4,
+    "until": 0.1,
+    "lanes": {
+     "vocals": [
+      [
+       -22.0,
+       1.0
+      ],
+      [
+       -0.12,
+       1.0
+      ],
+      [
+       0.0,
+       0.0
+      ]
+     ],
+     "drums": [
+      [
+       -22.0,
+       1.0
+      ],
+      [
+       -6.0,
+       1.0
+      ],
+      [
+       0.0,
+       0.0
+      ]
+     ],
+     "bass": [
+      [
+       -22.0,
+       1.0
+      ],
+      [
+       -6.0,
+       1.0
+      ],
+      [
+       0.0,
+       0.0
+      ]
+     ],
+     "other": [
+      [
+       -22.0,
+       1.0
+      ],
+      [
+       -6.0,
+       1.0
+      ],
+      [
+       0.0,
+       0.0
+      ]
+     ]
+    },
+    "shape": "lin",
+    "sends": [
+     {
+      "type": "echo",
+      "stem": "vocals",
+      "send": [
+       [
+        -0.6,
+        0.0
+       ],
+       [
+        -0.5,
+        1.0
+       ],
+       [
+        -0.05,
+        1.0
+       ],
+       [
+        0.0,
+        0.0
+       ]
+      ],
+      "beats": 1.0,
+      "feedback": 0.45,
+      "level": 0.7,
+      "hp": 350.0,
+      "lp": 4500.0,
+      "rt60": 2.4,
+      "post": false
+     }
+    ],
+    "trim_db": 0.0,
+    "nudge_ms": 0.0,
+    "auto_nudge": true,
+    "double": false
+   },
+   "b": {
+    "id": "2dGxjfhFXDIUX9h5ImyKkE",
+    "anchor_bar": 8,
+    "anchor_u": 0.0,
+    "beat_shift": 0,
+    "fit_bars": [
+     0,
+     14
+    ],
+    "beats_per_bar": 4,
+    "from": -8.0,
+    "lanes": {
+     "vocals": [
+      [
+       -8.0,
+       0.0
+      ],
+      [
+       1.1575,
+       0.0
+      ],
+      [
+       1.1875,
+       1.0
+      ]
+     ],
+     "drums": [
+      [
+       -8.0,
+       0.0
+      ],
+      [
+       -7.0,
+       1.08
+      ],
+      [
+       -4.03,
+       2.4
+      ],
+      [
+       -4.0,
+       1.0
+      ]
+     ],
+     "bass": [
+      [
+       -8.0,
+       0.0
+      ],
+      [
+       -4.03,
+       0.0
+      ],
+      [
+       -4.0,
+       1.0
+      ]
+     ],
+     "other": [
+      [
+       -8.0,
+       0.0
+      ],
+      [
+       -0.02,
+       0.0
+      ],
+      [
+       0.0,
+       0.4
+      ],
+      [
+       2.0,
+       1.0
+      ]
+     ]
+    },
+    "shape": "lin",
+    "hpf": {
+     "drums": [
+      [
+       -8.0,
+       500.0
+      ],
+      [
+       -4.05,
+       220.0
+      ],
+      [
+       -4.0,
+       20.0
+      ]
+     ]
+    },
+    "trim_db": 0.007484201150884218,
+    "nudge_ms": 0.0,
+    "auto_nudge": true,
+    "double": false
+   },
+   "technique": "B's Beat schleicht sich unter A",
+   "why": "tempo 130.03 → 130.00 BPM, lock 1:1 (+0.03 %), keys 10A → 10A (distance 0) · song B opens BeatFirst { beat_bar: 0, voice_bar: 13 } · song B's beat runs from bar 0; its one is the phrase start at bar 8, its own bars before it sneak in · the one is at 214.17 s of song A",
+   "answer": "",
+   "key_txt": "Bm → Bm",
+   "steps": [
+    {
+     "u": -8.0,
+     "text": "B's Drums kommen leise dazu – nur die Höhen, ohne Kick."
+    },
+    {
+     "u": -6.0,
+     "text": "A's Drums, Bass und Melodie beginnen linear auszublenden, bis genau zur Eins."
+    },
+    {
+     "u": -4.0,
+     "text": "B's Kick und Bass setzen ein."
+    },
+    {
+     "u": 0.0,
+     "text": "Die Eins: A ist bei null. B's Gesang und Melodie beginnen erst hier."
+    }
+   ],
+   "fx": []
+  }
+ },
+ {
+  "page": "new",
+  "id": "n12",
+  "a": "3B4etxytImrRKQgV3XHjnR",
+  "b": "6NYbDTmstd7JSUWl2hVBqR",
+  "recipe": "voice_over_beat",
+  "note": "good one",
+  "at": "2026-10-01T18:19:10",
+  "spec": {
+   "id": "n12",
+   "clip": [
+    -22.0,
+    14.0
+   ],
+   "first_event": -8.0,
+   "last_event": 2.0,
+   "no_sync": false,
+   "align_pairs": {
+    "a": [
+     -12.0,
+     -4.0
+    ],
+    "b": [
+     0.0,
+     8.0
+    ]
+   },
+   "recipe": "voice_over_beat",
+   "a": {
+    "id": "3B4etxytImrRKQgV3XHjnR",
+    "anchor_bar": 52,
+    "anchor_u": -4.0,
+    "beat_shift": 0,
+    "fit_bars": [
+     40,
+     51
+    ],
+    "beats_per_bar": 2,
+    "until": 0.0,
+    "segments": [
+     {
+      "u0": -22.0,
+      "u1": -4.0,
+      "src": -22.0
+     },
+     {
+      "u0": -4.0,
+      "src": -8.0
+     }
+    ],
+    "lanes": {
+     "vocals": [
+      [
+       -22.0,
+       1.0
+      ],
+      [
+       -8.12,
+       1.0
+      ],
+      [
+       -8.0,
+       0.0
+      ]
+     ],
+     "drums": [
+      [
+       -22.0,
+       1.0
+      ],
+      [
+       -0.015,
+       1.0
+      ],
+      [
+       0.0,
+       0.0
+      ]
+     ],
+     "bass": [
+      [
+       -22.0,
+       1.0
+      ],
+      [
+       -0.015,
+       1.0
+      ],
+      [
+       0.0,
+       0.0
+      ]
+     ],
+     "other": [
+      [
+       -22.0,
+       1.0
+      ],
+      [
+       -0.015,
+       1.0
+      ],
+      [
+       0.0,
+       0.0
+      ]
+     ]
+    },
+    "shape": "lin",
+    "sends": [
+     {
+      "type": "echo",
+      "stem": "vocals",
+      "send": [
+       [
+        -8.6,
+        0.0
+       ],
+       [
+        -8.5,
+        1.0
+       ],
+       [
+        -8.05,
+        1.0
+       ],
+       [
+        -8.0,
+        0.0
+       ]
+      ],
+      "beats": 0.5,
+      "feedback": 0.45,
+      "level": 0.7,
+      "hp": 350.0,
+      "lp": 4500.0,
+      "rt60": 2.4,
+      "post": false
+     }
+    ],
+    "trim_db": 0.006224837668487027,
+    "nudge_ms": 0.0,
+    "auto_nudge": true,
+    "double": true
+   },
+   "b": {
+    "id": "6NYbDTmstd7JSUWl2hVBqR",
+    "anchor_bar": 10,
+    "anchor_u": 0.0,
+    "beat_shift": 0,
+    "fit_bars": [
+     10,
+     18
+    ],
+    "beats_per_bar": 4,
+    "from": -8.0,
+    "lanes": {
+     "vocals": [
+      [
+       -8.0,
+       1.0
+      ]
+     ],
+     "drums": [
+      [
+       -8.0,
+       0.0
+      ],
+      [
+       -0.03,
+       0.0
+      ],
+      [
+       0.0,
+       1.0
+      ]
+     ],
+     "bass": [
+      [
+       -8.0,
+       0.0
+      ],
+      [
+       -0.03,
+       0.0
+      ],
+      [
+       0.0,
+       1.0
+      ]
+     ],
+     "other": [
+      [
+       -8.0,
+       0.0
+      ],
+      [
+       -0.02,
+       0.0
+      ],
+      [
+       0.0,
+       0.4
+      ],
+      [
+       2.0,
+       1.0
+      ]
+     ]
+    },
+    "shape": "lin",
+    "trim_db": 0.0,
+    "nudge_ms": 0.0,
+    "auto_nudge": true,
+    "double": false
+   },
+   "technique": "B's Stimme über A's Beat, B übernimmt auf der Eins",
+   "why": "tempo 70.00 → 139.05 BPM, lock 1:2 (+0.69 %), keys 6B → 6B (distance 0) · song B opens VoiceFirst { beat_bar: 10 } · song A's voice leaves at 171.43 s (bar line), the one is at 185.14 s, 2 bar(s) after A's own beat is over · song A's beat is gone from -4 bars; from there its bars of 4 bars earlier are replayed",
+   "answer": "",
+   "key_txt": "A# → A#",
+   "steps": [
+    {
+     "u": -8.0,
+     "text": "A's Gesang endet am Zeilenende (Echo). A's Drums und Bass laufen voll weiter. B's Stimme setzt direkt ein."
+    },
+    {
+     "u": 0.0,
+     "text": "Die Eins: B's Beat, Bass und Melodie setzen ein, A endet hart."
+    }
+   ],
+   "fx": []
+  }
+ }
+]

@@ -1,0 +1,125 @@
+{
+ "results": {
+  "h10g": {
+   "scores": [
+    6.25,
+    5.75,
+    6.5,
+    6.25
+   ],
+   "mean_rank": 2.0,
+   "ranks": [
+    3,
+    2,
+    1,
+    2
+   ],
+   "notes": [
+    [
+     "Song A cuts at 23 seconds into Song B's house drop, but the vocal delay tail continues echoing at Song A's 87 BPM tempo across the 130 BPM house kick pattern.",
+     "Tempo-mismatched delay tail causes a rhythmic trainwreck against Song B's four-on-the-floor beat."
+    ],
+    [
+     "Song A strips down to piano and vocals at the bridge, where Song B's 4-on-the-floor beat drops in smoothly underneath the remaining vocal line until it finishes cleanly.",
+     "Minor harmonic friction between Song A's bridge elements and Song B's bassline across the 20-23s overlap."
+    ],
+    [
+     "Alicia's vocal completes the full lyrical thought and echoes out naturally, handing over seamlessly to the incoming house beat.",
+     "none"
+    ],
+    [
+     "Alicia Keys finishes the chorus phrase, followed by an awkward beat of dead air before the house track drops in late.",
+     "Hesitant, late drop leaving an empty pause that stumbles over the barline."
+    ]
+   ]
+  },
+  "h10h": {
+   "scores": [
+    7.5,
+    7.25,
+    7.25,
+    7.5
+   ],
+   "mean_rank": 1.25,
+   "ranks": [
+    1,
+    1,
+    2,
+    1
+   ],
+   "notes": [
+    [
+     "Song A's vocal hook builds to 'let's hear it' at 23 seconds, catching into a filtered, syncopated eighth-note delay freeze that seamlessly carries the energy right onto the 130 BPM downbeat of Song B.",
+     "none"
+    ],
+    [
+     "Song A's chorus leads into the bridge where drums drop out, allowing Song B's 130 BPM house kick to enter under the vocal phrase which completes naturally before cutting out.",
+     "Slight harmonic and tempo tension while the 87 BPM vocal and lingering piano chords overlap the 130 BPM house groove between 20s and 23s."
+    ],
+    [
+     "Alicia's vocal cuts off early after 'brand new', leaving an awkward multi-second gap of fading reverb before the kick starts.",
+     "awkward dead-air gap and energy sag between 0:20 and 0:23"
+    ],
+    [
+     "Alicia Keys wraps the vocal line on 'inspire you', and the house beat drops squarely on the downbeat of the next measure.",
+     "none"
+    ]
+   ]
+  },
+  "h10": {
+   "scores": [
+    5.0,
+    5.0,
+    6.0,
+    5.0
+   ],
+   "mean_rank": 2.75,
+   "ranks": [
+    2,
+    3,
+    3,
+    3
+   ],
+   "notes": [
+    [
+     "Song A finishes its vocal chorus line before dropping directly into Song B's 130 BPM house kick at 24 seconds with a straight quarter-note vocal delay tail repeating on top of the beat.",
+     "Dry quarter-note delay tail keeps the pitched vocal lingering squarely on the kicks, highlighting harmonic clash."
+    ],
+    [
+     "Song B drops in under Song A's bridge vocal, but Song A is left playing too long and gets chopped off mid-phrase on 'let's hear it' around 24s.",
+     "Aclicia Keys' vocal is awkwardly clipped mid-syllable at 24 seconds."
+    ],
+    [
+     "Alicia's a cappella continues over the drop and is abruptly chopped off mid-phrase right as the house kick enters.",
+     "jarring vocal truncation mid-word ('let's hear it-') right at the beat drop"
+    ],
+    [
+     "The outgoing vocal runs over into 'let's hear it...' before being abruptly clipped off right as the house track drops.",
+     "Clumsy vocal overlap with outgoing lyrics chopped off mid-phrase."
+    ]
+   ]
+  }
+ },
+ "tips": [
+  [
+   "h10h",
+   "Version Q executes a textbook open-format BPM jump across a 2:3 tempo ratio. Instead of letting the outgoing 87 BPM tempo or key clash with the incoming 130 BPM house groove, it captures the final vocal snippet into a high-passed, syncopated eighth-note delay freeze that acts as a rhythmic house riser, landing with high impact right on the downbeat.",
+   "A subtle white-noise riser sweep or a slight high-pass filter roll-off on the outgoing master during the last half-bar before 0:24 would make the drop into Song B hit even harder."
+  ],
+  [
+   "h10h",
+   "P and Q both execute the transition intelligently by dropping Song B's house beat right when Song A's original drums cut out at the bridge, allowing the vocal phrase ('big lights will inspire you') to conclude cleanly at 23s without trainwrecking. R ruins the blend by letting the next vocal phrase start and chopping it off mid-word.",
+   "Apply a high-pass filter or low EQ cut to Song A right as Song B's kick drops at 20s to eliminate the subtle low-mid clash from the piano, and add a light dub echo/reverb tail to the final vocal word ('you') to melt it cleanly into the incoming house groove."
+  ],
+  [
+   "h10g",
+   "Version R lets the full two-bar vocal phrase play out ('These streets will make you feel brand new, big lights will inspire you') and applies a clean echo tail that resolves right on the house drop at 0:23, avoiding both Q's awkward empty hole and P's jarring truncated vocal.",
+   "Add a subtle white noise riser, sweep, or short snare roll under the final vocal tail to build even more anticipation into the 130 BPM drop."
+  ],
+  [
+   "h10h",
+   "Version Q executes a clean, deliberate drop on the 1 right as the vocal hook resolves, avoiding both the dead-air drag of P and the sloppy chopped vocal collision of R.",
+   "Add a subtle dub echo or wash of reverb on 'inspire you' to bridge the acoustic ballad space into the punchy house intro seamlessly."
+  ]
+ ]
+}

@@ -1,0 +1,36 @@
+# Ear: `cargo run -p sone-train --release --bin train -- ear --config cookbooks/ear.toml`
+
+[run]
+backend = "wgpu"          # the GRU runs step by step; see cookbooks/ear.md for ndarray vs wgpu
+seed = 1
+steps = 60000
+batch_size = 16
+dir = "runs/ear"
+log_every = 50
+valid_every = 2000
+loader_threads = 6
+
+[optim]
+lr = 1e-3
+warmup_steps = 1000
+min_lr_ratio = 0.02
+weight_decay = 1e-4
+grad_clip = 5.0
+
+[model]                   # defaults: 96 channels, 4 conv blocks, 2 BiGRU layers of 64 per direction
+# channels = 96
+# gru_hidden = 64
+# gru_layers = 2
+
+[data]
+train = ["data/ear/train"]  # directories of label JSON files (format in cookbooks/ear.md)
+valid = ["data/ear/valid"]
+chunk_seconds = 10.0
+valid_seconds = 60.0
+
+[loss]
+# beat, downbeat, voice, line_end, phrase_start
+pos_weight = [4.0, 12.0, 1.0, 30.0, 60.0]
+head_weight = [1.0, 1.0, 0.5, 1.0, 1.0]
+key = 0.5
+tuning = 0.5

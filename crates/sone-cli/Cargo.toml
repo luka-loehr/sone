@@ -1,0 +1,24 @@
+[package]
+name = "sone"
+version.workspace = true
+edition.workspace = true
+license.workspace = true
+publish.workspace = true
+description = "Sone-6.5M: the one binary (analyse, plan, render, mix, live, simulate)"
+
+[dependencies]
+anyhow.workspace = true
+serde.workspace = true
+serde_json.workspace = true
+hound = "3.5"
+sone-core = { path = "../sone-core" }
+sone-beats = { path = "../sone-beats" }
+sone-analysis = { path = "../sone-analysis" }
+sone-plan = { path = "../sone-plan" }
+sone-dsp = { path = "../sone-dsp" }
+sone-render = { path = "../sone-render" }
+sone-live = { path = "../sone-live" }
+sone-sim = { path = "../sone-sim" }
+
+[dev-dependencies]
+sone-infer = { path = "../sone-infer" }

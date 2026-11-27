@@ -1,0 +1,16 @@
+\begin{table*}[t]
+\centering
+\caption{Seven-head structural perception metrics and 1-vCPU real-time factor of \textbf{Tympanum} (\op{tympanum.*}) at $50$\,Hz frame resolution ($\pm 70$\,ms F1 tolerance, raw neural peaks prior to neuro-symbolic comb-grid locking).}
+\label{tab:ear_results}
+\footnotesize
+\setlength{\tabcolsep}{3.8pt}
+\resizebox{\linewidth}{!}{\begin{tabular}{@{}lcccccccr@{}}
+\toprule
+Model (\op{tympanum.*}) & Beat F1 & Downbeat F1 & Voice Acc & Breath F1 & Phrase8 F1 & Key Acc & Tuning (c) & 1-vCPU RTF \\
+\midrule
+\op{Tympanum v1} ($305$\,K, 149 tr, T4) & 0.659 & 0.365 & 81.9\% & 0.252 & 0.100 & 50.0\% & 16.83 & $0.0024\times$ \\
+\op{Tympanum v2-Base} ($305$\,K, 600 tr, equiv.) & 0.865 & 0.465 & 81.6\% & 0.215 & 0.089 & 43.0\% & 6.56 & $0.0024\times$ \\
+\textbf{\op{Tympanum-Pro}} ($1.47$\,M, 600 tr, equiv.) & 0.862 & 0.506 & 82.3\% & 0.241 & 0.103 & 24.6\% & 6.41 & $0.0085\times$ \\
+\bottomrule
+\end{tabular}}
+\end{table*}

@@ -1,0 +1,22 @@
+\section{Experimental Setup}
+\label{sec:experiments}
+
+\paragraph{Datasets and teacher distillation.}
+Table~\ref{tab:datasets} summarises the training, GPU teacher-distillation, validation, and human-listening splits across all four organs:
+\begin{enumerate}
+  \item \textbf{Beat-synchronous transition corpus (\op{Cortex} \& \op{Cingulate}):} Synthesised by \op{sone-sim} from $60$ beat- and stem-analysed pop, hip-hop, R\&B, and electronic tracks into $25{,}962$ training transitions and $5{,}707$ strictly held-out validation transitions (\op{val.jsonl.gz}, disjoint song pairs), alongside $142$ transitions ($101$ accepted, $41$ rejected across $30$ defect tags) audited by the station creator (\op{owner.jsonl}). In \op{v1} and \op{v2}, \op{owner.jsonl} is evaluated strictly zero-shot; in \op{v3}, \op{val.jsonl.gz} ($n=5{,}707$) serves as the strictly unseen benchmark while \op{owner.jsonl} is folded into preference alignment.
+  \item \textbf{Multi-corpus \& teacher-distilled separation (\op{Cochlea}):} Combines $150$ uncompressed $44.1$\,kHz stereo studio multitracks from MUSDB18-HQ~\citep{MUSDB18HQ} ($138$ train, $12$ held-out test) with $12$ leak-free broadcast multitracks ($6$ train, $6$ strictly unseen test songs) and \textbf{$1{,}101$ modern Creative Commons $48$\,s 4-stem tracks} ($551$ shard-0 tracks for \op{Pro}, $550$ shard-4 tracks for \op{v2-Base}) distilled on GPU at $0.82$--$0.90$\,songs/s from \op{HTDemucs-ft}~\citep{rouard2023hybrid} over byte-deduplicated MTG-Jamendo~\citep{bogdanov2019mtg} and Song Describer~\citep{manco2023song} audio. Dynamic stem remixing ($65\%$ cross-song mixing, $\pm 6.5$\,dB gain jitter, polarity/channel flips, $12\%$ vocal drop) yields combinatorial mixture diversity in ephemeral Colab RAM with zero retained audio.
+  \item \textbf{600-track stem-isolated \& equivariant structure (\op{Tympanum}):} Combines $12$ full seven-head broadcast tracks ($9$ train, $3$ held-out), $150$ MUSDB18-HQ multitracks ($134$ train, $16$ held-out) annotated directly from isolated studio drum, vocal, and harmonic stems, and $450$ GPU-distilled Creative Commons tracks ($584$ training songs total), augmented continuously via Eq.~\eqref{eq:vinyl}.
+\end{enumerate}
+
+\input{tables/datasets}
+
+\paragraph{Four-generation GPU fleet and single-core CPU host.}
+Table~\ref{tab:hardware} documents every accelerator used across our experiments: NVIDIA Tesla T4 (Turing \op{sm\_75}, $16$\,GB), NVIDIA L4 (Ada Lovelace \op{sm\_89}, $24$\,GB), NVIDIA A100-SXM4 (Ampere \op{sm\_80}, $40$\,GB), and \textbf{two parallel NVIDIA RTX PRO 6000 Blackwell Server Edition GPUs} (\op{G4}, \op{sm\_120}, $96$\,GB GDDR7, $48$-core AMD EPYC 9B45, $185$\,GB RAM, CUDA $13.0$, PyTorch \op{2.14.1+cu130}). On Blackwell \op{sm\_120}, \op{Cochlea-v2-Base} sustains batch size $48$ ($81.7$\,GB peak VRAM, $44.8$ six-second stereo examples/s) and \op{Cochlea-Pro} sustains batch size $32$ ($36.4$ examples/s) under BF16 \op{torch.compile} and fused AdamW~\citep{loshchilov2019decoupled}. All sessions were managed via isolated Google Colab CLI state files with automatic \op{EXIT} teardown traps so zero idle GPU minutes were incurred.
+
+All production latency, numerical parity, and end-to-end mix renders were executed single-threaded in release-mode Rust (\op{rustc 1.99.1}, \op{-C opt-level=3}) on a $2$-vCPU Intel Xeon VM (Family~6, Model~151; AVX2, FMA, F16C; $3.8$\,GiB RAM; Linux \op{6.1.167-kiste}).
+
+\input{tables/hardware}
+
+\paragraph{Evaluation protocol.}
+We report recipe accuracy, bar-offset MAE, and 8-lane MAE for \op{Cortex}; acceptability accuracy and false-positive counts for \op{Cingulate}; $60$\,s MUSDB18-HQ SDR~\citep{vincent2006performance}, MDX23 $1$\,s active-chunk median SDR~\citep{fabbro2024sdx}, vocal-to-instrumental bleed, mixture conservation error, and FP32-vs-FP16 waveform deviation for \op{Cochlea}; $50$\,Hz F1 ($\pm 70$\,ms), voice accuracy, $24$-key accuracy, and tuning MAE for \op{Tympanum}; and short-time $1$\,s RMS loudness floors ($\min \mathrm{RMS}_{1\text{s}}$), beat drift (ms), and blind creator listening judgements on rendered transitions.

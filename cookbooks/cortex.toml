@@ -1,0 +1,32 @@
+# Plan: `cargo run -p sone-train --release --bin train -- plan --config cookbooks/plan.toml`
+# Trains on the good examples only (label.good == 1).
+
+[run]
+backend = "wgpu"
+seed = 1
+steps = 100000
+batch_size = 128
+dir = "runs/plan"
+log_every = 100
+valid_every = 2000
+loader_threads = 4
+
+[optim]
+lr = 5e-4
+warmup_steps = 2000
+min_lr_ratio = 0.02
+weight_decay = 1e-2
+grad_clip = 1.0
+
+[model]                   # defaults: dim 128, 6 layers, 4 heads, ff 512 (about 1.2 M parameters)
+
+[data]
+train = ["data/examples"] # .jsonl files or directories of them (written by sone-sim)
+valid = []                # empty: 5 % of the examples, chosen by a hash of their id
+valid_fraction = 0.05
+# max_examples = 1000000  # about 10 KB of memory per example
+
+[loss]
+recipe = 1.0
+bars = 1.0
+lanes = 1.0

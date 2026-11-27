@@ -1,0 +1,3104 @@
+[
+ {
+  "id": "h01",
+  "clip": [
+   -22,
+   12
+  ],
+  "first_event": -8,
+  "last_event": 0,
+  "align_pairs": {
+   "a": [
+    -8,
+    -1
+   ],
+   "b": [
+    0,
+    7
+   ]
+  },
+  "answer": "Schnitt auf der Eins ist jetzt hart: A's Drums und Bass laufen voll bis zur Eins und sind dann sofort weg, ohne Ausklang.",
+  "key_txt": "Es-Dur \u2192 c-Moll (verwandt, passt)",
+  "technique": "B's Stimme \u00fcber A's Beat, B \u00fcbernimmt auf der Eins",
+  "why": "A singt seine Refrain-Zeile zu Ende, dann legt sich B's Stimme \u00fcber A's Beat. A's Drums und Bass bleiben voll bis zur Eins, nur A's Melodie blendet linear aus. Auf der Eins setzt B ein: Kick, Bass und \u2013 erst jetzt \u2013 B's Melodie.",
+  "steps": [
+   {
+    "u": -8,
+    "text": "A's Gesang endet mit einem Echo. A's Drums und Bass laufen voll weiter, A's Melodie beginnt linear auszublenden. B's Stimme setzt direkt ein \u2013 sonst kommt von B noch nichts."
+   },
+   {
+    "u": 0,
+    "text": "Die Eins: B's Kick setzt ein, B's Melodie beginnt erst hier. A's Drums und Bass waren bis hierher voll da und enden hart auf der Eins."
+   }
+  ],
+  "fx": [
+   {
+    "deck": "a",
+    "stem": "vocals",
+    "u0": -8.5,
+    "u1": -7,
+    "label": "Echo"
+   }
+  ],
+  "a": {
+   "id": "7ks6AZmFcm3Y6PGGxGSmlB",
+   "anchor_bar": 96,
+   "anchor_u": -8,
+   "until": 1,
+   "segments": [
+    {
+     "u0": -22,
+     "u1": -1,
+     "src": -22
+    },
+    {
+     "u0": -1,
+     "u1": 1.5,
+     "src": -5
+    }
+   ],
+   "lanes": {
+    "vocals": [
+     [
+      -22,
+      1
+     ],
+     [
+      -8.12,
+      1
+     ],
+     [
+      -8.0,
+      0
+     ]
+    ],
+    "drums": [
+     [
+      -22,
+      1.0
+     ],
+     [
+      -0.015,
+      1.0
+     ],
+     [
+      0.0,
+      0.0
+     ]
+    ],
+    "bass": [
+     [
+      -22,
+      1.0
+     ],
+     [
+      -0.015,
+      1.0
+     ],
+     [
+      0.0,
+      0.0
+     ]
+    ],
+    "other": [
+     [
+      -22,
+      1.0
+     ],
+     [
+      -8,
+      1.0
+     ],
+     [
+      0,
+      0.0
+     ]
+    ]
+   },
+   "shape": "lin",
+   "sends": [
+    {
+     "type": "echo",
+     "stem": "vocals",
+     "beats": 1.0,
+     "feedback": 0.45,
+     "level": 0.7,
+     "send": [
+      [
+       -8.6,
+       0
+      ],
+      [
+       -8.5,
+       1
+      ],
+      [
+       -8.05,
+       1
+      ],
+      [
+       -8.0,
+       0
+      ]
+     ]
+    }
+   ]
+  },
+  "b": {
+   "id": "3tyPOhuVnt5zd5kGfxbCyL",
+   "anchor_bar": 8,
+   "anchor_u": 0,
+   "from": -8,
+   "lanes": {
+    "vocals": [
+     [
+      -8,
+      1.0
+     ]
+    ],
+    "drums": [
+     [
+      -8,
+      0.0
+     ],
+     [
+      -0.03,
+      0.0
+     ],
+     [
+      0,
+      1.0
+     ]
+    ],
+    "bass": [
+     [
+      -8,
+      0.0
+     ],
+     [
+      -0.03,
+      0.0
+     ],
+     [
+      0,
+      1.0
+     ]
+    ],
+    "other": [
+     [
+      -8,
+      0.0
+     ],
+     [
+      -0.02,
+      0.0
+     ],
+     [
+      0.0,
+      0.4
+     ],
+     [
+      2.0,
+      1.0
+     ]
+    ]
+   },
+   "shape": "lin"
+  }
+ },
+ {
+  "id": "h02",
+  "swap_u": -4,
+  "clip": [
+   -24,
+   12
+  ],
+  "first_event": -12,
+  "last_event": 0,
+  "align_pairs": {
+   "a": [
+    -12,
+    -4
+   ],
+   "b": [
+    -8,
+    0
+   ]
+  },
+  "answer": "Hierzu hattest du keine neue Notiz. Ich habe trotzdem die gleiche \u00c4nderung wie bei 05 gemacht: schlichte lineare Ausblende von A, die zwei Takte vor B's Kick beginnt und genau auf der Eins bei null ist.",
+  "key_txt": "h-Moll \u2192 fis-Moll (Nachbarn, passt)",
+  "technique": "B's Beat schleicht sich unter A's letzten Refrain",
+  "why": "B hat ein langes Beat-Intro. Erst nur die H\u00f6hen von B's Drums unter A, vier Takte vor der Eins kommen B's Kick und Bass dazu. Von da an geht A's Instrumental langsam runter und ist genau auf der Eins bei null. A's Stimme singt bis dahin zu Ende, dann kommen B's Stimme und B's Melodie.",
+  "steps": [
+   {
+    "u": -12,
+    "text": "B's Drums kommen ganz leise dazu \u2013 nur die H\u00f6hen, ohne Kick."
+   },
+   {
+    "u": -6,
+    "text": "A's Drums, Bass und Melodie beginnen linear auszublenden \u2013 ganz flach, sechs Takte lang, bis genau zur Eins."
+   },
+   {
+    "u": -4,
+    "text": "B's Kick und Bass setzen ein."
+   },
+   {
+    "u": 0,
+    "text": "Die Eins: A ist bei null, A's letzte Zeile klingt im Echo aus. B's Stimme setzt ein, B's Melodie beginnt erst hier."
+   }
+  ],
+  "fx": [
+   {
+    "deck": "a",
+    "stem": "vocals",
+    "u0": -0.8,
+    "u1": 1,
+    "label": "Echo"
+   },
+   {
+    "deck": "b",
+    "stem": "drums",
+    "u0": -12,
+    "u1": -4,
+    "label": "nur H\u00f6hen"
+   }
+  ],
+  "a": {
+   "id": "3LWDPEXEaLBRGNLbdcbwBR",
+   "anchor_bar": 96,
+   "anchor_u": -4,
+   "until": 0,
+   "lanes": {
+    "vocals": [
+     [
+      -24,
+      1
+     ],
+     [
+      -0.2,
+      1
+     ],
+     [
+      -0.08,
+      0
+     ]
+    ],
+    "drums": [
+     [
+      -24,
+      1.0
+     ],
+     [
+      -6,
+      1.0
+     ],
+     [
+      0.0,
+      0.0
+     ]
+    ],
+    "bass": [
+     [
+      -24,
+      1.0
+     ],
+     [
+      -6,
+      1.0
+     ],
+     [
+      0.0,
+      0.0
+     ]
+    ],
+    "other": [
+     [
+      -24,
+      1.0
+     ],
+     [
+      -6,
+      1.0
+     ],
+     [
+      0.0,
+      0.0
+     ]
+    ]
+   },
+   "shape": "lin",
+   "sends": [
+    {
+     "type": "echo",
+     "stem": "vocals",
+     "beats": 1.0,
+     "feedback": 0.45,
+     "level": 0.7,
+     "send": [
+      [
+       -0.85,
+       0
+      ],
+      [
+       -0.75,
+       1
+      ],
+      [
+       -0.15000000000000002,
+       1
+      ],
+      [
+       -0.1,
+       0
+      ]
+     ]
+    }
+   ]
+  },
+  "b": {
+   "id": "0ByMNEPAPpOR5H69DVrTNy",
+   "anchor_bar": 8,
+   "anchor_u": 0,
+   "from": -12,
+   "segments": [
+    {
+     "u0": -12,
+     "u1": -8,
+     "src": -8
+    },
+    {
+     "u0": -8,
+     "u1": null,
+     "src": -8
+    }
+   ],
+   "lanes": {
+    "vocals": [
+     [
+      -12,
+      0.0
+     ],
+     [
+      -0.03,
+      0.0
+     ],
+     [
+      0,
+      1.0
+     ]
+    ],
+    "drums": [
+     [
+      -12,
+      0
+     ],
+     [
+      -11,
+      0.9
+     ],
+     [
+      -8,
+      1.6
+     ],
+     [
+      -4.03,
+      2.2
+     ],
+     [
+      -4,
+      1
+     ]
+    ],
+    "bass": [
+     [
+      -12,
+      0.0
+     ],
+     [
+      -4.03,
+      0.0
+     ],
+     [
+      -4,
+      1.0
+     ]
+    ],
+    "other": [
+     [
+      -12,
+      0.0
+     ],
+     [
+      -0.02,
+      0.0
+     ],
+     [
+      0.0,
+      0.4
+     ],
+     [
+      2.0,
+      1.0
+     ]
+    ]
+   },
+   "shape": "lin",
+   "hpf": {
+    "drums": [
+     [
+      -12,
+      500
+     ],
+     [
+      -8,
+      260
+     ],
+     [
+      -4.05,
+      200
+     ],
+     [
+      -4,
+      20
+     ]
+    ]
+   }
+  }
+ },
+ {
+  "id": "h03",
+  "swap_u": -4,
+  "clip": [
+   -22,
+   12
+  ],
+  "first_event": -8,
+  "last_event": 0,
+  "align_pairs": {
+   "a": [
+    -8,
+    -2
+   ],
+   "b": [
+    0,
+    6
+   ]
+  },
+  "answer": "Du hattest recht, der Takt sa\u00df nicht: Kicks lagen \u00fcbereinander, aber B war um einen ganzen Schlag verschoben, die Claps liefen gegeneinander. Korrigiert und neu gebaut, mit linearer Ausblende statt der Kurven.",
+  "key_txt": "h-Moll \u2192 h-Moll (gleich)",
+  "technique": "B's Beat schleicht sich unter A's letzten Refrain",
+  "why": "Neu gebaut. Der eigentliche Fehler war der Takt: bei Blessings lag die erkannte Eins einen Schlag zu sp\u00e4t, dadurch schlugen die Claps beider Songs gegeneinander. Das ist korrigiert. Bauweise wie gew\u00fcnscht: B's Beat kommt unter A's Hook dazu, B's Gesang und Melodie starten erst auf der Eins. A blendet linear aus.",
+  "steps": [
+   {
+    "u": -8,
+    "text": "B's Drums kommen leise dazu \u2013 nur die H\u00f6hen, ohne Kick. A l\u00e4uft komplett weiter."
+   },
+   {
+    "u": -6,
+    "text": "A's Drums, Bass und Melodie beginnen linear auszublenden \u2013 sechs Takte lang, bis genau zur Eins."
+   },
+   {
+    "u": -4,
+    "text": "B's Kick und Bass setzen ein."
+   },
+   {
+    "u": 0,
+    "text": "Die Eins: A ist bei null, A's Hook klingt im Echo aus. B's Strophe beginnt \u2013 Gesang und Melodie von B erst hier."
+   }
+  ],
+  "fx": [
+   {
+    "deck": "a",
+    "stem": "vocals",
+    "u0": -0.6,
+    "u1": 1,
+    "label": "Echo"
+   },
+   {
+    "deck": "b",
+    "stem": "drums",
+    "u0": -8,
+    "u1": -4,
+    "label": "nur H\u00f6hen"
+   }
+  ],
+  "a": {
+   "id": "2dGxjfhFXDIUX9h5ImyKkE",
+   "anchor_bar": 96,
+   "anchor_u": -8,
+   "until": 0,
+   "lanes": {
+    "vocals": [
+     [
+      -22,
+      1
+     ],
+     [
+      -0.15,
+      1
+     ],
+     [
+      0,
+      0
+     ]
+    ],
+    "drums": [
+     [
+      -22,
+      1.0
+     ],
+     [
+      -6,
+      1.0
+     ],
+     [
+      0.0,
+      0.0
+     ]
+    ],
+    "bass": [
+     [
+      -22,
+      1.0
+     ],
+     [
+      -6,
+      1.0
+     ],
+     [
+      0.0,
+      0.0
+     ]
+    ],
+    "other": [
+     [
+      -22,
+      1.0
+     ],
+     [
+      -6,
+      1.0
+     ],
+     [
+      0.0,
+      0.0
+     ]
+    ]
+   },
+   "shape": "lin",
+   "sends": [
+    {
+     "type": "echo",
+     "stem": "vocals",
+     "beats": 1.0,
+     "feedback": 0.45,
+     "level": 0.7,
+     "send": [
+      [
+       -0.65,
+       0
+      ],
+      [
+       -0.55,
+       1
+      ],
+      [
+       -0.1,
+       1
+      ],
+      [
+       -0.05,
+       0
+      ]
+     ]
+    }
+   ]
+  },
+  "b": {
+   "id": "78nx0HDJIFD5xDq2L5420Z",
+   "anchor_bar": 21,
+   "anchor_u": 0,
+   "from": -8,
+   "fit_bars": [
+    21,
+    34
+   ],
+   "beat_shift": -1,
+   "segments": [
+    {
+     "u0": -8,
+     "u1": 0,
+     "src": 0
+    },
+    {
+     "u0": 0,
+     "u1": null,
+     "src": 0
+    }
+   ],
+   "lanes": {
+    "vocals": [
+     [
+      -8,
+      0.0
+     ],
+     [
+      -0.03,
+      0.0
+     ],
+     [
+      0,
+      1.0
+     ]
+    ],
+    "drums": [
+     [
+      -8,
+      0
+     ],
+     [
+      -7,
+      0.9
+     ],
+     [
+      -4.03,
+      1.6
+     ],
+     [
+      -4,
+      1
+     ]
+    ],
+    "bass": [
+     [
+      -8,
+      0.0
+     ],
+     [
+      -4.03,
+      0.0
+     ],
+     [
+      -4,
+      1.0
+     ]
+    ],
+    "other": [
+     [
+      -8,
+      0.0
+     ],
+     [
+      -0.02,
+      0.0
+     ],
+     [
+      0.0,
+      0.4
+     ],
+     [
+      2.0,
+      1.0
+     ]
+    ]
+   },
+   "shape": "lin",
+   "hpf": {
+    "drums": [
+     [
+      -8,
+      500
+     ],
+     [
+      -4.05,
+      220
+     ],
+     [
+      -4,
+      20
+     ]
+    ]
+   }
+  }
+ },
+ {
+  "id": "h04",
+  "clip": [
+   -22,
+   12
+  ],
+  "first_event": -9,
+  "last_event": 0,
+  "align_pairs": {
+   "a": [
+    -8,
+    0
+   ],
+   "b": [
+    0,
+    8
+   ]
+  },
+  "answer": "Schnitt auf der Eins ist jetzt hart: A's Melodie, Bass und Drums laufen voll bis zur Eins und sind dann sofort weg.",
+  "key_txt": "As-Dur \u2192 As-Dur (gleich)",
+  "technique": "B's Stimme \u00fcber A's Instrumental, B \u00fcbernimmt auf der Eins",
+  "why": "Gleiche Tonart, gleiches Tempo. A's Refrain-Zeile endet, A's komplettes Instrumental \u2013 Melodie, Bass und Drums \u2013 bleibt voll bis zur Eins und B singt dar\u00fcber. Auf der Eins setzt B's eigener Beat ein, mit Bass und Melodie.",
+  "steps": [
+   {
+    "u": -9,
+    "text": "A's letzte Refrain-Zeile l\u00e4uft aus, Echo auf dem letzten Wort."
+   },
+   {
+    "u": -8,
+    "text": "B's Stimme setzt direkt ein. A's Melodie, Bass und Drums laufen voll weiter."
+   },
+   {
+    "u": 0,
+    "text": "Die Eins: B's Beat und Bass setzen ein, B's Melodie beginnt erst hier. A war bis hierher voll da und endet hart auf der Eins."
+   }
+  ],
+  "fx": [
+   {
+    "deck": "a",
+    "stem": "vocals",
+    "u0": -9,
+    "u1": -7.5,
+    "label": "Echo"
+   }
+  ],
+  "a": {
+   "id": "3lXbHd0EoryoQh3vpevNEP",
+   "anchor_bar": 112,
+   "anchor_u": -8,
+   "until": 1,
+   "segments": [
+    {
+     "u0": -22,
+     "u1": -8,
+     "src": -22
+    },
+    {
+     "u0": -8,
+     "u1": -4,
+     "src": -12
+    },
+    {
+     "u0": -4,
+     "u1": 1.5,
+     "src": -12
+    }
+   ],
+   "lanes": {
+    "vocals": [
+     [
+      -22,
+      1
+     ],
+     [
+      -8.5,
+      1
+     ],
+     [
+      -8.38,
+      0
+     ]
+    ],
+    "drums": [
+     [
+      -22,
+      1.0
+     ],
+     [
+      -0.015,
+      1.0
+     ],
+     [
+      0.0,
+      0.0
+     ]
+    ],
+    "bass": [
+     [
+      -22,
+      1.0
+     ],
+     [
+      -0.015,
+      1.0
+     ],
+     [
+      0.0,
+      0.0
+     ]
+    ],
+    "other": [
+     [
+      -22,
+      1.0
+     ],
+     [
+      -0.015,
+      1.0
+     ],
+     [
+      0.0,
+      0.0
+     ]
+    ]
+   },
+   "shape": "lin",
+   "sends": [
+    {
+     "type": "echo",
+     "stem": "vocals",
+     "beats": 1.0,
+     "feedback": 0.45,
+     "level": 0.7,
+     "send": [
+      [
+       -9.049999999999999,
+       0
+      ],
+      [
+       -8.95,
+       1
+      ],
+      [
+       -8.5,
+       1
+      ],
+      [
+       -8.45,
+       0
+      ]
+     ]
+    }
+   ]
+  },
+  "b": {
+   "id": "1XhItJSBxL5yKh0V0ymg6D",
+   "anchor_bar": 9,
+   "anchor_u": 0,
+   "from": -8,
+   "gain_db": [
+    [
+     -8,
+     2.0
+    ],
+    [
+     8,
+     2.0
+    ],
+    [
+     12,
+     1.0
+    ]
+   ],
+   "lanes": {
+    "vocals": [
+     [
+      -8,
+      1.0
+     ]
+    ],
+    "drums": [
+     [
+      -8,
+      1.0
+     ]
+    ],
+    "bass": [
+     [
+      -8,
+      0.0
+     ],
+     [
+      -0.03,
+      0.0
+     ],
+     [
+      0,
+      1.0
+     ]
+    ],
+    "other": [
+     [
+      -8,
+      0.0
+     ],
+     [
+      -0.02,
+      0.0
+     ],
+     [
+      0.0,
+      0.4
+     ],
+     [
+      2.0,
+      1.0
+     ]
+    ]
+   },
+   "shape": "lin"
+  }
+ },
+ {
+  "id": "h05",
+  "swap_u": -4,
+  "clip": [
+   -22,
+   12
+  ],
+  "first_event": -8,
+  "last_event": 1,
+  "align_pairs": {
+   "a": [
+    -8,
+    -4
+   ],
+   "b": [
+    -8,
+    -4
+   ]
+  },
+  "answer": "Verstanden: Du h\u00f6rst den Moment, in dem A anf\u00e4ngt leiser zu werden. Die alte Kurve fiel vom ersten Takt an steil ab. Jetzt ist es eine schlichte lineare Ausblende \u00fcber sechs Takte \u2013 im ersten Takt nur 1,6 dB \u2013 und sie beginnt nicht mehr genau dort, wo B's Kick einsetzt.",
+  "key_txt": "e-Moll \u2192 a-Moll (Nachbarn, passt)",
+  "technique": "B's Beat schleicht sich unter A's letzten Refrain",
+  "why": "Gleiches Tempo (120). B's House-Beat kommt erst nur mit den H\u00f6hen dazu, vier Takte vor der Eins mit Kick und Bass. A's Instrumental blendet linear und ganz flach aus: es beginnt schon zwei Takte vor B's Kick, damit man den Anfang nicht h\u00f6rt, und ist genau auf der Eins bei null.",
+  "steps": [
+   {
+    "u": -8,
+    "text": "B's Drums kommen leise dazu (nur H\u00f6hen)."
+   },
+   {
+    "u": -6,
+    "text": "A's Drums, Bass und Melodie beginnen linear auszublenden \u2013 sechs Takte lang, bis genau zur Eins."
+   },
+   {
+    "u": -4,
+    "text": "B's Kick und Bass setzen ein."
+   },
+   {
+    "u": 0,
+    "text": "Die Eins: A's Instrumental ist bei null, A's letzter Ton klingt mit Echo aus. B's Melodie beginnt hier."
+   },
+   {
+    "u": 1,
+    "text": "B's Stimme setzt ein, ab hier nur noch B."
+   }
+  ],
+  "fx": [
+   {
+    "deck": "a",
+    "stem": "vocals",
+    "u0": 0,
+    "u1": 1.5,
+    "label": "Echo"
+   },
+   {
+    "deck": "b",
+    "stem": "drums",
+    "u0": -8,
+    "u1": -4,
+    "label": "nur H\u00f6hen"
+   }
+  ],
+  "a": {
+   "id": "5vXnH99Tn0qAh84SWU5sfc",
+   "anchor_bar": 112,
+   "anchor_u": -4,
+   "until": 1,
+   "lanes": {
+    "vocals": [
+     [
+      -22,
+      1
+     ],
+     [
+      0.5,
+      1
+     ],
+     [
+      0.8,
+      0
+     ]
+    ],
+    "drums": [
+     [
+      -22,
+      1.0
+     ],
+     [
+      -6,
+      1.0
+     ],
+     [
+      0.0,
+      0.0
+     ]
+    ],
+    "bass": [
+     [
+      -22,
+      1.0
+     ],
+     [
+      -6,
+      1.0
+     ],
+     [
+      0.0,
+      0.0
+     ]
+    ],
+    "other": [
+     [
+      -22,
+      1.0
+     ],
+     [
+      -6,
+      1.0
+     ],
+     [
+      0.0,
+      0.0
+     ]
+    ]
+   },
+   "shape": "lin",
+   "sends": [
+    {
+     "type": "echo",
+     "stem": "vocals",
+     "beats": 1.0,
+     "feedback": 0.45,
+     "level": 0.6,
+     "send": [
+      [
+       -0.30000000000000004,
+       0
+      ],
+      [
+       -0.2,
+       1
+      ],
+      [
+       0.6499999999999999,
+       1
+      ],
+      [
+       0.7,
+       0
+      ]
+     ]
+    }
+   ]
+  },
+  "b": {
+   "id": "5ihq4qbjaO2r5Ga9aGlsMj",
+   "anchor_bar": 9,
+   "anchor_u": 0,
+   "from": -8,
+   "fit_bars": [
+    1,
+    15
+   ],
+   "gain_db": [
+    [
+     -8,
+     2.5
+    ],
+    [
+     6,
+     2.5
+    ],
+    [
+     12,
+     1.5
+    ]
+   ],
+   "lanes": {
+    "vocals": [
+     [
+      -8,
+      0.0
+     ],
+     [
+      0.97,
+      0.0
+     ],
+     [
+      1,
+      1.0
+     ]
+    ],
+    "drums": [
+     [
+      -8,
+      0
+     ],
+     [
+      -7,
+      1.0
+     ],
+     [
+      -4.03,
+      1.8
+     ],
+     [
+      -4,
+      1
+     ]
+    ],
+    "bass": [
+     [
+      -8,
+      0.0
+     ],
+     [
+      -4.03,
+      0.0
+     ],
+     [
+      -4,
+      1.0
+     ]
+    ],
+    "other": [
+     [
+      -8,
+      0.0
+     ],
+     [
+      -0.02,
+      0.0
+     ],
+     [
+      0.0,
+      0.4
+     ],
+     [
+      2.0,
+      1.0
+     ]
+    ]
+   },
+   "shape": "lin",
+   "hpf": {
+    "drums": [
+     [
+      -8,
+      450
+     ],
+     [
+      -4.05,
+      200
+     ],
+     [
+      -4,
+      20
+     ]
+    ]
+   }
+  }
+ },
+ {
+  "id": "h06",
+  "swap_u": -4,
+  "clip": [
+   -16,
+   9
+  ],
+  "first_event": -8,
+  "last_event": 0,
+  "align_pairs": {
+   "a": [
+    -6,
+    -4
+   ],
+   "b": [
+    -2,
+    0
+   ]
+  },
+  "answer": "Beides angegangen. Abrupt: gleiche \u00c4nderung wie bei 05, lineare Ausblende \u00fcber sechs Takte. Gesang: Drums und Bass waren aus dem ganzen Song getrennt, dabei blieb etwas Stimme h\u00e4ngen. Sie sind jetzt aus der Fassung ohne Stimme neu getrennt.",
+  "key_txt": "c-Moll \u2192 f-Moll (Nachbarn, passt)",
+  "technique": "Intro aus B's eigenem Beat gebaut",
+  "why": "B hat nur zwei Takte Beat vor der Strophe. Die loope ich zu einem achttaktigen Intro: erst nur die H\u00f6hen unter A, vier Takte vor der Eins mit Kick und Bass. A's Instrumental blendet linear und flach aus und ist genau auf der Eins bei null. B's Melodie und Strophe beginnen erst auf der Eins.",
+  "steps": [
+   {
+    "u": -8,
+    "text": "B's Drums kommen leise dazu (nur H\u00f6hen)."
+   },
+   {
+    "u": -6,
+    "text": "A's Drums, Bass und Melodie beginnen linear auszublenden \u2013 sechs Takte lang, bis genau zur Eins."
+   },
+   {
+    "u": -4,
+    "text": "B's Kick und Bass setzen ein."
+   },
+   {
+    "u": -0.5,
+    "text": "A's Stimme endet mit Echo, B's Auftakt kommt herein."
+   },
+   {
+    "u": 0,
+    "text": "Die Eins: B's Strophe beginnt, B's Melodie beginnt erst hier."
+   }
+  ],
+  "fx": [
+   {
+    "deck": "a",
+    "stem": "vocals",
+    "u0": -1,
+    "u1": 0.5,
+    "label": "Echo"
+   },
+   {
+    "deck": "b",
+    "stem": "drums",
+    "u0": -8,
+    "u1": -4,
+    "label": "nur H\u00f6hen"
+   }
+  ],
+  "a": {
+   "id": "1lEIT08AUU67qef6MkKAKx",
+   "anchor_bar": 86,
+   "anchor_u": 0,
+   "until": 0,
+   "lanes": {
+    "vocals": [
+     [
+      -16,
+      1
+     ],
+     [
+      -0.62,
+      1
+     ],
+     [
+      -0.5,
+      0
+     ]
+    ],
+    "drums": [
+     [
+      -16,
+      1.0
+     ],
+     [
+      -6,
+      1.0
+     ],
+     [
+      0.0,
+      0.0
+     ]
+    ],
+    "bass": [
+     [
+      -16,
+      1.0
+     ],
+     [
+      -6,
+      1.0
+     ],
+     [
+      0.0,
+      0.0
+     ]
+    ],
+    "other": [
+     [
+      -16,
+      1.0
+     ],
+     [
+      -6,
+      1.0
+     ],
+     [
+      0.0,
+      0.0
+     ]
+    ]
+   },
+   "shape": "lin",
+   "sends": [
+    {
+     "type": "echo",
+     "stem": "vocals",
+     "beats": 1.0,
+     "feedback": 0.45,
+     "level": 0.6,
+     "send": [
+      [
+       -1.05,
+       0
+      ],
+      [
+       -0.95,
+       1
+      ],
+      [
+       -0.55,
+       1
+      ],
+      [
+       -0.5,
+       0
+      ]
+     ]
+    }
+   ]
+  },
+  "b": {
+   "id": "11mwFrKvLXCbcVGNxffGyP",
+   "anchor_bar": 3,
+   "anchor_u": 0,
+   "from": -8,
+   "segments": [
+    {
+     "u0": -8,
+     "u1": -6,
+     "src": -2
+    },
+    {
+     "u0": -6,
+     "u1": -4,
+     "src": -2
+    },
+    {
+     "u0": -4,
+     "u1": -2,
+     "src": -2
+    },
+    {
+     "u0": -2,
+     "u1": null,
+     "src": -2
+    }
+   ],
+   "lanes": {
+    "vocals": [
+     [
+      -8,
+      0
+     ],
+     [
+      -0.55,
+      0
+     ],
+     [
+      -0.5,
+      1
+     ]
+    ],
+    "drums": [
+     [
+      -8,
+      0
+     ],
+     [
+      -7,
+      0.9
+     ],
+     [
+      -4.03,
+      1.6
+     ],
+     [
+      -4,
+      1
+     ]
+    ],
+    "bass": [
+     [
+      -8,
+      0.0
+     ],
+     [
+      -4.03,
+      0.0
+     ],
+     [
+      -4,
+      1.0
+     ]
+    ],
+    "other": [
+     [
+      -8,
+      0.0
+     ],
+     [
+      -0.02,
+      0.0
+     ],
+     [
+      0.0,
+      0.4
+     ],
+     [
+      2.0,
+      1.0
+     ]
+    ]
+   },
+   "shape": "lin",
+   "hpf": {
+    "drums": [
+     [
+      -8,
+      600
+     ],
+     [
+      -4.05,
+      220
+     ],
+     [
+      -4,
+      20
+     ]
+    ]
+   }
+  }
+ },
+ {
+  "id": "h07",
+  "clip": [
+   -22,
+   12
+  ],
+  "first_event": -8,
+  "last_event": 0,
+  "align_pairs": {
+   "a": [
+    -8,
+    0
+   ],
+   "b": [
+    0,
+    8
+   ]
+  },
+  "answer": "Schnitt auf der Eins ist wieder hart, so wie in der Fassung, die f\u00fcr dich gepasst hat. Den kurzen Ausklang nach der Eins hatte ich zwischendurch eingebaut, er ist wieder raus.",
+  "key_txt": "es-Moll \u2192 gis-Moll (Nachbarn, passt)",
+  "technique": "Outro-Beat von A unter dem Synth-Intro von B",
+  "why": "Der klassische Club-\u00dcbergang: A endet mit acht Takten reinem Beat, B beginnt mit acht Takten Synthesizer ohne Beat. Beides liegt genau \u00fcbereinander. B's Synth blendet langsam ein, auf der Eins kommen B's Beat und Stimme. ",
+  "steps": [
+   {
+    "u": -8,
+    "text": "A's Gesang ist vorbei, A's Beat l\u00e4uft weiter. B's Synth beginnt langsam einzublenden."
+   },
+   {
+    "u": -4,
+    "text": "A's Melodie ist fast weg, B's Synth ist deutlich zu h\u00f6ren."
+   },
+   {
+    "u": -2,
+    "text": "A's Drums werden hochgefiltert."
+   },
+   {
+    "u": 0,
+    "text": "Die Eins: B's Beat, Bass und Stimme setzen ein, A endet hart."
+   }
+  ],
+  "fx": [
+   {
+    "deck": "a",
+    "stem": "drums",
+    "u0": -2,
+    "u1": 0,
+    "label": "Filter \u2191"
+   }
+  ],
+  "a": {
+   "id": "57508shL0obX0KUOUL8CJk",
+   "anchor_bar": 96,
+   "anchor_u": -8,
+   "until": 0,
+   "lanes": {
+    "vocals": [
+     [
+      -22,
+      1
+     ],
+     [
+      -8,
+      1
+     ],
+     [
+      -7.9,
+      0
+     ]
+    ],
+    "drums": [
+     [
+      -22,
+      1
+     ],
+     [
+      -0.015,
+      1
+     ],
+     [
+      0,
+      0
+     ]
+    ],
+    "bass": [
+     [
+      -22,
+      1
+     ],
+     [
+      -0.015,
+      1
+     ],
+     [
+      0,
+      0
+     ]
+    ],
+    "other": [
+     [
+      -22,
+      1
+     ],
+     [
+      -8,
+      1
+     ],
+     [
+      -3,
+      0.3
+     ],
+     [
+      -0.015,
+      0.1
+     ],
+     [
+      0,
+      0
+     ]
+    ]
+   },
+   "segments": [
+    {
+     "u0": -22,
+     "u1": 0,
+     "src": -22
+    },
+    {
+     "u0": 0,
+     "u1": 1.5,
+     "src": -4
+    }
+   ],
+   "hpf": {
+    "drums": [
+     [
+      -2,
+      20
+     ],
+     [
+      -1,
+      140
+     ],
+     [
+      -0.05,
+      800
+     ]
+    ]
+   }
+  },
+  "b": {
+   "id": "5qGIfWDRdyO67LCTqA2sEn",
+   "anchor_bar": 11,
+   "anchor_u": 0,
+   "from": -8,
+   "fit_bars": [
+    11,
+    40
+   ],
+   "gain_db": [
+    [
+     -8,
+     2.5
+    ],
+    [
+     8,
+     2.5
+    ],
+    [
+     12,
+     1.5
+    ]
+   ],
+   "lanes": {
+    "vocals": [
+     [
+      -8,
+      0
+     ],
+     [
+      -0.1,
+      0
+     ],
+     [
+      -0.07,
+      1
+     ]
+    ],
+    "drums": [
+     [
+      -8,
+      1
+     ]
+    ],
+    "bass": [
+     [
+      -8,
+      1
+     ]
+    ],
+    "other": [
+     [
+      -8,
+      0
+     ],
+     [
+      -2,
+      1
+     ]
+    ]
+   },
+   "shape": "lin"
+  }
+ },
+ {
+  "id": "h08",
+  "clip": [
+   -24,
+   14
+  ],
+  "first_event": -8,
+  "last_event": 0,
+  "align_pairs": {
+   "a": [
+    -8,
+    -4
+   ],
+   "b": [
+    0,
+    4
+   ]
+  },
+  "answer": "Schnitt auf der Eins ist wieder hart, so wie in der Fassung, die du sehr sauber fandest. Den kurzen Ausklang nach der Eins hatte ich zwischendurch eingebaut, er ist wieder raus.",
+  "key_txt": "b-Moll \u2192 b-Moll (gleich)",
+  "technique": "A's Beat tr\u00e4gt das Gitarren-Intro von B",
+  "why": "Gleiche Tonart, gleicher Beat \u00fcber halbe/doppelte Z\u00e4hlzeit (139 / 70). B's Gitarre blendet schon unter den letzten Rap-Zeilen langsam ein. Wenn der Rap fertig ist, l\u00e4uft A's Beat allein mit B's Gitarre weiter \u2013 auf der Eins beginnt B's Strophe mit eigenem Beat. ",
+  "steps": [
+   {
+    "u": -8,
+    "text": "B's Gitarre beginnt ganz leise unter A's letzten Rap-Zeilen einzublenden."
+   },
+   {
+    "u": -4,
+    "text": "A's Rap ist zu Ende. A's Beat und Bass laufen weiter, B's Gitarre steht jetzt im Vordergrund."
+   },
+   {
+    "u": -2,
+    "text": "A's Drums werden hochgefiltert."
+   },
+   {
+    "u": 0,
+    "text": "Die Eins: B's Strophe beginnt mit eigenem Beat und Bass, A endet hart."
+   }
+  ],
+  "fx": [
+   {
+    "deck": "a",
+    "stem": "drums",
+    "u0": -2,
+    "u1": 0,
+    "label": "Filter \u2191"
+   }
+  ],
+  "a": {
+   "id": "6NYbDTmstd7JSUWl2hVBqR",
+   "anchor_bar": 127,
+   "anchor_u": -8,
+   "until": 0,
+   "segments": [
+    {
+     "u0": -24,
+     "u1": -4,
+     "src": -24
+    },
+    {
+     "u0": -4,
+     "u1": 0,
+     "src": -12
+    },
+    {
+     "u0": 0,
+     "u1": 1.5,
+     "src": -12
+    }
+   ],
+   "lanes": {
+    "vocals": [
+     [
+      -24,
+      1
+     ],
+     [
+      -4.55,
+      1
+     ],
+     [
+      -4.4,
+      0
+     ]
+    ],
+    "drums": [
+     [
+      -24,
+      1
+     ],
+     [
+      -0.015,
+      1
+     ],
+     [
+      0,
+      0
+     ]
+    ],
+    "bass": [
+     [
+      -24,
+      1
+     ],
+     [
+      -0.015,
+      1
+     ],
+     [
+      0,
+      0
+     ]
+    ],
+    "other": [
+     [
+      -24,
+      1
+     ],
+     [
+      -8,
+      1
+     ],
+     [
+      -4,
+      0.4
+     ],
+     [
+      -1,
+      0.1
+     ],
+     [
+      0,
+      0
+     ]
+    ]
+   },
+   "hpf": {
+    "drums": [
+     [
+      -2,
+      20
+     ],
+     [
+      -1,
+      140
+     ],
+     [
+      -0.05,
+      800
+     ]
+    ],
+    "bass": [
+     [
+      -1,
+      20
+     ],
+     [
+      -0.05,
+      300
+     ]
+    ]
+   }
+  },
+  "b": {
+   "id": "3B4etxytImrRKQgV3XHjnR",
+   "anchor_bar": 2,
+   "anchor_u": 0,
+   "from": -8,
+   "beats_per_bar": 2,
+   "double": true,
+   "gain_db": [
+    [
+     -8,
+     1.5
+    ],
+    [
+     10,
+     1.5
+    ],
+    [
+     14,
+     1.0
+    ]
+   ],
+   "segments": [
+    {
+     "u0": -8,
+     "u1": -4,
+     "src": -4
+    },
+    {
+     "u0": -4,
+     "u1": null,
+     "src": -4
+    }
+   ],
+   "lanes": {
+    "vocals": [
+     [
+      -8,
+      0
+     ],
+     [
+      -0.3,
+      0
+     ],
+     [
+      -0.26,
+      1
+     ]
+    ],
+    "drums": [
+     [
+      -8,
+      1
+     ]
+    ],
+    "bass": [
+     [
+      -8,
+      1
+     ]
+    ],
+    "other": [
+     [
+      -8,
+      0
+     ],
+     [
+      -2,
+      1
+     ]
+    ]
+   },
+   "shape": "lin"
+  }
+ },
+ {
+  "id": "h09",
+  "swap_u": -4,
+  "clip": [
+   -22,
+   12
+  ],
+  "first_event": -8,
+  "last_event": 0,
+  "align_pairs": {
+   "a": [
+    -8,
+    0
+   ],
+   "b": [
+    0,
+    8
+   ]
+  },
+  "answer": "Umgebaut: Von B kommt vor der Eins kein Gesang mehr. B's Beat schleicht sich unter A's Instrumental (erst nur die H\u00f6hen, vier Takte vor der Eins mit Kick und Bass), B's Gesang und Melodie starten genau auf der Eins. A's Melodie und Bass sind weg, bevor B's Bass kommt. Falls du gemeint hast, dass von B vor der Eins gar nichts kommen soll, auch kein Beat: sag es, dann wird es ein reiner Schnitt auf der Eins.",
+  "key_txt": "c-Moll \u2192 f-Moll (Nachbarn)",
+  "technique": "B's Beat schleicht sich unter A's Instrumental",
+  "why": "Neu gebaut: B's Gesang kommt nicht mehr vor der Eins. A endet mit einem langen Instrumental. B's Drums kommen erst nur mit den H\u00f6hen dazu, vier Takte vor der Eins mit Kick und Bass. A blendet linear aus und ist auf der Eins bei null. Dort startet B mit Gesang und Melodie.",
+  "steps": [
+   {
+    "u": -8,
+    "text": "B's Drums kommen leise dazu \u2013 nur die H\u00f6hen, ohne Kick. A's Melodie beginnt linear auszublenden."
+   },
+   {
+    "u": -6,
+    "text": "A's Drums beginnen linear auszublenden \u2013 sechs Takte lang, bis genau zur Eins. A's Bass geht ebenfalls raus."
+   },
+   {
+    "u": -4,
+    "text": "B's Kick und Bass setzen ein. A's Melodie und Bass sind jetzt weg."
+   },
+   {
+    "u": 0,
+    "text": "Die Eins: A ist bei null. B's Melodie beginnt hier, B's Gesang einen Schlag sp\u00e4ter am Anfang seiner Zeile."
+   }
+  ],
+  "fx": [
+   {
+    "deck": "b",
+    "stem": "drums",
+    "u0": -8,
+    "u1": -4,
+    "label": "nur H\u00f6hen"
+   }
+  ],
+  "a": {
+   "id": "1fVQmMgrOUnrh8KgndKGzP",
+   "anchor_bar": 71,
+   "anchor_u": -8,
+   "until": 0,
+   "fit_bars": [
+    55,
+    78
+   ],
+   "lanes": {
+    "vocals": [
+     [
+      -22,
+      1
+     ],
+     [
+      -8,
+      1
+     ],
+     [
+      -7.9,
+      0
+     ]
+    ],
+    "drums": [
+     [
+      -22,
+      1.0
+     ],
+     [
+      -6,
+      1.0
+     ],
+     [
+      0.0,
+      0.0
+     ]
+    ],
+    "bass": [
+     [
+      -22,
+      1.0
+     ],
+     [
+      -7,
+      1.0
+     ],
+     [
+      -4,
+      0.0
+     ]
+    ],
+    "other": [
+     [
+      -22,
+      1.0
+     ],
+     [
+      -8,
+      1.0
+     ],
+     [
+      -4,
+      0.0
+     ]
+    ]
+   },
+   "shape": "lin"
+  },
+  "b": {
+   "id": "03D2TnaZuwlddRTh7P6Mq5",
+   "anchor_bar": 15,
+   "anchor_u": 0,
+   "from": -8,
+   "fit_bars": [
+    15,
+    38
+   ],
+   "segments": [
+    {
+     "u0": -8,
+     "u1": -1,
+     "src": 0
+    },
+    {
+     "u0": -1,
+     "u1": 0,
+     "src": 3
+    },
+    {
+     "u0": 0,
+     "u1": null,
+     "src": 0
+    }
+   ],
+   "lanes": {
+    "vocals": [
+     [
+      -8,
+      0.0
+     ],
+     [
+      0.19,
+      0.0
+     ],
+     [
+      0.22,
+      1.0
+     ]
+    ],
+    "drums": [
+     [
+      -8,
+      0
+     ],
+     [
+      -7,
+      0.9
+     ],
+     [
+      -4.03,
+      1.6
+     ],
+     [
+      -4,
+      1
+     ]
+    ],
+    "bass": [
+     [
+      -8,
+      0.0
+     ],
+     [
+      -4.03,
+      0.0
+     ],
+     [
+      -4,
+      1.0
+     ]
+    ],
+    "other": [
+     [
+      -8,
+      0.0
+     ],
+     [
+      -0.02,
+      0.0
+     ],
+     [
+      0.0,
+      0.4
+     ],
+     [
+      2.0,
+      1.0
+     ]
+    ]
+   },
+   "shape": "lin",
+   "hpf": {
+    "drums": [
+     [
+      -8,
+      500
+     ],
+     [
+      -4.05,
+      220
+     ],
+     [
+      -4,
+      20
+     ]
+    ]
+   }
+  }
+ },
+ {
+  "id": "h10",
+  "clip": [
+   -12,
+   9
+  ],
+  "first_event": -4,
+  "last_event": 2,
+  "align_pairs": {
+   "a": [
+    -8,
+    -4
+   ],
+   "b": [
+    0,
+    4
+   ]
+  },
+  "answer": "Deine Idee war schon eingebaut (vor der Eins nur B's Synth, Drums ab der Eins). Neu ist nur die lineare Ausblende von A statt der Kurve. Hierzu fehlt mir noch dein Urteil.",
+  "key_txt": "Fis-Dur \u2192 h-Moll (Dominante \u2192 Grundton, l\u00f6st sich auf)",
+  "technique": "Tempo-Sprung: erst nur B's Synth unter A, B's Drums ab der Eins",
+  "why": "Deine Idee umgesetzt: Vor der Eins kommt von B nur der Synth, er blendet unter A's Hook ein. A's Drums, Bass und Klavier gehen gemeinsam langsam bis zur Eins runter. B's Drums und Bass starten erst auf der Eins. B ist 3 gegen 2 auf A eingerastet, kein Song \u00e4ndert sein Tempo. A's Hook klingt danach im Hall aus.",
+  "steps": [
+   {
+    "u": -5,
+    "text": "A's Drums, Bass und Klavier beginnen linear auszublenden \u2013 f\u00fcnf Takte lang, bis genau zur Eins."
+   },
+   {
+    "u": -4,
+    "text": "B's Synth beginnt einzublenden \u2013 sonst kommt von B nichts. Der Hall auf A's Stimme w\u00e4chst."
+   },
+   {
+    "u": 0,
+    "text": "Die Eins: B's Drums und Bass setzen ein. A's Hook singt weiter und blendet \u00fcber gut 5 s im Hall aus."
+   },
+   {
+    "u": 2,
+    "text": "A ist ausgeklungen, ab hier nur noch B."
+   }
+  ],
+  "fx": [
+   {
+    "deck": "a",
+    "stem": "vocals",
+    "u0": -4,
+    "u1": 2,
+    "label": "Hall w\u00e4chst"
+   }
+  ],
+  "a": {
+   "id": "2igwFfvr1OAGX9SKDCPBwO",
+   "anchor_bar": 94,
+   "anchor_u": 0,
+   "until": 2,
+   "lanes": {
+    "vocals": [
+     [
+      -12,
+      1
+     ],
+     [
+      0,
+      1
+     ],
+     [
+      0.5,
+      0.8
+     ],
+     [
+      2,
+      0
+     ]
+    ],
+    "drums": [
+     [
+      -12,
+      1.0
+     ],
+     [
+      -5,
+      1.0
+     ],
+     [
+      0.0,
+      0.0
+     ]
+    ],
+    "bass": [
+     [
+      -12,
+      1.0
+     ],
+     [
+      -5,
+      1.0
+     ],
+     [
+      0.0,
+      0.0
+     ]
+    ],
+    "other": [
+     [
+      -12,
+      1.0
+     ],
+     [
+      -5,
+      1.0
+     ],
+     [
+      0.0,
+      0.0
+     ]
+    ]
+   },
+   "shape": "lin",
+   "sends": [
+    {
+     "type": "reverb",
+     "stem": "vocals",
+     "rt60": 2.6,
+     "level": 0.5,
+     "send": [
+      [
+       -4,
+       0
+      ],
+      [
+       -1,
+       0.5
+      ],
+      [
+       0,
+       0.8
+      ],
+      [
+       1.2,
+       0.8
+      ],
+      [
+       2,
+       0
+      ]
+     ]
+    }
+   ]
+  },
+  "b": {
+   "id": "2dGxjfhFXDIUX9h5ImyKkE",
+   "anchor_bar": 0,
+   "anchor_u": 0,
+   "from": -4,
+   "beats_per_bar": 6,
+   "fit_bars": [
+    0,
+    23
+   ],
+   "segments": [
+    {
+     "u0": -4,
+     "u1": 0,
+     "src": 0
+    },
+    {
+     "u0": 0,
+     "u1": null,
+     "src": 0
+    }
+   ],
+   "lanes": {
+    "vocals": [
+     [
+      -4,
+      1
+     ]
+    ],
+    "drums": [
+     [
+      -4,
+      0.0
+     ],
+     [
+      -0.03,
+      0.0
+     ],
+     [
+      0,
+      1.0
+     ]
+    ],
+    "bass": [
+     [
+      -4,
+      0.0
+     ],
+     [
+      -0.03,
+      0.0
+     ],
+     [
+      0,
+      1.0
+     ]
+    ],
+    "other": [
+     [
+      -4,
+      0
+     ],
+     [
+      -2.5,
+      2.0
+     ],
+     [
+      -0.5,
+      3.0
+     ],
+     [
+      0,
+      1.6
+     ],
+     [
+      4,
+      1.0
+     ]
+    ]
+   },
+   "shape": "lin"
+  }
+ },
+ {
+  "id": "h11",
+  "clip": [
+   -22,
+   12
+  ],
+  "first_event": -8,
+  "last_event": 0,
+  "align_pairs": {
+   "a": [
+    -16,
+    -8
+   ],
+   "b": [
+    0,
+    8
+   ]
+  },
+  "answer": "Noch ohne Urteil von dir. A's Beat bleibt voll bis zur Eins und endet dort hart.",
+  "key_txt": "e-Moll \u2192 h-Moll (Nachbarn, passt)",
+  "technique": "A's Beat tr\u00e4gt B's Aufbau \u2013 B's Refrain landet auf der Eins",
+  "why": "Fast gleiches Tempo (126 / 127). A singt die Refrain-Zeile zu Ende, A's Drums und Bass bleiben voll bis zur Eins. Von B kommt erst die Stimme, danach das Saxofon-Riff (dort singt B nicht). Genau auf der Eins kommt B's Refrain mit Beat und Bass.",
+  "steps": [
+   {
+    "u": -8,
+    "text": "A's Gesang endet am Zeilenende (Echo). A's Drums und Bass laufen voll weiter, A's Melodie blendet linear aus. B's Stimme setzt direkt ein."
+   },
+   {
+    "u": -6,
+    "text": "B's Stimme ist fertig, B's Saxofon-Riff blendet langsam ein."
+   },
+   {
+    "u": 0,
+    "text": "Die Eins: B's Refrain mit Beat und Bass. A's Drums und Bass enden hart auf der Eins."
+   }
+  ],
+  "fx": [
+   {
+    "deck": "a",
+    "stem": "vocals",
+    "u0": -8.5,
+    "u1": -7,
+    "label": "Echo"
+   }
+  ],
+  "a": {
+   "id": "5Uc37Y6FijZcM538PqqkWd",
+   "anchor_bar": 115,
+   "anchor_u": -8,
+   "until": 1,
+   "segments": [
+    {
+     "u0": -22,
+     "u1": -8,
+     "src": -22
+    },
+    {
+     "u0": -8,
+     "u1": 1.5,
+     "src": -16
+    }
+   ],
+   "lanes": {
+    "vocals": [
+     [
+      -22,
+      1
+     ],
+     [
+      -8.25,
+      1
+     ],
+     [
+      -8.0,
+      0
+     ]
+    ],
+    "drums": [
+     [
+      -22,
+      1.0
+     ],
+     [
+      -0.015,
+      1.0
+     ],
+     [
+      0.0,
+      0.0
+     ]
+    ],
+    "bass": [
+     [
+      -22,
+      1.0
+     ],
+     [
+      -0.015,
+      1.0
+     ],
+     [
+      0.0,
+      0.0
+     ]
+    ],
+    "other": [
+     [
+      -22,
+      1.0
+     ],
+     [
+      -8,
+      1.0
+     ],
+     [
+      -4,
+      0.0
+     ]
+    ]
+   },
+   "shape": "lin",
+   "sends": [
+    {
+     "type": "echo",
+     "stem": "vocals",
+     "beats": 1.0,
+     "feedback": 0.45,
+     "level": 0.7,
+     "send": [
+      [
+       -8.6,
+       0
+      ],
+      [
+       -8.5,
+       1
+      ],
+      [
+       -8.05,
+       1
+      ],
+      [
+       -8.0,
+       0
+      ]
+     ]
+    }
+   ]
+  },
+  "b": {
+   "id": "3LWDPEXEaLBRGNLbdcbwBR",
+   "anchor_bar": 13,
+   "anchor_u": 0,
+   "from": -8,
+   "fit_bars": [
+    13,
+    40
+   ],
+   "gain_db": [
+    [
+     -8,
+     3.0
+    ],
+    [
+     -1,
+     3.0
+    ],
+    [
+     0,
+     0.5
+    ]
+   ],
+   "lanes": {
+    "vocals": [
+     [
+      -8,
+      1.0
+     ]
+    ],
+    "drums": [
+     [
+      -8,
+      0.0
+     ],
+     [
+      -0.03,
+      0.0
+     ],
+     [
+      0,
+      1.0
+     ]
+    ],
+    "bass": [
+     [
+      -8,
+      0.0
+     ],
+     [
+      -0.03,
+      0.0
+     ],
+     [
+      0,
+      1.0
+     ]
+    ],
+    "other": [
+     [
+      -8,
+      0.0
+     ],
+     [
+      -6,
+      0.0
+     ],
+     [
+      -2,
+      1.0
+     ]
+    ]
+   },
+   "shape": "lin"
+  }
+ },
+ {
+  "id": "h12",
+  "clip": [
+   -22,
+   12
+  ],
+  "first_event": -8,
+  "last_event": 0,
+  "align_pairs": {
+   "a": [
+    -8,
+    0
+   ],
+   "b": [
+    0,
+    8
+   ]
+  },
+  "answer": "A's Beat l\u00e4uft voll bis zur Eins durch und endet dort hart. Wenn es trotzdem nicht klingt, passt der langsame Hip-Hop-Beat nicht unter diesen Rap, dann nehme ich das Paar raus.",
+  "key_txt": "As-Dur \u2192 Es-Dur (Nachbarn, passt)",
+  "technique": "Halbe gegen doppelte Z\u00e4hlzeit: B's Stimme \u00fcber A's Beat",
+  "why": "A l\u00e4uft mit 65 BPM, B mit 130 \u2013 jeder zweite Schlag von B ist ein Schlag von A. B's Stimme rappt \u00fcber A's Beat, der jetzt voll bis zur Eins durchl\u00e4uft. Auf der Eins kommt B's Refrain mit dem geraden Dance-Beat.",
+  "steps": [
+   {
+    "u": -8,
+    "text": "A's Gesang endet am Zeilenende (Echo). A's Drums und Bass laufen voll weiter, A's Melodie blendet linear aus. B's Stimme setzt direkt ein."
+   },
+   {
+    "u": 0,
+    "text": "Die Eins: B's Refrain mit Beat und Bass, B's Melodie beginnt erst hier. A's Beat endet hart auf der Eins."
+   }
+  ],
+  "fx": [
+   {
+    "deck": "a",
+    "stem": "vocals",
+    "u0": -8.5,
+    "u1": -7,
+    "label": "Echo"
+   }
+  ],
+  "a": {
+   "id": "6dRVOzSxLqRdqUjc9mctGg",
+   "anchor_bar": 49,
+   "anchor_u": -8,
+   "until": 1,
+   "beats_per_bar": 2,
+   "fit_bars": [
+    37,
+    58
+   ],
+   "double": true,
+   "segments": [
+    {
+     "u0": -22,
+     "u1": -1,
+     "src": -22
+    },
+    {
+     "u0": -1,
+     "u1": 1.5,
+     "src": -5
+    }
+   ],
+   "lanes": {
+    "vocals": [
+     [
+      -22,
+      1
+     ],
+     [
+      -8.2,
+      1
+     ],
+     [
+      -8.0,
+      0
+     ]
+    ],
+    "drums": [
+     [
+      -22,
+      0.9
+     ],
+     [
+      -0.015,
+      0.9
+     ],
+     [
+      0.0,
+      0.0
+     ]
+    ],
+    "bass": [
+     [
+      -22,
+      1.0
+     ],
+     [
+      -0.015,
+      1.0
+     ],
+     [
+      0.0,
+      0.0
+     ]
+    ],
+    "other": [
+     [
+      -22,
+      1.0
+     ],
+     [
+      -8,
+      1.0
+     ],
+     [
+      0,
+      0.0
+     ]
+    ]
+   },
+   "shape": "lin",
+   "sends": [
+    {
+     "type": "echo",
+     "stem": "vocals",
+     "beats": 0.5,
+     "feedback": 0.45,
+     "level": 0.7,
+     "send": [
+      [
+       -8.6,
+       0
+      ],
+      [
+       -8.5,
+       1
+      ],
+      [
+       -8.05,
+       1
+      ],
+      [
+       -8.0,
+       0
+      ]
+     ]
+    }
+   ]
+  },
+  "b": {
+   "id": "7ks6AZmFcm3Y6PGGxGSmlB",
+   "anchor_bar": 16,
+   "anchor_u": 0,
+   "from": -8,
+   "gain_db": [
+    [
+     -8,
+     1.0
+    ],
+    [
+     0,
+     2.0
+    ],
+    [
+     8,
+     2.0
+    ],
+    [
+     12,
+     1.0
+    ]
+   ],
+   "lanes": {
+    "vocals": [
+     [
+      -8,
+      1.0
+     ]
+    ],
+    "drums": [
+     [
+      -8,
+      0.0
+     ],
+     [
+      -0.03,
+      0.0
+     ],
+     [
+      0,
+      1.0
+     ]
+    ],
+    "bass": [
+     [
+      -8,
+      0.0
+     ],
+     [
+      -0.03,
+      0.0
+     ],
+     [
+      0,
+      1.0
+     ]
+    ],
+    "other": [
+     [
+      -8,
+      0.0
+     ],
+     [
+      -0.02,
+      0.0
+     ],
+     [
+      0.0,
+      0.4
+     ],
+     [
+      2.0,
+      1.0
+     ]
+    ]
+   },
+   "shape": "lin"
+  }
+ },
+ {
+  "id": "h13",
+  "swap_u": -4,
+  "clip": [
+   -16,
+   10
+  ],
+  "first_event": -8,
+  "last_event": 0,
+  "align_pairs": {
+   "a": [
+    -14,
+    -10
+   ],
+   "b": [
+    -4,
+    0
+   ]
+  },
+  "answer": "Freut mich. Unver\u00e4ndert gelassen.",
+  "key_txt": "g-Moll \u2192 g-Moll (gleich)",
+  "technique": "B's Beat schleicht sich unter A's Schluss",
+  "why": "Fast gleiches Tempo (91 / 92), gleiche Tonart. B's Drums kommen erst nur mit den H\u00f6hen dazu, vier Takte vor der Eins mit Kick und Bass. A's Instrumental geht gemeinsam langsam bis zur Eins runter, A's Stimme l\u00e4uft bis zu ihrem Ende. B's Melodie beginnt erst auf der Eins.",
+  "steps": [
+   {
+    "u": -8,
+    "text": "B's Drums kommen leise dazu (nur H\u00f6hen)."
+   },
+   {
+    "u": -4,
+    "text": "B's Kick und Bass setzen ein. A's Drums, Bass und Melodie blenden gemeinsam langsam aus \u2013 bis genau zur Eins."
+   },
+   {
+    "u": 0,
+    "text": "Die Eins: A ist bei null, A's Stimme klingt im Echo aus. B's Melodie beginnt erst hier."
+   }
+  ],
+  "fx": [
+   {
+    "deck": "a",
+    "stem": "vocals",
+    "u0": -0.6,
+    "u1": 1,
+    "label": "Echo"
+   },
+   {
+    "deck": "b",
+    "stem": "drums",
+    "u0": -8,
+    "u1": -4,
+    "label": "nur H\u00f6hen"
+   }
+  ],
+  "a": {
+   "id": "6N185ACZ5M6TYngUuOPpoW",
+   "anchor_bar": 38,
+   "anchor_u": -4,
+   "until": 0.5,
+   "lanes": {
+    "vocals": [
+     [
+      -16,
+      1
+     ],
+     [
+      -0.1,
+      1
+     ],
+     [
+      0.4,
+      0
+     ]
+    ],
+    "drums": [
+     [
+      -16,
+      1.0
+     ],
+     [
+      -4,
+      1.0
+     ],
+     [
+      -0.12,
+      0.125
+     ],
+     [
+      0.0,
+      0.0
+     ]
+    ],
+    "bass": [
+     [
+      -16,
+      1.0
+     ],
+     [
+      -4,
+      1.0
+     ],
+     [
+      -0.12,
+      0.125
+     ],
+     [
+      0.0,
+      0.0
+     ]
+    ],
+    "other": [
+     [
+      -16,
+      1.0
+     ],
+     [
+      -4,
+      1.0
+     ],
+     [
+      -0.12,
+      0.125
+     ],
+     [
+      0.0,
+      0.0
+     ]
+    ]
+   },
+   "shape": "lin",
+   "shapes": {
+    "drums": "db",
+    "bass": "db",
+    "other": "db"
+   },
+   "sends": [
+    {
+     "type": "echo",
+     "stem": "vocals",
+     "beats": 1.0,
+     "feedback": 0.45,
+     "level": 0.6,
+     "send": [
+      [
+       -0.6,
+       0
+      ],
+      [
+       -0.5,
+       1
+      ],
+      [
+       0.35000000000000003,
+       1
+      ],
+      [
+       0.4,
+       0
+      ]
+     ]
+    }
+   ]
+  },
+  "b": {
+   "id": "7yoqSltRmGVlJF34OdLyZG",
+   "anchor_bar": 2,
+   "anchor_u": -4,
+   "from": -8,
+   "segments": [
+    {
+     "u0": -8,
+     "u1": -6,
+     "src": -6
+    },
+    {
+     "u0": -6,
+     "u1": null,
+     "src": -6
+    }
+   ],
+   "lanes": {
+    "vocals": [
+     [
+      -8,
+      0.0
+     ],
+     [
+      -0.03,
+      0.0
+     ],
+     [
+      0,
+      1.0
+     ]
+    ],
+    "drums": [
+     [
+      -8,
+      0
+     ],
+     [
+      -7,
+      1.0
+     ],
+     [
+      -4.03,
+      1.6
+     ],
+     [
+      -4,
+      1
+     ]
+    ],
+    "bass": [
+     [
+      -8,
+      0.0
+     ],
+     [
+      -4.03,
+      0.0
+     ],
+     [
+      -4,
+      1.0
+     ]
+    ],
+    "other": [
+     [
+      -8,
+      0.0
+     ],
+     [
+      -0.02,
+      0.0
+     ],
+     [
+      0.0,
+      0.4
+     ],
+     [
+      2.0,
+      1.0
+     ]
+    ]
+   },
+   "shape": "lin",
+   "hpf": {
+    "drums": [
+     [
+      -8,
+      500
+     ],
+     [
+      -4.05,
+      220
+     ],
+     [
+      -4,
+      20
+     ]
+    ]
+   }
+  }
+ }
+]

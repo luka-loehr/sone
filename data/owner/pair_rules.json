@@ -1,0 +1,34 @@
+{
+ "about": "What the owner decided for single pairs of songs and for single songs, as the planner reads it.",
+ "pairs": [
+  {
+   "a": "2dGxjfhFXDIUX9h5ImyKkE",
+   "b": "78nx0HDJIFD5xDq2L5420Z",
+   "pair": "Sexy Bitch (feat. Akon) -> Blessings",
+   "no_voice_over_beat": true,
+   "from": "h03 S3: \"this just doesnt fit. maybe mek the other crosovver that gesang of b only starts at DIE EINS\""
+  },
+  {
+   "a": "1fVQmMgrOUnrh8KgndKGzP",
+   "b": "03D2TnaZuwlddRTh7P6Mq5",
+   "pair": "Roman d'Amour -> Good For The Soul",
+   "no_voice_over_beat": true,
+   "from": "h09 S5: \"also here NO B PVEE THE 1 always!\""
+  },
+  {
+   "a": "1XZK1B904mtFv1Ze3Rgeg2",
+   "b": "7IBqHkoP94VrgYKVns4eNz",
+   "pair": "VERLIEBT IN MICH -> FUNK DO BOUNCE (Slowed)",
+   "no_voice_over_beat": true,
+   "from": "b12, blind test 3 (sneak): \"LOVE THE ECHO AT THE GESANG. do this more often. also this is clean\"; round 4 as B's voice over A's beat, 2026-10-02: \"ah this is actually bad\""
+  }
+ ],
+ "songs": [
+  {
+   "id": "03D2TnaZuwlddRTh7P6Mq5",
+   "name": "Good For The Soul",
+   "no_voice_over_beat_as_b": true,
+   "from": "h09 S5 \"also here NO B PVEE THE 1 always!\" and n02 2026-10-01 \"doesnt fit. sounds odd. soeach is slow and old beat is to fast.\" (both with Good For The Soul as song B)"
+  }
+ ]
+}

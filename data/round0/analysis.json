@@ -1,0 +1,562 @@
+{
+ "sp:1YwWHm6Ad1fizVPaQ8nrco": {
+  "bpm": 132.0,
+  "first_beat": 0.909,
+  "key": "Cm / 5A",
+  "loud_end": 161.0,
+  "duration": 162.7
+ },
+ "sp:2dGxjfhFXDIUX9h5ImyKkE": {
+  "bpm": 130.0,
+  "first_beat": 0.927,
+  "key": "D / 10B",
+  "loud_end": 191.8,
+  "duration": 195.9
+ },
+ "sp:3LWDPEXEaLBRGNLbdcbwBR": {
+  "bpm": 127.0,
+  "first_beat": 1.038,
+  "key": "Bm / 10A",
+  "loud_end": 191.5,
+  "duration": 195.1
+ },
+ "sp:5qGIfWDRdyO67LCTqA2sEn": {
+  "bpm": 132.0,
+  "first_beat": 0.288,
+  "key": "G#m / 1A",
+  "loud_end": 200.8,
+  "duration": 203.9
+ },
+ "sp:5vXnH99Tn0qAh84SWU5sfc": {
+  "bpm": 120.0,
+  "first_beat": 0.0,
+  "key": "Em / 9A",
+  "loud_end": 234.6,
+  "duration": 238.4
+ },
+ "sp:6wPupZx0WFmkj9wnCrCUJU": {
+  "bpm": 159.0,
+  "first_beat": 0.005,
+  "key": "Gm / 6A",
+  "loud_end": 128.9,
+  "duration": 136.3
+ },
+ "sp:57508shL0obX0KUOUL8CJk": {
+  "bpm": 130.02,
+  "first_beat": 0.033,
+  "key": "A#m / 3A",
+  "loud_end": 192.2,
+  "duration": 195.7
+ },
+ "sp:0FlcmZ13DGRmscCroro9GO": {
+  "bpm": 146.0,
+  "first_beat": 1.238,
+  "key": "Cm / 5A",
+  "loud_end": 153.4,
+  "duration": 155.8
+ },
+ "mixxx:1YwWHm6Ad1fizVPaQ8nrco": {
+  "bpm": 132.0,
+  "first_beat": 0.224,
+  "key": "Cm / 5A",
+  "loud_end": 161.0,
+  "duration": 162.7
+ },
+ "mixxx:3LWDPEXEaLBRGNLbdcbwBR": {
+  "bpm": 127.0,
+  "first_beat": 0.09,
+  "key": "Bm / 10A",
+  "loud_end": 191.5,
+  "duration": 195.1
+ },
+ "mixxx:2dGxjfhFXDIUX9h5ImyKkE": {
+  "bpm": 130.0,
+  "first_beat": 0.459,
+  "key": "D / 10B",
+  "loud_end": 191.8,
+  "duration": 195.9
+ },
+ "mixxx:6wPupZx0WFmkj9wnCrCUJU": {
+  "bpm": 159.0,
+  "first_beat": 0.375,
+  "key": "Gm / 6A",
+  "loud_end": 128.9,
+  "duration": 136.3
+ },
+ "sp:6NYbDTmstd7JSUWl2hVBqR": {
+  "bpm": 139.0,
+  "first_beat": 0.981,
+  "key": "A#m / 3A",
+  "loud_end": 226.3,
+  "duration": 229.1
+ },
+ "mixxx:5qGIfWDRdyO67LCTqA2sEn": {
+  "bpm": 132.0,
+  "first_beat": 0.286,
+  "key": "G#m / 1A",
+  "loud_end": 200.8,
+  "duration": 203.9
+ },
+ "mixxx:57508shL0obX0KUOUL8CJk": {
+  "bpm": 130.0,
+  "first_beat": 0.461,
+  "key": "C# / 3B",
+  "loud_end": 192.2,
+  "duration": 195.7
+ },
+ "mixxx:0FlcmZ13DGRmscCroro9GO": {
+  "bpm": 146.0,
+  "first_beat": 0.004,
+  "key": "Fm / 4A",
+  "loud_end": 153.4,
+  "duration": 155.8
+ },
+ "mixxx:5vXnH99Tn0qAh84SWU5sfc": {
+  "bpm": 120.0,
+  "first_beat": 0.238,
+  "key": "G / 9B",
+  "loud_end": 234.6,
+  "duration": 238.4
+ },
+ "sp:78nx0HDJIFD5xDq2L5420Z": {
+  "bpm": 130.0,
+  "first_beat": 0.255,
+  "key": "Bm / 10A",
+  "loud_end": 214.2,
+  "duration": 219.7
+ },
+ "sp:6N185ACZ5M6TYngUuOPpoW": {
+  "bpm": 181.97,
+  "first_beat": 0.0,
+  "key": "A# / 6B",
+  "loud_end": 110.8,
+  "duration": 110.8
+ },
+ "sp:7gHcMwqOmD1aEUfEjsz0MO": {
+  "bpm": 145.39,
+  "first_beat": 1.12,
+  "key": "Am / 8A",
+  "loud_end": 222.9,
+  "duration": 226.2
+ },
+ "sp:6WhwHYd38f4ZB2CefpDgLo": {
+  "bpm": 101.0,
+  "first_beat": 0.0,
+  "key": "Dm / 7A",
+  "loud_end": 152.3,
+  "duration": 153.0
+ },
+ "sp:5nEdwtSv0qqeE0l4o1lR4q": {
+  "bpm": 192.0,
+  "first_beat": 0.213,
+  "key": "Cm / 5A",
+  "loud_end": 240.6,
+  "duration": 243.9
+ },
+ "mixxx:6NYbDTmstd7JSUWl2hVBqR": {
+  "bpm": 139.0,
+  "first_beat": 0.106,
+  "key": "A#m / 3A",
+  "loud_end": 226.3,
+  "duration": 229.1
+ },
+ "mixxx:6N185ACZ5M6TYngUuOPpoW": {
+  "bpm": 90.67,
+  "first_beat": 0.459,
+  "key": "Gm / 6A",
+  "loud_end": 110.8,
+  "duration": 110.8
+ },
+ "sp:2igwFfvr1OAGX9SKDCPBwO": {
+  "bpm": 173.31,
+  "first_beat": 0.72,
+  "key": "F# / 2B",
+  "loud_end": 273.6,
+  "duration": 276.9
+ },
+ "sp:5Uc37Y6FijZcM538PqqkWd": {
+  "bpm": 126.02,
+  "first_beat": 1.179,
+  "key": "Em / 9A",
+  "loud_end": 220.7,
+  "duration": 224.2
+ },
+ "mixxx:78nx0HDJIFD5xDq2L5420Z": {
+  "bpm": 130.0,
+  "first_beat": 0.248,
+  "key": "D / 10B",
+  "loud_end": 214.2,
+  "duration": 219.7
+ },
+ "mixxx:6WhwHYd38f4ZB2CefpDgLo": {
+  "bpm": 101.0,
+  "first_beat": 0.005,
+  "key": "Gm / 6A",
+  "loud_end": 152.3,
+  "duration": 153.0
+ },
+ "sp:3lXbHd0EoryoQh3vpevNEP": {
+  "bpm": 124.0,
+  "first_beat": 1.471,
+  "key": "D# / 5B",
+  "loud_end": 225.4,
+  "duration": 227.9
+ },
+ "mixxx:7gHcMwqOmD1aEUfEjsz0MO": {
+  "bpm": 145.42,
+  "first_beat": 0.301,
+  "key": "C / 8B",
+  "loud_end": 222.9,
+  "duration": 226.2
+ },
+ "mixxx:5nEdwtSv0qqeE0l4o1lR4q": {
+  "bpm": 96.0,
+  "first_beat": 0.217,
+  "key": "Cm / 5A",
+  "loud_end": 240.6,
+  "duration": 243.9
+ },
+ "sp:3vkQ5DAB1qQMYO4Mr9zJN6": {
+  "bpm": 119.21,
+  "first_beat": 0.75,
+  "key": "Dm / 7A",
+  "loud_end": 279.0,
+  "duration": 292.6
+ },
+ "sp:0ByMNEPAPpOR5H69DVrTNy": {
+  "bpm": 122.7,
+  "first_beat": 0.993,
+  "key": "F#m / 11A",
+  "loud_end": 260.0,
+  "duration": 267.1
+ },
+ "mixxx:5Uc37Y6FijZcM538PqqkWd": {
+  "bpm": 126.0,
+  "first_beat": 0.211,
+  "key": "Em / 9A",
+  "loud_end": 220.7,
+  "duration": 224.2
+ },
+ "mixxx:2igwFfvr1OAGX9SKDCPBwO": {
+  "bpm": 86.65,
+  "first_beat": 0.028,
+  "key": "F# / 2B",
+  "loud_end": 273.6,
+  "duration": 276.9
+ },
+ "mixxx:3lXbHd0EoryoQh3vpevNEP": {
+  "bpm": 124.0,
+  "first_beat": 0.019,
+  "key": "G# / 4B",
+  "loud_end": 225.4,
+  "duration": 227.9
+ },
+ "mixxx:0ByMNEPAPpOR5H69DVrTNy": {
+  "bpm": 122.7,
+  "first_beat": 0.015,
+  "key": "F#m / 11A",
+  "loud_end": 260.0,
+  "duration": 267.1
+ },
+ "mixxx:3vkQ5DAB1qQMYO4Mr9zJN6": {
+  "bpm": 119.08,
+  "first_beat": 0.254,
+  "key": "Dm / 7A",
+  "loud_end": 279.0,
+  "duration": 292.6
+ },
+ "sp:7ks6AZmFcm3Y6PGGxGSmlB": {
+  "bpm": 130.01,
+  "first_beat": 1.457,
+  "key": "D# / 5B",
+  "loud_end": 193.7,
+  "duration": 194.8
+ },
+ "sp:3NuK5xMlSlB6K2Qp16zf3h": {
+  "bpm": 105.0,
+  "first_beat": 0.977,
+  "key": "D / 10B",
+  "loud_end": 219.0,
+  "duration": 222.7
+ },
+ "sp:1lEIT08AUU67qef6MkKAKx": {
+  "bpm": 173.0,
+  "first_beat": 0.992,
+  "key": "Cm / 5A",
+  "loud_end": 248.5,
+  "duration": 248.6
+ },
+ "mixxx:7ks6AZmFcm3Y6PGGxGSmlB": {
+  "bpm": 130.0,
+  "first_beat": 0.072,
+  "key": "D# / 5B",
+  "loud_end": 193.7,
+  "duration": 194.8
+ },
+ "mixxx:3NuK5xMlSlB6K2Qp16zf3h": {
+  "bpm": 105.0,
+  "first_beat": 0.106,
+  "key": "D / 10B",
+  "loud_end": 219.0,
+  "duration": 222.7
+ },
+ "mixxx:1lEIT08AUU67qef6MkKAKx": {
+  "bpm": 86.5,
+  "first_beat": 0.323,
+  "key": "Cm / 5A",
+  "loud_end": 248.5,
+  "duration": 248.6
+ },
+ "sp:5ihq4qbjaO2r5Ga9aGlsMj": {
+  "bpm": 120.0,
+  "first_beat": 1.5,
+  "key": "Am / 8A",
+  "loud_end": 161.2,
+  "duration": 164.0
+ },
+ "sp:11mwFrKvLXCbcVGNxffGyP": {
+  "bpm": 175.93,
+  "first_beat": 0.0,
+  "key": "Fm / 4A",
+  "loud_end": 214.0,
+  "duration": 217.6
+ },
+ "sp:03D2TnaZuwlddRTh7P6Mq5": {
+  "bpm": 127.02,
+  "first_beat": 0.877,
+  "key": "Fm / 4A",
+  "loud_end": 185.8,
+  "duration": 188.4
+ },
+ "sp:1XhItJSBxL5yKh0V0ymg6D": {
+  "bpm": 124.02,
+  "first_beat": 0.242,
+  "key": "G# / 4B",
+  "loud_end": 189.4,
+  "duration": 193.9
+ },
+ "sp:0ua0Go4NN4Td7l0Zre6Ce3": {
+  "bpm": 180.98,
+  "first_beat": 1.299,
+  "key": "Bm / 10A",
+  "loud_end": 233.3,
+  "duration": 237.5
+ },
+ "sp:7yoqSltRmGVlJF34OdLyZG": {
+  "bpm": 184.0,
+  "first_beat": 0.98,
+  "key": "Dm / 7A",
+  "loud_end": 145.6,
+  "duration": 151.3
+ },
+ "sp:3B4etxytImrRKQgV3XHjnR": {
+  "bpm": 140.0,
+  "first_beat": 0.65,
+  "key": "A#m / 3A",
+  "loud_end": 179.4,
+  "duration": 185.5
+ },
+ "mixxx:5ihq4qbjaO2r5Ga9aGlsMj": {
+  "bpm": 120.0,
+  "first_beat": 0.26,
+  "key": "Am / 8A",
+  "loud_end": 161.2,
+  "duration": 164.0
+ },
+ "mixxx:03D2TnaZuwlddRTh7P6Mq5": {
+  "bpm": 127.0,
+  "first_beat": 0.14,
+  "key": "Fm / 4A",
+  "loud_end": 185.8,
+  "duration": 188.4
+ },
+ "sp:3U3Ff8ZvL6oEu1r98gCCWW": {
+  "bpm": 197.99,
+  "first_beat": 0.327,
+  "key": "Bm / 10A",
+  "loud_end": 240.9,
+  "duration": 247.0
+ },
+ "mixxx:1XhItJSBxL5yKh0V0ymg6D": {
+  "bpm": 124.03,
+  "first_beat": 0.234,
+  "key": "G# / 4B",
+  "loud_end": 189.4,
+  "duration": 193.9
+ },
+ "mixxx:11mwFrKvLXCbcVGNxffGyP": {
+  "bpm": 87.95,
+  "first_beat": 0.334,
+  "key": "G# / 4B",
+  "loud_end": 214.0,
+  "duration": 217.6
+ },
+ "mixxx:7yoqSltRmGVlJF34OdLyZG": {
+  "bpm": 92.0,
+  "first_beat": 0.039,
+  "key": "Dm / 7A",
+  "loud_end": 145.6,
+  "duration": 151.3
+ },
+ "sp:0I4cfb7ATp8pC2w6OKk8al": {
+  "bpm": 120.05,
+  "first_beat": 1.417,
+  "key": "D / 10B",
+  "loud_end": 153.7,
+  "duration": 155.4
+ },
+ "sp:4v5kAh2wWyCSuKuhMJK8u6": {
+  "bpm": 104.98,
+  "first_beat": 0.0,
+  "key": "Cm / 5A",
+  "loud_end": 220.1,
+  "duration": 220.6
+ },
+ "mixxx:3B4etxytImrRKQgV3XHjnR": {
+  "bpm": 140.0,
+  "first_beat": 0.007,
+  "key": "A#m / 3A",
+  "loud_end": 179.4,
+  "duration": 185.5
+ },
+ "mixxx:0ua0Go4NN4Td7l0Zre6Ce3": {
+  "bpm": 90.5,
+  "first_beat": 0.657,
+  "key": "F#m / 11A",
+  "loud_end": 233.3,
+  "duration": 237.5
+ },
+ "sp:6dRVOzSxLqRdqUjc9mctGg": {
+  "bpm": 129.5,
+  "first_beat": 0.0,
+  "key": "G#m / 1A",
+  "loud_end": 208.7,
+  "duration": 213.4
+ },
+ "sp:6yozbutc2tMBfX958yjea7": {
+  "bpm": 175.31,
+  "first_beat": 0.337,
+  "key": "B / 1B",
+  "loud_end": 186.7,
+  "duration": 190.0
+ },
+ "sp:0hkR93a0LriV2CQUhSXw3h": {
+  "bpm": 155.4,
+  "first_beat": 0.298,
+  "key": "Gm / 6A",
+  "loud_end": 174.1,
+  "duration": 186.1
+ },
+ "mixxx:3U3Ff8ZvL6oEu1r98gCCWW": {
+  "bpm": 99.0,
+  "first_beat": 0.038,
+  "key": "F#m / 11A",
+  "loud_end": 240.9,
+  "duration": 247.0
+ },
+ "sp:1fVQmMgrOUnrh8KgndKGzP": {
+  "bpm": 125.0,
+  "first_beat": 0.513,
+  "key": "Cm / 5A",
+  "loud_end": 166.0,
+  "duration": 171.2
+ },
+ "mixxx:0I4cfb7ATp8pC2w6OKk8al": {
+  "bpm": 119.28,
+  "first_beat": 0.002,
+  "key": "D / 10B",
+  "loud_end": 153.7,
+  "duration": 155.4
+ },
+ "mixxx:4v5kAh2wWyCSuKuhMJK8u6": {
+  "bpm": 104.98,
+  "first_beat": 0.27,
+  "key": "Cm / 5A",
+  "loud_end": 220.1,
+  "duration": 220.6
+ },
+ "sp:3tyPOhuVnt5zd5kGfxbCyL": {
+  "bpm": 128.0,
+  "first_beat": 0.413,
+  "key": "Cm / 5A",
+  "loud_end": 240.6,
+  "duration": 242.7
+ },
+ "mixxx:6yozbutc2tMBfX958yjea7": {
+  "bpm": 191.0,
+  "first_beat": 0.042,
+  "key": "B / 1B",
+  "loud_end": 186.7,
+  "duration": 190.0
+ },
+ "sp:2aI21FnmY7TJVKeMaoQZ0t": {
+  "bpm": 116.99,
+  "first_beat": 0.651,
+  "key": "Fm / 4A",
+  "loud_end": 214.9,
+  "duration": 223.1
+ },
+ "mixxx:1fVQmMgrOUnrh8KgndKGzP": {
+  "bpm": 125.0,
+  "first_beat": 0.268,
+  "key": "Cm / 5A",
+  "loud_end": 166.0,
+  "duration": 171.2
+ },
+ "mixxx:6dRVOzSxLqRdqUjc9mctGg": {
+  "bpm": 86.33,
+  "first_beat": 0.105,
+  "key": "G#m / 1A",
+  "loud_end": 208.7,
+  "duration": 213.4
+ },
+ "mixxx:0hkR93a0LriV2CQUhSXw3h": {
+  "bpm": 155.39,
+  "first_beat": 0.296,
+  "key": "Gm / 6A",
+  "loud_end": 174.1,
+  "duration": 186.1
+ },
+ "sp:5cjRF0yXxYvqzmJfUbq9AW": {
+  "bpm": 197.21,
+  "first_beat": 0.075,
+  "key": "Gm / 6A",
+  "loud_end": 244.1,
+  "duration": 258.0
+ },
+ "sp:6czM6UMQD9qE5GAUp68oud": {
+  "bpm": 134.01,
+  "first_beat": 0.194,
+  "key": "A# / 6B",
+  "loud_end": 243.3,
+  "duration": 248.1
+ },
+ "mixxx:3tyPOhuVnt5zd5kGfxbCyL": {
+  "bpm": 128.0,
+  "first_beat": 0.405,
+  "key": "Cm / 5A",
+  "loud_end": 240.6,
+  "duration": 242.7
+ },
+ "mixxx:2aI21FnmY7TJVKeMaoQZ0t": {
+  "bpm": 116.97,
+  "first_beat": 0.122,
+  "key": "Fm / 4A",
+  "loud_end": 214.9,
+  "duration": 223.1
+ },
+ "mixxx:5cjRF0yXxYvqzmJfUbq9AW": {
+  "bpm": 98.6,
+  "first_beat": 0.074,
+  "key": "Cm / 5A",
+  "loud_end": 244.1,
+  "duration": 258.0
+ },
+ "mixxx:6czM6UMQD9qE5GAUp68oud": {
+  "bpm": 133.98,
+  "first_beat": 0.18,
+  "key": "Fm / 4A",
+  "loud_end": 243.3,
+  "duration": 248.1
+ }
+}

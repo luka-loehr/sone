@@ -1,0 +1,22 @@
+\begin{table*}[t]
+\centering
+\caption{Training, GPU teacher-distillation, validation, and human-audited evaluation datasets across all four organs. Zero audio frames are retained in model checkpoints or repository artifacts.}
+\label{tab:datasets}
+\footnotesize
+\setlength{\tabcolsep}{4.0pt}
+\resizebox{\linewidth}{!}{\begin{tabular}{@{}llllr@{}}
+\toprule
+Organ & Dataset / Split & Domain \& Supervision & Resolution & Scale \\
+\midrule
+\op{Cortex} \& \op{Cingulate} & \op{sone-sim} train / held-out \op{val} & Rule + perturbed transitions ($60$ tracks) + $50\%$ GPU counterfactuals & Beat ($80+128$ tok) & $25{,}962$ tr / $5{,}707$ val \\
+\op{Cortex} \& \op{Cingulate} & Human-audited \op{owner.jsonl} & Creator blind ratings (101 good / 41 bad, 30 defect tags) & Beat + audio metrics & 142 mixes \\
+\midrule
+\op{Cochlea} (\op{v1/v2/Pro}) & MUSDB18-HQ~\citep{MUSDB18HQ} & Uncompressed studio 4-stem multitracks & $44.1$\,kHz stereo & $138$ tr / $12$ val \\
+\op{Cochlea} (\op{v2/Pro}) & CC Modern Teacher Distillation & \op{HTDemucs-ft}~\citep{rouard2023hybrid} on MTG-Jamendo~\citep{bogdanov2019mtg} \& SDD~\citep{manco2023song} & $44.1$\,kHz $48$\,s 4-stem & $1{,}101$ clips ($2\times 550$) \\
+\op{Cochlea} (Eval) & Broadcast residual multitracks & Leak-free stems ($\hat{s}_o = x - \sum \hat{s}_m$); $6$ strictly unseen test songs & $44.1$\,kHz stereo & $6$ tr / $6$ held-out \\
+\midrule
+\op{Tympanum} (\op{v1/v2}) & Broadcast 7-head structure & Beats, downbeats, vocals, breaths, 8-bar phrases, 24 keys, cents & $50$\,Hz + track & $9$ tr / $3$ held-out \\
+\op{Tympanum} (\op{v2/Pro}) & MUSDB18-HQ + CC stem-distilled & Exact isolated drum/vocal/bass 7-head labels + vinyl-speed equiv. & $50$\,Hz full 7-head & $584$ tr / $16$ held-out \\
+\bottomrule
+\end{tabular}}
+\end{table*}

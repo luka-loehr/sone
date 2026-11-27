@@ -1,0 +1,19 @@
+[package]
+name = "sone-wasm"
+version.workspace = true
+edition.workspace = true
+license.workspace = true
+publish.workspace = true
+description = "Planner and renderer as one WebAssembly module with a plain C interface (what a Worker loads)"
+
+[lib]
+crate-type = ["cdylib", "rlib"]
+
+[dependencies]
+anyhow.workspace = true
+serde.workspace = true
+serde_json.workspace = true
+sone-core = { path = "../sone-core" }
+sone-plan = { path = "../sone-plan" }
+sone-dsp = { path = "../sone-dsp", default-features = false }
+sone-render = { path = "../sone-render", default-features = false }

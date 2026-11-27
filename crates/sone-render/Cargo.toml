@@ -1,0 +1,25 @@
+[package]
+name = "sone-render"
+version.workspace = true
+edition.workspace = true
+license.workspace = true
+publish.workspace = true
+description = "Renders one transition from both songs' stems according to a spec"
+
+[features]
+default = ["files"]
+# FLAC stems and analysis JSON on disk, WAV output (the binary); off in the Worker.
+files = ["dep:claxon", "dep:hound", "sone-dsp/files"]
+
+[dependencies]
+anyhow.workspace = true
+serde.workspace = true
+serde_json.workspace = true
+sone-core = { path = "../sone-core" }
+sone-dsp = { path = "../sone-dsp", default-features = false }
+claxon = { version = "0.4.3", optional = true }
+hound = { version = "3.5", optional = true }
+
+[[bin]]
+name = "render"
+required-features = ["files"]

@@ -1,0 +1,242 @@
+<!doctype html>
+<html lang="de">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Sone DJ Lab · Handgebaut</title>
+<style>
+:root {
+  --bg: #0d0e12; --panel: #16181f; --panel2: #1d2029; --line: #2a2e3a; --text: #e9ebf1; --dim: #8a90a2;
+  --a: #ff8a3d; --b: #3dd6ff; --ok: #5ee39a; --star: #ffd23d; --warn: #ff5d73;
+}
+* { box-sizing: border-box; }
+body { margin: 0; background: var(--bg); color: var(--text); font: 14px/1.5 -apple-system, BlinkMacSystemFont, "Inter", system-ui, sans-serif; }
+header { position: sticky; top: 0; z-index: 5; background: rgba(13,14,18,.92); backdrop-filter: blur(10px); border-bottom: 1px solid var(--line); }
+.bar { max-width: 1100px; margin: 0 auto; padding: 12px 16px; display: flex; gap: 14px; align-items: center; flex-wrap: wrap; }
+h1 { font-size: 17px; margin: 0; }
+h1 span { color: var(--dim); font-weight: 500; }
+.spacer { flex: 1; }
+.prog { color: var(--dim); font-size: 13px; }
+.prog b { color: var(--ok); }
+a { color: var(--b); }
+main { max-width: 1100px; margin: 0 auto; padding: 16px; }
+.intro { background: var(--panel); border: 1px solid var(--line); border-radius: 14px; padding: 14px 16px; margin-bottom: 18px; color: #c9ccd6; }
+.intro b { color: var(--text); }
+.intro ul { margin: 6px 0 0; padding-left: 18px; }
+.card { background: var(--panel); border: 1px solid var(--line); border-radius: 14px; padding: 16px; margin-bottom: 18px; scroll-margin-top: 70px; }
+.card.cur { border-color: #4a5168; }
+.top { display: flex; gap: 14px; align-items: center; flex-wrap: wrap; }
+.num { font-size: 26px; font-weight: 700; color: var(--dim); width: 40px; flex: none; }
+.song { display: flex; gap: 10px; align-items: center; min-width: 0; flex: 1 1 260px; }
+.song img { width: 56px; height: 56px; border-radius: 8px; object-fit: cover; background: var(--panel2); flex: none; }
+.song .t { font-weight: 600; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.song .meta { font-size: 12px; color: var(--dim); }
+.song.a .t { color: var(--a); } .song.b .t { color: var(--b); }
+.arrow { color: var(--dim); font-size: 20px; flex: none; }
+.tech { margin: 12px 0 4px; font-weight: 600; font-size: 15px; }
+.why { color: #c9ccd6; margin-bottom: 10px; }
+.ctl { display: flex; gap: 8px; align-items: center; margin: 10px 0 6px; flex-wrap: wrap; }
+.btn { background: var(--panel2); color: var(--text); border: 1px solid var(--line); border-radius: 8px; padding: 7px 12px; font: inherit; cursor: pointer; }
+.btn.play { background: var(--text); color: var(--bg); border-color: var(--text); font-weight: 600; min-width: 92px; }
+.time { color: var(--dim); font-variant-numeric: tabular-nums; font-size: 13px; }
+canvas { width: 100%; display: block; border-radius: 10px; background: #111319; border: 1px solid var(--line); cursor: pointer; }
+.steps { margin: 10px 0 0; padding: 0; list-style: none; display: grid; gap: 4px; }
+.steps li { display: grid; grid-template-columns: 64px 1fr; gap: 10px; padding: 5px 8px; border-radius: 8px; color: #c9ccd6; cursor: pointer; }
+.steps li:hover { background: var(--panel2); }
+.steps li.on { background: var(--panel2); color: var(--text); }
+.steps li .at { color: var(--dim); font-variant-numeric: tabular-nums; font-size: 12px; padding-top: 2px; }
+.judge { border-top: 1px solid var(--line); margin-top: 14px; padding-top: 12px; }
+.stars { display: inline-flex; gap: 2px; font-size: 28px; cursor: pointer; user-select: none; vertical-align: middle; }
+.stars span { color: #3a3f4d; } .stars span.on { color: var(--star); }
+.tags { display: flex; flex-wrap: wrap; gap: 6px; margin: 10px 0 0; }
+.chip { background: var(--panel2); color: var(--text); border: 1px solid var(--line); border-radius: 999px; padding: 4px 11px; font-size: 12.5px; cursor: pointer; user-select: none; }
+.chip.good.on { background: var(--ok); color: #06210f; border-color: var(--ok); }
+.chip.bad.on { background: var(--warn); color: #2a0610; border-color: var(--warn); }
+textarea { width: 100%; margin-top: 10px; background: var(--panel2); color: var(--text); border: 1px solid var(--line); border-radius: 8px; padding: 8px 10px; font: inherit; min-height: 44px; resize: vertical; }
+.prev { margin-top: 10px; padding: 8px 10px; border-left: 3px solid var(--star); background: var(--panel2); border-radius: 0 8px 8px 0; color: #c9ccd6; font-size: 13px; }
+.prev .you { color: var(--dim); } .prev .me { margin-top: 4px; color: var(--text); }
+.saved { color: var(--ok); font-size: 12px; margin-left: 10px; opacity: 0; transition: opacity .3s; }
+.saved.on { opacity: 1; }
+.facts { display: flex; gap: 14px; flex-wrap: wrap; color: var(--dim); font-size: 12px; margin-top: 8px; }
+.facts b { color: #c9ccd6; font-weight: 500; }
+.legend { display: flex; gap: 14px; color: var(--dim); font-size: 12px; margin: 6px 0 0; flex-wrap: wrap; }
+.legend i { display: inline-block; width: 10px; height: 10px; border-radius: 2px; margin-right: 5px; vertical-align: -1px; }
+kbd { background: var(--panel2); border: 1px solid var(--line); border-radius: 4px; padding: 0 5px; font-size: 12px; }
+.sum { background: var(--panel); border: 1px solid var(--line); border-radius: 14px; padding: 14px 16px; }
+.sum pre { white-space: pre-wrap; color: #c9ccd6; font: 12.5px/1.5 ui-monospace, SFMono-Regular, Menlo, monospace; margin: 8px 0 0; }
+</style>
+</head>
+<body>
+<header><div class="bar">
+  <h1>Sone DJ Lab <span>· 10 handgebaute Übergänge</span></h1>
+  <div class="spacer"></div>
+  <div class="prog" id="prog"></div>
+  <a href="plan.html" class="prog">Plan fürs Modell</a>
+  <a href="old.html" class="prog">altes Lab</a>
+</div></header>
+<main>
+  <div class="intro" id="intro"></div>
+  <div id="list"></div>
+  <div class="sum" id="sum"></div>
+</main>
+<script>
+const GOOD = ["Gänsehaut", "Takt sitzt", "Einstieg von B passt", "Gesang sauber getrennt", "Länge passt", "klingt wie ein echter DJ"];
+const BAD = ["Takt wackelt", "zwei Stimmen gleichzeitig", "Tonarten beißen sich", "B steigt an falscher Stelle ein", "A hört an falscher Stelle auf", "zu lang", "zu kurz", "Lautstärke springt", "klingt künstlich / dünn", "Echo stört", "Energie fällt ab"];
+const LANES = [["vocals", "Gesang"], ["other", "Melodie"], ["bass", "Bass"], ["drums", "Drums"]];
+let DATA = null, J = {}, cur = 0;
+const audios = [], canvases = [];
+const $ = (s, el = document) => el.querySelector(s);
+const fmt = s => { s = Math.max(0, s); return Math.floor(s / 60) + ":" + String(Math.floor(s % 60)).padStart(2, "0"); };
+const esc = s => String(s).replace(/[&<>"]/g, c => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" }[c]));
+
+async function save(id, patch) {
+  J[id] = Object.assign(J[id] || {}, patch);
+  await fetch("/api/judge", { method: "POST", headers: { "content-type": "application/json" }, body: JSON.stringify(Object.assign({ key: "hand:" + id }, J[id])) });
+  const el = $("#saved-" + id); el.classList.add("on"); setTimeout(() => el.classList.remove("on"), 1200);
+  progress(); summary();
+}
+function progress() {
+  const n = DATA.transitions.filter(t => (J[t.id] || {}).stars).length;
+  $("#prog").innerHTML = `<b>${n}</b> / ${DATA.transitions.length} bewertet`;
+}
+function summary() {
+  const lines = DATA.transitions.map((t, i) => {
+    const j = J[t.id] || {};
+    if (!j.stars && !(j.tags || []).length && !j.note) return null;
+    return `#${i + 1} ${t.a.name} → ${t.b.name} [${t.technique}]: ${j.stars ? "★".repeat(j.stars) + "☆".repeat(5 - j.stars) : "ohne Sterne"}${(j.tags || []).length ? " · " + j.tags.join(", ") : ""}${j.note ? " · „" + j.note + "“" : ""}`;
+  }).filter(Boolean);
+  $("#sum").innerHTML = `<b>Dein Urteil bisher</b> <span class="prog">(wird automatisch gespeichert, ich lese es direkt aus)</span><pre>${lines.length ? esc(lines.join("\n")) : "Noch nichts bewertet."}</pre>`;
+}
+function uToT(t, u) { return (u - t.clip[0]) * t.bar_s; }
+function draw(i) {
+  const t = DATA.transitions[i], cv = canvases[i], au = audios[i];
+  const dpr = window.devicePixelRatio || 1, W = cv.clientWidth, H = 236;
+  if (cv.width !== W * dpr) { cv.width = W * dpr; cv.height = H * dpr; cv.style.height = H + "px"; }
+  const g = cv.getContext("2d"); g.setTransform(dpr, 0, 0, dpr, 0, 0); g.clearRect(0, 0, W, H);
+  const L = 70, R = 8, top = 22, laneH = 22, gap = 3, groupGap = 12;
+  const x = u => L + (u - t.clip[0]) / (t.clip[1] - t.clip[0]) * (W - L - R);
+  // bar lines
+  g.font = "10px -apple-system, system-ui, sans-serif"; g.textBaseline = "middle";
+  for (let u = Math.ceil(t.clip[0]); u <= t.clip[1]; u++) {
+    const strong = ((u % 4) + 4) % 4 === 0;
+    g.strokeStyle = u === 0 ? "#ffffff" : strong ? "#3a4052" : "#232733"; g.lineWidth = u === 0 ? 1.5 : 1;
+    g.beginPath(); g.moveTo(x(u), top - 4); g.lineTo(x(u), H - 4); g.stroke();
+    if (strong) { g.fillStyle = u === 0 ? "#fff" : "#6f7589"; g.textAlign = "center"; g.fillText(u === 0 ? "Die Eins" : (u > 0 ? "+" : "") + u, x(u), 9); }
+  }
+  // phases
+  (t.phases || []).forEach(p => {
+    g.fillStyle = "rgba(255,255,255,.035)"; g.fillRect(x(p.u0), top - 4, x(p.u1) - x(p.u0), H - top);
+  });
+  const lane = (deck, key, row, col) => {
+    const d = t[deck], arr = d.gain[key] || [], y0 = top + row * (laneH + gap) + (deck === "b" ? 4 * (laneH + gap) + groupGap : 0);
+    g.fillStyle = "#181b23"; g.fillRect(L, y0, W - L - R, laneH);
+    g.fillStyle = col; g.beginPath(); g.moveTo(x(d.u0), y0 + laneH);
+    let last = d.u0;
+    for (let k = 0; k < arr.length; k++) { const u = d.u0 + k * d.step_bars; if (u > t.clip[1]) break; last = u; g.lineTo(x(u), y0 + laneH - Math.min(1, arr[k]) * laneH); }
+    g.lineTo(x(last), y0 + laneH); g.closePath(); g.globalAlpha = .85; g.fill(); g.globalAlpha = 1;
+    g.fillStyle = "#8a90a2"; g.textAlign = "right"; g.fillText(LANES[row][1], L - 8, y0 + laneH / 2);
+  };
+  LANES.forEach(([k], r) => { lane("a", k, r, "#ff8a3d"); lane("b", k, r, "#3dd6ff"); });
+  g.save(); g.fillStyle = "#ff8a3d"; g.textAlign = "left"; g.font = "600 10px -apple-system, system-ui, sans-serif";
+  g.fillText("A", 4, top + 2 * (laneH + gap)); g.fillStyle = "#3dd6ff"; g.fillText("B", 4, top + 6 * (laneH + gap) + groupGap); g.restore();
+  // effects
+  (t.fx || []).forEach(f => {
+    const row = LANES.findIndex(l => l[0] === f.stem), y0 = top + row * (laneH + gap) + (f.deck === "b" ? 4 * (laneH + gap) + groupGap : 0);
+    g.strokeStyle = "#fff"; g.setLineDash([3, 3]); g.strokeRect(x(f.u0), y0 + 2, x(f.u1) - x(f.u0), laneH - 4); g.setLineDash([]);
+    g.fillStyle = "#fff"; g.textAlign = "left"; g.fillText(f.label, x(f.u0) + 4, y0 + laneH / 2);
+  });
+  // playhead
+  const px = L + (au.currentTime / t.seconds) * (W - L - R);
+  g.strokeStyle = "#5ee39a"; g.lineWidth = 2; g.beginPath(); g.moveTo(px, 14); g.lineTo(px, H - 2); g.stroke();
+}
+function tick() {
+  audios.forEach((au, i) => {
+    const t = DATA.transitions[i];
+    if (!au.paused || au._dirty) {
+      draw(i); au._dirty = false;
+      $("#time-" + t.id).textContent = fmt(au.currentTime) + " / " + fmt(t.seconds);
+      const u = t.clip[0] + au.currentTime / t.bar_s;
+      let on = -1; t.steps.forEach((s, k) => { if (u >= s.u - 0.05) on = k; });
+      document.querySelectorAll(`#steps-${t.id} li`).forEach((li, k) => li.classList.toggle("on", k === on && !au.paused));
+    }
+  });
+  requestAnimationFrame(tick);
+}
+function playFrom(i, sec) {
+  audios.forEach((a, k) => { if (k !== i) a.pause(); });
+  const au = audios[i]; if (sec != null) au.currentTime = Math.max(0, sec);
+  au.play(); setCur(i);
+}
+function setCur(i) { cur = i; document.querySelectorAll(".card").forEach((c, k) => c.classList.toggle("cur", k === i)); }
+function card(t, i) {
+  const j = J[t.id] || {}, first = uToT(t, t.first_event);
+  const el = document.createElement("div"); el.className = "card"; el.id = "card-" + t.id;
+  const song = (s, cls) => `<div class="song ${cls}"><img src="covers/${s.id}.jpg" alt=""><div style="min-width:0"><div class="t">${esc(s.name)}</div><div class="meta">${esc(s.artists)} · ${s.bpm} BPM · ${esc(s.key)}</div></div></div>`;
+  el.innerHTML = `
+    <div class="top"><div class="num">${String(i + 1).padStart(2, "0")}</div>${song(t.a, "a")}<div class="arrow">→</div>${song(t.b, "b")}</div>
+    <div class="tech">${esc(t.technique)}</div>
+    <div class="why">${esc(t.why)}</div>
+    <div class="ctl">
+      <button class="btn play" data-act="toggle">▶ Abspielen</button>
+      <button class="btn" data-act="pre">ab 8 s vor dem Übergang</button>
+      <button class="btn" data-act="one">ab „Die Eins“ −4 Takte</button>
+      <span class="time" id="time-${t.id}">0:00 / ${fmt(t.seconds)}</span>
+    </div>
+    <canvas></canvas>
+    <div class="legend"><span><i style="background:var(--a)"></i>Song A (läuft aus)</span><span><i style="background:var(--b)"></i>Song B (kommt rein)</span><span>Höhe = Lautstärke der Spur · weiße Linie = „Die Eins“ (Bass wechselt) · Zahlen = Takte</span></div>
+    <ul class="steps" id="steps-${t.id}">${t.steps.map(s => `<li data-t="${uToT(t, s.u)}"><span class="at">${fmt(uToT(t, s.u))} · ${s.u > 0 ? "+" : ""}${s.u}</span><span>${esc(s.text)}</span></li>`).join("")}</ul>
+    <div class="facts"><span>Überblendung <b>${t.overlap_s.toFixed(1)} s</b> (${t.overlap_bars} Takte)</span><span>Tempo B <b>${t.stretch_txt}</b></span><span>Takt-Versatz <b>${t.align_txt}</b></span><span>Tonarten <b>${esc(t.key_txt)}</b></span></div>
+    <div class="judge">
+      <span class="stars" data-id="${t.id}">${[1, 2, 3, 4, 5].map(n => `<span data-n="${n}" class="${j.stars >= n ? "on" : ""}">★</span>`).join("")}</span><span class="saved" id="saved-${t.id}">gespeichert</span>
+      <div class="tags">${GOOD.map(x => `<span class="chip good ${(j.tags || []).includes(x) ? "on" : ""}">${x}</span>`).join("")}${BAD.map(x => `<span class="chip bad ${(j.tags || []).includes(x) ? "on" : ""}">${x}</span>`).join("")}</div>
+      ${j.prev_note || t.answer ? `<div class="prev">${j.prev_note ? `<div class="you"><b>Deine Notiz:</b> „${esc(j.prev_note)}“</div>` : ""}${t.answer ? `<div class="me"><b>Antwort:</b> ${esc(t.answer)}</div>` : ""}</div>` : ""}
+      <textarea placeholder="Was genau war gut oder schlecht? Z. B. „immer so: erst Drums von B, dann …“">${esc(j.note || "")}</textarea>
+    </div>`;
+  const au = new Audio(t.audio); au.preload = "auto"; au._dirty = true; audios[i] = au;
+  const cv = $("canvas", el); canvases[i] = cv;
+  const btn = $(".play", el);
+  au.addEventListener("play", () => btn.textContent = "❚❚ Pause");
+  au.addEventListener("pause", () => { btn.textContent = "▶ Abspielen"; au._dirty = true; });
+  au.addEventListener("seeked", () => au._dirty = true);
+  el.addEventListener("click", e => {
+    const act = e.target.dataset && e.target.dataset.act;
+    if (act === "toggle") { au.paused ? playFrom(i) : au.pause(); }
+    if (act === "pre") playFrom(i, first - 8);
+    if (act === "one") playFrom(i, uToT(t, -4));
+    const li = e.target.closest(".steps li"); if (li) playFrom(i, parseFloat(li.dataset.t) - 1.5);
+    const st = e.target.closest(".stars span");
+    if (st) { const n = +st.dataset.n; st.parentNode.querySelectorAll("span").forEach(s => s.classList.toggle("on", +s.dataset.n <= n)); save(t.id, { stars: n }); }
+    const ch = e.target.closest(".chip");
+    if (ch) { ch.classList.toggle("on"); save(t.id, { tags: [...el.querySelectorAll(".chip.on")].map(c => c.textContent) }); }
+    setCur(i);
+  });
+  cv.addEventListener("click", e => {
+    const r = cv.getBoundingClientRect(), L = 70, R = 8;
+    const f = Math.min(1, Math.max(0, (e.clientX - r.left - L) / (r.width - L - R)));
+    playFrom(i, f * t.seconds);
+  });
+  let timer; $("textarea", el).addEventListener("input", e => { clearTimeout(timer); timer = setTimeout(() => save(t.id, { note: e.target.value }), 600); });
+  return el;
+}
+async function main() {
+  DATA = await (await fetch("hand.json?" + Date.now())).json();
+  const all = await (await fetch("/api/judgments")).json();
+  Object.keys(all).forEach(k => { if (k.startsWith("hand:")) J[k.slice(5)] = all[k]; });
+  $("#intro").innerHTML = DATA.intro;
+  DATA.transitions.forEach((t, i) => $("#list").appendChild(card(t, i)));
+  progress(); summary(); setCur(0); tick();
+  window.addEventListener("resize", () => audios.forEach(a => a._dirty = true));
+  document.addEventListener("keydown", e => {
+    if (e.target.tagName === "TEXTAREA") return;
+    const t = DATA.transitions[cur];
+    if (e.key === " ") { e.preventDefault(); audios[cur].paused ? playFrom(cur) : audios[cur].pause(); }
+    if (e.key >= "1" && e.key <= "5") { const n = +e.key; document.querySelectorAll(`#card-${t.id} .stars span`).forEach(s => s.classList.toggle("on", +s.dataset.n <= n)); save(t.id, { stars: n }); }
+    if (e.key === "j" || e.key === "k") { const n = Math.min(DATA.transitions.length - 1, Math.max(0, cur + (e.key === "j" ? 1 : -1))); audios[cur].pause(); setCur(n); $("#card-" + DATA.transitions[n].id).scrollIntoView({ behavior: "smooth" }); }
+    if (e.key === "ArrowLeft") audios[cur].currentTime -= 5;
+    if (e.key === "ArrowRight") audios[cur].currentTime += 5;
+  });
+}
+main();
+</script>
+</body>
+</html>

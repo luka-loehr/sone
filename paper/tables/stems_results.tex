@@ -1,0 +1,16 @@
+\begin{table*}[t]
+\centering
+\caption{Held-out MUSDB18-HQ ($n=12$, 60\,s stereo) separation SDR (dB), vocal-to-instrumental bleed, and single-threaded Intel Xeon CPU real-time factor ($\mathrm{RTF}$) across \textbf{Cochlea} architectures. All variants enforce exact mixture conservation ($\|\sum_{m=1}^4 \hat{s}_m - x\|_\infty < -148$\,dB; FP32-vs-FP16 max waveform deviation $\le 2.39\times 10^{-4}$, $1.67\times 10^{-4}$ on \op{Cochlea-Pro}).}
+\label{tab:stems_results}
+\footnotesize
+\setlength{\tabcolsep}{4.2pt}
+\resizebox{\linewidth}{!}{\begin{tabular}{@{}lccccccr@{}}
+\toprule
+Model (\op{cochlea.*}) & Vocals & Drums & Bass & Other & Mean SDR$\uparrow$ & Vocal leak$\downarrow$ & 1-vCPU RTF \\
+\midrule
+\op{Cochlea v1} ($4.52$\,M, $2048$-FFT, 42b, 5k) & 3.57 & 3.50 & 2.75 & 1.33 & 2.79 & -6.3\,dB & $0.13\times$ \\
+\op{Cochlea-v2-Base} ($11.61$\,M, $4096$-FFT, 64b, 30.0k) & 6.73 & 6.06 & 4.23 & 2.60 & \textbf{4.90} & -9.3\,dB & $0.40\times$ \\
+\textbf{\op{Cochlea-Pro}} ($20.07$\,M, $4096$-FFT, 64b, 37.5k) & \textbf{7.84} & \textbf{6.76} & \textbf{4.41} & \textbf{3.19} & \textbf{5.55} & \textbf{-10.8\,dB} & $0.95\times$ \\
+\bottomrule
+\end{tabular}}
+\end{table*}

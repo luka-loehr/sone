@@ -1,0 +1,303 @@
+{
+ "2026-10-01-blind3/blind:x06": {
+  "good": 1,
+  "issues": [
+   "silence_before_one"
+  ],
+  "why": "'yup also here. and why so much B's beat sneaks under A'"
+ },
+ "2026-10-01-blind3/blind:x01": {
+  "good": 1,
+  "issues": [
+   "silence_before_one"
+  ],
+  "why": "'same here ... if drums etc wouldnt fade out so hard it would be better': good, but A fades too far"
+ },
+ "2026-10-01-blind3/blind:x02": {
+  "good": 1,
+  "issues": [
+   "silence_before_one"
+  ],
+  "why": "'same here... but otherwise its fine (really smooth actually)'"
+ },
+ "2026-10-01-blind3/blind:x03": {
+  "good": 1,
+  "issues": [
+   "silence_before_one"
+  ],
+  "why": "'same here, but no issues'"
+ },
+ "2026-10-01-blind3/blind:x04": {
+  "good": 1,
+  "issues": [
+   "silence_before_one",
+   "a_melody_left_early"
+  ],
+  "why": "'good but too much silence ... melody bass and drums to zero (as mentioned 10x before)'"
+ },
+ "2026-10-01-blind3/blind:x09": {
+  "good": 1,
+  "issues": [
+   "silence_before_one",
+   "a_melody_left_early"
+  ],
+  "why": "'3 seconds of kinda nothing happening ... only a bit of bass and drums of B'"
+ },
+ "2026-10-01-blind3/blind:x10": {
+  "good": 1,
+  "issues": [],
+  "why": "'clean and no silence since A's voice is active till 1, nice'"
+ },
+ "2026-10-01-blind3/blind:x11": {
+  "good": 1,
+  "issues": [],
+  "why": "'love it' (B's voice over A's beat)"
+ },
+ "2026-10-01-blind3/blind:x12": {
+  "good": 1,
+  "issues": [
+   "a_melody_left_early"
+  ],
+  "why": "'clean as hell but melody and bass mustn't go completely down (said it 100x)'"
+ },
+ "2026-10-01-blind3/blind:x16": {
+  "good": 0,
+  "issues": [
+   "silence_before_one"
+  ],
+  "why": "'since the voice ends before 1 we got 1 sec of pure silence. that's bad'"
+ },
+ "2026-10-01-blind3/blind:x17": {
+  "good": 1,
+  "issues": [
+   "silence_before_one"
+  ],
+  "why": "'also here, but clean on the other hand'"
+ },
+ "2026-10-01-blind3/blind:x18": {
+  "good": 0,
+  "issues": [
+   "bad_pair"
+  ],
+  "why": "'the beat of B is odd in that scene, it ain't continuous. doesn't fit'"
+ },
+ "2026-10-01-blind3/blind:x19": {
+  "good": 0,
+  "issues": [
+   "wrong_recipe"
+  ],
+  "why": "'maybe vocal overlay instead of beat would have been better here. bad' (half against double tempo)"
+ },
+ "2026-10-01-blind3/blind:x20": {
+  "good": 0,
+  "issues": [
+   "b_voice_late",
+   "silence_before_one"
+  ],
+  "why": "'cringe that B's voice starts not at 1, also silence'"
+ },
+ "2026-10-01-blind3/blind:x21": {
+  "good": 0,
+  "issues": [
+   "bad_pair"
+  ],
+  "why": "'doesn't fit so good. it's just a bad pair'"
+ },
+ "2026-10-01-blind3/blind:x22": {
+  "good": 0,
+  "issues": [
+   "silence_before_one",
+   "b_voice_late"
+  ],
+  "why": "'3 seconds of silence and NO REASON TO NOT START B's VOICE AT 1'"
+ },
+ "2026-10-01-blind3/blind:x23": {
+  "good": 1,
+  "issues": [
+   "silence_before_one"
+  ],
+  "why": "'clean but same issue as everywhere with the sneak'"
+ },
+ "2026-10-01-blind3/blind:x24": {
+  "good": 1,
+  "issues": [
+   "b_voice_late"
+  ],
+  "why": "'would have been 10/10 if B's voice had started at -8 and not -6. nice that it's not the sneak'"
+ },
+ "2026-10-01-blind3/blind:x25": {
+  "good": 0,
+  "issues": [
+   "silence_before_one",
+   "b_voice_late"
+  ],
+  "why": "'same issue with the sneak as always and B's voice does not start at 1'"
+ },
+ "2026-10-01-blind3/blind:x26": {
+  "good": 0,
+  "issues": [
+   "wrong_recipe"
+  ],
+  "why": "'maybe B's voice over A's beat would have been better'"
+ },
+ "2026-10-01-blind3/blind:x27": {
+  "good": 1,
+  "issues": [
+   "silence_before_one"
+  ],
+  "why": "'nice but the sneak issue'"
+ },
+ "2026-10-01-blind3/blind:x28": {
+  "good": 1,
+  "issues": [
+   "voice_cut_in_word"
+  ],
+  "why": "'kind of ending abrupt since A is mid in singing, but works beat wise'"
+ },
+ "2026-10-01-blind3/blind:x29": {
+  "good": 0,
+  "issues": [
+   "wrong_recipe",
+   "polyrhythm_layering"
+  ],
+  "why": "'HORRIBLE. B's beat way too fast, maybe a voice overlay' (73 against 151 BPM, beats layered)"
+ },
+ "2026-10-01-blind3/blind:x30": {
+  "good": 1,
+  "issues": [
+   "abrupt_stem_exit"
+  ],
+  "why": "'there's a cut in A at -8 ... otherwise clean as hell, no issues' (A's bed replayed over a break)"
+ },
+ "2026-10-01-blind3/blind:x31": {
+  "good": 1,
+  "issues": [],
+  "why": "'good'"
+ },
+ "2026-10-01-blind3/blind:x33": {
+  "good": 1,
+  "issues": [],
+  "why": "'it's ok'"
+ },
+ "2026-10-01-blind3/blind:x34": {
+  "good": 0,
+  "issues": [
+   "silence_before_one"
+  ],
+  "why": "'nice but 1 sec of silence. fix this'"
+ },
+ "2026-10-01-blind3/blind:x35": {
+  "good": 1,
+  "issues": [],
+  "why": "'it's ok but not my favourite mix'"
+ },
+ "2026-10-01-blind3/blind:x36": {
+  "good": 0,
+  "issues": [
+   "a_melody_left_early",
+   "b_voice_late"
+  ],
+  "why": "'melody bass and drums shouldn't go to zero; B's voice started mid word'"
+ },
+ "2026-10-01-blind3/blind:x37": {
+  "good": 1,
+  "issues": [],
+  "why": "'clean as hell' (B's voice over A's beat)"
+ },
+ "2026-10-01-blind3/blindnew:b01": {
+  "good": 1,
+  "issues": [],
+  "why": "'is ok'"
+ },
+ "2026-10-01-blind3/blindnew:b02": {
+  "good": 1,
+  "issues": [],
+  "why": "'nice one'"
+ },
+ "2026-10-01-blind3/blindnew:b03": {
+  "good": 1,
+  "issues": [
+   "wrong_recipe"
+  ],
+  "why": "'it's ok but why always B's beat sneaking under A' (wants variety)"
+ },
+ "2026-10-01-blind3/blindnew:b04": {
+  "good": 1,
+  "issues": [],
+  "why": "'is ok'"
+ },
+ "2026-10-01-blind3/blindnew:b05": {
+  "good": 1,
+  "issues": [],
+  "why": "'yeah.... works'"
+ },
+ "2026-10-01-blind3/blindnew:b06": {
+  "good": 1,
+  "issues": [],
+  "why": "'works no issues, but why always the sneak'"
+ },
+ "2026-10-01-blind3/blindnew:b07": {
+  "good": 1,
+  "issues": [],
+  "why": "'clean as hell' (B's voice over A's beat)"
+ },
+ "2026-10-01-blind3/blindnew:b08": {
+  "good": 1,
+  "issues": [],
+  "why": "'nice'"
+ },
+ "2026-10-01-blind3/blindnew:b09": {
+  "good": 1,
+  "issues": [],
+  "why": "'nice but a bit uncreative since the sneak'"
+ },
+ "2026-10-01-blind3/blindnew:b10": {
+  "good": 1,
+  "issues": [
+   "b_voice_late"
+  ],
+  "why": "'would be cleaner if B was cropped so the voice started at the 1 and not 1.5 s after'"
+ },
+ "2026-10-01-blind3/blindnew:b11": {
+  "good": 1,
+  "issues": [
+   "a_melody_left_early"
+  ],
+  "why": "'try in the sneak: A's melody, bass and drums not fade out like the voice'"
+ },
+ "2026-10-01-blind3/blindnew:b12": {
+  "good": 1,
+  "issues": [
+   "a_melody_left_early"
+  ],
+  "why": "'LOVE THE ECHO ... if melody and bass of A faded but not completely out (50 %) it would be better'"
+ },
+ "2026-10-02-blind4/blindnew:b12": {
+  "good": 0,
+  "issues": [
+   "bad_pair"
+  ],
+  "why": "'ah this is actually bad' (round 4 as B's voice over A's beat; the round 3 sneak of this pair was loved)"
+ },
+ "2026-10-02-blind4/blindnew:b10": {
+  "good": 0,
+  "issues": [
+   "voice_cut_in_word"
+  ],
+  "why": "'the position where b starts is worse than before. its in the mid of the singer saying a word cut in' (B's voice comes in mid-word)"
+ },
+ "2026-10-02-blind4/blind:x25": {
+  "good": 0,
+  "issues": [
+   "voice_cut_in_word"
+  ],
+  "why": "'also cuts in while in speak. if it started one sec before ... it would actually fit' (B's voice comes in mid-word)"
+ },
+ "2026-10-02-blind4/blind:x28": {
+  "good": 0,
+  "issues": [
+   "voice_cut_in_word"
+  ],
+  "why": "'starts while hes saying a word so cut into the word. otherwise its fine.' (B's voice comes in mid-word)"
+ }
+}

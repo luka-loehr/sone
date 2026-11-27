@@ -1,0 +1,20 @@
+target/
+target-*/
+/out/
+/work/
+*.wav
+*.flac
+*.mp3
+*.opus
+*.m4a
+*.safetensors
+paper/build_pages/
+paper/*.aux
+paper/*.bbl
+paper/*.blg
+paper/*.log
+paper/*.out
+.DS_Store
+__pycache__/
+# songs and stems stay on atlas (copyright, size); see docs/DATA.md
+/local/

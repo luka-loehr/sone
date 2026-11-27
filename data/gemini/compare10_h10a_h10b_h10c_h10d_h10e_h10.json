@@ -1,0 +1,224 @@
+{
+ "results": {
+  "h10a": {
+   "scores": [
+    5.5,
+    5.25,
+    6.25,
+    5.5
+   ],
+   "mean_rank": 3.75,
+   "ranks": [
+    2,
+    3,
+    5,
+    5
+   ],
+   "notes": [
+    [
+     "Song A's vocal on 'brand new' is looped into a 16th-note stutter roll starting around 19s, stopping cleanly as Song B drops in at 21s.",
+     "The stutter loop is static and dry, lacking an energetic filter sweep or riser to build into the drop."
+    ],
+    [
+     "An abrupt vocal roll on 'brand' loops mechanically across the transition window until Song B drops at 23.5s.",
+     "Unnatural, jarring vocal stutter breaks phrasing and musicality."
+    ],
+    [
+     "An 8-beat stutter loop on 'bra' runs clumsily on top of Song B's incoming groove before stopping.",
+     "Stutter loop clashes awkwardly with Song B's drums and feels unmusical."
+    ],
+    [
+     "Song A's vocal hook is abruptly interrupted by a repetitive, mechanical stutter loop on the word 'brand' leading into the 24s drop.",
+     "Robotic vocal stutter cuts off the iconic hook mid-phrase for four seconds like a CD skip."
+    ]
+   ]
+  },
+  "h10b": {
+   "scores": [
+    5.5,
+    5.0,
+    6.0,
+    5.5
+   ],
+   "mean_rank": 3.75,
+   "ranks": [
+    4,
+    6,
+    2,
+    3
+   ],
+   "notes": [
+    [
+     "Song A is simply faded down over several seconds starting at 20s while Song B enters, creating a brief but messy overlap of clashing tempos and keys.",
+     "Rhythmic and harmonic clash during a raw volume crossfade without EQ separation."
+    ],
+    [
+     "Song A's outgoing phrase runs directly into Song B's drop, creating a muddy, discordant overlap across conflicting tempos.",
+     "Dissonant key clash and rhythmic trainwreck during the drop."
+    ],
+    [
+     "Song A is crossfaded under Song B with a gentle filter sweep and reverb decay across the 20-second mark.",
+     "Slight harmonic friction during the brief overlap before Song A fades out."
+    ],
+    [
+     "Song A's hook plays out over Song B's rising elements, but a stray ad-lib gets sliced in half at the 24s downbeat.",
+     "Truncated vocal snippet ('Let's hear it for...') starts just before the drop and gets awkwardly cut off."
+    ]
+   ]
+  },
+  "h10c": {
+   "scores": [
+    3.75,
+    3.5,
+    4.75,
+    3.75
+   ],
+   "mean_rank": 4.75,
+   "ranks": [
+    6,
+    5,
+    6,
+    2
+   ],
+   "notes": [
+    [
+     "Song A plays at full volume through the vocal hook until Song B enters at 20s, resulting in a chaotic beat trainwreck until Song A hard-cuts mid-phrase around 25s.",
+     "Severe beat trainwreck and key clash followed by an abrupt, unmusical hard cut."
+    ],
+    [
+     "Song A bleeds past the transition point, causing an awkward 87 vs 130 BPM collision as the house beat drops.",
+     "Unsynced tempo and dissonant key clash over the drop."
+    ],
+    [
+     "Song A and Song B overlap simultaneously at full volume between 17 and 24 seconds with clashing tempos and keys.",
+     "Severe harmonic dissonance and muddy polyrhythmic clash between both full tracks."
+    ],
+    [
+     "Song A's vocal phrase completes over a building riser, but the next vocal ad-lib is clipped off right as Song B drops at 24s.",
+     "Truncated vocal snippet ('Let's hear it for...') starts just before the drop and gets awkwardly cut off."
+    ]
+   ]
+  },
+  "h10d": {
+   "scores": [
+    6.0,
+    5.75,
+    6.75,
+    6.0
+   ],
+   "mean_rank": 3.25,
+   "ranks": [
+    1,
+    2,
+    4,
+    6
+   ],
+   "notes": [
+    [
+     "Song A's vocal 'brand new' goes into a fast stutter roll treated with a high-pass filter sweep that builds tension and drops seamlessly on beat one of Song B.",
+     "none"
+    ],
+    [
+     "The vocal is abruptly cut on 'brand' into a dry, mechanical beat-repeat stutter from 20s to 23s before the house drop.",
+     "Abrasive, robotic vocal stutter cuts the lyric mid-phrase and disrupts flow."
+    ],
+    [
+     "Song A enters an 8-beat vocal stutter loop on 'bra' that acts as a build-up before dropping into Song B at 23 seconds.",
+     "Robotic vocal stutter cuts off an iconic lyric and sounds grating."
+    ],
+    [
+     "Song A's vocal hook is abruptly interrupted by a repetitive, mechanical stutter loop on the word 'brand' leading into the 24s drop.",
+     "Robotic vocal stutter cuts off the iconic hook mid-phrase for four seconds like a CD skip."
+    ]
+   ]
+  },
+  "h10e": {
+   "scores": [
+    8.25,
+    7.75,
+    8.25,
+    8.25
+   ],
+   "mean_rank": 1.5,
+   "ranks": [
+    3,
+    1,
+    1,
+    1
+   ],
+   "notes": [
+    [
+     "Song A's low end is cut at 20s while its vocals trail off in a high-passed reverb wash as Song B's groove takes over.",
+     "Minor harmonic dissonance between the lingering vocal wash and Song B's chord progression."
+    ],
+    [
+     "Empire State of Mind echoes out smoothly on 'brand new' with a lush reverb tail, clearing the space for the house track to drop cleanly on the downbeat.",
+     "none"
+    ],
+    [
+     "Song A's hook dissolves into a lush delay and reverb wash, allowing Song B's groove to punch through cleanly.",
+     "none"
+    ],
+    [
+     "Song A's acapella hook finishes cleanly over an incoming synth riser before Song B's house drop hits at 24s.",
+     "none"
+    ]
+   ]
+  },
+  "h10": {
+   "scores": [
+    5.0,
+    4.75,
+    5.75,
+    4.75
+   ],
+   "mean_rank": 4.0,
+   "ranks": [
+    5,
+    4,
+    3,
+    4
+   ],
+   "notes": [
+    [
+     "Song A is low-pass filtered around 20s while Song B comes in, leaving a muddy, muffled hip-hop kick clashing heavily against the house kick.",
+     "Muddy low-end clash caused by low-passing Song A instead of cutting its bass."
+    ],
+    [
+     "Song A's vocal and piano continue past 20s, sloppily clashing in tempo and key over Song B's house drop from 23.5s to 25s.",
+     "Severe harmonic and rhythmic clash between the 87 BPM ballad and 130 BPM house drop."
+    ],
+    [
+     "Song A's vocal continues over Song B's intro beat until abruptly cutting off mid-phrase at 24 seconds.",
+     "Abrupt hard cut of the vocal mid-phrase at 24 seconds."
+    ],
+    [
+     "Song A's vocal hook finishes over the riser, but the subsequent vocal ad-lib is abruptly choked off right on the 24s drop.",
+     "Truncated vocal snippet ('Let's hear it for...') starts just before the drop and gets awkwardly cut off."
+    ]
+   ]
+  }
+ },
+ "tips": [
+  [
+   "h10d",
+   "Version T is the most deliberate and professional open-format transition. Instead of forcing an impossible mix between clashing tempos and keys, it turns Song A's vocal hook into an energetic 16th-note stutter build with a rising high-pass filter, clearing out the low end and dropping Song B cleanly on the one.",
+   "Layer a subtle white-noise riser sweep underneath the stutter roll and add a small crash or impact sample on the downbeat of Song B to maximize the drop energy."
+  ],
+  [
+   "h10e",
+   "Version U executes a textbook professional DJ echo-freeze on the lyrical resolution ('brand new'), allowing the lush reverb tail to decay naturally into the space so Song B's 130 BPM drop lands with full punch, completely eliminating harmonic discord and tempo collisions.",
+   "Layer a subtle high-pass filter sweep or white-noise riser on the decaying reverb tail from 21s to 23.5s to build even more anticipation into the drop."
+  ],
+  [
+   "h10e",
+   "Version T uses a perfectly timed spatial echo and reverb wash on the hook, dissolving the harmonic and tempo clash into an atmospheric transition that lets Song B take over with full driving energy.",
+   "Apply a slight high-pass filter sweep to Song A's tail right before the delay freeze to completely clear out low-mid frequencies for Song B's bassline."
+  ],
+  [
+   "h10e",
+   "Version P lets the full melodic line ('inspire you') breathe and conclude naturally over Song B's rising synth tension, then leaves a clean beat of silence/reverb before dropping the 130 BPM house groove on the one. It avoids both the amateur vocal stutter of Q/T and the sloppy ad-lib clipping heard in R/S/U.",
+   "Add a filtered 4-beat drum roll or rhythmic percussion build in the incoming tempo during the final bar to help the dancefloor anticipate the jump from 87 to 130 BPM."
+  ]
+ ]
+}

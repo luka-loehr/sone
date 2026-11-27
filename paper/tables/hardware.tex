@@ -1,0 +1,21 @@
+\begin{table*}[t]
+\centering
+\caption{Complete four-generation NVIDIA Tensor Core GPU inventory (Turing, Ampere, Ada Lovelace, Blackwell) and single-threaded CPU production host used across training, teacher distillation, and inference benchmarking. CU: Google Colab Compute Units.}
+\label{tab:hardware}
+\footnotesize
+\setlength{\tabcolsep}{3.8pt}
+\resizebox{\linewidth}{!}{\begin{tabular}{@{}lllllr@{}}
+\toprule
+Role & Accelerator / Host & Arch \& Memory & Precision \& Software Stack & Workload & Throughput / Rate \\
+\midrule
+\op{Cochlea-Pro} + Teacher & NVIDIA RTX PRO 6000 Blackwell (\op{G4} \#1) & \op{sm\_120}, 96\,GB GDDR7 & BF16 + \op{torch.compile}, CUDA 13.0 & $551$-song distill + $20.1$\,M \op{bs=32} & 1.17\,st/s ($37.5$\,ex/s) ($11.40$\,CU/h) \\
+\op{Cochlea-v2-Base} + Teacher & NVIDIA RTX PRO 6000 Blackwell (\op{G4} \#2) & \op{sm\_120}, 96\,GB GDDR7 & BF16 + \op{torch.compile} (81.8\,GB peak) & $550$-song distill + $11.6$\,M \op{bs=48} & 0.93\,st/s ($44.8$\,ex/s) ($11.40$\,CU/h) \\
+CUDA scaling sweep & NVIDIA A100-SXM4-40GB & \op{sm\_80}, 40\,GB HBM2e & BF16 + TF32 + cuFFT & 4-organ batch/kernel scaling bench & $6.73$\,CU/h \\
+\op{Cortex/Cingulate v3} + \op{Tympanum v2} & NVIDIA L4 (12 Xeon vCPU) & \op{sm\_89}, 24\,GB GDDR6 & BF16 + FlashAttention SDPA & $80\text{k}$ Beat TF + $60\text{k}$ Tympanum v2 & $1.93$\,CU/h \\
+\op{Cochlea v1} \& \op{Beat v2} & NVIDIA L4 & \op{sm\_89}, 24\,GB GDDR6 & BF16 + \op{torch.compile} & \op{v1} 42-band Cochlea + Beat \op{v2} & $1.93$\,CU/h \\
+\op{Tympanum v1} \& \op{Beat v1} & NVIDIA Tesla T4 & \op{sm\_75}, 16\,GB GDDR6 & FP16 + Dynamic \op{GradScaler} & $24\text{k}$ Tympanum \op{v1} ($29$\,st/s) & $1.04$\,CU/h \\
+\midrule
+Production CPU Worker & Intel Xeon (Model 151, 2 vCPU) & AVX2, FMA, F16C, $3.8$\,GiB & Pure Rust (\op{rustc 1.99.1}, 1 thread) & Zero-copy FP16 \op{sone-infer/1} + DSP & $0.13$--$1.04\times$ RT (1 core) \\
+\bottomrule
+\end{tabular}}
+\end{table*}

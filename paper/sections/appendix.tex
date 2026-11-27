@@ -1,0 +1,22 @@
+\section{Architectural and Wire-Format Specification}
+\label{sec:appendix}
+
+\paragraph{Beat-synchronous 24-feature vector.}
+Each beat token in $\mathbf{A} \in \R^{80\times 24}$ and $\mathbf{B} \in \R^{128\times 24}$ encodes, in exact index order:
+(0--6) loudness in dB relative to the track's loud reference (\op{loud\_db}) for \op{vocals}, \op{drums}, \op{kick} ($<120$\,Hz), \op{hats} ($>5$\,kHz), \op{bass}, \op{other}, and full \op{mix};
+(7) binary \op{sung} indicator ($\in \{0,1\}$);
+(8) \op{line\_end} breath indicator across the beat's four sixteenth notes;
+(9) \op{beat\_in\_bar} ($\in \{0,1,2,3\}$ normalised);
+(10) \op{bar\_in\_phrase8} ($\in \{0,\dots,7\}$ normalised);
+(11) spectral/stem novelty spike; and
+(12--23) $L_2$-normalised $12$-pitch-class chroma ($\mathrm{C}, \mathrm{C}\sharp, \dots, \mathrm{B}$).
+Outside valid track bounds, silent padding sets channels $0..7$ to $-60.0$\,dB and channels $7..24$ to $0.0$.
+
+\paragraph{30-class DJ defect taxonomy (\op{sone\_core::Issue}).}
+{\raggedright
+\op{Cingulate v3} outputs overall acceptability $\hat{q} = \sigma(\ell_0)$ alongside $30$ independent defect probabilities in exact enum order:
+\op{roll\_out}, \op{pitch\_riding}, \op{b\_melody\_enters\_at\_once}, \op{abrupt\_stem\_exit}, \op{two\_melodies}, \op{cut\_not\_transition}, \op{stems\_leave\_separately}, \op{a\_melody\_left\_early}, \op{wrong\_recipe}, \op{downbeat\_off\_by\_one}, \op{fade\_at\_random\_point}, \op{fade\_too\_short}, \op{b\_melody\_before\_one}, \op{b\_drums\_before\_one}, \op{fade\_curve}, \op{a\_beat\_gone\_before\_one}, \op{audible\_fade\_onset}, \op{vocal\_leak}, \op{beat\_hole\_before\_one}, \op{tail\_after\_one}, \op{b\_voice\_before\_one}, \op{key\_clash\_layering}, \op{polyrhythm\_layering}, \op{two\_voices}, \op{two\_basses}, \op{beats\_offset}, \op{voice\_cut\_in\_word}, \op{silence\_before\_one}, \op{b\_voice\_late}, and \op{bad\_pair}.\par}
+
+\paragraph{\op{sone-infer/1} unified \op{.safetensors} wire specification.}
+{\raggedright
+Each \sone{} tier (\op{sone-6.5M}, \op{sone-v2-base}, \op{sone-pro}) ships as a single IEEE-754 FP16 \op{model.safetensors} bundle (plus optional standalone organ slices) embedding UTF-8 metadata keys inside the standard \op{.safetensors} JSON header: \op{"format": "sone-infer/1"}, \op{"model": "sone"} (or standalone \op{"cochlea"}, \op{"tympanum"}, \op{"cortex"}, \op{"cingulate"}), and per-organ JSON configs \op{"config.cochlea"} (supporting \op{n\_fft}, \op{hop}, \op{bands}, \op{time\_attn}, \op{four\_stems}, \op{mask\_bound}), \op{"config.tympanum"}, \op{"config.cortex"}, and \op{"config.cingulate"}. Tensors are namespaced as \op{cochlea.*}, \op{tympanum.*}, \op{cortex.*}, and \op{cingulate.*}, and \op{Sone::load} partitions the file zero-copy over one shared buffer (\op{Arc<[u8]>} or \op{include\_bytes!}), enforcing bijective tensor coverage so neither missing nor unused tensors are permitted.\par}

@@ -1,0 +1,52 @@
+# Stems: `cargo run -p sone-train --release --bin train -- stems --config cookbooks/stems.toml`
+# Paths are relative to the working directory; `~/` is expanded.
+
+[run]
+backend = "wgpu"          # "wgpu" (Metal on the Mac, Vulkan on Linux) or "ndarray" (CPU)
+seed = 1
+steps = 300000
+batch_size = 6            # fits the 8 GB RTX 4060 Ti at 3 s chunks (6.5 GB peak, measured)
+dir = "runs/stems-base"   # checkpoint/, export/, train.csv, valid.csv
+log_every = 50
+valid_every = 5000
+checkpoint_every = 1000
+loader_threads = 6
+
+[optim]
+lr = 5e-4
+warmup_steps = 2000
+min_lr_ratio = 0.02       # cosine decay to lr * min_lr_ratio at `steps`
+weight_decay = 1e-4
+grad_clip = 5.0           # per-tensor gradient norm
+
+[model]
+size = "base"             # small | base | large (see cookbooks/stems.md for their cost)
+
+[data]
+# Each entry is a directory of song directories (or one song directory).
+# Supervised: MUSDB18-HQ / MoisesDB converted to vocals/drums/bass/other.
+# Teacher targets: ~/djlab/stems (vocals_r, drums_i, bass_i) with mixtures in mixture_dir.
+train = ["data/stems/train"]
+valid = ["data/stems/valid"]
+# mixture_dir = "~/djlab/tracks"   # <song>.f32 mixtures when a song directory has none
+chunk_seconds = 3.0
+remix_prob = 0.5          # every stem from a different song and position
+gain_db = [-6.0, 3.0]     # random gain per stem
+swap_prob = 0.5           # swap left and right per stem
+valid_songs = 10
+valid_seconds = 60.0
+valid_offset_seconds = 30.0
+
+[loss]
+# weights chosen so that the terms start at comparable size (see cookbooks/stems.md)
+spec_l1 = 10.0
+wave_l1 = 1.0
+multires = 5.0
+multires_ffts = [512, 1024, 2048]
+leak = 0.5
+leak_voice_weight = 4.0   # voice leaking into drums/bass/other counts 4x
+silent_db = -30.0
+
+[infer]
+chunk_seconds = 8.0       # how validation and sone-infer cut a song
+overlap_seconds = 1.0

@@ -1,0 +1,33 @@
+[package]
+name = "sone-analysis"
+version.workspace = true
+edition.workspace = true
+license.workspace = true
+publish.workspace = true
+description = "What a song's stems tell: per-bar levels, bar phase, sung lines, key, the per-beat table"
+
+[features]
+default = ["files"]
+# FLAC stems, beat files and JSON on disk (the binary); off in the Worker.
+files = ["dep:claxon", "sone-beats/files", "sone-beats/embed-small"]
+
+[dependencies]
+anyhow.workspace = true
+serde.workspace = true
+serde_json.workspace = true
+sone-core = { path = "../sone-core" }
+sone-beats = { path = "../sone-beats", default-features = false }
+realfft = "3.4"
+claxon = { version = "0.4.3", optional = true }
+
+[[bin]]
+name = "analyse"
+required-features = ["files"]
+
+[[bin]]
+name = "phaselab"
+required-features = ["files"]
+
+[[bin]]
+name = "voicelab"
+required-features = ["files"]

@@ -1,0 +1,327 @@
+{
+ "h01": {
+  "kicks_flam": 0,
+  "two_vocals": 0,
+  "key_clash": 0,
+  "level_problem": 0,
+  "abrupt": 0,
+  "artifacts": 0,
+  "energy": 7.5,
+  "b_entry": 9.0,
+  "pro": 8.5,
+  "notes": [
+   {},
+   {}
+  ],
+  "what": [
+   "At 26 s, the isolated lead vocal of Song B enters cleanly over Song A's driving electro bass and drum groove. At 41 s on the phrase downbeat, Song A cuts out completely as Song B transitions into its vocal build and synth riser.",
+   "Song B's lead vocal drops cleanly over the driving instrumental and beat of Song A at 26 seconds. At 41 seconds, Song A cuts out cleanly on the phrase boundary as Song B opens up into its atmospheric pre-chorus vocal build."
+  ],
+  "fix": [
+   "Gently high-pass Song A or introduce Song B's rising snare sweep during the final bar before 41 s to smooth the transition into the breakdown.",
+   "Apply a slight reverb or delay freeze tail on Song A's synths right as it cuts at 41 seconds to smooth the transition into Song B's beatless breakdown."
+  ],
+  "id": "h01",
+  "times": [
+   25.8,
+   40.6,
+   40.6
+  ]
+ },
+ "h02": {
+  "kicks_flam": 0,
+  "two_vocals": 0,
+  "key_clash": 0,
+  "level_problem": 0,
+  "abrupt": 0,
+  "artifacts": 1,
+  "energy": 8.5,
+  "b_entry": 9.0,
+  "pro": 8.5,
+  "notes": [
+   {},
+   {
+    "artifacts": "0:30-0:44"
+   }
+  ],
+  "what": [
+   "Starting at 23 s, the synthesizer lead from Song B blends smoothly beneath the vocal and groove of Song A. At 38 s, the low end swaps cleanly to Song B's rhythm track, seamlessly leading into its signature vocal hook by 45 s.",
+   "Song B's melodic synth riff layers cleanly underneath Song A's vocals starting at 23 seconds over the existing groove. At 38 seconds the drum pattern swaps over to Song B, leading neatly into Song B's vocal breakdown at 45 seconds."
+  ],
+  "fix": [
+   "Apply a slight reverb tail or high-pass filter sweep on Song A's remaining vocal snippets between 40 s and 45 s so the handoff to Song B feels completely natural.",
+   "Add a short delay or reverb tail to Song A's vocal as it exits at 44 seconds to smooth the transition into Song B's sparser intro breakdown."
+  ],
+  "id": "h02",
+  "times": [
+   22.7,
+   37.8,
+   45.4
+  ]
+ },
+ "h03": {
+  "kicks_flam": 0,
+  "two_vocals": 0,
+  "key_clash": 0,
+  "level_problem": 0,
+  "abrupt": 0,
+  "artifacts": 1,
+  "energy": 8.0,
+  "b_entry": 9.0,
+  "pro": 8.0,
+  "notes": [
+   {
+    "artifacts": "0:27-0:40"
+   },
+   {}
+  ],
+  "what": [
+   "Song A's vocal concludes cleanly at 26 seconds as Song B's verse vocal enters directly over Song A's driving electro groove. At 41 seconds, a short fill punctuates the transition as Song A drops out and Song B's complete instrumentation takes over smoothly on the phrase.",
+   "Song B's vocal and light accompaniment enter smoothly underneath Song A's driving electro beat at 26 seconds. At 41 seconds right on the downbeat, Song A cuts out completely as Song B drops into its full bassline and drum groove."
+  ],
+  "fix": [
+   "Apply dynamic EQ or de-essing to the isolated vocal of Song B to soften high-frequency stem separation fizz and sibilance during the blend.",
+   "Apply a slight high-pass or low-shelf EQ cut to Song A across the last two bars (37–41 s) to create more headroom and dynamic impact when Song B's bass drops."
+  ],
+  "id": "h03",
+  "times": [
+   25.8,
+   40.6,
+   40.6
+  ]
+ },
+ "h04": {
+  "kicks_flam": 0,
+  "two_vocals": 0,
+  "key_clash": 1,
+  "level_problem": 2,
+  "abrupt": 2,
+  "artifacts": 1,
+  "energy": 3.0,
+  "b_entry": 5.0,
+  "pro": 3.5,
+  "notes": [
+   {
+    "key_clash": "0:27-0:43",
+    "level_problem": "0:43",
+    "abrupt": "0:43",
+    "artifacts": "0:27-0:43"
+   },
+   {
+    "level_problem": "26-28s",
+    "abrupt": "26s"
+   }
+  ],
+  "what": [
+   "Song A's lead vocals conclude as Song B's isolated vocal verse enters over Song A's driving electronic beat. At 43 seconds, Song A cuts out instantly, causing an abrupt drop into Song B's quiet, sparse instrumentation.",
+   "Song A finishes its vocal chorus phrase and cuts out almost entirely around 26 seconds. Song B then enters in an acoustic, low-energy breakdown verse with no underlying beat until its own rhythm section picks up after 43 seconds."
+  ],
+  "fix": [
+   "Apply a filter fade and reverb/delay tail to Song A rather than an abrupt hard cut at 43 seconds, and pitch-correct Song B's vocal to harmonize with Song A's progression.",
+   "Maintain a continuous percussion or rhythm loop from Song A during the breakdown of Song B instead of letting the energy abruptly drop out completely at 26 seconds."
+  ],
+  "id": "h04",
+  "times": [
+   25.2,
+   42.6,
+   42.6
+  ]
+ },
+ "h05": {
+  "kicks_flam": 0,
+  "two_vocals": 0,
+  "key_clash": 0,
+  "level_problem": 1,
+  "abrupt": 0,
+  "artifacts": 1,
+  "energy": 6.0,
+  "b_entry": 7.5,
+  "pro": 7.0,
+  "notes": [
+   {},
+   {
+    "level_problem": "36-46s",
+    "artifacts": "28-44s"
+   }
+  ],
+  "what": [
+   "Song B's low end and instrumental groove take over under Song A's vocal at 36s, creating a smooth mashup transition. Song A finishes its chorus phrase naturally at 44s, leaving Song B to drop down into a breakdown vocal section at 46s.",
+   "Song B's melodic instrumental layers fade in underneath Song A's vocal hook at 28 seconds, followed by a low-end swap at 36 seconds where Song B's beat takes over. Song A's vocal finishes its phrase neatly over Song B's backing track before cutting out at 45 seconds right as Song B's Spanish vocal begins."
+  ],
+  "fix": [
+   "Mix into an energetic section or build of Song B rather than letting the drums drop out immediately at 46s, which causes an unnecessary lull in dancefloor energy.",
+   "Boost the gain or low-end presence of Song B's drums and bass at the 36-second switch to prevent the perceptible drop in impact and groove energy."
+  ],
+  "id": "h05",
+  "times": [
+   28.0,
+   36.0,
+   46.0
+  ]
+ },
+ "h06": {
+  "kicks_flam": 0,
+  "two_vocals": 0,
+  "key_clash": 0,
+  "level_problem": 1,
+  "abrupt": 0,
+  "artifacts": 1,
+  "energy": 7.5,
+  "b_entry": 8.5,
+  "pro": 8.0,
+  "notes": [
+   {
+    "level_problem": "00:43-00:48",
+    "artifacts": "00:24-00:42"
+   },
+   {}
+  ],
+  "what": [
+   "At 22 s, the signature synth hook of Song B enters beneath Song A's chorus in tight rhythmic alignment. At 33 s, the bass and rhythm switch over to Song B while Song A's lead vocal completes its phrase, leaving Song B to play cleanly alone by 44 s.",
+   "At 22 s, the percussion and keyboard groove of Song B blend seamlessly under Mariah Carey's hook. At 33 s, the bass and kick switch entirely to Song B, letting the vocal finish out before handing off smoothly to Christina Aguilera's intro vocal at 44 s."
+  ],
+  "fix": [
+   "Bridge the dynamic lull between 00:43 and 00:49 by extending Song A's vocal delay/reverb tail into Song B's verse to maintain continuous energy.",
+   "Add a light delay or reverb tail to Song A's final vocal phrase at 43 s so it dissolves smoothly into Song B's vocal entry."
+  ],
+  "id": "h06",
+  "times": [
+   22.2,
+   33.3,
+   44.4
+  ]
+ },
+ "h07": {
+  "kicks_flam": 0,
+  "two_vocals": 0,
+  "key_clash": 0,
+  "level_problem": 2,
+  "abrupt": 1,
+  "artifacts": 2,
+  "energy": 5.5,
+  "b_entry": 7.5,
+  "pro": 5.5,
+  "notes": [
+   {
+    "level_problem": "0:41",
+    "artifacts": "0:26-0:41"
+   },
+   {
+    "level_problem": "41-44s",
+    "abrupt": "41s",
+    "artifacts": "26-38s"
+   }
+  ],
+  "what": [
+   "Song B's isolated vocals enter cleanly at 26 s over Song A's rhythm track. At 41 s on the downbeat, Song A cuts out completely as Song B's rhythm drops in with a sparser, slightly thinner punch.",
+   "Song A's vocal hook concludes around 26 seconds, leaving a stripped-back instrumental groove over which Song B begins to introduce percussion and backing layers. At 41 seconds, Song A cuts out abruptly just as Song B's lead vocal and sparser beat take over, causing a sudden loss of drive."
+  ],
+  "fix": [
+   "Boost the low end on Song B's entrance or add a crash/riser at 41 s to avoid the perceptible drop in low-end punch and energy when Song A cuts out.",
+   "Apply an echo-out delay or high-pass filter sweep on Song A before cutting it at 41 seconds to smooth the transition into Song B's sparser groove."
+  ],
+  "id": "h07",
+  "times": [
+   25.8,
+   40.6,
+   40.6
+  ]
+ },
+ "h08": {
+  "kicks_flam": 0,
+  "two_vocals": 0,
+  "key_clash": 1,
+  "level_problem": 1,
+  "abrupt": 1,
+  "artifacts": 2,
+  "energy": 6.5,
+  "b_entry": 8.0,
+  "pro": 6.5,
+  "notes": [
+   {
+    "key_clash": "32-41s",
+    "level_problem": "41-43s",
+    "abrupt": "41s",
+    "artifacts": "29-41s"
+   },
+   {
+    "artifacts": "0:29-0:40"
+   }
+  ],
+  "what": [
+   "Song A's rap verse finishes just before 29 s, allowing Song B's vocal and melodic stems to layer over Song A's trap drum groove. At 41 s, Song A abruptly cuts out and Song B's softer rhythm section takes over with an audible dip in low-end punch and presence.",
+   "Song A's rap ends around 28 s as atmospheric vocal chops and melodic stems from Song B are layered over Song A's rhythm section. At 41 s, Song A cuts out right on phrase, allowing Song B to cleanly take over with its full bass, kick, and lead verse."
+  ],
+  "fix": [
+   "Smooth the bass handover at 41 s with a brief low-pass filter sweep on Song A and pitch-shift Song B slightly to eliminate the harmonic dissonance with Song A's outro pad.",
+   "Apply a slight high-pass filter or short sweep/snare build on Song A's drums right before 0:41 to build tension and make Song B's downbeat hit harder."
+  ],
+  "id": "h08",
+  "times": [
+   27.6,
+   41.4,
+   41.4
+  ]
+ },
+ "h09": {
+  "kicks_flam": 0,
+  "two_vocals": 0,
+  "key_clash": 0,
+  "level_problem": 0,
+  "abrupt": 0,
+  "artifacts": 0,
+  "energy": 8.5,
+  "b_entry": 9.0,
+  "pro": 8.5,
+  "notes": [
+   {},
+   {}
+  ],
+  "what": [
+   "At 27 s, Song B's isolated lead vocal drops smoothly over Song A's driving instrumental groove. At 42 s on the downbeat, Song A cuts out cleanly as Song B's full bassline and drum arrangement kick in.",
+   "Song B's vocal and breakdown pads are seamlessly layered over Song A's driving drum groove starting at 27 seconds. At 42 seconds, Song A cuts right on the 16-bar phrase downbeat as Song B drops its full kick and bassline."
+  ],
+  "fix": [
+   "Add a brief delay/reverb tail to Song A's synths right at the 42 s cut to soften the switch into Song B's backing groove.",
+   "Apply a slight high-pass filter sweep on Song A's percussion across bars 15-16 to build even more tension into the drop at 42 seconds."
+  ],
+  "id": "h09",
+  "times": [
+   26.9,
+   42.2,
+   42.2
+  ]
+ },
+ "h10": {
+  "kicks_flam": 0,
+  "two_vocals": 0,
+  "key_clash": 1,
+  "level_problem": 0,
+  "abrupt": 0,
+  "artifacts": 1,
+  "energy": 8.0,
+  "b_entry": 8.5,
+  "pro": 7.5,
+  "notes": [
+   {
+    "key_clash": "0:22-0:33",
+    "artifacts": "0:23-0:33"
+   },
+   {}
+  ],
+  "what": [
+   "Song B's synth arpeggio and percussive stems introduce underneath the final line of Song A's chorus. At 33 seconds, Song A cleanly cuts out as Song B drops into its full bassline and groove.",
+   "At 22 s, electronic percussion and synth plucks from Song B introduce themselves smoothly beneath the climax of Song A's vocal chorus. At 33 s on the downbeat, Song A departs seamlessly as Song B drops its four-on-the-floor kick and bass groove."
+  ],
+  "fix": [
+   "Pitch-shift Song A down one semitone or Song B up so the vocal melody harmonizes cleanly with Song B's key.",
+   "Apply a slight reverb or delay throw to Alicia's final vocal tail at 33 s to bridge the momentary emptiness before Song B's full rhythm settles in."
+  ],
+  "id": "h10",
+  "times": [
+   22.2,
+   33.2,
+   36.0
+  ]
+ }
+}

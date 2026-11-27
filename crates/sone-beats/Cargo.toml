@@ -1,0 +1,27 @@
+[package]
+name = "sone-beats"
+version.workspace = true
+edition.workspace = true
+license.workspace = true
+publish.workspace = true
+description = "Beat and downbeat tracking with Beat This! in plain Rust (wasm32-safe)"
+
+[features]
+default = ["files", "embed-small"]
+# Reading audio and weights files (binaries, tools); off in the Worker.
+files = []
+# The small0 network (4.2 MB) inside the binary.
+embed-small = []
+
+[dependencies]
+anyhow.workspace = true
+serde.workspace = true
+serde_json.workspace = true
+sone-core = { path = "../sone-core" }
+# Beat This! inference: pure-Rust GEMM and erf, wasm32-safe.
+matrixmultiply = { version = "0.3.10", default-features = false, features = ["std"] }
+libm = "0.2.16"
+
+[[bin]]
+name = "beats"
+required-features = ["files"]
