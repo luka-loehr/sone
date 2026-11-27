@@ -195,10 +195,10 @@ fn apply_ai_lanes(
 
 fn main() -> Result<()> {
     let args: Vec<String> = std::env::args().skip(1).collect();
-    let exports = Path::new(args.first().map(String::as_str).unwrap_or("/home/user/bot/exports"));
-    let stems_dir = Path::new(args.get(1).map(String::as_str).unwrap_or("/home/user/djlab/stems"));
-    let beats_dir = Path::new(args.get(2).map(String::as_str).unwrap_or("/home/user/bot/sone/data/analysis/beats"));
-    let out_dir = PathBuf::from(args.get(3).map(String::as_str).unwrap_or("/home/user/bot/ai_mixes"));
+    let exports = Path::new(args.first().map(String::as_str).unwrap_or("exports"));
+    let stems_dir = Path::new(args.get(1).map(String::as_str).unwrap_or("data/stems"));
+    let beats_dir = Path::new(args.get(2).map(String::as_str).unwrap_or("data/analysis/beats"));
+    let out_dir = PathBuf::from(args.get(3).map(String::as_str).unwrap_or("out/ai_mixes"));
     let max_mixes: usize = args.get(4).and_then(|s| s.parse().ok()).unwrap_or(4);
     std::fs::create_dir_all(&out_dir)?;
 

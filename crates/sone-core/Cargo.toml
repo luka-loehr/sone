@@ -3,8 +3,9 @@ name = "sone-core"
 version.workspace = true
 edition.workspace = true
 license.workspace = true
-publish.workspace = true
-description = "Shared types: the transition spec, a song's analysis, events, training examples"
+authors.workspace = true
+repository.workspace = true
+description = "Core Sone types: transition Spec, BeatTable, streaming Event, training Example, and 30-class Issue enum"
 
 [dependencies]
 anyhow.workspace = true

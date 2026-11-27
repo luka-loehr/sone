@@ -3,8 +3,9 @@ name = "sone-live"
 version.workspace = true
 edition.workspace = true
 license.workspace = true
-publish.workspace = true
-description = "The running engine: audio in, audio out, transitions planned inside the look-ahead, events next to the audio"
+authors.workspace = true
+repository.workspace = true
+description = "Pull-driven gapless radio and playlist transition engine with 30 s look-ahead and master stereo splicing"
 
 [dependencies]
 anyhow.workspace = true

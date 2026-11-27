@@ -1,4 +1,4 @@
-# Critic: `cargo run -p sone-train --release --bin train -- critic --config cookbooks/critic.toml`
+# Cingulate: `cargo run -p sone-train --release -- cingulate --config cookbooks/cingulate.toml`
 # Trains on all examples, good and broken.
 
 [run]

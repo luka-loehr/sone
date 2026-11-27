@@ -8,8 +8,8 @@ use sone_plan::keys::distance as key_distance;
 use sone_sim::build::{example_from_spec, recipe_of};
 
 fn main() -> Result<()> {
-    let mixes_dir = Path::new("/home/user/bot/mixes");
-    let beats_dir = Path::new("/home/user/bot/sone/data/analysis/beats");
+    let mixes_dir = Path::new("out/mixes");
+    let beats_dir = Path::new("data/analysis/beats");
     let out_path = mixes_dir.join("mixes_1_6.jsonl");
 
     let mut specs_paths: Vec<_> = std::fs::read_dir(mixes_dir)?

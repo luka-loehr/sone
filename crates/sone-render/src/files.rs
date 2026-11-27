@@ -1,4 +1,4 @@
-//! Songs on disk in the layout of atlas: `stems/<id>/*.flac` and the beat
+//! Songs on disk in the stem-library layout: `stems/<id>/*.flac` and the beat
 //! analysis `struct/<id>.json`.
 
 use std::path::Path;

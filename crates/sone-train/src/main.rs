@@ -1,6 +1,6 @@
-//! `train <stems|ear|plan|critic> --config <file.toml> [--set section.key=value]...`
-//! `train synth <stems|ear|examples> --out <path> [--n N] [--seconds S] [--seed S]`
-//! `train eval-cochlea --weights <file.safetensors> --songs <dir> [--seconds S]`
+//! `sone-train <cochlea|tympanum|cortex|cingulate> --config <file.toml> [--set section.key=value]...`
+//! `sone-train synth <cochlea|tympanum|examples> --out <path> [--n N] [--seconds S] [--seed S]`
+//! `sone-train eval-cochlea --weights <file.safetensors> --songs <dir> [--seconds S]`
 //!
 //! A run resumes from `<run.dir>/checkpoint` when one is there.
 

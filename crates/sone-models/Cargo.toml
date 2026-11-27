@@ -3,8 +3,9 @@ name = "sone-models"
 version.workspace = true
 edition.workspace = true
 license.workspace = true
-publish.workspace = true
-description = "The four networks in Burn (backend-generic), with their export to sone-infer's safetensors"
+authors.workspace = true
+repository.workspace = true
+description = "Backend-generic Burn neural architectures and sone-infer/1 .safetensors exporters for Cochlea, Tympanum, Cortex, and Cingulate"
 
 [dependencies]
 anyhow.workspace = true

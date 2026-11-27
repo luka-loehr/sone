@@ -891,15 +891,15 @@ fn required_window_secs(spec: &Spec, is_a: bool, bar_s: f64) -> (f64, f64) {
 
 fn main() -> Result<()> {
     let args: Vec<String> = std::env::args().skip(1).collect();
-    let exports = Path::new(args.first().map(|s| s.as_str()).unwrap_or("/home/user/bot/exports_pro"));
-    let stems_dir = Path::new(args.get(1).map(|s| s.as_str()).unwrap_or("/home/user/djlab/stems"));
-    let out_dir = PathBuf::from(args.get(2).map(|s| s.as_str()).unwrap_or("/home/user/bot/e2e_mixes_pro"));
+    let exports = Path::new(args.first().map(|s| s.as_str()).unwrap_or("exports/pro"));
+    let stems_dir = Path::new(args.get(1).map(|s| s.as_str()).unwrap_or("data/stems"));
+    let out_dir = PathBuf::from(args.get(2).map(|s| s.as_str()).unwrap_or("out/e2e_mixes_pro"));
     let max_pairs: usize = args.get(3).and_then(|s| s.parse().ok()).unwrap_or(10);
     std::fs::create_dir_all(&out_dir)?;
 
-    let cache_dir_env = std::env::var("SONE_STRUCT_CACHE").unwrap_or_else(|_| "/home/user/bot/.sone_struct_cache_v2".into());
+    let cache_dir_env = std::env::var("SONE_STRUCT_CACHE").unwrap_or_else(|_| "out/cache/struct".into());
     let cache_dir = Path::new(&cache_dir_env);
-    let win_cache_env = std::env::var("SONE_WIN_CACHE").unwrap_or_else(|_| "/home/user/bot/.sone_win_cache".into());
+    let win_cache_env = std::env::var("SONE_WIN_CACHE").unwrap_or_else(|_| "out/cache/win".into());
     let win_cache = Path::new(&win_cache_env);
     std::fs::create_dir_all(cache_dir)?;
     std::fs::create_dir_all(win_cache)?;
@@ -926,7 +926,7 @@ fn main() -> Result<()> {
             crit_net = sone_infer::BeatNet::load(WeightFile::from_vec(std::fs::read(&gp)?)?)?;
         }
     }
-    let base_bundle = Sone::load(WeightFile::from_vec(std::fs::read("/home/user/bot/exports_v2_base/sone-v2-base-f16.safetensors")?)?)?;
+    let base_bundle = Sone::load(WeightFile::from_vec(std::fs::read("exports/sone-v2-base-f16.safetensors")?)?)?;
     let scan_cochlea = base_bundle.cochlea;
 
     let mut song_ids: Vec<String> = std::fs::read_dir(stems_dir)?

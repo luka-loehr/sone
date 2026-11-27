@@ -24,10 +24,8 @@ fn beats_for(id: &str, tracks: &Path, model: Option<&Path>) -> Result<structure:
     let bytes = std::fs::read(tracks.join(format!("{id}.f32"))).with_context(|| format!("neither {} nor {id}.f32", path.display()))?;
     let audio: Vec<f32> = bytes.as_chunks::<4>().0.iter().map(|&b| f32::from_le_bytes(b)).collect();
     drop(bytes);
-    let flagged = match model {
-        Some(file) => sone_beats::track(&sone_beats::load_model_file(file)?, &audio, 2)?,
-        None => sone_beats::track(sone_beats::small(), &audio, 2)?,
-    };
+    let file = model.context("missing <id>.beats; pass --model <beat_this.safetensors> or use `sone transition`")?;
+    let flagged = sone_beats::track(&sone_beats::load_model_file(file)?, &audio, 2)?;
     Ok(structure::Beats::from_flagged(&flagged))
 }
 

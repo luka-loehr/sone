@@ -427,12 +427,12 @@ def export_teacher_ab_refs(teacher_fn, in_root: Path, out_root: Path):
 
 def main():
     ap = argparse.ArgumentParser()
-    ap.add_argument("--out", default="/content/data/distilled_roformer")
+    ap.add_argument("--out", default="data/distilled_roformer")
     ap.add_argument("--max-songs", type=int, default=650)
     ap.add_argument("--shard-offset", type=int, default=0)
     ap.add_argument("--batch-size", type=int, default=4)
     ap.add_argument("--clip-seconds", type=float, default=48.0)
-    ap.add_argument("--teacher-ab-in", default="/content/data/atlas_valid")
+    ap.add_argument("--teacher-ab-in", default="data/valid_tracks")
     ap.add_argument("--teacher-ab-out", default="/content/exports_cochlea/teacher_ab")
     args = ap.parse_args()
 

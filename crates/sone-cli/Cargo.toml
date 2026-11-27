@@ -3,14 +3,16 @@ name = "sone"
 version.workspace = true
 edition.workspace = true
 license.workspace = true
-publish.workspace = true
-description = "Sone-6.5M: the one binary (analyse, plan, render, mix, live, simulate)"
+authors.workspace = true
+repository.workspace = true
+description = "Unified Sone CLI: transition mixing, 4-stem separation, metrical analysis, planning, live streaming, and simulation"
 
 [dependencies]
 anyhow.workspace = true
 serde.workspace = true
 serde_json.workspace = true
 hound = "3.5"
+symphonia = { version = "0.5.5", default-features = false, features = ["flac", "wav", "pcm"] }
 sone-core = { path = "../sone-core" }
 sone-beats = { path = "../sone-beats" }
 sone-analysis = { path = "../sone-analysis" }
@@ -19,6 +21,4 @@ sone-dsp = { path = "../sone-dsp" }
 sone-render = { path = "../sone-render" }
 sone-live = { path = "../sone-live" }
 sone-sim = { path = "../sone-sim" }
-
-[dev-dependencies]
 sone-infer = { path = "../sone-infer" }

@@ -6,7 +6,7 @@ import os, sys, glob, time, shutil, tempfile
 import numpy as np, soundfile as sf
 from audio_separator.separator import Separator
 
-ROOT = os.path.expanduser("~/djlab")
+ROOT = os.environ.get("SONE_DATA_DIR", "data")
 first = sys.argv[1:]
 ids = first + [i for i in sorted(os.path.basename(p)[:-4] for p in glob.glob(f"{ROOT}/tracks/*.f32")) if i not in first]
 tmp = tempfile.mkdtemp(dir=f"{ROOT}/hand")

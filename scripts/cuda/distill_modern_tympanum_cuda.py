@@ -324,9 +324,9 @@ def run_distill(args):
 def main():
     ap = argparse.ArgumentParser()
     ap.add_argument("--prep-musdb", default=None, help="Path to unpacked MUSDB18-HQ root to annotate in standalone mode")
-    ap.add_argument("--musdb-train", default="/content/ear_data/musdb_train")
-    ap.add_argument("--musdb-valid", default="/content/ear_data/musdb_valid")
-    ap.add_argument("--out", default="/content/ear_data/distilled_train")
+    ap.add_argument("--musdb-train", default="data/musdb/train")
+    ap.add_argument("--musdb-valid", default="data/musdb/valid")
+    ap.add_argument("--out", default="data/tympanum_distilled")
     ap.add_argument("--max-songs", type=int, default=450)
     ap.add_argument("--shard-offset", type=int, default=3)
     ap.add_argument("--clip-seconds", type=float, default=45.0)

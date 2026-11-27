@@ -3,7 +3,9 @@ name = "sone-plan"
 version.workspace = true
 edition.workspace = true
 license.workspace = true
-publish.workspace = true
+authors.workspace = true
+repository.workspace = true
+description = "Symbolic metrical alignment, Camelot harmonic compatibility, vocal-onset locking, and candidate transition planning"
 
 [dependencies]
 anyhow.workspace = true

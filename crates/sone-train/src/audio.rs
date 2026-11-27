@@ -1,7 +1,6 @@
 //! Reading stereo 44.1 kHz audio in pieces: FLAC and WAV through symphonia
 //! (seeking, so a random 3 s chunk of a song costs a few ms, not a decode of
-//! the whole file), and raw interleaved little-endian f32 (`.f32`, the
-//! layout of `~/djlab/tracks`). Mono files are duplicated to both channels.
+//! the whole file), and raw interleaved little-endian f32 (`.f32`). Mono files are duplicated to both channels.
 
 use std::fs::File;
 use std::io::{Read, Seek, SeekFrom};

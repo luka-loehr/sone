@@ -4790,6 +4790,7 @@ dependencies = [
  "sone-plan",
  "sone-render",
  "sone-sim",
+ "symphonia",
 ]
 
 [[package]]

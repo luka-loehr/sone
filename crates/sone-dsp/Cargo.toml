@@ -3,8 +3,9 @@ name = "sone-dsp"
 version.workspace = true
 edition.workspace = true
 license.workspace = true
-publish.workspace = true
-description = "Signal processing of the renderer: filters, lanes, echo, reverb, limiter, loudness, onsets, key-locked time stretch"
+authors.workspace = true
+repository.workspace = true
+description = "Deterministic audio DSP for Sone: Linkwitz-Riley EQ, lanes, echo, reverb, limiter, BS.1770-4 LUFS, and key-locked time stretch"
 
 [features]
 default = ["files"]

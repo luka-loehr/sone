@@ -4,7 +4,7 @@
 //! or mono): `vocals` (or `vocals_r`, the BS-RoFormer teacher's), `drums`
 //! (or `drums_i`), `bass` (or `bass_i`), optionally `other`, and the mixture
 //! as `mixture` or `mix`, or as `<mixture_dir>/<song>.f32` (raw interleaved
-//! f32, the `~/djlab/tracks` layout the teachers read). Without an `other`
+//! f32). Without an `other`
 //! file, other = mixture − vocals − drums − bass (what the teachers define).
 //!
 //! Training examples are random chunks; with probability `remix_prob` every

@@ -3,8 +3,9 @@ name = "sone-wasm"
 version.workspace = true
 edition.workspace = true
 license.workspace = true
-publish.workspace = true
-description = "Planner and renderer as one WebAssembly module with a plain C interface (what a Worker loads)"
+authors.workspace = true
+repository.workspace = true
+description = "WebAssembly C ABI exposing Sone transition planning and windowed stem rendering for browsers and edge workers"
 
 [lib]
 crate-type = ["cdylib", "rlib"]

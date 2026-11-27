@@ -5,7 +5,7 @@
 //! Renders transitions like `handmix.py`: writes `<id>.wav`, `<id>.report.json`
 //! and `<id>.json` (lanes for the site) into `--out` and prints the report.
 //! `--struct` is the beat analysis (`<id>.json`); without it, `--tracks <dir>`
-//! points at `<dir>/../hand/struct` (the layout on atlas). `--beats <dir>` takes
+//! points at `<dir>/../hand/struct` (the stem-library layout). `--beats <dir>` takes
 //! the bar lines from the beat tables (`<dir>/<id>.json`) instead, as the planner
 //! counts bars (for its specs; the hand specs use `--struct`).
 //! `--nudge-from <dir>` takes B's nudge from `<dir>/<id>.meta.json` (a reference

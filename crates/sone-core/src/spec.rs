@@ -118,7 +118,7 @@ impl Send {
 /// One song in a transition.
 #[derive(Debug, Clone, PartialEq, Serialize, Deserialize)]
 pub struct Deck {
-    /// Spotify track id.
+    /// Unique track identifier.
     pub id: String,
     /// Bar of the song's analysis that sits at `anchor_u`.
     pub anchor_bar: usize,

@@ -3,8 +3,9 @@ name = "sone-infer"
 version.workspace = true
 edition.workspace = true
 license.workspace = true
-publish.workspace = true
-description = "The four networks without an ML runtime: plain loops and sgemm over f16 safetensors, native and wasm32"
+authors.workspace = true
+repository.workspace = true
+description = "Zero-dependency FP16/FP32 .safetensors runtime for Sone's four neural organs (Cochlea, Tympanum, Cortex, Cingulate)"
 
 [dependencies]
 anyhow.workspace = true

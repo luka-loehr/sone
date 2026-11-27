@@ -6,7 +6,10 @@ members = ["crates/*"]
 version = "0.1.0"
 edition = "2024"
 license = "Apache-2.0"
-publish = false
+authors = ["Luka Löhr"]
+repository = "https://github.com/luka-loehr/sone"
+homepage = "https://lukaloehr.com/sone"
+documentation = "https://github.com/luka-loehr/sone/tree/main/docs"
 
 [workspace.dependencies]
 anyhow = "1"

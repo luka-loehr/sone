@@ -511,9 +511,9 @@ fn main() -> Result<()> {
     let args: Vec<String> = std::env::args().skip(1).collect();
     let ear_only = args.iter().any(|a| a == "--ear-only");
     let pos_args: Vec<&String> = args.iter().filter(|a| !a.starts_with("--")).collect();
-    let exports = Path::new(pos_args.first().map(|s| s.as_str()).unwrap_or("/home/user/bot/exports"));
-    let stems_dir = Path::new(pos_args.get(1).map(|s| s.as_str()).unwrap_or("/home/user/djlab/stems"));
-    let out_dir = PathBuf::from(pos_args.get(2).map(|s| s.as_str()).unwrap_or("/home/user/bot/e2e_mixes"));
+    let exports = Path::new(pos_args.first().map(|s| s.as_str()).unwrap_or("exports"));
+    let stems_dir = Path::new(pos_args.get(1).map(|s| s.as_str()).unwrap_or("data/stems"));
+    let out_dir = PathBuf::from(pos_args.get(2).map(|s| s.as_str()).unwrap_or("out/e2e_mixes"));
     let max_pairs: usize = pos_args.get(3).and_then(|s| s.parse().ok()).unwrap_or(10);
     std::fs::create_dir_all(&out_dir)?;
 
@@ -538,7 +538,7 @@ fn main() -> Result<()> {
             BeatNet::load(WeightFile::from_vec(std::fs::read(&crit_path)?)?)?,
         )
     };
-    let fast_scan_path = Path::new("/home/user/bot/exports/sone-cochlea-f16.safetensors");
+    let fast_scan_path = Path::new("exports/sone-cochlea-f16.safetensors");
     let struct_cochlea_opt = if cochlea_net.config.n_fft == 4096 && fast_scan_path.exists() {
         Some(Cochlea::load(WeightFile::from_vec(std::fs::read(fast_scan_path)?)?)?)
     } else {

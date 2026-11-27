@@ -1,4 +1,4 @@
-//! `beats <id>… --tracks <dir> [--model small|<file>] [--out <dir>] [--focus mix-out|entry] [--chunks N]`
+//! `beats <id>... --tracks <dir> --model <file.safetensors> [--out <dir>] [--focus mix-out|entry] [--chunks N]`
 //!
 //! Tracks `<tracks>/<id>.f32` (interleaved stereo f32, 44.1 kHz), writes
 //! `<out>/<id>.beats` ("seconds flag" lines, as the Python reference) and,
@@ -50,7 +50,7 @@ fn main() -> Result<()> {
     let mut ids = Vec::new();
     let mut tracks = PathBuf::from(".");
     let mut out: Option<PathBuf> = None;
-    let mut model_arg = String::from("small");
+    let mut model_arg: Option<PathBuf> = None;
     let mut focus: Option<Focus> = None;
     let mut chunks = 1usize;
     let mut args = std::env::args().skip(1);
@@ -58,7 +58,7 @@ fn main() -> Result<()> {
         match a.as_str() {
             "--tracks" => tracks = args.next().context("--tracks <dir>")?.into(),
             "--out" => out = Some(args.next().context("--out <dir>")?.into()),
-            "--model" => model_arg = args.next().context("--model small|<file>")?,
+            "--model" => model_arg = Some(args.next().context("--model <file.safetensors>")?.into()),
             "--focus" => {
                 focus = Some(match args.next().as_deref() {
                     Some("mix-out") => Focus::MixOut,
@@ -71,13 +71,9 @@ fn main() -> Result<()> {
             _ => ids.push(a),
         }
     }
-    let loaded;
-    let model: &BeatThis = if model_arg == "small" {
-        sone_beats::small()
-    } else {
-        loaded = sone_beats::load_model_file(std::path::Path::new(&model_arg))?;
-        &loaded
-    };
+    let model_path = model_arg.context("--model <beat_this.safetensors> is required (or use `sone transition` for Tympanum)")?;
+    let loaded = sone_beats::load_model_file(&model_path)?;
+    let model: &BeatThis = &loaded;
     if let Some(dir) = &out {
         std::fs::create_dir_all(dir)?;
     }

@@ -3,8 +3,9 @@ name = "sone-train"
 version.workspace = true
 edition.workspace = true
 license.workspace = true
-publish.workspace = true
-description = "Training programs of the four networks (Burn, wgpu or ndarray), data loading, export to safetensors"
+authors.workspace = true
+repository.workspace = true
+description = "Native Rust Burn training, synthetic dataset verification, and numerical parity CLI for Sone"
 
 [[bin]]
 name = "sone-train"

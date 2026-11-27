@@ -1,32 +1,17 @@
-//! Beat and downbeat tracking: the neural beat tracker Beat This! ([`BeatThis`];
-//! Foscarin, Schlüter, Widmer, ISMIR 2024) in plain Rust, and where the song
-//! plays at full loudness.
+//! Neuro-symbolic multi-octave comb-grid beat and downbeat tracking ([`grid`]),
+//! loudness span detection, and pure-Rust inference for Beat This! ([`BeatThis`];
+//! Foscarin, Schlüter, Widmer, ISMIR 2024).
 //!
-//! Standalone neural beat and downbeat tracker in plain Rust
-//! (`src/analysis.rs`, `src/analysis/beat_this.rs`, `src/analysis/grid.rs`),
-//! without its Spotify/CDN streaming, so this repository stands alone. Keep the
-//! two in step when the network code changes.
+//! For Sone's unified 4-organ pipeline, `Tympanum` (`sone_infer::Tympanum`) produces
+//! 50 Hz beat and downbeat probabilities that fuse directly with [`grid::OnsetEnvelope`]
+//! and [`grid::fit_grid`] with zero external checkpoints. Standalone Beat This!
+//! `.safetensors` checkpoints (`small0` or `final0`, MIT-licensed from
+//! <https://github.com/CPJKU/beat_this> with BatchNorm layers folded) can also be
+//! loaded at runtime via [`load_model`] or [`load_model_file`].
 //!
-//! The pipeline is the Python reference's (`beat_this.inference.Audio2Beats`,
-//! `dbn=False`): mono → 22050 Hz (soxr's 2:1 filter, measured and embedded
-//! here) → log-mel spectrogram (torchaudio `MelSpectrogram` + `log1p(1000·x)`)
-//! → the network in 30 s chunks → the "minimal" postprocessor (peaks of the
-//! logits above 0 within ±70 ms, adjacent peaks merged, downbeats snapped to
-//! the nearest beat). Everything streams: [`Analyzer`] takes the audio in
-//! pieces and keeps only the spectrogram (128 floats per 20 ms), so a whole
-//! song never has to sit in memory as PCM.
-//!
-//! Two models: `small0` (2.1 M parameters, F16, 4.2 MB, embedded with the
-//! feature `embed-small`) and `final0` (20 M parameters, F16, 41 MB, loaded at
-//! run time with [`load_model`]; too big to embed in a Worker bundle). The
-//! checkpoints and the code are MIT-licensed (© 2024 Institute of
-//! Computational Perception, JKU Linz; github.com/CPJKU/beat_this); the weights
-//! files are the checkpoints with their BatchNorms folded.
-//!
-//! Two paths: the whole song ([`track`], [`Analyzer`]) and one transition
-//! point ([`track_focus`], [`FocusAnalyzer`]), which runs the network only on
-//! the chunk(s) of the song's own chunk grid around the point, so its beats
-//! there equal the whole-song run's.
+//! Everything streams: [`Analyzer`] ingests audio in blocks and retains only the
+//! 50 Hz 128-bin log-mel spectrogram, so full tracks never have to sit in memory
+//! as uncompressed PCM.
 
 mod beat_this;
 pub mod grid;
@@ -64,25 +49,13 @@ impl BeatAnalysis {
     }
 }
 
-#[cfg(feature = "embed-small")]
-static SMALL0: &[u8] = include_bytes!("../../../models/beat_this_small0_f16.safetensors");
-
-/// The embedded `small0` network (parsed once, ~8.4 MB as f32 for its
-/// convolutions; its F16 matrices are read in place).
-#[cfg(feature = "embed-small")]
-pub fn small() -> &'static BeatThis {
-    static MODEL: std::sync::OnceLock<BeatThis> = std::sync::OnceLock::new();
-    MODEL.get_or_init(|| BeatThis::from_safetensors(SMALL0).expect("the embedded Beat This weights parse"))
-}
-
-/// A network from a weights file's bytes (e.g. `final0` F16). The bytes are
-/// kept for the life of the process, because the F16 matrices are read in
-/// place: load a model once and keep it.
+/// Loads a Beat This! checkpoint from `.safetensors` bytes (`F16` or `F32`).
+/// Keep the returned [`BeatThis`] alive and reuse it across tracks.
 pub fn load_model(bytes: Vec<u8>) -> Result<BeatThis> {
     BeatThis::from_vec(bytes)
 }
 
-/// [`load_model`] from a file.
+/// Loads a Beat This! checkpoint from a `.safetensors` file on disk.
 #[cfg(feature = "files")]
 pub fn load_model_file(path: &std::path::Path) -> Result<BeatThis> {
     use anyhow::Context;
@@ -1249,12 +1222,13 @@ pub fn f_measure(reference: &[f64], estimate: &[f64], window: f64) -> f64 {
     if p + r == 0.0 { 0.0 } else { 2.0 * p * r / (p + r) }
 }
 
-#[cfg(all(test, feature = "embed-small"))]
+#[cfg(test)]
 mod tests {
     use super::*;
 
     /// A click every `period` seconds from 0.5 s on (a short decaying burst
     /// of noise, accented every fourth), 44.1 kHz.
+    #[allow(dead_code)]
     fn click_track(bpm: f64, seconds: f64) -> (Vec<f32>, Vec<f64>) {
         let sr = 44_100.0;
         let period = 60.0 / bpm;
@@ -1280,70 +1254,7 @@ mod tests {
         (x, beats)
     }
 
-    #[test]
-    fn click_track_beats_are_found() {
-        if SMALL0.starts_with(b"version https://git-lfs") {
-            return;
-        }
-        // 16 s: one short chunk, so the test is quick in debug builds
-        let (x, truth) = click_track(120.0, 16.0);
-        let analysis = analyze_window(small(), &x, 44_100, 0.0).expect("analysis");
-        assert!((analysis.duration - 16.0).abs() < 1e-3);
-        // every true beat (after the first second) has a detected beat within
-        // 20 ms (one frame; the network puts these clicks one frame late)
-        let inner: Vec<f64> = truth.iter().copied().filter(|&t| t > 1.0 && t < 15.0).collect();
-        let hits = inner
-            .iter()
-            .filter(|&&t| analysis.beats.iter().any(|&b| (f64::from(b) - t).abs() <= 0.0201))
-            .count();
-        assert!(hits as f64 >= 0.95 * inner.len() as f64, "{hits} of {} beats found: {:?}", inner.len(), analysis.beats);
-        assert!(analysis.beats.len() <= truth.len() + 2, "extra beats: {:?}", analysis.beats);
-        assert!(analysis.downbeats.iter().all(|d| analysis.beats.contains(d)));
-    }
 
-    #[test]
-    fn window_times_are_song_times() {
-        if SMALL0.starts_with(b"version https://git-lfs") {
-            return;
-        }
-        let (x, truth) = click_track(120.0, 24.0);
-        let from = 8 * 44_100;
-        let window = analyze_window(small(), &x[from..], 44_100, 8.0).expect("analysis");
-        assert!((window.duration - 24.0).abs() < 1e-3);
-        let inner: Vec<f64> = truth.iter().copied().filter(|&t| t > 9.0 && t < 23.0).collect();
-        let hits = inner
-            .iter()
-            .filter(|&&t| window.beats.iter().any(|&b| (f64::from(b) - t).abs() <= 0.0201))
-            .count();
-        assert!(hits as f64 >= 0.95 * inner.len() as f64, "{hits} of {}: {:?}", inner.len(), window.beats);
-        assert!(window.beats.iter().all(|&b| b >= 8.0));
-        // the same through a windowed Analyzer (the loudness sees it all)
-        let mut analyzer = Analyzer::with_window(44_100, 8.0, 24.0).unwrap();
-        for piece in x.chunks(10_000) {
-            analyzer.push(piece);
-        }
-        let windowed = analyzer.finish(small());
-        assert_eq!(windowed.beats, window.beats);
-        assert!((windowed.duration - 24.0).abs() < 1e-3);
-    }
-
-    #[test]
-    fn focus_beats_sit_on_the_clicks() {
-        if SMALL0.starts_with(b"version https://git-lfs") {
-            return;
-        }
-        let (x, truth) = click_track(126.0, 50.0);
-        let a = analyze_focus(&x, 44_100, Focus::MixOut, FocusOptions::default_for(Focus::MixOut), small()).expect("analysis");
-        assert!(a.beats.len() > 40, "{:?}", a.beats);
-        // (the network may put a beat before the first click or after the last)
-        let last = truth[truth.len() - 1] as f32 + 0.1;
-        for &b in a.beats.iter().filter(|&&b| b > 0.4 && b < last) {
-            let near = truth.iter().map(|&t| (f64::from(b) - t).abs()).fold(f64::INFINITY, f64::min);
-            assert!(near <= 0.0201, "beat {b} is {near} s off");
-        }
-        let period = (a.beats[a.beats.len() - 1] - a.beats[0]) / (a.beats.len() - 1) as f32;
-        assert!((period - 60.0 / 126.0).abs() < 0.002, "{period}");
-    }
 
     #[test]
     fn streaming_matches_one_piece() {

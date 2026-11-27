@@ -1,4 +1,4 @@
-// Generated on atlas with scipy 1.17.1
+// Reference Butterworth biquad coefficients generated with SciPy 1.17.1
 const SCIPY_HP1500: [[f64; 6]; 2] = [
     [0.7558926474085387, -1.5117852948170774, 0.7558926474085387, 1.0, -1.6342708171206004, 0.6723160123199685],
     [1.0, -2.0, 1.0, 1.0, -1.8077745420464941, 0.849858837138898],

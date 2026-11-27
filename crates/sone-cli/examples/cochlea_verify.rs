@@ -119,9 +119,9 @@ fn load_clean_stems(dir: &Path) -> Result<[Vec<[f32; 2]>; 4]> {
 
 fn main() -> Result<()> {
     let args: Vec<String> = std::env::args().skip(1).collect();
-    let weights_path = PathBuf::from(args.first().map(String::as_str).unwrap_or("/home/user/bot/exports/stems-best-f16.safetensors"));
-    let stems_dir = PathBuf::from(args.get(1).map(String::as_str).unwrap_or("/home/user/djlab/stems"));
-    let out_dir = PathBuf::from(args.get(2).map(String::as_str).unwrap_or("/home/user/bot/stems_eval"));
+    let weights_path = PathBuf::from(args.first().map(String::as_str).unwrap_or("exports/sone-cochlea-f16.safetensors"));
+    let stems_dir = PathBuf::from(args.get(1).map(String::as_str).unwrap_or("data/stems"));
+    let out_dir = PathBuf::from(args.get(2).map(String::as_str).unwrap_or("out/stems_eval"));
     let max_songs: usize = args.get(3).and_then(|s| s.parse().ok()).unwrap_or(3);
     let clip_s: f64 = args.get(4).and_then(|s| s.parse().ok()).unwrap_or(30.0);
     std::fs::create_dir_all(&out_dir)?;

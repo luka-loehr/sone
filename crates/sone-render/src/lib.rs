@@ -8,7 +8,7 @@
 //!
 //! The core has no file access and builds for `wasm32-unknown-unknown`; stems
 //! come through a [`StemSource`]. The `files` feature adds [`files::FileStems`]
-//! (the layout on atlas) and WAV writing.
+//! (FLAC stems and JSON beat tables) and WAV writing.
 
 pub mod deck;
 #[cfg(feature = "files")]

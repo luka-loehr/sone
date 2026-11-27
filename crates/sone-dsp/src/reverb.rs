@@ -1,9 +1,8 @@
 //! Convolution reverb (wet only) with a decaying stereo noise impulse response.
 //!
-//! The reference draws its noise from numpy's `default_rng(7)`, which Rust
-//! cannot reproduce, so the two responses the specs use (rt60 2.4 s and 2.6 s)
-//! are embedded as exported by `reference/python/export_ir.py`; any other rt60
-//! gets a response built the same way from a Rust generator.
+//! Impulse responses are synthesized deterministically from a seeded `SplitMix64`
+//! + Box-Muller Gaussian generator under an exponential `rt60` decay, a 12 ms
+//! pre-delay, and a 300 to 6500 Hz Butterworth bandpass filter.
 
 use std::sync::Arc;
 
@@ -12,28 +11,10 @@ use realfft::RealFftPlanner;
 use crate::SR;
 use crate::filter::{Band, butter};
 
-static IR_2_4: &[u8] = include_bytes!(concat!(env!("CARGO_MANIFEST_DIR"), "/../../assets/reverb_ir_2.4.f32"));
-static IR_2_6: &[u8] = include_bytes!(concat!(env!("CARGO_MANIFEST_DIR"), "/../../assets/reverb_ir_2.6.f32"));
-
-fn decode(bytes: &[u8]) -> Vec<[f32; 2]> {
-    bytes
-        .as_chunks::<8>().0.iter()
-        .map(|c| {
-            [f32::from_le_bytes([c[0], c[1], c[2], c[3]]), f32::from_le_bytes([c[4], c[5], c[6], c[7]])]
-        })
-        .collect()
-}
-
-/// The impulse response for `rt60` seconds (stereo, 1.3 × rt60 long).
-/// Falls back cleanly to `generate_ir` when Git LFS binaries have not been smudged.
+/// Synthesizes the deterministic stereo impulse response for `rt60` seconds
+/// (`1.3 * rt60` duration, normalized to unit channel energy).
 pub fn impulse_response(rt60: f64) -> Arc<Vec<[f32; 2]>> {
-    if rt60 == 2.4 && IR_2_4.len() >= 1024 && !IR_2_4.starts_with(b"version https://git-lfs") {
-        Arc::new(decode(IR_2_4))
-    } else if rt60 == 2.6 && IR_2_6.len() >= 1024 && !IR_2_6.starts_with(b"version https://git-lfs") {
-        Arc::new(decode(IR_2_6))
-    } else {
-        Arc::new(generate_ir(rt60, 7))
-    }
+    Arc::new(generate_ir(rt60, 7))
 }
 
 /// SplitMix64 feeding a Box-Muller transform: any decent white Gaussian noise will do.

@@ -3,8 +3,9 @@ name = "sone-render"
 version.workspace = true
 edition.workspace = true
 license.workspace = true
-publish.workspace = true
-description = "Renders one transition from both songs' stems according to a spec"
+authors.workspace = true
+repository.workspace = true
+description = "Deterministic phase-locked DJ transition renderer with per-bar telemetry"
 
 [features]
 default = ["files"]

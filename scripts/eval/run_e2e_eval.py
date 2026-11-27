@@ -29,7 +29,7 @@ def run(cmd: str, env: dict[str, str] | None = None) -> str:
 
 def main() -> None:
     ap = argparse.ArgumentParser(description="Pack Sone bundles and run end-to-end Rust verification.")
-    ap.add_argument("--exports", required=True, help="Directory containing organ .safetensors checkpoints")
+    ap.add_argument("--exports", default="exports", help="Directory containing organ .safetensors checkpoints")
     ap.add_argument("--tier", default="sone-pro", help="Bundle prefix (sone-6.5M, sone-v2-base, sone-pro, sone-ultra)")
     ap.add_argument("--stems", default="", help="Optional held-out multitrack directory for Cochlea + E2E mix evaluation")
     ap.add_argument("--owner", default="", help="Optional owner.jsonl path for Cortex/Cingulate alignment audit")

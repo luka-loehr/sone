@@ -1,4 +1,4 @@
-# Stems: `cargo run -p sone-train --release --bin train -- stems --config cookbooks/stems.toml`
+# Cochlea: `cargo run -p sone-train --release -- cochlea --config cookbooks/cochlea.toml`
 # Paths are relative to the working directory; `~/` is expanded.
 
 [run]
@@ -20,15 +20,14 @@ weight_decay = 1e-4
 grad_clip = 5.0           # per-tensor gradient norm
 
 [model]
-size = "base"             # small | base | large (see cookbooks/stems.md for their cost)
+size = "base"             # small | base | large (see docs/ORGANS.md for architectural details)
 
 [data]
 # Each entry is a directory of song directories (or one song directory).
 # Supervised: MUSDB18-HQ / MoisesDB converted to vocals/drums/bass/other.
-# Teacher targets: ~/djlab/stems (vocals_r, drums_i, bass_i) with mixtures in mixture_dir.
 train = ["data/stems/train"]
 valid = ["data/stems/valid"]
-# mixture_dir = "~/djlab/tracks"   # <song>.f32 mixtures when a song directory has none
+# mixture_dir = "data/tracks"      # optional <song>.f32 mixtures
 chunk_seconds = 3.0
 remix_prob = 0.5          # every stem from a different song and position
 gain_db = [-6.0, 3.0]     # random gain per stem
@@ -38,7 +37,7 @@ valid_seconds = 60.0
 valid_offset_seconds = 30.0
 
 [loss]
-# weights chosen so that the terms start at comparable size (see cookbooks/stems.md)
+# weights chosen so that the terms start at comparable size (see docs/ORGANS.md)
 spec_l1 = 10.0
 wave_l1 = 1.0
 multires = 5.0

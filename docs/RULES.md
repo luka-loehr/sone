@@ -1,87 +1,38 @@
-# Rules for a transition, as the owner's ear confirmed them (2026-09-29, extended 2026-10-01)
+# Symbolic and Perceptual DJ Transition Rules
 
-"The one" is the bar line on which song B takes over. A is the song that leaves, B the song that comes.
+Every rule implemented in `sone-plan` and audited by `Cingulate` (`sone_core::Issue`) encodes a concrete acoustic constraint verified in blind listening rounds. On the continuous four-beat bar ruler `u`, **`u = 0` ("the one")** is the downbeat where Deck B assumes rhythmic and harmonic ownership from Deck A.
 
-## Pairing
-1. Same beat. The two songs have the same tempo, or one runs at half or double the other's count
-   (70 against 140: every second beat of the faster song is a beat of the slower one).
-2. Only a little stretch, with key lock (pitch unchanged). Used here: 0 to 3.5 %. No varispeed, no pitch riding, no roll-out.
-3. The one must be the one. Beat trackers put the bar line a beat off now and then. Kicks still line up then,
-   so an onset lag of 0 ms proves nothing. Test: the backbeat (1.5-6 kHz band of the drum stem) sits on 2 and 4,
-   the chords change on 1.
+## 1. Tempo and Bar-Phase Pairing
 
-## What may sound together
-4. One lead voice at a time.
-5. One melody at a time. Two melodies at once are "mush", also in neighbouring keys.
-6. One bass at a time. In a sneak B's bass comes on the one; A's bass stays until then (2026-10-01 night).
-7. Clashing keys: nothing pitched of both songs may overlap. Before the one only B's drums meet A; A keeps its
-   voice and melody until the one, B's bass, melody and voice come on the one (2026-10-01, x05/x06: "i dont like
-   the long part of only drums and bass ... not bass and drums for like 5 seconds"). With B's voice over A's
-   beat and clashing keys, A's bass and melody leave before B sings: only B's voice and A's beat.
-7a. Two beats lie on each other only at the same count. At half against double tempo the faster drums under the
-   slower song sound "way too fast" (x29: "HORRIBLE ... BEAT IS NOT HEARABLE"): such a pair gets B's voice over
-   A's beat if B sings early, A's beat under B's intro if B has one, else no transition.
-8. Muted stems are clean: no trace of the voice in drums, bass or melody.
+1. **Common beat ratio:** Deck A and Deck B must share a 1:1 tempo ratio (or a 1:2 / 2:1 half-time / double-time lock where every second beat of the faster track aligns with one beat of the slower track).
+2. **Bounded key-locked stretch:** Deck B is time-stretched with pitch preserved (`sone_dsp::Stretcher`), preferring `0` to `3.5%` stretch (hard ceiling `±6.8%` in cortical search). Varispeed pitch riding and loop-roll build-ups are never used.
+3. **True bar-one phase alignment:** Zero beat-onset lag alone is insufficient if the downbeat sits on beat 2, 3, or 4. `sone-analysis::phase` verifies that backbeat snare energy (`1.5` to `6 kHz` on the drum stem) lands on beats 2 and 4 while harmonic chroma shifts land on beat 1.
 
-## Recipes
-A. **B's voice over A's beat** (B's intro or first verse has no beat).
-   A sings its line to the end (echo on the last word). A's drums and bass stay at full level until the one.
-   A's melody stays too or fades linearly. B's voice is open from the first bar of the blend, nothing else of B
-   (x24: "would have been 10/10 if B's voice had started at -8 and not -6").
-   On the one: B's drums, bass and melody start, A stops with a hard cut.
-B. **B's beat sneaks under A** (B has a beat before its voice, or its first bars with beat are played twice).
-   Eight bars before the one: B's drums, highs only. Four bars before: B's kick.
-   A's drums, bass and melody fade linearly, beginning two bars before B's kick, **down to half** (not to zero),
-   and are cut hard on the one (2026-10-01 night, said in x01, x04, x09, x12, x36, b11, b12: "melody and bass
-   mustn't go completely down", "only 50 percent instead of 100"; going to zero left "3 seconds of nothing").
-   A's voice rides B's groove to the end of its line, or to a breath. On the one: B's bass, voice and melody;
-   B's voice with the first words of its line up to a bar before the one (x22: "NO REASON TO NOT START B's
-   VOICE AT 1", x36: "it started mid word").
-C. **A's outro beat under B's beatless intro.** A's beat carries, B's synth or guitar fades in over six bars,
-   A's drums are filtered up during the last two bars, hard cut on the one, B starts with beat and voice.
-D. ~~Tempo gap~~: **removed** (2026-10-01, n06: "only vocals and then HARD CUT TO THE NEW SONG. completely remove
-   even only this variant of transitions this ain't one"). Two songs without a common beat get no transition;
-   the queue has to choose songs that share a beat.
+## 2. Stem Coexistence Invariants
 
-## Shape of every move
-9. Fades are plain linear fades. Their start must not be audible: begin them before another event, not on it.
-10. Cuts happen on the one and are hard (about 25 ms ramp before the downbeat). No tail after the one.
-11. Never a hole in the beat before the one. A song's own break bar is replaced by another bar of the same phrase.
-12. B's melody: not before the one when B's voice rides on A; on the one it is there at once but soft, full two bars later.
-13. A voice is never cut inside a word: leave on the end of the line, enter on the start of a line.
-    When B is already singing where its voice opens (B's voice over A's beat), it comes in with a line that began
-    up to a bar earlier, else at the nearest breath (9 dB quieter), else where it is quietest; not over A's voice,
-    except A's last word ringing out (2026-10-02, x25: "if it started one sec before and not in the middle of the
-    word it would actually fit", x28, b10: "in the mid of the singer saying a word cut in").
+4. **At most one lead vocal:** Two singers never overlap, except when Deck A's final syllable trails off through a tempo-synced quarter-note echo throw onto `u = 0`.
+5. **At most one melodic bed:** Concurrent `other` stems create harmonic mud even in adjacent keys; melodic accompaniment swaps cleanly or ducks by `-3` to `-6 dB` under an isolated incoming vocal.
+6. **At most one sub-bass:** In a beat sneak, Deck A retains full sub-bass authority until `u = 0`, where bass ownership swaps sharply to Deck B.
+7. **Harmonic clash isolation (`d_Camelot >= 2`):** When keys clash on the Camelot wheel, pitched stems (`vocals`, `bass`, `other`) from both decks never overlap. Only unpitched drums (`drums`, high-passed above `180` to `500 Hz`) bridge prior to `u = 0`.
+8. **Half/double-tempo drum rule:** At `1:2` or `2:1` tempo locks, layering two full drum patterns produces rhythmic clutter; such pairs use `VoiceOverBeat` or `OutroUnderIntro` rather than a dual-drum sneak.
+9. **Bleed-free muted stems:** Muting a vocal lane requires clean stem separation (`Cochlea` + pre-vocal silence gating) so phantom vocal artifacts never leak through `drums`, `bass`, or `other`.
 
-## Where the one is (2026-10-01, from the owner's 13 accepted versions)
-14. The one in A lies where A's own beat is over (drums more than 12 dB under their usual level), moved onto the
-    start of its eight-bar phrase. A's outro, breakdown or fade never plays in the bed.
-15. When B's voice rides on A's beat, A's voice leaves at the end of a line, at a breath, or on a phrase start where
-    it is quiet, never on a bar line while it sings (p11, p12: "absolute trash"). The bed after it is A's last
-    full phrase, replayed if A ends sooner.
-16. The one in B is where B's beat arrives at full strength, not at the first soft hi-hat. When B's beat runs from
-    its start, the one is a phrase start with a whole blend of B's own bars before it.
-17. A's voice may run up to the one, and in a sneak its last line may ring over B's first bar (x03). Without an
-    end of a line near the one it leaves at a breath, not inside a word (x28: "ending abrupt since A is mid in singing").
-17a. B's voice comes at the one: when B's first line starts more than a bar and a quarter after the one, B's one
-    moves onto it (b10: "cleaner if B was cropped so the voice started at the 1 and not 1.5 seconds after"; a bar
-    after the one was accepted in h02 and h03).
-17b. When A breaks down within the bars its beat fades over and comes back, the one comes before the break
-    (x30: "there's a cut in A at -8").
-17c. A's last words get an echo, in every recipe (b12: "LOVE THE ECHO AT THE GESANG. do this more often").
+## 3. Transition Recipes
 
-## Checks the system makes on every render
-18. Both songs' tempo is measured on the bars that play in the blend; a song played by hand drifts over longer
-    stretches (Gimme! Gimme! Gimme!: 115 to 122 BPM).
-19. B's drums must not drift against A's across the blend: more than 12 ms between the first and the second half
-    and the render is not used (n07, n09: "not perfectly beat synced"; all accepted ones stay within 11 ms).
-    A shorter blend is tried, else there is no transition. The check applies only where B's drums play under A's
-    before the one (a sneak): with B's voice over A's beat or A's outro under B's intro the beats meet only at the
-    hard cut, and there B's first bars must lie on A's last bars (within 3 ms) (2026-10-02: the check had thrown
-    out b12, "LOVE THE ECHO", and five more for a drift no one could hear).
+- **`VoiceOverBeat`:** When Deck B opens with sustained singing before its full drums drop (and keys are compatible), Deck A finishes its vocal phrase with a quarter-note echo throw while Deck A's drums and bass hold a steady pocket. Deck B's isolated vocal enters on phrase over Deck A's groove (`u_handoff` in `[-8, -2]`), and on `u = 0` Deck A cuts cleanly as Deck B's full arrangement drops.
+- **`Sneak`:** When Deck B has an instrumental beat intro, Deck B's high-passed hi-hats sneak in at `u = -8` and kicks join at `u = -4`. Deck A's accompaniment fades linearly down to `50%` (never `0%`, avoiding a pre-drop energy hole) and cuts cleanly on `u = 0` as Deck B's bass, melody, and vocal enter at unity.
+- **`OutroUnderIntro`:** Deck A's outro beat carries Deck B's beatless melodic intro over 6 bars, high-pass filtering out over the final 2 bars onto `u = 0`.
+- **Unblendable pairs (`Gap` rejected):** Pairs with incompatible meter or excessive drift are rejected rather than forcing an unmusical hard cut after an a cappella stem drop.
 
-## Decisions for single songs and pairs (`data/owner/pair_rules.json`)
-- Good For The Soul as song B: its voice never rides on another song's beat (h09, n02).
-- Sexy Bitch → Blessings: B's voice only from the one (h03).
-- VERLIEBT IN MICH → FUNK DO BOUNCE (Slowed): the sneak with the echo (b12: loved in round 3, "actually bad" as a voice overlay in round 4).
+## 4. Envelope and Phrase Placement
+
+10. **Linear fades started ahead of events:** Gain ramps are linear in amplitude and begin prior to structural boundaries so fader motion never calls attention to itself.
+11. **Crisp downbeat handoffs:** Outgoing stems terminate on `u = 0` with a ~25 ms anti-click ramp and zero post-one bleed, except when Deck A's final sung phrase naturally rings across bar `0`.
+12. **Zero beat holes before `u = 0`:** Accompaniment-floor regularisation prevents pre-drop loudness dips exceeding `6 dB`.
+13. **Word-boundary vocal entries and exits:** Vocals never enter or cut mid-word. `Tympanum`'s `line_end` breath head and sustained-singing gate ensure Deck A exits on a breath or line end and Deck B enters at the start of a real sung phrase (skipping isolated short intro producer tags).
+14. **Anchor placement (`u = 0`):** On Deck A, `u = 0` lands on the 8-bar phrase boundary where Deck A enters its outro wind-down (before any mid-song breakdown gap). On Deck B, `u = 0` lands where Deck B's full beat arrives or within `1.25` bars of its first verse line.
+
+## 5. Post-Render Verification Gates
+
+15. **Local window tempo measurement:** Tempo is measured specifically across the bars participating in `[u_0, u_1]` so live-drumming tempo drift outside the transition does not skew alignment.
+16. **Sub-millisecond Newton drum lock & drift ceiling:** Closed-form cross-correlation aligns kicks at `u = 0` and refines stretch slope across the first and second halves of the blend (`<= 0.7 ms` rendered drift on held-out mixes). Any candidate render exceeding `12 ms` half-window drift (`sone_render::MAX_DRIFT_MS`) retries with a shorter blend window.

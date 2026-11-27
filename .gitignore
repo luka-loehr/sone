@@ -2,6 +2,9 @@ target/
 target-*/
 /out/
 /work/
+/exports*/
+/runs/
+/data/sim/*.jsonl.gz
 *.wav
 *.flac
 *.mp3
@@ -20,5 +23,4 @@ paper/*.log
 paper/*.out
 .DS_Store
 __pycache__/
-# songs and stems stay on atlas (copyright, size); see docs/DATA.md
 /local/

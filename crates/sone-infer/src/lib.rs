@@ -1,15 +1,34 @@
-//! The four anatomical ear-and-brain networks of **Sone-6.5M** without any ML
-//! runtime: plain loops and `matrixmultiply::sgemm`, weights read in place from
-//! a `.safetensors` file (F16 or F32) and widened layer by layer into reused
-//! scratch buffers. Builds for `wasm32-unknown-unknown` unchanged.
+//! Dependency-free inference runtime for **Sone** (`Sone-6.5M`, `Sone-v2-Base`,
+//! `Sone-Pro`, and `Sone-Ultra`): plain loops and `matrixmultiply::sgemm`, with
+//! IEEE-754 F16 or F32 weights read zero-copy from a single `.safetensors` file
+//! (`sone-infer/1`) and widened layer by layer into reusable scratch buffers.
+//! Builds unchanged for `x86_64`, `aarch64`, and `wasm32-unknown-unknown`.
 //!
-//! - [`cochlea::Cochlea`]: tonotopic 42-band stem separator (`vocals`, `drums`, `bass`, residual `other`).
-//! - [`tympanum::Tympanum`]: 50 Hz rhythmic, vocal-breath, phrase, key and tuning sensor.
-//! - [`beat::BeatNet`]: [`BeatKind::Cortex`] (executive transition planner) and
-//!   [`BeatKind::Cingulate`] (conflict & 11-defect monitor).
+//! - [`cochlea::Cochlea`]: phase-coherent 42/64-band Dual-Axis stem separator (`vocals`, `drums`, `bass`, `other`).
+//! - [`tympanum::Tympanum`]: 50 Hz 7-head rhythmic, vocal-breath, phrase, key, and tuning sensor.
+//! - [`beat::BeatNet`]: [`BeatKind::Cortex`] (beat-synchronous transition planner) and
+//!   [`BeatKind::Cingulate`] (30-defect counterfactual conflict monitor).
 //!
-//! All four organs ship inside a single unified `model.safetensors` bundle
-//! loaded zero-copy via [`Sone::load`].
+//! # Example
+//! ```no_run
+//! use sone_infer::{CochleaWorkspace, Sone, TympanumWorkspace, WeightFile};
+//!
+//! let bytes = std::fs::read("sone-pro-f16.safetensors")?;
+//! let sone = Sone::load(WeightFile::from_vec(bytes)?)?;
+//!
+//! // 1. Separate stereo 44.1 kHz audio into [vocals, drums, bass, other]
+//! let left = vec![0.0f32; 44_100 * 6];
+//! let right = vec![0.0f32; 44_100 * 6];
+//! let mut stems = vec![[Vec::new(), Vec::new()]; 4];
+//! let hop = sone.cochlea.config.hop;
+//! sone.cochlea.separate(&mut CochleaWorkspace::default(), &left, &right, hop * 256, hop * 32, &mut stems);
+//!
+//! // 2. Extract 50 Hz beats, downbeats, vocal activity, breaths, key, and tuning
+//! let mono: Vec<f32> = left.iter().zip(&right).map(|(l, r)| 0.5 * (l + r)).collect();
+//! let analysis = sone.tympanum.analyze(&mut TympanumWorkspace::default(), &mono);
+//! println!("Key: {} ({:+.1} cents)", analysis.key_name(), analysis.tuning_cents);
+//! # Ok::<(), anyhow::Error>(())
+//! ```
 
 pub mod beat;
 pub mod chunk;
@@ -28,7 +47,7 @@ pub use config::{BeatConfig, BeatKind, CochleaConfig, TympanumConfig};
 pub use st::{WeightFile, merge_bundle};
 pub use tympanum::{Tympanum, TympanumOutput, TympanumWorkspace};
 
-/// All four neural organs of **Sone-6.5M** loaded zero-copy from a single unified
+/// All four neural organs of **Sone** loaded zero-copy from a single unified
 /// `.safetensors` file (`cochlea.*`, `tympanum.*`, `cortex.*`, `cingulate.*`).
 pub struct Sone {
     pub cochlea: Cochlea,

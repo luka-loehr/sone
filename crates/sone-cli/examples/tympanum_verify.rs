@@ -44,9 +44,9 @@ fn f_measure(pred: &[usize], truth_s: &[f64], fps: f64, tol_s: f64) -> f64 {
 
 fn main() -> Result<()> {
     let args: Vec<String> = std::env::args().skip(1).collect();
-    let weights_path = PathBuf::from(args.first().map(String::as_str).unwrap_or("/home/user/bot/exports/sone-tympanum-f16.safetensors"));
-    let stems_dir = PathBuf::from(args.get(1).map(String::as_str).unwrap_or("/home/user/djlab/stems"));
-    let beats_dir = PathBuf::from(args.get(2).map(String::as_str).unwrap_or("/home/user/bot/sone/data/analysis/beats"));
+    let weights_path = PathBuf::from(args.first().map(String::as_str).unwrap_or("exports/sone-tympanum-f16.safetensors"));
+    let stems_dir = PathBuf::from(args.get(1).map(String::as_str).unwrap_or("data/stems"));
+    let beats_dir = PathBuf::from(args.get(2).map(String::as_str).unwrap_or("data/analysis/beats"));
 
     let tympanum = Tympanum::load(WeightFile::from_vec(std::fs::read(&weights_path).with_context(|| format!("reading {}", weights_path.display()))?)?)?;
     let mut ws = TympanumWorkspace::default();

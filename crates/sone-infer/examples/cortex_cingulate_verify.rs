@@ -31,8 +31,8 @@ fn load_jsonl(path: &Path) -> Result<Vec<Example>> {
 
 fn main() -> Result<()> {
     let args: Vec<String> = std::env::args().skip(1).collect();
-    let exports = Path::new(args.first().map(String::as_str).unwrap_or("/home/user/bot/exports"));
-    let owner_path = Path::new(args.get(1).map(String::as_str).unwrap_or("/home/user/bot/sim_data/owner.jsonl"));
+    let exports = Path::new(args.first().map(String::as_str).unwrap_or("exports"));
+    let owner_path = Path::new(args.get(1).map(String::as_str).unwrap_or("data/sim/owner.jsonl"));
     let extra_path = args.get(2).map(Path::new);
 
     let pick = |new_name: &str, old_name: &str| {

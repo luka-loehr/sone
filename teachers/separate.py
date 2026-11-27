@@ -7,7 +7,7 @@ import numpy as np, torch, soundfile as sf
 from demucs.pretrained import get_model
 from demucs.apply import apply_model
 
-ROOT = os.path.expanduser("~/djlab")
+ROOT = os.environ.get("SONE_DATA_DIR", "data")
 model = get_model("htdemucs_ft")
 model.eval()
 dev = "cuda"

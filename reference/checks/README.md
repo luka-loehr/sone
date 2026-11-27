@@ -1,15 +1,11 @@
-# Checks of the planner against the owner's transitions
+# Symbolic Planner Regression Checks
 
-Run on atlas in a checkout with a built `orml` (`~/djlab/orml-main`), songs in `~/djlab/stems`.
+Regression utilities comparing `sone-plan` and `sone-render` against the 13 reference transitions in `data/versions/S7.json`:
 
-| Script | What it does |
+| Command / Script | Purpose |
 |---|---|
-| `cargo run -p mix-plan --bin plan_check -- data S7` | the planner's decisions next to the owner's 13 accepted ones: recipe, the one in A, where A's voice leaves, the one in B |
-| `run13.sh` | plans and renders the 13 pairs with `orml mix` into `out/auto2` and compares them bar by bar (`compare.py`) with the owner's specs rendered by the same renderer (`out/handrust`, made with `orml render data/versions/S7.json --struct data/analysis/struct`) |
-| `newpairs.py` | picks 12 pairs the owner never heard (same beat within 2.5 %, keys at most one step apart), plans and renders them, and checks each: drums within 1 ms, no hole in the beat before the one, never two voices, no dip of more than 8 dB |
+| `cargo run -p sone-plan --bin plan_check -- data S7` | Compares `sone-plan` recipe, handoff bar, vocal exit, and Deck B entry against the 13 accepted specs in `data/versions/S7.json` |
+| `reference/checks/run13.sh` | Plans and renders the 13 reference pairs with `sone mix` and compares bar-level stem telemetry via `compare.py` |
+| `reference/checks/newpairs.py` | Evaluates unseen tempo- and key-compatible pairs for <= 1 ms drum alignment, zero beat holes, zero double vocals, and <= 8 dB level dip |
 
-State on 2026-10-01, round 2 (after the owner's notes in data/owner/verdicts_2026-10-01.json):
-- 13 lab pairs: 12 planned (h10 has no common beat and gets no transition), drums within 0.7 ms, halves of the blend within 2.2 ms (h12: 7.3).
-- 12 new pairs: n06 no transition (no common beat); n02, n07, n09 refused after rendering because their drums drift 15 to 36 ms across the blend (the owner had heard all three as not fitting); the other 8 pass.
-- A render whose drums drift more than 12 ms between the halves of the blend (`mix_render::MAX_DRIFT_MS`) is not used: shorter blend, else no transition.
-For "A's beat under B's intro" the check does not count bar -1 as a hole: A's beat is filtered up there by design.
+Renderer safety threshold (`sone_render::MAX_DRIFT_MS = 12.0` ms): any candidate blend whose first-half vs. second-half drum offset exceeds 12 ms falls back to a shorter blend window.

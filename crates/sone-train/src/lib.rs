@@ -1,5 +1,5 @@
 //! Training programs of the four networks, their data loading and export.
-//! The binary `train` (src/main.rs) runs them from `cookbooks/<model>.toml`.
+//! The binary `sone-train` (`src/main.rs`) runs them from `cookbooks/<organ>.toml`.
 
 pub mod audio;
 pub mod config;

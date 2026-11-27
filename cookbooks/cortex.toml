@@ -1,4 +1,4 @@
-# Plan: `cargo run -p sone-train --release --bin train -- plan --config cookbooks/plan.toml`
+# Cortex: `cargo run -p sone-train --release -- cortex --config cookbooks/cortex.toml`
 # Trains on the good examples only (label.good == 1).
 
 [run]

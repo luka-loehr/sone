@@ -1,22 +1,27 @@
-//! `sone`: Sone-6.5M in one binary.
+//! `sone`: Unified command-line interface for Sone (`6.5M`, `v2-Base`, `Pro`, `Ultra`).
 //!
+//! End-to-end commands on standard 44.1 kHz WAV or FLAC files:
 //! ```text
-//! sone analyse  <id>… --tracks DIR --stems DIR --out DIR [--model FILE]
+//! sone transition <song_a.wav|flac> <song_b.wav|flac> --model <model.safetensors> --out <mix.wav>
+//!                 [--window-s SECONDS] [--spec FILE.json]
+//! sone stems      <song.wav|flac> --model <model.safetensors> --out <dir/>
+//! ```
+//!
+//! Modular pipeline commands on pre-separated stem libraries:
+//! ```text
+//! sone analyse  <id>... --tracks DIR --stems DIR --out DIR [--model FILE]
 //! sone plan     <A> <B> --beats DIR [--talk SECONDS] [--lead BARS] [--window FROM,TO] [--out FILE]
-//! sone render   <specs.json> [id…] --stems DIR (--beats DIR | --struct DIR) --out DIR
+//! sone render   <specs.json> [id...] --stems DIR (--beats DIR | --struct DIR) --out DIR
 //! sone mix      <A> <B> --stems DIR --beats DIR --out DIR [--talk SECONDS]
-//! sone live     <A> <B> [<C>…] --stems DIR --beats DIR --out FILE.wav [--events FILE.jsonl]
+//! sone live     <A> <B> [<C>...] --stems DIR --beats DIR --out FILE.wav [--events FILE.jsonl]
 //!               [--from SECONDS] [--queue-at SECONDS] [--skip] [--talk SECONDS] [--voice FILE.wav]
 //!               [--after SECONDS] [--block FRAMES] [--lookahead SECONDS] [--loudness LUFS]
 //! sone simulate [--data DIR] [--out DIR] [--seed N] [--windows N] [--broken N]
 //! ```
-//!
-//! Songs are named by their id. `--stems` holds `<id>/{vocals,drums,bass,other}.flac`
-//! (and `vocals_r`, `drums_i`, `bass_i` when the song was separated a second time),
-//! `--beats` the beat tables `<id>.json` that `sone analyse` writes.
 
 mod adapters;
 mod args;
+mod e2e;
 mod live;
 mod songs;
 
@@ -31,23 +36,43 @@ use crate::adapters::{beat_offset_ms, level_dip_db, render_placed};
 use crate::args::Args;
 use crate::songs::{Library, STATION_LUFS};
 
-const USAGE: &str = "sone <analyse|plan|render|mix|live|simulate> … (see the top of crates/sone-cli/src/main.rs)";
+const USAGE: &str = "\
+Sone: neuro-symbolic DJ transitions and 4-stem separation on CPU
+
+Usage:
+  sone transition <song_a.wav|flac> <song_b.wav|flac> --model <model.safetensors> --out <mix.wav> [--window-s SEC] [--spec FILE.json]
+  sone stems      <song.wav|flac> --model <model.safetensors> --out <dir/>
+  sone analyse    <id>... --tracks DIR --stems DIR --out DIR [--model FILE]
+  sone plan       <A> <B> --beats DIR [--talk SEC] [--lead BARS] [--window FROM,TO] [--out FILE]
+  sone render     <specs.json> [id...] --stems DIR (--beats DIR | --struct DIR) --out DIR
+  sone mix        <A> <B> --stems DIR --beats DIR --out DIR [--talk SEC]
+  sone live       <A> <B> [<C>...] --stems DIR --beats DIR --out FILE.wav [--events FILE.jsonl]
+  sone simulate   [--data DIR] [--out DIR] [--seed N] [--windows N] [--broken N]";
 
 fn main() -> Result<()> {
     let mut argv = std::env::args().skip(1);
-    let Some(command) = argv.next() else { bail!(USAGE) };
+    let Some(command) = argv.next() else {
+        println!("{USAGE}");
+        return Ok(());
+    };
     match command.as_str() {
+        "-h" | "--help" | "help" => {
+            println!("{USAGE}");
+            Ok(())
+        }
+        "transition" => e2e::transition(Args::parse(argv, &[], &["model", "out", "window-s", "spec"])?),
+        "stems" => e2e::stems(Args::parse(argv, &[], &["model", "out"])?),
         "analyse" => analyse(Args::parse(argv, &["original-stems", "print"], &["tracks", "stems", "out", "model"])?),
         "plan" => plan(Args::parse(argv, &[], &["beats", "talk", "lead", "window", "out", "id", "owner"])?),
         "render" => render(Args::parse(argv, &[], &["stems", "beats", "struct", "out"])?),
         "mix" => mix(Args::parse(argv, &[], &["stems", "beats", "out", "talk", "lead", "id", "loudness", "owner"])?),
         "live" => live::run(Args::parse(argv, &["skip"], &["stems", "beats", "out", "events", "from", "queue-at", "talk", "voice", "after", "block", "loudness", "lookahead"])?),
         "simulate" => simulate(Args::parse(argv, &[], &["data", "out", "seed", "windows", "broken"])?),
-        _ => bail!(USAGE),
+        _ => bail!("unknown command `{command}`\n\n{USAGE}"),
     }
 }
 
-/// Beats, bars, levels, lines, key of every song; writes `struct_final/<id>.json` and `beats/<id>.json`.
+/// Extracts beat tables and bar maps from pre-separated stem directories.
 fn analyse(args: Args) -> Result<()> {
     use sone_analysis::{io, structure};
     let (tracks, stems, out) = (args.path("tracks")?, args.path("stems")?, args.path("out")?);
@@ -64,7 +89,8 @@ fn analyse(args: Args) -> Result<()> {
                 let path = tracks.join(format!("{id}.f32"));
                 let bytes = std::fs::read(&path).with_context(|| format!("neither {id}.beats nor {}", path.display()))?;
                 let audio: Vec<f32> = bytes.as_chunks::<4>().0.iter().map(|&b| f32::from_le_bytes(b)).collect();
-                let flagged = sone_beats::track(model.as_ref().unwrap_or(sone_beats::small()), &audio, 2)?;
+                let m = model.as_ref().context("missing <id>.beats; pass --model <beat_this.safetensors> or use `sone transition`")?;
+                let flagged = sone_beats::track(m, &audio, 2)?;
                 structure::Beats::from_flagged(&flagged)
             }
         };
@@ -83,7 +109,6 @@ fn analyse(args: Args) -> Result<()> {
     Ok(())
 }
 
-/// The owner's decisions for single pairs (`--owner FILE`, by default `data/owner/pair_rules.json`).
 fn owner_rules(args: &Args) -> Result<sone_plan::PairRules> {
     sone_plan::PairRules::load(&args.path_or("owner", "data/owner/pair_rules.json"))
 }
@@ -105,11 +130,10 @@ fn print_plan(p: &Plan) {
         eprintln!("  · {n}");
     }
     if let Some(t) = &p.tts {
-        eprintln!("  · the DJ may talk from {:+.2} to {:+.2} bars ({:.1} s), over {}", t.from_u, t.post_u, t.max_seconds(p.bar_s), t.over);
+        eprintln!("  · DJ voiceover slot {:+.2} to {:+.2} bars ({:.1} s), over {}", t.from_u, t.post_u, t.max_seconds(p.bar_s), t.over);
     }
 }
 
-/// The transition from A to B as a spec.
 fn plan(args: Args) -> Result<()> {
     let [a, b] = args.words.as_slice() else { bail!("sone plan <A> <B> --beats DIR") };
     let lib = Library::new(Path::new("."), &args.path("beats")?, STATION_LUFS);
@@ -133,7 +157,7 @@ fn write_render(out: &Path, placed: &adapters::Placed) -> Result<()> {
     std::fs::write(out.join(format!("{id}.lanes.json")), serde_json::to_string(&r.lanes)?)?;
     std::fs::write(out.join(format!("{id}.spec.json")), serde_json::to_string_pretty(&[&placed.spec])?)?;
     eprintln!(
-        "{id}: {:.1} s of audio in {:.2} s; tempo {:.2} → {:.2} BPM (stretch {:+.2} %), beats {:+.1} ms apart, level dip {:.1} dB, limiter {:.1} dB",
+        "{id}: {:.1} s of audio in {:.2} s; tempo {:.2} -> {:.2} BPM (stretch {:+.2} %), beats {:+.1} ms apart, level dip {:.1} dB, limiter {:.1} dB",
         r.audio.len() as f64 / sone_dsp::SR,
         placed.render_seconds,
         r.report.tempo_b,
@@ -146,10 +170,8 @@ fn write_render(out: &Path, placed: &adapters::Placed) -> Result<()> {
     Ok(())
 }
 
-/// Specs to audio. With `--struct` the bars are counted as in the lab (the hand-built specs),
-/// with `--beats` as in the beat tables (the planner's specs).
 fn render(args: Args) -> Result<()> {
-    let Some((specs, ids)) = args.words.split_first() else { bail!("sone render <specs.json> [id…] --stems DIR (--beats DIR | --struct DIR) --out DIR") };
+    let Some((specs, ids)) = args.words.split_first() else { bail!("sone render <specs.json> [id...] --stems DIR (--beats DIR | --struct DIR) --out DIR") };
     let (stems, out) = (args.path("stems")?, args.path("out")?);
     std::fs::create_dir_all(&out)?;
     let specs = Spec::load_all(Path::new(specs))?;
@@ -173,7 +195,6 @@ fn render(args: Args) -> Result<()> {
     Ok(())
 }
 
-/// Plan and render in one go.
 fn mix(args: Args) -> Result<()> {
     let [a, b] = args.words.as_slice() else { bail!("sone mix <A> <B> --stems DIR --beats DIR --out DIR") };
     let out = args.path("out")?;
@@ -181,7 +202,6 @@ fn mix(args: Args) -> Result<()> {
     let mut lib = Library::new(&args.path("stems")?, &args.path("beats")?, args.get_or("loudness", STATION_LUFS)?);
     let (sa, sb) = (lib.song(a)?, lib.song(b)?);
     let opt = owner_rules(&args)?.apply(a, b, plan_options(&args, format!("{}-{}", &a[..a.len().min(6)], &b[..b.len().min(6)]))?);
-    // A blend whose drums drift apart is tried shorter; if that drifts too, there is no transition.
     let mut lead = opt.lead_bars;
     loop {
         let p = sone_plan::plan(&sa.table, &sb.table, &PlanOptions { lead_bars: lead, ..opt.clone() })?;

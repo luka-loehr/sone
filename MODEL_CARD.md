@@ -1,33 +1,40 @@
-# Model card: Sone
+# Model Card: Sone
 
 ## Summary
 
 | | |
 |---|---|
 | **Family** | `Sone-6.5M` (6,520,451 params, 13.12 MB), `Sone-v2-Base` (13,606,935 params, 27.36 MB), `Sone-Pro` (26,372,391 params, 52.90 MB), `Sone-Ultra` (35,481,159 params, 71.12 MB) |
-| **Wire format** | Single-file zero-copy IEEE-754 FP16 `.safetensors` (`sone-infer/1`, loaded via `sone_infer::Sone::load`; standalone per-organ `.safetensors` and FP32 exports also available) |
+| **Wire format** | Single-file zero-copy IEEE-754 FP16 `.safetensors` (`sone-infer/1`, loaded via `sone_infer::Sone::load`; standalone `Cortex` and `Cingulate` weights also published) |
 | **Task** | 44.1 kHz stereo track pair -> beat-locked (`<= 0.7 ms` rendered drift), stem-carved, vocal-onset-aligned DJ transition spliced bit-for-bit into untouched studio masters outside the ~24 s boundary window `[u_0, u_1]` |
 | **Author** | Luka Löhr |
-| **Engine code** | Pure Rust and WebAssembly (`sone-infer`, `sone-dsp`, `sone-render`, `sone-live`, Apache-2.0, zero external ML runtime dependencies) |
-| **Weights licence** | Non-commercial research use (CC BY-NC-SA 4.0, inherited from MUSDB18-HQ; zero audio retained in weights or code) |
+| **Repository & Demos** | [github.com/luka-loehr/sone](https://github.com/luka-loehr/sone) · [Interactive Player](https://lukaloehr.com/sone/#demos) · [Paper (PDF)](paper/main.pdf) |
+| **Engine code licence** | [Apache-2.0](LICENSE) (pure Rust and WebAssembly, zero external ML runtime dependencies) |
+| **Weights licence** | Unified 4-organ bundles: [CC BY-NC-SA 4.0](https://creativecommons.org/licenses/by-nc-sa/4.0/) (inherited from [MUSDB18-HQ](https://sigsep.github.io/datasets/musdb.html)); standalone `Cortex` & `Cingulate` weights (`sone-cortex-pro-f16.safetensors`, `sone-cingulate-pro-f16.safetensors`): [Apache-2.0](LICENSE) |
+
+## Checkpoints (`v0.1.0`)
+
+| File | Scope | Tensors | Parameters | Size | Licence | Download |
+|---|---|---:|---:|---:|---|---|
+| `sone-6.5M-f16.safetensors` | Unified 4-organ (`6.5M`) | 910 | 6,520,451 | 13.12 MB | CC BY-NC-SA 4.0 | [Download](https://github.com/luka-loehr/sone/releases/download/v0.1.0/sone-6.5M-f16.safetensors) |
+| `sone-v2-base-f16.safetensors` | Unified 4-organ (`v2-Base`) | 1,520 | 13,606,935 | 27.36 MB | CC BY-NC-SA 4.0 | [Download](https://github.com/luka-loehr/sone/releases/download/v0.1.0/sone-v2-base-f16.safetensors) |
+| `sone-pro-f16.safetensors` | Unified 4-organ (`Pro`) | 1,618 | 26,372,391 | 52.90 MB | CC BY-NC-SA 4.0 | [Download](https://github.com/luka-loehr/sone/releases/download/v0.1.0/sone-pro-f16.safetensors) |
+| `sone-ultra-f16.safetensors` | Unified 4-organ (`Ultra`) | 1,658 | 35,481,159 | 71.12 MB | CC BY-NC-SA 4.0 | [Download](https://github.com/luka-loehr/sone/releases/download/v0.1.0/sone-ultra-f16.safetensors) |
+| `sone-cortex-pro-f16.safetensors` | Standalone `Cortex v4-Pro` | 105 | 3,604,726 | 7.22 MB | Apache-2.0 | [Download](https://github.com/luka-loehr/sone/releases/download/v0.1.0/sone-cortex-pro-f16.safetensors) |
+| `sone-cingulate-pro-f16.safetensors` | Standalone `Cingulate v4-Pro` | 81 | 1,225,247 | 2.46 MB | Apache-2.0 | [Download](https://github.com/luka-loehr/sone/releases/download/v0.1.0/sone-cingulate-pro-f16.safetensors) |
 
 ## Architecture
 
 Named after Stevens' psychoacoustic *sone* unit of perceived loudness, **Sone** packs four namespaced neural organs into one `model.safetensors` file:
 
-| Tier | `cochlea.*` (Separator) | `tympanum.*` (7-Head Sensor) | `cortex.*` (Beat Planner) | `cingulate.*` (Conflict Monitor) | Tensors | Total Params | FP16 Size |
-|---|---|---|---|---|---:|---:|---:|
-| **`Sone-6.5M`** | 4,519,376 (2048-FFT, 42b, 6B, `d=64`) | 304,510 (128-mel, 4C+2xBiGRU-64) | 1,221,494 (6L/128D) | 475,071 (4L/96D, 11 heads) | 910 | **6,520,451** | 13.12 MB |
-| **`Sone-v2-Base`** | 11,605,860 (4096-FFT, 64b Dual-Axis, 6B, `d=80`) | 304,510 (128-mel, equiv.) | 1,221,494 (6L/128D, `v4-Base`) | 475,071 (4L/96D, 30 heads) | 1,520 | **13,606,935** | 27.36 MB |
-| **`Sone-Pro`** | 20,069,012 (4096-FFT, 64b Dual-Axis, 8B, `d=128`) | 1,473,406 (160-mel, 6C+3xBiGRU-128) | 3,604,726 (8L/192D, `v4-Pro`) | 1,225,247 (6L/128D, 30 heads) | 1,618 | **26,372,391** | 52.90 MB |
-| **`Sone-Ultra`** | 29,177,780 (4096-FFT, 64b Dual-Axis, 10B, `d=160` Net2Net) | 1,473,406 (160-mel, 6C+3xBiGRU-128) | 3,604,726 (8L/192D, `v4-Pro`) | 1,225,247 (6L/128D, 30 heads) | 1,658 | **35,481,159** | 71.12 MB |
+| Tier | `cochlea.*` (Separator) | `tympanum.*` (7-Head Sensor) | `cortex.*` (Beat Planner) | `cingulate.*` (Conflict Monitor) | Total Params |
+|---|---|---|---|---|---:|
+| **`Sone-6.5M`** | 4,519,376 (2048-FFT, 42b, 6B, `d=64`) | 304,510 (128-mel, 4C+2xBiGRU-64) | 1,221,494 (6L/128D) | 475,071 (4L/96D, 11 heads) | **6,520,451** |
+| **`Sone-v2-Base`** | 11,605,860 (4096-FFT, 64b Dual-Axis, 6B, `d=80`) | 304,510 (128-mel, equiv.) | 1,221,494 (6L/128D, `v4-Base`) | 475,071 (4L/96D, 30 heads) | **13,606,935** |
+| **`Sone-Pro`** | 20,069,012 (4096-FFT, 64b Dual-Axis, 8B, `d=128`) | 1,473,406 (160-mel, 6C+3xBiGRU-128) | 3,604,726 (8L/192D, `v4-Pro`) | 1,225,247 (6L/128D, 30 heads) | **26,372,391** |
+| **`Sone-Ultra`** | 29,177,780 (4096-FFT, 64b Dual-Axis, 10B, `d=160` Net2Net) | 1,473,406 (160-mel, 6C+3xBiGRU-128) | 3,604,726 (8L/192D, `v4-Pro`) | 1,225,247 (6L/128D, 30 heads) | **35,481,159** |
 
-- **`cochlea.*`**: Band-split Dual-Axis Time+Band Transformer predicting bounded 4-stem complex masks (`2 * tanh(raw / 2)`) projected onto exact stereo mixture conservation (`< -148 dB`).
-- **`tympanum.*`**: 50 Hz dilated depthwise TCN + BiGRU predicting beats, downbeats, vocal activity, inter-phrase breaths, 8-bar phrase starts, 24 musical keys, and sub-semitone tuning cents, paired at inference with a multi-octave spectral-flux comb grid.
-- **`cortex.*`**: Pre-RMSNorm Beat Transformer over 209 tokens (`[global; A_80; B_128]`, 24 features per beat) predicting transition recipe, normalized bar offsets `(u_start, u_swap)`, and `80 x 8` stem gain curves.
-- **`cingulate.*`**: Conflict Transformer scoring candidate plans with acceptability `q in [0, 1]` and up to 30 independent DJ defect heads for Best-of-6 reranking.
-
-See `docs/ORGANS.md`, `crates/sone-infer/`, and `paper/main.pdf` for exact equations and wire metadata.
+See [docs/ORGANS.md](docs/ORGANS.md), `crates/sone-infer/`, and [paper/main.pdf](paper/main.pdf) for exact equations and wire metadata.
 
 ## Training
 
@@ -36,14 +43,14 @@ See `docs/ORGANS.md`, `crates/sone-infer/`, and `paper/main.pdf` for exact equat
   - `Tympanum`: Exact vinyl-speed equivariant resampling (`alpha = 2^(delta_s / 12)`) transforming all five temporal targets, key class, and tuning cents analytically.
   - `Cortex v4` & `Cingulate v4`: Sharp-cut `7x` edge-weighted fader supervision, accompaniment-floor regularisation, post-drop unity lock, pre-vocal silence gating, and 50% vectorized 12-mode GPU counterfactual defect synthesis (20,000 steps per organ).
 - **Data:**
-  - `Cochlea`: 150 MUSDB18-HQ multitracks (138 train, 12 held-out) + 12 broadcast residual multitracks (6 train, 6 unseen test) + 1,101 Stage-1 `HTDemucs-ft` Creative Commons 48 s 4-stem clips + 372 two-stage `BS-RoFormer-1297` (12.98 dB vocal SDR) + `HTDemucs-ft` 48 s clips from MTG-Jamendo and Song Describer (streamed in ephemeral GPU RAM).
+  - `Cochlea`: 150 [MUSDB18-HQ](https://sigsep.github.io/datasets/musdb.html) multitracks (138 train, 12 held-out) + 12 broadcast residual multitracks (6 train, 6 unseen test) + 1,101 Stage-1 `HTDemucs-ft` Creative Commons 48 s 4-stem clips + 372 two-stage `BS-RoFormer-1297` (12.98 dB vocal SDR) + `HTDemucs-ft` 48 s clips from [MTG-Jamendo](https://mtg.github.io/mtg-jamendo-dataset/) and [Song Describer](https://github.com/ilaria-manco/song-describer-dataset) (streamed in ephemeral GPU RAM; zero audio retained).
   - `Tympanum`: 584 training songs / 16 held-out (MUSDB18-HQ isolated stems + 450 stem-distilled Creative Commons tracks + 12 broadcast 7-head tracks).
   - `Cortex` & `Cingulate`: 26,904 simulated training transitions (`sone-sim v4`), 5,932 strictly unseen validation transitions (`val.jsonl.gz`), and 152 creator-audited transitions (`owner.jsonl`).
 - **Compute:**
   - Dual NVIDIA RTX PRO 6000 Blackwell Server Edition GPUs (`sm_120`, 96 GB GDDR7, BF16 + `torch.compile`, 37.5 to 44.8 six-second stereo examples/s) for Stage-1 distillation, `Cochlea-v2-Base`, and `Cochlea-Pro`.
   - Dual NVIDIA L4 GPUs (`sm_89`, 24 GB GDDR6, BF16 FlashAttention) for two-stage `BS-RoFormer-1297` distillation, `Cochlea-Pro v2`, and Net2Net-expanded `Cochlea-Ultra`.
   - NVIDIA A100-SXM4-40GB (`sm_80`) for scaling sweeps; NVIDIA Tesla T4 (`sm_75`, 16 GB, FP16 Tensor Cores) for `Cortex v4`, `Cingulate v4`, and `Tympanum`.
-  - Production single-core CPU host: 2-vCPU Intel Xeon VM (Model 151, AVX2/FMA/F16C, 3.8 GiB RAM, `rustc 1.99.1 -C opt-level=3`, single thread).
+  - Production single-core CPU host: 2-vCPU Intel Xeon VM (Model 151, AVX2/FMA/F16C, 3.8 GiB RAM, `rustc -C opt-level=3`, single thread).
 
 ## Evaluation
 
@@ -69,23 +76,14 @@ On the 6 unseen broadcast test songs, `Cochlea-Ultra` reaches 6.93 dB mean SDR w
 | `Cortex v4-Pro` (3.60 M) | Held-out Recipe / Bar MAE / 8-Lane MAE / Owner Align | 98.16% / 0.127 bars / 0.0157 / 100.0% | 38.03 ms |
 | `Cingulate v4-Pro` (1.23 M) | Held-out Acc (`n = 5,932`) / Owner Prec (`n = 152`) | 96.61% / 100.0% (FP = 0) | 16.66 ms |
 
-### Single-threaded CPU budget per transition (2 x 24 s boundary + master splice)
-
-| Tier | Total 1-core CPU / mix | Amortized load (180 s song) |
-|---|---:|---:|
-| `Sone-6.5M` | 8.6 s | 4.8% |
-| `Sone-v2-Base` | 21.5 s | 11.9% |
-| `Sone-Pro` | 49.5 s | 27.5% |
-| `Sone-Ultra` | 65.5 s | 36.4% |
-
-## Intended use
+## Intended Use
 
 - Automated radio stations, playlist transition engines, and local or browser WebAssembly DJ players that require untouched master stereo outside transitions and low single-core CPU cost.
 - Research on compact phase-coherent band-split separation, equivariant metrical analysis, and neuro-symbolic audio control.
 
 ## Limitations
 
-- **Truncated preview clips vs. full-length songs:** `Tympanum` and `Cortex` are trained on complete songs to locate real outro phrases and vocal exits on Deck A alongside natural beat or verse openings on Deck B and overlap them. Passing preview clips chopped off mid-song (for example 30 s store snippets or 2 min dataset previews cut mid-chorus) removes the natural ending and degrades transition quality into fallback cuts.
+- **Full-length songs required (do not pass truncated preview clips):** `Tympanum` and `Cortex` are trained on complete songs to locate real outro phrases and vocal exits on Deck A alongside natural beat or verse openings on Deck B and overlap them. Passing 30 s store snippets or 2 min dataset previews cut mid-chorus removes the natural ending and degrades transition quality into fallback cuts.
 - **Continuous-vocal outros:** When Deck A sings up to its final downbeat with no instrumental outro or breath gap, `Cortex` selects a clean on-beat cut or minimal sneak rather than risking a double-vocal clash (`Cingulate` flags `CutNotTransition`).
 - **Single-pass CPU window vs. offline GPU ensembles:** Two-stage `BS-RoFormer-1297` + `HTDemucs-ft` distillation and 10-block Net2Net `Cochlea-Ultra` sharpen vocal isolation, but heavily drenched stereo reverb tails remain bounded by single-pass 6 s chunked capacity compared with `>100M` full-song GPU RoPE ensembles.
 - **Global BSSEval SDR on silent boundary stems:** Standard full-window SDR diverges toward `-inf dB` on instrumental windows with `-108 dBFS` ground-truth vocals even when residual vocal energy is `< -77 dBFS`. Evaluate DJ windows with MDX23 active-chunk median SDR alongside silent-stem RMS floors.
@@ -94,14 +92,15 @@ On the 6 unseen broadcast test songs, `Cochlea-Ultra` reaches 6.93 dB mean SDR w
 
 ## Usage
 
+```bash
+cargo build --release -p sone
+./target/release/sone transition song_a.wav song_b.wav --model sone-pro-f16.safetensors --out mix.wav
+./target/release/sone stems song_a.wav --model sone-pro-f16.safetensors --out stems/
+```
+
 ```rust
 use sone_infer::{Sone, WeightFile};
 
-let bytes = std::fs::read("model.safetensors")?;
+let bytes = std::fs::read("sone-pro-f16.safetensors")?;
 let sone = Sone::load(WeightFile::from_vec(bytes)?)?;
-```
-
-```bash
-cargo test --release --workspace
-cargo build --release -p sone
 ```

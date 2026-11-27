@@ -1,7 +1,7 @@
-# Ear: `cargo run -p sone-train --release --bin train -- ear --config cookbooks/ear.toml`
+# Tympanum: `cargo run -p sone-train --release -- tympanum --config cookbooks/tympanum.toml`
 
 [run]
-backend = "wgpu"          # the GRU runs step by step; see cookbooks/ear.md for ndarray vs wgpu
+backend = "wgpu"          # the GRU runs step by step; wgpu uses GPU compute shaders; ndarray runs on CPU
 seed = 1
 steps = 60000
 batch_size = 16
@@ -23,7 +23,7 @@ grad_clip = 5.0
 # gru_layers = 2
 
 [data]
-train = ["data/ear/train"]  # directories of label JSON files (format in cookbooks/ear.md)
+train = ["data/ear/train"]  # directories of label JSON files (see crates/sone-train/src/data_tympanum.rs)
 valid = ["data/ear/valid"]
 chunk_seconds = 10.0
 valid_seconds = 60.0

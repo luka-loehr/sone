@@ -3,8 +3,9 @@ name = "sone-sim"
 version.workspace = true
 edition.workspace = true
 license.workspace = true
-publish.workspace = true
-description = "Training data for planner and critic: transitions by the rules, and the same ones broken on purpose"
+authors.workspace = true
+repository.workspace = true
+description = "Synthetic DJ transition corpus and structured 30-defect counterfactual generator"
 
 [dependencies]
 anyhow.workspace = true

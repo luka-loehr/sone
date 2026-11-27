@@ -62,7 +62,7 @@ fn pack_precision(exports: &Path, prefix: &str, out_path: &Path, suffix: &str) -
 
 fn main() -> Result<()> {
     let args: Vec<String> = std::env::args().skip(1).collect();
-    let exports = PathBuf::from(args.first().map(String::as_str).unwrap_or("/home/user/bot/exports"));
+    let exports = PathBuf::from(args.first().map(String::as_str).unwrap_or("exports"));
     let prefix = args.get(1).map(String::as_str).unwrap_or("sone-6.5M");
 
     pack_precision(&exports, prefix, &exports.join(format!("{prefix}-f16.safetensors")), "f16")?;
