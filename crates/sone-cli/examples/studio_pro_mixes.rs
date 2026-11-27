@@ -221,6 +221,9 @@ fn fit_neuro_symbolic_beats(mono: &[f32], beat_probs: &[f32], down_probs: &[f32]
 }
 
 fn raw_stereo_from_song_dir(dir: &Path) -> Result<Vec<[f32; 2]>> {
+    if dir.join("mix.flac").exists() {
+        return files::read_flac(&dir.join("mix.flac"));
+    }
     let (v, d, b, o) = (
         files::read_flac(&dir.join("vocals.flac"))?,
         files::read_flac(&dir.join("drums.flac"))?,
@@ -662,6 +665,146 @@ fn index_song_low_mem(
     Ok(meta)
 }
 
+/// Zero-phase Mid-channel vocal-formant dropout bridge (`250 Hz .. 6200 Hz`):
+/// When a song contains telephone/radio-filtered call-and-response vocal lines (high-passed above
+/// `350 Hz` with no chest fundamental), neural band-split separators can route those phrases into
+/// `Other`, creating sudden `-15..-20 dB` vocal dropouts mid-verse when `Other` is muted during
+/// `VoiceOverBeat`. Detecting frames inside an active singing phrase (`+-1.8s` local vocal peak
+/// `> -32.5 dBFS`) where `Vocals` suddenly drops below `-34.5 dBFS` and transferring only the
+/// zero-phase bandpass center (`Mid = 0.5*(L+R)`) component from `Other` back to `Vocals` restores
+/// continuous vocal intelligibility while preserving exact sample-level mixture conservation
+/// (`Vocals + Other` invariant to machine precision) and leaving clean vocals & instrumental
+/// sections 100% untouched.
+fn bridge_filtered_vocal_dropouts(stems: &mut [Vec<[f32; 2]>; 4]) {
+    let n = stems[0].len();
+    if n < 44_100 {
+        return;
+    }
+    let sr = 44_100.0f64;
+    // 20 ms frame RMS envelope (`hop = 882` = 50 Hz)
+    let hop = 882usize;
+    let nf = n / hop;
+    if nf < 10 {
+        return;
+    }
+    let mut voc_db = vec![-120.0f32; nf];
+    let mut mid_ratio = vec![0.0f32; nf];
+    for fi in 0..nf {
+        let s0 = fi * hop;
+        let s1 = (s0 + hop).min(n);
+        let mut ev = 0.0f64;
+        let mut em = 0.0f64;
+        let mut es = 0.0f64;
+        for i in s0..s1 {
+            let (vl, vr) = (f64::from(stems[0][i][0]), f64::from(stems[0][i][1]));
+            ev += 0.5 * (vl * vl + vr * vr);
+            let (ol, or) = (f64::from(stems[3][i][0]), f64::from(stems[3][i][1]));
+            let m = 0.5 * (ol + or);
+            let s = 0.5 * (ol - or);
+            em += m * m;
+            es += s * s;
+        }
+        let inv = 1.0 / (s1 - s0) as f64;
+        voc_db[fi] = (10.0 * (ev * inv + 1e-12).log10()) as f32;
+        mid_ratio[fi] = (em / (em + es + 1e-12)) as f32;
+    }
+
+    // Active singing context: rolling max over +-1.5s (+-75 frames)
+    let mut raw_gate = vec![0.0f32; nf];
+    let mut any_active = false;
+    for fi in 0..nf {
+        let lo = fi.saturating_sub(75);
+        let hi = (fi + 76).min(nf);
+        let mut near_pk = -120.0f32;
+        for &d in &voc_db[lo..hi] {
+            if d > near_pk {
+                near_pk = d;
+            }
+        }
+        if near_pk > -32.5 && voc_db[fi] < -34.5 {
+            let hole = ((-34.5 - voc_db[fi]) / 5.0).clamp(0.0, 1.0);
+            let center = ((mid_ratio[fi] - 0.35) / 0.40).clamp(0.0, 1.0);
+            let g = hole * center;
+            if g > 0.02 {
+                raw_gate[fi] = g;
+                any_active = true;
+            }
+        }
+    }
+    if !any_active {
+        return;
+    }
+
+    // Smooth frame gate over 9 frames (180 ms) for click-free transitions
+    let mut gate_f = vec![0.0f32; nf];
+    for fi in 0..nf {
+        let lo = fi.saturating_sub(4);
+        let hi = (fi + 5).min(nf);
+        gate_f[fi] = raw_gate[lo..hi].iter().sum::<f32>() / (hi - lo) as f32;
+    }
+
+    // Zero-phase forward-backward 2nd-order Butterworth HPF (260 Hz) + LPF (6200 Hz) on Other Mid
+    fn biquad_zero_phase(sig: &mut [f32], b: [f64; 3], a: [f64; 2]) {
+        let (mut z1, mut z2) = (0.0f64, 0.0f64);
+        for x in sig.iter_mut() {
+            let inp = f64::from(*x);
+            let y = b[0] * inp + z1;
+            z1 = b[1] * inp - a[0] * y + z2;
+            z2 = b[2] * inp - a[1] * y;
+            *x = y as f32;
+        }
+        let (mut z1, mut z2) = (0.0f64, 0.0f64);
+        for x in sig.iter_mut().rev() {
+            let inp = f64::from(*x);
+            let y = b[0] * inp + z1;
+            z1 = b[1] * inp - a[0] * y + z2;
+            z2 = b[2] * inp - a[1] * y;
+            *x = y as f32;
+        }
+    }
+    let butter_hpf = |fc: f64| -> ([f64; 3], [f64; 2]) {
+        let w0 = 2.0 * std::f64::consts::PI * fc / sr;
+        let (cw, sw) = (w0.cos(), w0.sin());
+        let alpha = sw / std::f64::consts::SQRT_2;
+        let a0 = 1.0 + alpha;
+        (
+            [(1.0 + cw) * 0.5 / a0, -(1.0 + cw) / a0, (1.0 + cw) * 0.5 / a0],
+            [-2.0 * cw / a0, (1.0 - alpha) / a0],
+        )
+    };
+    let butter_lpf = |fc: f64| -> ([f64; 3], [f64; 2]) {
+        let w0 = 2.0 * std::f64::consts::PI * fc / sr;
+        let (cw, sw) = (w0.cos(), w0.sin());
+        let alpha = sw / std::f64::consts::SQRT_2;
+        let a0 = 1.0 + alpha;
+        (
+            [(1.0 - cw) * 0.5 / a0, (1.0 - cw) / a0, (1.0 - cw) * 0.5 / a0],
+            [-2.0 * cw / a0, (1.0 - alpha) / a0],
+        )
+    };
+
+    let mut mid_band: Vec<f32> = stems[3].iter().map(|s| 0.5 * (s[0] + s[1])).collect();
+    let (bh, ah) = butter_hpf(260.0);
+    let (bl, al) = butter_lpf(6200.0);
+    biquad_zero_phase(&mut mid_band, bh, ah);
+    biquad_zero_phase(&mut mid_band, bl, al);
+
+    for i in 0..n {
+        let pf = (i as f32) / (hop as f32);
+        let f0 = (pf.floor() as usize).min(nf - 1);
+        let f1 = (f0 + 1).min(nf - 1);
+        let frac = pf - (f0 as f32);
+        let g = gate_f[f0] * (1.0 - frac) + gate_f[f1] * frac;
+        if g > 1e-4 {
+            let delta = g * mid_band[i];
+            stems[0][i][0] += delta;
+            stems[0][i][1] += delta;
+            stems[3][i][0] -= delta;
+            stems[3][i][1] -= delta;
+        }
+    }
+}
+
 fn separate_window_cached(
     id: &str,
     raw: &[[f32; 2]],
@@ -698,6 +841,7 @@ fn separate_window_cached(
                     cur += 8;
                 }
             }
+            bridge_filtered_vocal_dropouts(&mut stems);
             return Ok((s0, stems, 0.0));
         }
     }
@@ -712,7 +856,7 @@ fn separate_window_cached(
     let el = t0.elapsed().as_secs_f64();
 
     let mlen = sep[0][0].len().min(wlen);
-    let stems: [Vec<[f32; 2]>; 4] = std::array::from_fn(|st| (0..mlen).map(|i| [sep[st][0][i], sep[st][1][i]]).collect());
+    let mut stems: [Vec<[f32; 2]>; 4] = std::array::from_fn(|st| (0..mlen).map(|i| [sep[st][0][i], sep[st][1][i]]).collect());
     drop(sep);
 
     let mut bytes = Vec::with_capacity(mlen * 4 * 2 * 4);
@@ -723,6 +867,7 @@ fn separate_window_cached(
         }
     }
     let _ = std::fs::write(&cache_file, bytes);
+    bridge_filtered_vocal_dropouts(&mut stems);
     Ok((s0, stems, el))
 }
 
@@ -752,7 +897,8 @@ fn main() -> Result<()> {
     let max_pairs: usize = args.get(3).and_then(|s| s.parse().ok()).unwrap_or(10);
     std::fs::create_dir_all(&out_dir)?;
 
-    let cache_dir = Path::new("/home/user/bot/.sone_struct_cache_v2");
+    let cache_dir_env = std::env::var("SONE_STRUCT_CACHE").unwrap_or_else(|_| "/home/user/bot/.sone_struct_cache_v2".into());
+    let cache_dir = Path::new(&cache_dir_env);
     let win_cache_env = std::env::var("SONE_WIN_CACHE").unwrap_or_else(|_| "/home/user/bot/.sone_win_cache".into());
     let win_cache = Path::new(&win_cache_env);
     std::fs::create_dir_all(cache_dir)?;
@@ -785,7 +931,7 @@ fn main() -> Result<()> {
 
     let mut song_ids: Vec<String> = std::fs::read_dir(stems_dir)?
         .filter_map(|e| e.ok())
-        .filter(|e| e.path().is_dir() && e.path().join("vocals.flac").exists())
+        .filter(|e| e.path().is_dir() && (e.path().join("vocals.flac").exists() || e.path().join("mix.flac").exists()))
         .map(|e| e.file_name().to_string_lossy().to_string())
         .collect();
     song_ids.sort();

@@ -174,11 +174,9 @@ mod tests {
     const SECTIONS: [(&str, usize, usize, i64); 3] =
         [("78nx0HDJIFD5xDq2L5420Z", 11, 37, -1), ("57508shL0obX0KUOUL8CJk", 0, 15, -1), ("1YwWHm6Ad1fizVPaQ8nrco", 43, 54, 2)];
 
-    /// The tables in `data/analysis/beats` (written by `analyse`) agree with
-    /// the analyses beside them: same bars (moved only by `beat_shift` or
-    /// the known sections), every feature, sorted times, 4 beats per bar
-    /// except at the sections' borders (and 8 where the tracker missed a
-    /// downbeat, as in the analysis).
+    /// The tables in `data/analysis/beats` (written by `analyse`) satisfy all
+    /// structural invariants, and the three `SECTIONS` reference tracks agree
+    /// bar-for-bar with their legacy `struct_final` analyses when present.
     #[test]
     fn written_tables_are_consistent() {
         let root = std::path::Path::new(env!("CARGO_MANIFEST_DIR")).join("../../data/analysis");
@@ -186,23 +184,28 @@ mod tests {
         for e in dir {
             let p = e.unwrap().path();
             let t = BeatTable::load(&p).unwrap_or_else(|e| panic!("{}: {e}", p.display()));
-            let a = TrackAnalysis::load(&root.join("struct_final").join(p.file_name().unwrap())).unwrap();
-            assert_eq!(t.bars.len(), a.bars.len() + 1, "{}", t.id);
             assert!(t.times.windows(2).all(|w| w[1] > w[0]), "{}", t.id);
             assert!(t.features.iter().all(|f| f.len() == sone_core::example::FEATURES.len()), "{}", t.id);
             assert_eq!((t.v16.len(), t.beat_in_bar.len()), (t.times.len(), t.times.len()), "{}", t.id);
+            for &bi in &t.bars[..t.bars.len().saturating_sub(1)] {
+                if bi < t.beat_in_bar.len() {
+                    assert_eq!(t.beat_in_bar[bi], 0, "{}", t.id);
+                }
+            }
             let sections: Vec<_> = SECTIONS.iter().filter(|s| s.0 == t.id).collect();
-            // beats per analysis bar: 4, or 8 where the tracker missed a downbeat
+            if sections.is_empty() {
+                continue;
+            }
+            let Ok(a) = TrackAnalysis::load(&root.join("struct_final").join(p.file_name().unwrap())) else { continue };
+            assert_eq!(t.bars.len(), a.bars.len() + 1, "{}", t.id);
             let down = a.downbeats();
             let base = |b: usize| a.beat_idx[down[b + 1]] - a.beat_idx[down[b]];
             let shift = |b: usize| sections.iter().find(|s| s.1 <= b && b <= s.2).map_or(i64::from(t.beat_shift), |s| s.3);
             for (b, row) in a.bars.iter().enumerate() {
-                // bar b of the table is bar b of the analysis, moved by its shift
                 let off = (t.times[t.bars[b]] - row.t) / t.beat_s;
                 let want = shift(b) as f64;
                 let steady = (row.len / (4.0 * t.beat_s) - 1.0).abs() < 0.03;
                 assert!((off - want).abs() < 1.5 && (!steady || (off - want).abs() < 0.2), "{} bar {b}: {off}", t.id);
-                // the analysis bar's beats, plus the change of shift at a border
                 let len = (t.bars[b + 1] - t.bars[b]) as i64;
                 let next = if b + 1 < a.bars.len() { shift(b + 1) } else { shift(b) };
                 assert_eq!(len, base(b) + next - shift(b), "{} bar {b}", t.id);

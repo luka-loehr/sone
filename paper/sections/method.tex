@@ -1,69 +1,70 @@
 \section{Method}
 \label{sec:method}
 
-Figure~\ref{fig:architecture} illustrates the complete \sone{} architecture, and Table~\ref{tab:params} details exact tensor counts, parameter counts, and serialized FP16 footprints across \textbf{Sone-6.5M}, \textbf{Sone-v2-Base}, \textbf{Sone-Pro}, and \textbf{Sone-Ultra}. We formalise the bar-ruler representation, untouched master splicing, and joint Newton drum-slope alignment (\S\ref{sec:ruler}), derive phase-coherent Dual-Axis \op{Cochlea} and two-stage \op{BS-RoFormer-1297} distillation (\S\ref{sec:stems}), vinyl-speed equivariant \op{Tympanum} (\S\ref{sec:ear}), \op{Cortex v4} and 12-mode counterfactual \op{Cingulate v4} (\S\ref{sec:beat}), and the zero-copy Rust/WebAssembly runtime (\S\ref{sec:runtime}).
+Figure~\ref{fig:architecture} shows the \sone{} pipeline, and Table~\ref{tab:params} lists exact tensor counts, parameter counts, and FP16 file sizes across all four tiers: Sone-6.5M, Sone-v2-Base, Sone-Pro, and Sone-Ultra. Below we describe the bar-ruler coordinate system, master splicing, and Newton drum-slope alignment (\S\ref{sec:ruler}), the \op{Cochlea} separator and two-stage teacher cascade (\S\ref{sec:stems}), the vinyl-equivariant \op{Tympanum} analyser (\S\ref{sec:ear}), \op{Cortex v4}, \op{Cingulate v4}, and our vocal handoff and continuity-bridging rules (\S\ref{sec:beat}), and the pure-Rust/WebAssembly runtime (\S\ref{sec:runtime}).
 
 \begin{figure*}[!tbp]
   \centering
   \includegraphics[width=\linewidth]{figures/architecture.pdf}
-  \caption{System architecture of the four-tier \sone{} model family. Raw $44.1$\,kHz stereo boundary windows around Song~A's outro and Song~B's intro are separated by \textbf{Cochlea} ($4096$-FFT, $64$--$83$-band Dual-Axis Transformer distilled from \op{BS-RoFormer-1297} + \op{HTDemucs-ft} with bounded Wiener mixture consistency) and analysed by \textbf{Tympanum} ($50$\,Hz TCN--BiGRU + multi-octave comb-grid) into a $24$-feature beat table. \textbf{Cortex v4} proposes transition recipes, bar offsets, and $8$ stem gain trajectories; \textbf{Cingulate v4} scores $K$ candidate plans across $30$ DJ defect heads; and the Rust DSP engine renders Newton-slope-locked blends spliced via raised-cosine seams into untouched master stereo outside $[u_0, u_1]$.}
+  \caption{Pipeline of the four-tier \sone{} family. Raw $44.1$\,kHz stereo boundary windows from Song~A's outro and Song~B's intro are separated by Cochlea ($4096$-FFT, $64$-band Dual-Axis Transformer distilled from \op{BS-RoFormer-1297} and \op{HTDemucs-ft} with bounded Wiener mixture consistency) and analysed by Tympanum ($50$\,Hz TCN--BiGRU plus multi-octave comb grid) into a $24$-feature beat table. Cortex v4 proposes transition recipes, bar offsets, and $8$ stem gain lanes; Cingulate v4 scores $K$ candidate plans across $30$ defect heads; and the Rust DSP engine renders Newton-slope-locked blends spliced via raised-cosine seams into untouched master stereo outside $[u_0, u_1]$.}
   \label{fig:architecture}
 \end{figure*}
 
 \input{tables/params}
 
 % ---------------------------------------------------------------------------
-\subsection{Bar-Ruler Representation, Master Splicing, and Newton Drum-Slope Lock}
+\subsection{Bar-Ruler Coordinates, Master Splicing, and Newton Drum-Slope Lock}
 \label{sec:ruler}
 
-Every transition between outgoing track~$A$ and incoming track~$B$ is parameterised on a continuous metrical coordinate $u \in \R$ measured in four-beat bars relative to \emph{the one} ($u = 0$), the downbeat where track~$B$ assumes primary rhythmic and harmonic ownership. Track~$A$ plays at its native tempo $\mathrm{BPM}_A$ up to $u_{\text{until}} \le +4.25$. Track~$B$ ($\mathrm{BPM}_B$) locks to $\mathrm{BPM}_A$ via a rational beat ratio $r_B \in \{1, \tfrac{1}{2}, 2, \tfrac{3}{2}\}$ using pitch-preserving WSOLA/phase-vocoder time-scale modification~\citep{verhelst1993overlap}, evaluated harmonically via relative minor/major Camelot equivalence (\op{song\_distance}, e.g.\ $5\text{A} \equiv 8\text{B}$ at distance $0$).
+Every transition between outgoing track~$A$ and incoming track~$B$ lives on a continuous metrical ruler $u \in \R$ measured in four-beat bars relative to \emph{the one} ($u = 0$), the downbeat where track~$B$ takes primary rhythmic and harmonic ownership. Track~$A$ stays at its native tempo $\mathrm{BPM}_A$ up to $u_{\text{until}} \le +4.25$. Track~$B$ ($\mathrm{BPM}_B$) locks to $\mathrm{BPM}_A$ through a rational beat ratio $r_B \in \{1, \tfrac{1}{2}, 2, \tfrac{3}{2}\}$ via pitch-preserving WSOLA/phase-vocoder time-scale modification~\citep{verhelst1993overlap}. Loudness is matched via integrated ITU-R BS.1770-4 metering~\citep{itur1770}, and harmonic compatibility is scored by Camelot distance with relative minor/major equivalence (\op{song\_distance}, e.g.\ $5\text{A} \equiv 8\text{B}$ at distance $0$).
 
-\paragraph{Boundary-only separation and master stereo splicing.}
-To guarantee zero neural degradation outside the overlap $[u_0, u_1]$ ($\approx 24$\,s) while cutting CPU work by $\sim 7.5\times$ on a $3$\,min song, \op{Cochlea} separates stems strictly inside $[u_0, u_1]$. Prior to sample $n_0 = \lfloor (t_{A,0} + u_0 T_{\text{bar}}) f_s \rceil$, \sone{} streams gain-matched original PCM $g_A x_A[n]$ bit-for-bit, crossfading into the stem-rendered blend $y_{\text{blend}}$ over an $L_{\text{seam}} = 1024$-sample ($23.2$\,ms) Hann raised-cosine seam. At blend exit $u_1$, Track~$B$'s untouched master $g_B x_B[n]$ resumes via a symmetric raised-cosine seam while smoothly gliding its stretch ratio from $r_{\text{blend}}$ back to native $1.0\times$ across eight bars.
+\paragraph{Boundary-only separation and master splicing.}
+To keep neural processing off the body of each recording and cut separation work by about $7.5\times$ on a $3$\,min track, \op{Cochlea} runs only inside the overlap $[u_0, u_1]$ ($\approx 24$\,s per deck). Before sample $n_0 = \lfloor (t_{A,0} + u_0 T_{\text{bar}}) f_s \rceil$, \sone{} streams gain-matched original PCM $g_A x_A[n]$ bit-for-bit, then crossfades into the stem-rendered blend $y_{\text{blend}}$ over an $L_{\text{seam}} = 1024$-sample ($23.2$\,ms) Hann raised-cosine seam. At blend exit $u_1$, track~$B$'s untouched master $g_B x_B[n]$ resumes across a matching raised-cosine seam while its stretch ratio glides smoothly from $r_{\text{blend}}$ back to $1.0\times$ over eight bars.
 
 \paragraph{Joint Newton drum-slope and phase-nudge lock.}
-On live-drummed recordings where inter-beat intervals wander across a $32$-bar regression span ($\sigma_{\text{IBI}} \approx 77$\,ms), a global least-squares tempo fit can leave $4$--$15$\,ms of beat drift between the first and second halves of the blend---perceptible to a trained ear even below a $12$\,ms nominal gate. Measuring first-half and second-half cross-correlation drum lags $(\delta_1, \delta_2)$ over span $W$ bars ($T_{1/2} = 500\,W\,T_{\text{bar}}$\,ms), \sone{} refines $\mathrm{BPM}_B$ and phase nudge $\nu_B$ iteratively in closed form:
+On live-drummed tracks whose inter-beat intervals drift across a $32$-bar span ($\sigma_{\text{IBI}} \approx 77$\,ms), a global least-squares tempo estimate can leave $4$--$15$\,ms of beat drift between the first and second halves of the blend. A trained ear hears that flamming even below a $12$\,ms tolerance. Measuring the first-half and second-half cross-correlation drum lags $(\delta_1, \delta_2)$ over span $W$ bars ($T_{1/2} = 500\,W\,T_{\text{bar}}$\,ms), \sone{} refines $\mathrm{BPM}_B$ and phase nudge $\nu_B$ iteratively in closed form:
 \begin{equation}
   \mathrm{BPM}_B^{(k+1)} = \mathrm{BPM}_B^{(k)}\!\left(1 + \gamma \frac{\delta_2 - \delta_1}{T_{1/2}}\right), \qquad
   \nu_B^{(k+1)} = \nu_B^{(k)} - \frac{\delta_{\text{all}}}{r_{\text{blend}}},
   \label{eq:newton_sync}
 \end{equation}
-coupled with an ear-calibrated studio gate ($|\delta_2 - \delta_1| \le 2.2$\,ms, $|\delta_{\text{all}}| \le 2.5$\,ms) even on \op{Sneak} blends without explicit \op{align\_pairs}.
+testing damping multipliers $\gamma \in \{\pm 1.0, \pm 0.65, \pm 1.35\}$ for up to four iterations under an ear-calibrated acceptance gate ($|\delta_2 - \delta_1| \le 2.2$\,ms, $|\delta_{\text{all}}| \le 2.5$\,ms), including on \op{Sneak} blends without explicit \op{align\_pairs}.
 
 % ---------------------------------------------------------------------------
-\subsection{Cochlea: 64/83-Band Dual-Axis Separation and 2-Stage RoFormer Cascade}
+\subsection{Cochlea: 64-Band Dual-Axis Separation and Two-Stage Teacher Cascade}
 \label{sec:stems}
 
-Given stereo audio $x \in \R^{2 \times L}$ at $f_s = 44.1$\,kHz, \op{Cochlea v1} (\op{Sone-6.5M}) uses an $N=2048, H=512$ STFT split into $K=42$ subbands ($4.52$\,M params, $0.13\times$ RT). To eliminate vocal harmonic phase scrambling and high-frequency bleed across CPU and studio deployments, \textbf{Cochlea-v2-Base} ($11.61$\,M, $D=80, B=6$), \textbf{Cochlea-Pro} ($20.07$\,M, $D=128, B=8$), and \textbf{Cochlea-Ultra} ($29.18$\,M, $D=160, B=10$, function-preserving Net2Net) introduce five coordinated upgrades:
+Given stereo audio $x \in \R^{2 \times L}$ at $f_s = 44.1$\,kHz, \op{Cochlea v1} (\op{Sone-6.5M}) uses an $N=2048, H=512$ STFT split into $K=42$ subbands ($4.52$\,M parameters, $0.13\times$ RT). To reduce vocal phase smearing and high-frequency bleed across CPU tiers, \op{Cochlea-v2-Base} ($11.61$\,M, $d=80, B=6$), \op{Cochlea-Pro} ($20.07$\,M, $d=128, B=8$), and function-preserving Net2Net \op{Cochlea-Ultra} ($29.18$\,M, $d=160, B=10$) combine five changes:
 \begin{enumerate}
-  \item \textbf{High-resolution $4096$-FFT $64$- and $83$-band vocal-formant partitions:} An $N=4096, H=1024$ Hann STFT ($10.77$\,Hz/bin) is partitioned into $K=64$ bands (\op{studio\_bands}) in \op{Base/Pro} and refined to $K=83$ bands (\op{ultra\_bands}) in \op{Ultra}: $8$ two-bin sub-bass bands ($0$--$172$\,Hz), $37$ three-bin vocal-fundamental/first-formant bands ($32.3$\,Hz width across $172$--$1{,}378$\,Hz), $32$ eight-bin upper-formant harmonic bands ($86.1$\,Hz width across $1.38$--$4.13$\,kHz), and $6$ presence/air bands up to $22.05$\,kHz.
-  \item \textbf{Dual-Axis Time+Band Transformer:} Each block $i \in \{0,\dots,B-1\}$ interleaves dilated depthwise temporal convolution ($\delta_i = 2^{i \bmod 6}$) with temporal multi-head self-attention ($\mathrm{MHA}^{\text{time}}$) and cross-band self-attention ($\mathrm{MHA}^{\text{band}}$):
+  \item \textbf{4096-FFT 64-band vocal-formant partition:} An $N=4096, H=1024$ Hann STFT ($10.77$\,Hz/bin) is grouped into $K=64$ subbands (\op{studio\_bands}) across \op{Base}, \op{Pro}, and Net2Net-expanded \op{Ultra}: $8$ two-bin sub-bass bands ($0$--$172$\,Hz), $20$ four-bin vocal-fundamental bands ($43.1$\,Hz width across $172$--$1{,}034$\,Hz), $24$ twelve-bin vocal-formant bands ($129.2$\,Hz width across $1.03$--$4.13$\,kHz), $10$ sixty-four-bin upper-mid and treble bands ($4.13$--$11.03$\,kHz), and $2$ air bands up to $22.05$\,kHz. (The \op{sone-infer/1} format also accepts an optional $83$-band \op{ultra\_bands} layout for custom configs.)
+  \item \textbf{Dual-Axis Time+Band Transformer:} Each block $i \in \{0,\dots,B-1\}$ combines dilated depthwise temporal convolution ($\delta_i = 2^{i \bmod 6}$), RMSNorm~\citep{zhang2019root}, temporal multi-head self-attention ($\mathrm{MHA}^{\text{time}}$), and cross-band self-attention ($\mathrm{MHA}^{\text{band}}$):
   \begin{align}
     \mathbf{U}^{(i)} &= \mathbf{H}^{(i)} + \mathrm{FFN}^{\text{time}}_i\!\big(\mathrm{DWConv1D}_{k=5,\delta_i}(\mathrm{RMSNorm}(\mathbf{H}^{(i)}))\big), \\
     \mathbf{V}^{(i)} &= \mathbf{U}^{(i)} + \mathrm{MHA}^{\text{time}}_i\!\big(\mathrm{RMSNorm}(\mathbf{U}^{(i)})\big), \\
-    \mathbf{W}^{(i)} &= \mathbf{V}^{(i)} + \mathrm{MHA}^{\text{band}}_i\!\big(\mathrm{RMSNorm}(\mathbf{V}^{(i)})\big), \quad
-    \mathbf{H}^{(i+1)} = \mathbf{W}^{(i)} + \mathrm{FFN}^{\text{ch}}_i\!\big(\mathrm{RMSNorm}(\mathbf{W}^{(i)})\big).
+    \mathbf{W}^{(i)} &= \mathbf{V}^{(i)} + \mathrm{MHA}^{\text{band}}_i\!\big(\mathrm{RMSNorm}(\mathbf{V}^{(i)})\big), \\
+    \mathbf{H}^{(i+1)} &= \mathbf{W}^{(i)} + \mathrm{FFN}^{\text{ch}}_i\!\big(\mathrm{RMSNorm}(\mathbf{W}^{(i)})\big).
   \end{align}
-  \item \textbf{Bounded four-stem complex masking \& energy-weighted Wiener conservation:} All four stems $m \in \{v, d, b, o\}$ predict bounded stereo complex masks $M^{(m)} = 2 \tanh(\tilde{M}^{(m)} / 2)$. Writing $\tilde{S}^{(m)} = M^{(m)} \odot X$, we project onto the exact mixture hyperplane weighted by stereo frame-bin power $P^{(m)}_{t,f} = \sum_{c=1}^2 |\tilde{S}^{(m)}_{t,f,c}|^2 + \epsilon_p$:
+  To construct \op{Cochlea-Ultra} ($B=10, d=160$) without discarding \op{Cochlea-Pro}'s $37.5$\,k-step weights ($B=8, d=128$), we widen hidden projections and insert two near-identity residual blocks using Net2Net~\citep{chen2016net2net}, preserving the $7.84$\,dB initialisation on step~$0$.
+  \item \textbf{Bounded four-stem complex masking and Wiener mixture conservation:} All four stems $m \in \{v, d, b, o\}$ predict bounded stereo complex masks $M^{(m)} = 2 \tanh(\tilde{M}^{(m)} / 2)$. Writing $\tilde{S}^{(m)} = M^{(m)} \odot X$, we project onto the mixture hyperplane weighted by stereo frame-bin power $P^{(m)}_{t,f} = \sum_{c=1}^2 |\tilde{S}^{(m)}_{t,f,c}|^2 + \epsilon_p$:
   \begin{equation}
     \hat{S}^{(m)}_{t,f,c} = \tilde{S}^{(m)}_{t,f,c} + \frac{P^{(m)}_{t,f}}{\sum_{n=1}^4 P^{(n)}_{t,f}} \left( X_{t,f,c} - \sum_{n=1}^4 \tilde{S}^{(n)}_{t,f,c} \right),
     \label{eq:wiener_proj}
   \end{equation}
-  followed by exact waveform conservation $\hat{s}_{\text{other}}(t) = x(t) - \sum_{m \in \{v,d,b\}} \hat{s}_m(t)$ ($< -148$\,dB error).
-  \item \textbf{2-Stage \op{BS-RoFormer-1297} + \op{HTDemucs-ft} teacher cascade:} To surpass single-teacher pseudo-label ceilings on vocal formants and breath tails, Stage~1 extracts studio-grade vocals $\tilde{s}_v$ using ViperX \op{BS-RoFormer-1297} ($12.98$\,dB MUSDB vocal SDR~\citep{lu2024bsroformer}, accelerated in BF16 FlashAttention with FP32 complex mask heads) and forms the exact vocal-free instrumental $x_{\text{inst}} = x - \tilde{s}_v$; Stage~2 runs \op{HTDemucs-ft}~\citep{rouard2023hybrid} strictly on $x_{\text{inst}}$ for $(\tilde{s}_d, \tilde{s}_b)$ and defines $\tilde{s}_o = x_{\text{inst}} - \tilde{s}_d - \tilde{s}_b$, guaranteeing zero vocal bleed in instrumental targets and exact four-stem conservation.
-  \item \textbf{Phase-coherence, direct SDR, and silent-vocal suppression loss:} Alongside complex $L_1$, waveform $L_1$, five-scale STFT~\citep{yamamoto2020parallel}, $128$-mel perceptual loss, and active-vocal cosine phase loss
+  followed by exact waveform conservation $\hat{s}_{\text{other}}(t) = x(t) - \sum_{m \in \{v,d,b\}} \hat{s}_m(t)$ ($< -148$\,dB reconstruction error).
+  \item \textbf{Two-stage \op{BS-RoFormer-1297} + \op{HTDemucs-ft} teacher cascade:} Single-teacher \op{HTDemucs-ft} pseudo-labels leave residual synth bleed on vocal breath tails. In Stage~1 we extract vocals $\tilde{s}_v$ with ViperX \op{BS-RoFormer-1297} ($12.98$\,dB MUSDB vocal SDR~\citep{lu2024bsroformer}, run in BF16 FlashAttention with FP32 complex mask heads) and compute the vocal-free instrumental residual $x_{\text{inst}} = x - \tilde{s}_v$. In Stage~2 we run \op{HTDemucs-ft}~\citep{rouard2023hybrid} strictly on $x_{\text{inst}}$ for $(\tilde{s}_d, \tilde{s}_b)$ and set $\tilde{s}_o = x_{\text{inst}} - \tilde{s}_d - \tilde{s}_b$. This removes vocal bleed from the instrumental targets while preserving exact four-stem summation.
+  \item \textbf{Phase-coherence, direct SDR, and silent-vocal loss:} Alongside complex $L_1$, waveform $L_1$, five-scale STFT~\citep{yamamoto2020parallel}, $128$-mel perceptual loss, and active-vocal cosine phase loss
   \begin{equation}
     \mathcal{L}_{\text{phase}} = \frac{\sum_{t,f,c} \mathbb{I}\!\big[|S^{(v)}_{t,f,c}| > 0.015 \max |S^{(v)}|\big] \left(1 - \frac{\Re(\hat{S}^{(v)}_{t,f,c} \overline{S^{(v)}_{t,f,c}})}{|\hat{S}^{(v)}_{t,f,c}|\,|S^{(v)}_{t,f,c}| + \epsilon}\right)}{\sum_{t,f,c} \mathbb{I}\!\big[|S^{(v)}_{t,f,c}| > 0.015 \max |S^{(v)}|\big] + 1},
     \label{eq:phase_loss}
   \end{equation}
-  \op{Cochlea-Pro v2} and \op{Cochlea-Ultra} incorporate direct time-domain vocal/mean SDR loss ($0.035\,\mathcal{L}_{\text{sdr}}$) and an $8\times$ silent-vocal suppression penalty ($20\%$ vocal-drop augmentation) that eliminates synth-chord fuzz prior to vocal entry.
+  \op{Cochlea-Pro v2} and \op{Cochlea-Ultra} add direct time-domain vocal/mean SDR loss ($0.035\,\mathcal{L}_{\text{sdr}}$) and an $8\times$ silent-vocal penalty under $20\%$ vocal-drop augmentation to suppress synth fuzz during silent vocal intros.
 \end{enumerate}
 
 % ---------------------------------------------------------------------------
-\subsection{Tympanum: Vinyl-Speed Equivariance and Neuro-Symbolic Comb-Grid}
+\subsection{Tympanum: Vinyl-Speed Equivariance and Comb-Grid Tracking}
 \label{sec:ear}
 
-\op{Tympanum} maps mono audio $x_{\text{mono}}$ ($44.1$\,kHz) to a $50$\,Hz HTK log-mel spectrogram ($N=2048, H=882$). \textbf{Tympanum-Base} ($304{,}510$ params) uses $M=128$ mels, $4$ dilated depthwise conv blocks ($C=96$), and a $2$-layer BiGRU ($h=64$); \textbf{Tympanum-Pro} ($1{,}473{,}406$ params) scales to $M=160$ mels, $6$ dilated conv blocks ($C=160$), and a $3$-layer BiGRU ($h=128$). During training, sampling $\Delta s \sim \mathcal{U}[-3.5, +3.5]$ semitones and resampling at turntable speed $\alpha = 2^{\Delta s / 12}$ transforms every structural timestamp, $24$-class key, and cent offset analytically with zero phase-vocoder drift:
+\op{Tympanum} maps mono $44.1$\,kHz audio $x_{\text{mono}}$ to a $50$\,Hz HTK log-mel spectrogram ($N=2048, H=882$). \op{Tympanum-Base} ($304{,}510$ parameters) uses $M=128$ mels, $4$ dilated depthwise conv blocks ($C=96$), and a $2$-layer BiGRU ($h=64$); \op{Tympanum-Pro} ($1{,}473{,}406$ parameters) scales to $M=160$ mels, $6$ dilated conv blocks ($C=160$), and a $3$-layer BiGRU ($h=128$). During training, sampling $\Delta s \sim \mathcal{U}[-3.5, +3.5]$ semitones and resampling at turntable speed $\alpha = 2^{\Delta s / 12}$ transforms every structural timestamp, $24$-class key, and cent offset analytically with no phase-vocoder artefacts:
 \begin{equation}
 \begin{aligned}
   t'_e &= \frac{t_e}{\alpha} \quad (\forall e \in \{\text{beat, downbeat, vocal, breath, phrase}\}), \\[-1pt]
@@ -71,16 +72,17 @@ Given stereo audio $x \in \R^{2 \times L}$ at $f_s = 44.1$\,kHz, \op{Cochlea v1}
 \end{aligned}
   \label{eq:vinyl}
 \end{equation}
-At inference, $50$\,Hz predictions fuse with local-mean-removed spectral onset flux $o_t$ over a multi-octave comb-filter candidate set scored by $J(g) = \bar{o}(g) + 2.5\,\bar{y}^{\text{beat}}(g) - 0.6\,\bar{y}^{\text{beat}}_{+p/2}(g) + 0.15\exp(-\log_2^2(\mathrm{BPM}_g / 115)/(2\cdot 0.65^2))$.
+At inference, $50$\,Hz beat activations fuse with local-mean-removed spectral onset flux $o_t$ over a multi-octave comb-filter candidate set scored by $J(g) = \bar{o}(g) + 2.5\,\bar{y}^{\text{beat}}(g) - 0.6\,\bar{y}^{\text{beat}}_{+p/2}(g) + 0.15\exp(-\log_2^2(\mathrm{BPM}_g / 115)/(2\cdot 0.65^2))$.
 
 % ---------------------------------------------------------------------------
-\subsection{Cortex v4 and Cingulate v4: 12-Mode Counterfactuals and Handoff Locks}
+\subsection{Cortex v4, Cingulate v4, and Vocal Handoff Invariants}
 \label{sec:beat}
 
-\op{Cortex} ($L=8, d=192, 3.60$\,M in \op{Pro}) and \op{Cingulate} ($L=6, d=128, 1.23$\,M in \op{Pro}) process a $209$-token Beat Transformer sequence $\mathbf{X} = [\phi_g(\mathbf{g}); \phi_A(\mathbf{A}) + \mathbf{P}_A; \phi_B(\mathbf{B}) + \mathbf{P}_B] \in \R^{209 \times d}$. Extending \op{v3}'s edge-weighted sharp-cut and accompaniment-floor regularisers, \textbf{v4} resolves four subtle ear-audited failure modes:
+\op{Cortex} ($L=8, d=192, 3.60$\,M in \op{Pro}) and \op{Cingulate} ($L=6, d=128, 1.23$\,M in \op{Pro}) read a $209$-token Beat Transformer sequence $\mathbf{X} = [\phi_g(\mathbf{g}); \phi_A(\mathbf{A}) + \mathbf{P}_A; \phi_B(\mathbf{B}) + \mathbf{P}_B] \in \R^{209 \times d}$. Building on \op{v3}'s edge-weighted sharp-cut and accompaniment-floor regularisers, \op{v4} and its deterministic handoff rules fix six failure modes found during blind listening:
 \begin{itemize}
-  \item \textbf{Early vocal overlap on instrumental outros:} When Deck~$A$ carries zero vocals across $[u_{\text{swap}}, 0]$ during \op{Sneak}, Deck~$B$'s opening vocal phrase ($u_{\text{voc},B} < 0$) is permitted to enter up to $4.5$\,s before $u=0$ while $G_{A,\text{other}}$ tucks to $0.28$, converting flat beat crossfades into layered vocal blends.
-  \item \textbf{Post-drop unity stem lock \& pre-vocal bleed gate:} Whenever Track~$B$ sings in bar $[0, 1)$, $u_{\text{voc},B} \le 0.0$ is enforced (eliminating post-drop vocal mutes), $G_{B,\text{other}}$ steps immediately to $0.85$ at $u=0$ ($1.0$ by $+0.5$), and prior to Track~$B$'s first \op{line\_start}, $G_{B,\text{vocals}}$ is gated strictly to $0.0$ until $-0.05$ bars before singing begins:
+  \item \textbf{Early vocal overlap on instrumental outros:} When Deck~$A$ has no vocals across $[u_{\text{swap}}, 0]$ during \op{Sneak}, Deck~$B$'s opening vocal line ($u_{\text{voc},B} < 0$) may enter up to $4.5$\,s before $u=0$ while $G_{A,\text{other}}$ tucks to $0.28$, turning flat instrumental crossfades into layered vocal blends.
+  \item \textbf{Post-drop unity lock and pre-vocal bleed gate:} Whenever Track~$B$ sings in bar $[0, 1)$, we enforce $u_{\text{voc},B} \le 0.0$ (preventing post-drop vocal mutes) and step $G_{B,\text{other}}$ to $0.85$ at $u=0$ ($1.0$ by $+0.5$). Before Track~$B$'s first \op{line\_start}, $G_{B,\text{vocals}}$ stays at $0.0$ until $-0.05$ bars before singing starts.
+  \item \textbf{Sustained-singing onset filtering:} On hip-hop and pop intros that open with a short ($<0.5$\,bar) bandpass producer tag or spoken ad-lib followed by a silence gap, raw voice-activity peaks trigger \op{VoiceOverBeat} several bars too early and leave dead air before the verse. We require sustained vocal energy across a four-beat window before setting $u_{\text{handoff}}$:
   \begin{equation}
   \begin{aligned}
     u_{\text{handoff}} = \min\Big\{ u_j \ge b_{\text{from}} \;\Big|\;
@@ -89,11 +91,13 @@ At inference, $50$\,Hz predictions fuse with local-mean-removed spectral onset f
   \end{aligned}
     \label{eq:handoff}
   \end{equation}
-  \item \textbf{Vectorized 12-mode GPU counterfactual synthesis (\op{Cingulate v4}):} Half of all positive transitions in each GPU batch are corrupted via slice-vectorized operations across $12$ defect archetypes: the $7$ \op{v3} modes plus post-drop vocal mutes, post-drop melody holes, pre-vocal stem-bleed openings, missed instrumental-outro vocal overlaps, and $\ge 5$\,ms live-drumming beat drift.
+  Short tags followed by silence gaps fail the four-beat continuity test, so \op{VoiceOverBeat} skips the tag and locks onto the sustained verse entrance.
+  \item \textbf{Gated mid-formant vocal continuity bridging:} Heavily high-pass or telephone-filtered call-and-response vocal lines are often routed partially into \op{other} by four-stem separators, causing alternating phrases to drop out when $G_{B,\text{other}} = 0$ prior to $u=0$. Whenever Track~$B$ is inside an active singing phrase ($\pm 1.5$\,s rolling vocal peak $> -32.5$\,dBFS) and the separated vocal stem dips below $-34.5$\,dBFS, the DSP mixer transfers a gated zero-phase forward-backward Butterworth bandpass ($260$--$6200$\,Hz) component from \op{other}'s centre (mid) channel $m_B = \tfrac{1}{2}(L_B + R_B)$ into \op{vocals} ($\hat{s}_v \leftarrow \hat{s}_v + \Delta$, $\hat{s}_o \leftarrow \hat{s}_o - \Delta$), keeping filtered vocal responses audible while preserving exact sample-level mixture conservation and rejecting stereo instruments and sub-bass.
+  \item \textbf{Vectorised 12-mode GPU counterfactuals (\op{Cingulate v4}):} Half of all positive transitions in each GPU batch are corrupted via slice-vectorised operations spanning $12$ defect archetypes: the $7$ \op{v3} modes plus post-drop vocal mutes, post-drop melody holes, pre-vocal stem-bleed openings, missed instrumental-outro vocal overlaps, and $\ge 5$\,ms live-drumming beat drift.
 \end{itemize}
 
 % ---------------------------------------------------------------------------
-\subsection{Zero-Copy Rust \& WebAssembly Runtime (\op{sone-infer/1})}
+\subsection{Zero-Copy Rust and WebAssembly Runtime (\op{sone-infer/1})}
 \label{sec:runtime}
 
-All four \sone{} tiers serialize into one \op{model.safetensors} file carrying schema tag \op{"sone-infer/1"} and backward-compatible JSON organ configs (\op{\#[serde(default)]} supporting both $64$-band \op{studio\_bands} and $83$-band \op{ultra\_bands}). At startup, \op{Sone::load} verifies bijective tensor coverage over one shared byte buffer with zero heap copies; pre-allocated workspaces decode IEEE-754 FP16 weights on the fly into cache-resident tiles backed by pure-Rust \op{matrixmultiply} GEMM across \op{x86\_64}, \op{aarch64}, and \op{wasm32-unknown-unknown}.
+All four \sone{} tiers serialise into one \op{model.safetensors} file tagged \op{"sone-infer/1"} with backward-compatible JSON organ configs (\op{\#[serde(default)]} supporting both $64$-band \op{studio\_bands} and optional $83$-band \op{ultra\_bands}). At startup, \op{Sone::load} checks bijective tensor coverage over one shared byte buffer with zero heap copies. Pre-allocated workspaces decode IEEE-754 FP16 weights on the fly into cache-resident tiles backed by pure-Rust \op{matrixmultiply} GEMM on \op{x86\_64}, \op{aarch64}, and \op{wasm32-unknown-unknown}.

@@ -2,7 +2,7 @@
 \label{sec:appendix}
 
 \paragraph{Beat-synchronous 24-feature vector.}
-Each beat token in $\mathbf{A} \in \R^{80\times 24}$ and $\mathbf{B} \in \R^{128\times 24}$ encodes, in exact index order:
+Each beat token in $\mathbf{A} \in \R^{80\times 24}$ and $\mathbf{B} \in \R^{128\times 24}$ stores, in exact index order:
 (0--6) loudness in dB relative to the track's loud reference (\op{loud\_db}) for \op{vocals}, \op{drums}, \op{kick} ($<120$\,Hz), \op{hats} ($>5$\,kHz), \op{bass}, \op{other}, and full \op{mix};
 (7) binary \op{sung} indicator ($\in \{0,1\}$);
 (8) \op{line\_end} breath indicator across the beat's four sixteenth notes;
@@ -19,4 +19,4 @@ Outside valid track bounds, silent padding sets channels $0..7$ to $-60.0$\,dB a
 
 \paragraph{\op{sone-infer/1} unified \op{.safetensors} wire specification.}
 {\raggedright
-Each \sone{} tier (\op{sone-6.5M}, \op{sone-v2-base}, \op{sone-pro}, \op{sone-ultra}) ships as a single IEEE-754 FP16 \op{model.safetensors} bundle (plus optional standalone organ slices) embedding UTF-8 metadata keys inside the standard \op{.safetensors} JSON header: \op{"format": "sone-infer/1"}, \op{"model": "sone"} (or standalone \op{"cochlea"}, \op{"tympanum"}, \op{"cortex"}, \op{"cingulate"}), and per-organ JSON configs \op{"config.cochlea"} (supporting \op{n\_fft}, \op{hop}, $64$-band \op{studio\_bands} and $83$-band \op{ultra\_bands}, \op{time\_attn}, \op{four\_stems}, \op{mask\_bound}), \op{"config.tympanum"}, \op{"config.cortex"}, and \op{"config.cingulate"}. Tensors are namespaced as \op{cochlea.*}, \op{tympanum.*}, \op{cortex.*}, and \op{cingulate.*}, and \op{Sone::load} partitions the file zero-copy over one shared buffer (\op{Arc<[u8]>} or \op{include\_bytes!}), enforcing bijective tensor coverage so neither missing nor unused tensors are permitted.\par}
+Each \sone{} tier (\op{sone-6.5M}, \op{sone-v2-base}, \op{sone-pro}, \op{sone-ultra}) ships as a single IEEE-754 FP16 \op{model.safetensors} file (or optional standalone organ slices) with UTF-8 metadata keys in the \op{.safetensors} JSON header: \op{"format": "sone-infer/1"}, \op{"model": "sone"} (or standalone \op{"cochlea"}, \op{"tympanum"}, \op{"cortex"}, \op{"cingulate"}), and per-organ JSON configs \op{"config.cochlea"} (supporting \op{n\_fft}, \op{hop}, $64$-band \op{studio\_bands} and optional $83$-band \op{ultra\_bands}, \op{time\_attn}, \op{four\_stems}, \op{mask\_bound}), \op{"config.tympanum"}, \op{"config.cortex"}, and \op{"config.cingulate"}. Tensors are namespaced as \op{cochlea.*}, \op{tympanum.*}, \op{cortex.*}, and \op{cingulate.*}. \op{Sone::load} maps the file zero-copy over one shared buffer (\op{Arc<[u8]>} or \op{include\_bytes!}) and verifies bijective tensor coverage so neither missing nor unused tensors are accepted.\par}

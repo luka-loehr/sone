@@ -25,10 +25,11 @@ fn decode(bytes: &[u8]) -> Vec<[f32; 2]> {
 }
 
 /// The impulse response for `rt60` seconds (stereo, 1.3 × rt60 long).
+/// Falls back cleanly to `generate_ir` when Git LFS binaries have not been smudged.
 pub fn impulse_response(rt60: f64) -> Arc<Vec<[f32; 2]>> {
-    if rt60 == 2.4 {
+    if rt60 == 2.4 && IR_2_4.len() >= 1024 && !IR_2_4.starts_with(b"version https://git-lfs") {
         Arc::new(decode(IR_2_4))
-    } else if rt60 == 2.6 {
+    } else if rt60 == 2.6 && IR_2_6.len() >= 1024 && !IR_2_6.starts_with(b"version https://git-lfs") {
         Arc::new(decode(IR_2_6))
     } else {
         Arc::new(generate_ir(rt60, 7))

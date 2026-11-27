@@ -43,7 +43,7 @@
 \draw[->, orange!70!black, thick] (cortex.south) -- node[lab, right] {$K$ candidates} (cingulate.north);
 
 % Handoff + DSP
-\node[dsp, right=8.5mm of $(cortex.east)!0.5!(cingulate.east)$, minimum width=38mm] (dspbox) {\textbf{Deterministic Rust DSP}\\[-1pt]\scriptsize Pre-vocal gate, early overlap, unity lock\\[-1.5pt]\scriptsize Newton drum-slope sync ($\le 2.2$\,ms drift)\\[-1.5pt]\scriptsize Cosine master splice + tempo glide};
+\node[dsp, right=8.5mm of $(cortex.east)!0.5!(cingulate.east)$, minimum width=40mm] (dspbox) {\textbf{Deterministic Rust DSP}\\[-1pt]\scriptsize Onset filter, mid-formant bridge, unity lock\\[-1.5pt]\scriptsize Newton drum-slope sync ($\le 2.2$\,ms gate)\\[-1.5pt]\scriptsize Cosine master splice + tempo glide};
 
 \draw[->] (cortex.east) -| ($(dspbox.west)+(-3.5mm,3mm)$) -- ($(dspbox.west)+(0,3mm)$);
 \draw[->, orange!70!black] (cingulate.east) -| ($(dspbox.west)+(-3.5mm,-3mm)$) -- ($(dspbox.west)+(0,-3mm)$);

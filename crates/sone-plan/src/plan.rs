@@ -946,17 +946,40 @@ fn b_side(sb: &Song<'_>, recipe: Recipe, opening: Opening, lead: f64, bpb: i64, 
     let per_bar = 4.0 / bpb as f64;
     let steady = |beat_bar: usize| Some(sb.steady_run(beat_bar, 24, true));
     let whole_bars_before = |one: i64| -> f64 { ((one as f64 / bpb as f64).floor()).min(lead) };
-    // Where B's voice comes in, not before a ruler position: with a line. The answer says whether
+    // Ignore short introductory producer tags / spoken ad-libs (< 8 sixteenths = < 0.5 bars followed
+    // by >= 3 sixteenths of vocal silence in the first 4 bars) when locking onto Song B's singing entry.
+    let is_sustained_start = |s: usize| -> bool {
+        if s >= 64 {
+            return true;
+        }
+        let end = sb.t.line_ends.iter().copied().find(|&e| e > s).unwrap_or(s + 16);
+        let next_s = sb.t.line_starts.iter().copied().find(|&ns| ns > end).unwrap_or(usize::MAX);
+        let len = end.saturating_sub(s);
+        let gap = next_s.saturating_sub(end);
+        len >= 8 || gap < 3
+    };
+    // Where B's voice comes in, not before a ruler position: with a sustained line. The answer says whether
     // it is a line's start.
     let voice_from = |one: i64, from_beat: i64, not_before_u: f64| -> (Option<f64>, bool) {
         let r = Ruler { one, bpb };
         let earliest = r.beat_of(not_before_u).max(from_beat as f64).max(0.0);
         let first = (earliest * 4.0).floor() as usize;
         let window = (2 * bpb * 4) as usize;
-        // A line that starts within the next two bars; but a line already running that began at most a bar
-        // earlier comes in whole as a pickup, rather than the voice waiting for the next one.
-        let next = sb.t.line_starts.iter().copied().find(|&s| s >= first);
-        let pickup = sb.t.line_starts.iter().copied().filter(|&s| s < first && s as f64 >= first as f64 - PICKUP_BARS * (bpb * 4) as f64).next_back();
+        // Prefer the first sustained singing line (skipping short producer tags in bars 0..4).
+        let next = sb
+            .t
+            .line_starts
+            .iter()
+            .copied()
+            .find(|&s| s >= first && is_sustained_start(s))
+            .or_else(|| sb.t.line_starts.iter().copied().find(|&s| s >= first));
+        let pickup = sb
+            .t
+            .line_starts
+            .iter()
+            .copied()
+            .filter(|&s| is_sustained_start(s) && s < first && s as f64 >= first as f64 - PICKUP_BARS * (bpb * 4) as f64)
+            .next_back();
         if let (Some(p), Some(n)) = (pickup, next) {
             if n > first + 1 && (first..n).any(|s| sb.voiced16(s)) {
                 return (Some(r.u_of_line_start(p)), true);
@@ -1029,8 +1052,16 @@ fn b_side(sb: &Song<'_>, recipe: Recipe, opening: Opening, lead: f64, bpb: i64, 
                     .unwrap_or(beat_bar)
             });
             let one = sb.bar_beat(drop_bar) as i64;
+            let sustained_vb = sb
+                .t
+                .line_starts
+                .iter()
+                .copied()
+                .find(|&s| is_sustained_start(s))
+                .map(|s| s / 16)
+                .or_else(|| sb.voice_bar());
             let have = if recipe == Recipe::VoiceOverBeat {
-                let vb = sb.voice_bar().unwrap_or(0).min(drop_bar);
+                let vb = sustained_vb.unwrap_or(0).min(drop_bar);
                 ((one - sb.bar_beat(vb) as i64) as f64 / bpb as f64).floor().min(lead)
             } else {
                 whole_bars_before(one)
