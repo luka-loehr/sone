@@ -145,7 +145,7 @@ def render_banner(out_path: Path) -> None:
 
     ax.text(
         155,
-        420,
+        448,
         "Sone",
         fontsize=94,
         family="serif",
@@ -155,7 +155,7 @@ def render_banner(out_path: Path) -> None:
     )
     ax.text(
         160,
-        555,
+        583,
         "Neuro-symbolic DJ transitions and",
         fontsize=20.5,
         family="serif",
@@ -165,7 +165,7 @@ def render_banner(out_path: Path) -> None:
     )
     ax.text(
         160,
-        622,
+        650,
         "stem separation on one CPU core.",
         fontsize=20.5,
         family="serif",
@@ -173,21 +173,12 @@ def render_banner(out_path: Path) -> None:
         color="#d4d4d8",
         va="baseline",
     )
-    ax.text(
-        160,
-        825,
-        "6.5M to 35.5M parameters · pure Rust & WebAssembly",
-        fontsize=12.5,
-        family="monospace",
-        color="#7a7a82",
-        va="baseline",
-    )
 
     # Right-hand real transition spectrogram, seamlessly blended onto pure black
     spec_left = 0.445
-    spec_bottom = 0.145
+    spec_bottom = 0.135
     spec_w = 0.515
-    spec_h = 0.725
+    spec_h = 0.730
     ax_sp = fig.add_axes([spec_left, spec_bottom, spec_w, spec_h], facecolor=BG)
     ax_sp.imshow(
         rgb,
@@ -200,18 +191,6 @@ def render_banner(out_path: Path) -> None:
     ax_sp.set_xlim(0.0, 1.0)
     ax_sp.set_ylim(0.0, 1.0)
     ax_sp.axis("off")
-
-    # Quiet provenance caption aligned under the spectrogram (matches Stylus)
-    ax.text(
-        3200 * (spec_left + spec_w) - 18,
-        925,
-        "rendered transition (log-frequency STFT) · beat handoff at u = 0",
-        fontsize=10.5,
-        family="monospace",
-        color="#5e5e66",
-        ha="right",
-        va="baseline",
-    )
 
     out_path.parent.mkdir(parents=True, exist_ok=True)
     fig.savefig(out_path, dpi=200, facecolor=BG)
@@ -248,27 +227,8 @@ def render_og(out_path: Path) -> None:
         color="#d4d4d8",
         va="baseline",
     )
-    ax.text(
-        82,
-        584,
-        "6.5M to 35.5M parameters · pure Rust & WebAssembly",
-        fontsize=11.0,
-        family="monospace",
-        color="#7a7a82",
-        va="baseline",
-    )
-    ax.text(
-        1120,
-        584,
-        "rendered transition · beat handoff at u = 0",
-        fontsize=10.0,
-        family="monospace",
-        color="#5e5e66",
-        ha="right",
-        va="baseline",
-    )
 
-    ax_sp = fig.add_axes([0.055, 0.145, 0.890, 0.455], facecolor=BG)
+    ax_sp = fig.add_axes([0.055, 0.095, 0.890, 0.505], facecolor=BG)
     ax_sp.imshow(
         rgb,
         origin="lower",
