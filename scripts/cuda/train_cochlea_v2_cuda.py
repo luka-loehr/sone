@@ -133,7 +133,7 @@ def cochlea_config(size: str = "pro") -> dict:
         sample_rate=44100,
         n_fft=4096,
         hop=1024,
-        bands=ultra_bands(4096) if size == "ultra" else studio_bands(4096),
+        bands=studio_bands(4096),
         dim=dim,
         blocks=blocks,
         heads=heads,
@@ -912,8 +912,9 @@ def main():
 
     t0 = time.perf_counter()
     acc = {"loss": 0.0, "spec": 0.0, "wave": 0.0, "mr": 0.0, "mel": 0.0, "phase": 0.0, "leak": 0.0, "n": 0}
+    warmup_steps = 150 if args.init_safetensors else 1500
     for step in range(start_step, args.steps):
-        cur_lr = lr_at(step, args.steps, base_lr=args.lr)
+        cur_lr = lr_at(step, args.steps, base_lr=args.lr, warmup=warmup_steps)
         for pg in opt.param_groups:
             pg["lr"] = cur_lr
         mix, tgt = next(loader)
