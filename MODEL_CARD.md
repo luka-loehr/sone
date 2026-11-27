@@ -85,6 +85,7 @@ On the 6 unseen broadcast test songs, `Cochlea-Ultra` reaches 6.93 dB mean SDR w
 
 ## Limitations
 
+- **Truncated preview clips vs. full-length songs:** `Tympanum` and `Cortex` are trained on complete songs to locate real outro phrases and vocal exits on Deck A alongside natural beat or verse openings on Deck B and overlap them. Passing preview clips chopped off mid-song (for example 30 s store snippets or 2 min dataset previews cut mid-chorus) removes the natural ending and degrades transition quality into fallback cuts.
 - **Continuous-vocal outros:** When Deck A sings up to its final downbeat with no instrumental outro or breath gap, `Cortex` selects a clean on-beat cut or minimal sneak rather than risking a double-vocal clash (`Cingulate` flags `CutNotTransition`).
 - **Single-pass CPU window vs. offline GPU ensembles:** Two-stage `BS-RoFormer-1297` + `HTDemucs-ft` distillation and 10-block Net2Net `Cochlea-Ultra` sharpen vocal isolation, but heavily drenched stereo reverb tails remain bounded by single-pass 6 s chunked capacity compared with `>100M` full-song GPU RoPE ensembles.
 - **Global BSSEval SDR on silent boundary stems:** Standard full-window SDR diverges toward `-inf dB` on instrumental windows with `-108 dBFS` ground-truth vocals even when residual vocal energy is `< -77 dBFS`. Evaluate DJ windows with MDX23 active-chunk median SDR alongside silent-stem RMS floors.
