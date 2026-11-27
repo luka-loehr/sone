@@ -6,7 +6,17 @@
 
 Instead of passing full songs through a generative audio codec, Sone separates, analyses, plans, and audits only a ~24 s boundary window around each track handoff. Four compact neural organs packaged inside one `model.safetensors` file predict stem masks, metrical structure, transition plans, and defect scores, while deterministic Rust DSP renders the blend and splices untouched studio master stereo bit-for-bit everywhere outside the transition.
 
-**[Paper (PDF)](paper/main.pdf)** · [Model card](MODEL_CARD.md)
+**[Paper (PDF)](paper/main.pdf)** · [Model card](MODEL_CARD.md) · [Interactive demos](https://lukaloehr.com/sone/#demos) · [Blog post](https://lukaloehr.com/blog/sone/)
+
+## Transition demos
+
+Four end-to-end transitions rendered on Creative Commons vocal tracks ([CC BY-SA 3.0](https://creativecommons.org/licenses/by-sa/3.0/); full attribution in [assets/demos/CREDITS.md](assets/demos/CREDITS.md)). Each 60 fps render displays Deck A's isolated spectrum (copper), Deck B's tempo-locked spectrum (cyan), the dual-chrominance master output, and the four stem gain trajectories (`VOC`, `DRM`, `BAS`, `OTH`) across `master A`, the neural boundary `[u0, u1]`, and `master B`. Click any preview to play the 1080p60 video with audio:
+
+| [Jonay · Skydiving](https://www.jamendo.com/track/354778) → [Jemex · Square 1](https://www.jamendo.com/track/135657) | [Jemex · Square 1](https://www.jamendo.com/track/135657) → [Jemex · El Fin](https://www.jamendo.com/track/135661) |
+|---|---|
+| [![](assets/demos/skydiving-into-square-1-preview.gif)](https://lukaloehr.com/sone/demos/skydiving-into-square-1.mp4)<br>`115 → 120 BPM · 9A → 8A · 0.7 ms drift` · [Watch 1080p60 with audio ↗](https://lukaloehr.com/sone/demos/skydiving-into-square-1.mp4) · [MP4](assets/demos/skydiving-into-square-1.mp4) | [![](assets/demos/square-1-into-el-fin-preview.gif)](https://lukaloehr.com/sone/demos/square-1-into-el-fin.mp4)<br>`120 → 120 BPM · 8A → 9A · 0.0 ms drift` · [Watch 1080p60 with audio ↗](https://lukaloehr.com/sone/demos/square-1-into-el-fin.mp4) · [MP4](assets/demos/square-1-into-el-fin.mp4) |
+| **[Jonay · Skydiving](https://www.jamendo.com/track/354778) → [The Dada Weatherman · Lost To Me](https://www.jamendo.com/track/1194312)** | **[Anny Sky · New Trend](https://www.jamendo.com/track/1187965) → [Jemex · Over Me](https://www.jamendo.com/track/135660)** |
+| [![](assets/demos/skydiving-into-lost-to-me-preview.gif)](https://lukaloehr.com/sone/demos/skydiving-into-lost-to-me.mp4)<br>`115 → 120 BPM · 9A → 6A · 0.0 ms drift` · [Watch 1080p60 with audio ↗](https://lukaloehr.com/sone/demos/skydiving-into-lost-to-me.mp4) · [MP4](assets/demos/skydiving-into-lost-to-me.mp4) | [![](assets/demos/new-trend-into-over-me-preview.gif)](https://lukaloehr.com/sone/demos/new-trend-into-over-me.mp4)<br>`128 → 135 BPM · 9A → 2A · 0.0 ms drift` · [Watch 1080p60 with audio ↗](https://lukaloehr.com/sone/demos/new-trend-into-over-me.mp4) · [MP4](assets/demos/new-trend-into-over-me.mp4) |
 
 ## Results
 

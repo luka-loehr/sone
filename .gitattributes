@@ -7,3 +7,4 @@
 *.bin filter=lfs diff=lfs merge=lfs -text
 data/external/** filter=lfs diff=lfs merge=lfs -text
 *.gz filter=lfs diff=lfs merge=lfs -text
+assets/demos/** -filter -diff -merge -text

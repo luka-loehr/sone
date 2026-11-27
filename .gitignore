@@ -7,6 +7,10 @@ target-*/
 *.mp3
 *.opus
 *.m4a
+*.mp4
+!assets/demos/*.mp4
+!assets/demos/*.gif
+!assets/demos/*.webp
 *.safetensors
 paper/build_pages/
 paper/*.aux
