@@ -26,4 +26,4 @@ Running `cargo run --release -p sone -- simulate` deterministically generates `d
 | **MUSDB18-HQ** | [https://sigsep.github.io/datasets/musdb.html](https://sigsep.github.io/datasets/musdb.html) | CC BY-NC-SA 4.0 |
 | **MTG-Jamendo** | [https://mtg.github.io/mtg-jamendo-dataset/](https://mtg.github.io/mtg-jamendo-dataset/) | Creative Commons |
 | **Song Describer Dataset** | [https://github.com/ilaria-manco/song-describer-dataset](https://github.com/ilaria-manco/song-describer-dataset) | Creative Commons |
-| **Five Showcase Demo Pairs** | [assets/demos/CREDITS.md](../assets/demos/CREDITS.md) | CC BY 3.0 / CC BY-SA 3.0 |
+| **Three Showcase Demo Pairs** | [assets/demos/CREDITS.md](../assets/demos/CREDITS.md) | CC BY 3.0 / CC BY-SA 3.0 |
